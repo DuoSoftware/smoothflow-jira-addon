@@ -1,0 +1,136 @@
+{
+    "Templates": [
+        {
+            "Name": "Blank",
+            "DisplayName": "Blank",
+            "Description": "Template description goes here",
+            "ControlType": "template",
+            "modules": [
+                {
+                    "id": "0",
+                    "sampleData": []
+                },
+                {
+                    "id": "1",
+                    "sampleData": []
+                }
+            ],
+            "variables": []
+        },
+        {
+            "Name": "SimpleMsg",
+            "DisplayName": "Simple message print",
+            "Description": "This rule can be used to print a simple message when the rule is been executed.",
+            "ControlType": "template",
+            "modules": [
+                {
+                    "id": "0",
+                    "sampleData": []
+                },
+                {
+                    "id": "4",
+                    "sampleData": [
+                        {
+                            "Key": "MessageBody",
+                            "Value": "This is were your message is going to be. You can change it the way you want"
+                        }
+                    ]
+                },
+                {
+                    "id": "1",
+                    "sampleData": []
+                }
+            ],
+            "variables": []
+        },
+        {
+            "Name": "TwilioSMS",
+            "DisplayName": "Twilio SMS",
+            "Description": "Send a SMS to someone using Twilio SMS APIs.",
+            "ControlType": "template",
+            "modules": [
+                {
+                    "id": "0",
+                    "sampleData": []
+                },
+                {
+                    "id": "882115",
+                    "sampleData": [
+                        {
+                            "Key": "InSessionID",
+                            "Value": "@InSessionID"
+                        }
+                    ]
+                },
+                {
+                    "id": "1",
+                    "sampleData": []
+                }
+            ],
+            "variables": [
+                {
+                    "Key": "InSessionID",
+                    "Value": "",
+                    "Category": "InArgument",
+                    "Type": "dynamic",
+                    "Priority": "Mandatory",
+                    "Group": "default",
+                    "DataType": "string"
+                }
+            ]
+        },
+        {
+            "Name": "FlowWithMultipleLevels",
+            "DisplayName": "Flow with If condition",
+            "Description": "You can use an 'IF' condition inside your rule.",
+            "ControlType": "template",
+            "modules": [
+                {
+                    "id": "0",
+                    "sampleData": []
+                },
+                {
+                    "id": "4",
+                    "sampleData": [
+                        {
+                            "Key": "MessageBody",
+                            "Value": "The flow is about to start."
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "sampleData": [
+                        {
+                            "Key": "ValueOne",
+                            "Value": "@number"
+                        },
+                        {
+                            "Key": "Condition",
+                            "Value": "=="
+                        },
+                        {
+                            "Key": "ValueTwo",
+                            "Value": "10"
+                        }
+                    ]
+                },
+                {
+                    "id": "1",
+                    "sampleData": []
+                }
+            ],
+            "variables": [
+                {
+                    "Key": "number",
+                    "Value": "",
+                    "Category": "InArgument",
+                    "Type": "dynamic",
+                    "Priority": "Mandatory",
+                    "Group": "default",
+                    "DataType": "string"
+                }
+            ]
+        }
+    ]
+}

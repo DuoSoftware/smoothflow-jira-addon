@@ -1066,7 +1066,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.getControlData = function () {
         $http({
             method: 'GET',
-            url: '../../../json/controldata.json',
+            url: 'json/controldata.json',
             dataType: "json",
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -1127,7 +1127,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.getTemplateData = function () {
         $http({
             method: 'GET',
-            url: '../../../json/templatedata.json',
+            url: 'json/templatedata.json',
             dataType: "json",
             headers: {
                 "Access-Control-Allow-Origin": "*",
