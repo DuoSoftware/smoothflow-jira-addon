@@ -1,0 +1,30 @@
+<div id="dashboard" class="clearfix">
+    <div class="main-header-bar aui-navgroup-horizontal">
+        <header class="aui-page-header">
+            <div class="aui-page-header-inner">
+                <div class="aui-page-header-main">
+                    <h4>Dashboard Summary</h4>
+                </div>
+                <div class="aui-page-header-actions">
+                    <div class="aui-buttons">
+                        <button ng-click="getDockerDetails()" id="dialog-show-button" class="aui-button aui-button-primary">Refresh</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+    </div>
+
+    <div class="container">
+        <br>
+        <p>This page displays all of the accumilated usage history of the containers used by your rules.</p>
+        <h2>Total No. of Containers : {{TotalNumberOfContainers}}</h2>
+        <h4>Processed Requests : {{TotalRequestsProcessed}}</h4>
+        <h4>Bytes Received : {{TotalBandwithReceived}} bytes</h4>
+        <h4>Bytes Sent : {{TotalBandwithSent}} bytes</h4>
+        <h4>Discarded : {{TotalDiscarded}}</h4>
+        <h4>Current Processing : {{CurrentProcessing}}</h4>
+        
+    </div>
+
+</div>

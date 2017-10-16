@@ -1,0 +1,30 @@
+<section role="dialog" id="rule-delete-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true" data-aui-remove-on-hide="true">
+    <!-- Dialog header -->
+    <header class="aui-dialog2-header">
+        <!-- The dialog's title -->
+        <h2 class="aui-dialog2-header-main">Are you sure?</h2>
+        <!-- Close icon -->
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <!-- Main dialog content -->
+    <div class="aui-dialog2-content">
+        <p>You are about to remove the selected Rule<span ng-if="hasContainer == true"> with all its dependencies</span>.</p>
+        <div ng-if="hasContainer == true">
+            <p><b>Containers</b></p>
+            <ul>
+                <li>{{selectedRule.name}}</li>
+            </ul>
+        </div>
+        <p>Do you really want to continue?</p>
+    </div>
+    <!-- Dialog footer -->
+    <footer class="aui-dialog2-footer">
+        <!-- Actions to render on the right of the footer -->
+        <div class="aui-dialog2-footer-actions">
+            <button ng-disabled="disableDeleteButton" ng-click="deleteRuleAndDependencies($event)" id="dialog-submit-button" class="aui-button aui-button-primary">Remove<span ng-if="hasContainer == true"> All</span></button>
+            <button ng-click="closeRemoveDialog($event)" id="dialog-close-button" class="aui-button aui-button-link">Close</button>
+        </div>
+    </footer>
+</section>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="adminJira">
+
+<head>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="adminController">
+
+    <div id="loading" class="aui-page-notification aui-page-focused-medium">
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <section class="aui-page-panel-content">
+                    <div class="button-spinner"></div>
+                    <h2 id="busycontent">Loading your information...</h2>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="ac-content aui-page-fixed">
+        <section>
+            <center>
+                <img width="100px" src="connection.png" />
+                <h2>Connect with Smoothflow.io</h2>
+
+                <div ng-if="pagestatus=='newuser'">
+                    <p>On this page you can connect to a Smoothflow Account.</p>
+                    <p>We will create an account on Smoothflow on behalf of you using the following information. The "password"
+                        field was auto generated. Please note it down to access your account on Smoothflow.io. You will also receive an email with the credentials.</p>
+                    <br>
+                    <img ng-src="{{SessionDetails.Avatar}}" style="width:40px;">
+                    <p><b>Name</b>: {{SessionDetails.name}}</p>
+                    <p><b>Tenant</b>: {{SessionDetails.Domain}}</p>
+                    <p><b>Email</b>: {{SessionDetails.email}}</p>
+                    <p><b>Password</b>: <input class="passwordcopy" readonly ng-model="SessionDetails.password"> <button ng-click="copytoClipboard(SessionDetails.password)">Copy</button></p>
+                    <br>
+                    <button class="aui-button aui-button-primary" ng-click="createUser()">Connect</button>
+                </div>
+                <div ng-if="pagestatus=='alreadyinuse'">
+                    <h3>You are connected to Smoothflow.io</h3>
+                </div>
+                <div ng-if="pagestatus=='loading'">
+                    <h3>Loading...</h3>
+                </div>
+            </center>
+        </section>
+
+    </div>
+
+    <script id="connect-loader" data-options="sizeToParent:true;">
+        (function () {
+            var getUrlParam = function (param) {
+                var codedParam = (new RegExp(param + '=([^&]*)')).exec(window.location.search)[1];
+                return decodeURIComponent(codedParam);
+            };
+
+            var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+            var options = document.getElementById('connect-loader').getAttribute('data-options');
+
+            var script = document.createElement("script");
+            //script.src = baseUrl + '/atlassian-connect/all.js';
+            script.src = baseUrl + '/atlassian-connect/all-debug.js';
+
+            if (options) {
+                script.setAttribute('data-options', options);
+            }
+
+            document.getElementsByTagName("head")[0].appendChild(script);
+        })();
+    </script>
+
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-experimental.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-soy.min.js"></script>
+
+
+
+    <script type="text/javascript" src="adminapp.js"></script>
+    <script type="text/javascript" src="admin.controller.js"></script>
+    <script type="text/javascript" src="../../../js/uimicrokernel.js"></script>
+
+
+
+</body>
+
+</html>

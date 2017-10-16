@@ -1,0 +1,154 @@
+<div class="workflow-container">
+    <div class="row">
+        <div class="col-md-8 col-sm-11 col-xs-12 workflow-pane no-float">
+            <div id="workflow-wrap">
+                <div class="clearfix" id="workflow">
+                    <div class="workflow-block" ng-repeat="component in selectedRule.workflow">
+                        <div class="header-bar" ng-click="openComponentInfo(component)">
+                            <span class="category-icon" ng-class="component.ControlType"></span>
+                            <!--span class="condition">{{component.DisplayName}}</span-->
+                            <span class="action">{{component.DisplayName}}</span>
+                            <div class="delete-comp">
+                                <button class="btn btn-default" type="button" ng-click="deleteComponentConfirmation($index, false)" confirm="Are you sure ?"><label class="glyphicon glyphicon-trash"></label></button>
+                                <div class="confirmation-box" ng-if="showDeleteConfirmation == $index">
+                                    <div class="confirmation-header">Are you sure</div>
+                                    <div class="confirmation-body"></div>
+                                    <div class="confirmation-footer clearfix">
+                                        <div>
+                                            <button class="btn btn-xs btn-primary" type="button" ng-click="deleteComponent(component)">Yes</button>
+                                            <button class="btn btn-xs btn-default" type="button" ng-click="cancelDelete()">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="conditional-condition" ng-if="component.ControlType == 'condition'">
+                                <div ng-if="component.DisplayName == 'Switch'">
+                                    <div class="case">
+                                        <div ng-repeat="case in component.cases track by $index">
+                                            <label class="sub-cond-connector"></label>
+                                            <div class="header-bar">
+                                                <span class="category-icon" ng-class="component.ControlType"></span>
+                                                <span><b>{{case.DisplayName}}</b></span>
+                                            </div>
+                                            <div class="body">
+                                                <div class="operation" ng-repeat="op in case.Variables track by $index">
+                                                    {{op}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="workflow-add-node-sub cond-sub-comp clearfix">
+                                            <div class="header-bar">
+                                                <div class="component-capsule">
+                                                    <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                                                    <span class="category-icon {{add.name}}" ng-click="toggleComponentsMenu($index, true, $parent.$index, component.ControlType)" ng-repeat="add in [{'name':'trigger'},{'name':'action'},{'name':'condition'}]"></span>
+                                                </div>
+                                                <span>Add Component</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="component.DisplayName == 'If'">
+                                    <div class="case">
+                                        <label class="sub-cond-connector"></label>
+                                        <div class="header-bar">
+                                            <span class="category-icon" ng-class="component.ControlType"></span>
+                                            <span>True</span>
+                                        </div>
+                                        <div class="body">
+                                            <div class="operation">
+                                                True extension
+                                                <div ng-repeat="tcomponent in trueComponents">
+                                                    <label class="sub-cond-connector"></label>
+                                                    <div class="header-bar">
+                                                        <span class="category-icon" ng-class="tcomponent.ControlType"></span>
+                                                        <span>Component header</span>
+                                                    </div>
+                                                    <div class="operation">
+                                                        Component body
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="workflow-add-node-sub cond-sub-comp clearfix">
+                                            <div class="header-bar">
+                                                <div class="component-capsule">
+                                                    <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                                                    <span class="category-icon {{add.name}}" ng-click="toggleComponentsMenu($index, true, $parent.$index)" ng-repeat="add in [{'name':'trigger'},{'name':'action'},{'name':'condition'}]"></span>
+                                                </div>
+                                                <span>Add Component</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="case">
+                                        <label class="sub-cond-connector"></label>
+                                        <div class="header-bar">
+                                            <span class="category-icon" ng-class="component.ControlType"></span>
+                                            <span>False</span>
+                                        </div>
+                                        <div class="body">
+                                            <div class="operation">
+                                                False extension
+                                                <div ng-repeat="fcomponent in falseComponents">
+                                                    <label class="sub-cond-connector"></label>
+                                                    <div class="header-bar">
+                                                        <span class="category-icon" ng-class="fcomponent.ControlType"></span>
+                                                        <span>Component header</span>
+                                                    </div>
+                                                    <div class="operation">
+                                                        Component body
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="workflow-add-node-sub cond-sub-comp clearfix">
+                                            <div class="header-bar">
+                                                <div class="component-capsule">
+                                                    <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                                                    <span class="category-icon {{add.name}}" ng-click="toggleComponentsMenu($index, true, $parent.$index)" ng-repeat="add in [{'name':'trigger'},{'name':'action'},{'name':'condition'}]"></span>
+                                                </div>
+                                                <span>Add Component</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="operation" ng-repeat="op in component.Variables">
+                                <span>{{op.Value}}</span>
+                            </div>
+                            <!--+-->
+                            <!--additional operations-->
+                            <!--.-->
+                            <!--.-->
+                            <!--.-->
+                        </div>
+                        <div class="workflow-add-node-sub clearfix" ng-if="$index < selectedRule.workflow.length-1" ng-hide="comToBePushedIndex == $index">
+                            <div class="header-bar">
+                                <div class="component-capsule">
+                                    <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                                    <span class="category-icon {{add.name}}" ng-click="toggleComponentsMenu($index, true, $parent.$index, add.name)" ng-repeat="add in [{'name':'trigger'},{'name':'action'},{'name':'condition'}]"></span>
+                                </div>
+                                <span>Add Component</span>
+                            </div>
+                        </div>
+                        <div class="loader-{{pendingComponentType}}" ng-if="comToBePushedIndex == $index"></div>
+                    </div>
+                    <div class="workflow-block workflow-add-node">
+                        <div class="header-bar">
+                            <div class="component-capsule">
+                                <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                                <span class="category-icon {{add.name}}" ng-click="toggleComponentsMenu($index, true, selectedRule.workflow.length-1)" ng-repeat="add in [{'name':'trigger'},{'name':'action'},{'name':'condition'}]"></span>
+                            </div>
+                            <span>Add Component</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-11 col-xs-12 properties-pane no-float">
+            <div ng-include="'content/rule/workflow/components/components.html'"></div>
+            <div ng-include="'content/rule/workflow/properties/properties.html'"></div>
+        </div>
+    </div>
+</div>

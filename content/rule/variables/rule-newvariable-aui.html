@@ -1,0 +1,52 @@
+<!-- Render the dialog -->
+<section role="dialog" id="new-variable-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true">
+    <!-- Dialog header -->
+    <header class="aui-dialog2-header">
+        <!-- The dialog's title -->
+        <h2 class="aui-dialog2-header-main">New variable</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <!-- Main dialog content -->
+    <div class="aui-dialog2-content">
+        <div class="rule-portion" ng-if="!isNewRuleFormValid">
+            <form class="aui" name="vm.newRuleForm">
+                <div class="field-group">
+                    <label for="key">Key</label>
+                    <input class="text long-field" type="text"
+                           id="key" name="key" ng-model="Variable.Key">
+                </div>
+                <div class="field-group">
+                    <label for="value">Value</label>
+                    <input class="text long-field" type="text"
+                           id="value" name="value" ng-model="Variable.Value">
+                </div>
+                <div class="field-group">
+                    <label for="value">Category</label>
+                    <select class="select" name="projects" ng-model="Variable.Category">
+                        <option value="Custom">Custom</option>
+                        <option value="InArgument">InArgument</option>
+                        <option value="OutArgument">OutArgument</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="value">Category</label>
+                    <select class="select" name="projects" ng-model="Variable.DataType">
+                        <option value="string">string</option>
+                        <option value="int">int</option>
+                        <option value="float">float</option>
+                        <option value="boolean">boolean</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Dialog footer -->
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button id="dialog-close-button" class="aui-button aui-button-link" ng-click="clearRule()">Clear</button>
+            <button id="dialog-next-button" class="aui-button aui-button-primary" ng-click="AddNewVariable(undefined, $event)">Save</button>
+        </div>
+    </footer>
+</section>

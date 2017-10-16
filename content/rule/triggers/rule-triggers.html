@@ -1,0 +1,15 @@
+<div class="clearfix">
+    <div class="container">
+        <div class="col-md-12 col-sm-12 content-padding-no">
+            <div class="inner-heading">Triggers <span>in {{selectedRule.ruleName}}</span></div>
+        </div>
+
+        <div class="clearfix">
+            <label class="checkbox-inline" ng-repeat=" trigger in triggersOption"
+                   ng-class="{'btn btn-success' : trigger.check, 'btn btn-primary' : !trigger.check}"
+                   ng-click="addedTrigger(trigger)" >
+                <input type="checkbox" value="" ng-model="trigger.check" ng-checked="trigger.check" id="{{trigger.Name}}">{{trigger.Name}}
+            </label>
+        </div>
+    </div>
+</div>

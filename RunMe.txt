@@ -1,0 +1,5 @@
+# starting the http server
+http-server -p 8000
+
+#hosting it as a public server
+ngrok http 8000

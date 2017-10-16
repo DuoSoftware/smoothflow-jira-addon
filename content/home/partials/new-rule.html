@@ -1,0 +1,100 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="newRule">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><img src="core/images/rule-01.svg" class="modal-icon"> New rule</h4>
+            </div>
+            <div class="modal-body" style="max-height: 400px;min-height: 400px">
+                <div class="rule-portion" ng-if="!isNewRuleFormValid">
+                    <form action="" name="vm.newRuleForm">
+                        <div class="row">
+                            <div class="col-md-3 form-group text-right">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="text" name="name" ng-model="selectedRule.ruleName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group text-right">
+                                <label>Description</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <textarea type="text" name="description" ng-model="selectedRule.description" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group text-right">
+                                <label>Projects</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <select class="form-control">
+                                    <option value="smoothflow">Smoothflow</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-3 form-group text-right">-->
+                                <!--<label>Status</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-8 form-group">-->
+                                <!--<switch id="enabled" name="enabled" ng-model="enabled" on="" off="Off" class="green"></switch>-->
+                                <!--&lt;!&ndash;<div class="switch">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button class="btn btn-xs" ng-if="selectedRule.switchState == 'on'">Off</button>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button class="btn btn-xs" ng-class="{'switchOn':selectedRule.switchState == 'on','switchOff':selectedRule.switchState == 'off'}">{{selectedRule.switchState}}</button>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button class="btn btn-xs" ng-if="selectedRule.switchState == 'off'">On</button>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="row">
+                            <div class="col-md-3 form-group text-right">
+                                <label>Created date</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <span>{{selectedRule.createdDate}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group text-right">
+                                <label>Created by</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <span>{{selectedRule.createdBy}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group text-right">
+                                <label>Updated date</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <span>{{selectedRule.updatedDate}}</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="templates-portion" ng-if="isNewRuleFormValid">
+                    <div class="text-center" style="margin-bottom: 20px">Select a template that suits you to start your workflow</div>
+                    <div class="col-md-6 template-block" data-dismiss="modal" aria-label="Close" ng-repeat="component in componentsToDisplay | filter : toolboxsearch" ng-click="openComponent(component, 0)">
+                        <div class="template-left">
+                            <!--<div class="template-icon" ng-class="component.ControlType">{{component.DisplayName | limitTo:1 | uppercase}}</div>-->
+                            <div class="template-icon">
+                                <img src="core/images/template-01.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="template-right">
+                            <div class="template-heading">{{component.DisplayName}}</div>
+                            <div class="template-body">{{component.Description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="clear-btn" ng-click="clearRule()" ng-if="!isNewRuleFormValid">Clear</button>
+                <button class="clear-btn" ng-click="backRule()" ng-if="isNewRuleFormValid"><span class="glyphicon glyphicon-chevron-left"></span> Back</button>
+                <button class="topbar-btn main-btn" ng-click="saveRule()" ng-if="!isNewRuleFormValid">Next <span class="glyphicon glyphicon-chevron-right"></span></button>
+                <!--<button class="btn btn-primary" ng-click="saveRule()" ng-if="isNewRuleFormValid">Start</button>-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

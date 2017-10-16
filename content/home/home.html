@@ -1,0 +1,43 @@
+<div id="home" class="clearfix">
+    <!--<div class="row main-header-bar" style="padding: 15px 0;">-->
+    <!--<div class="col-md-6 col-sm-6 col-xs-6">-->
+    <!--<h4 class="section-topic">Created Rules</h4>-->
+    <!--</div>-->
+    <!--<div class="col-md-6 col-sm-6 col-xs-6 text-right">-->
+    <!--<button class="topbar-btn main-btn" ng-click="newRule()" data-toggle="modal" data-target="#newRule"><span class="glyphicon glyphicon-plus"></span> New Rule</button>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;NEW RULES INJECTION&ndash;&gt;-->
+    <!--<div ng-include="'content/home/partials/new-rule.html'"></div>-->
+    <!--&lt;!&ndash; / NEW RULES INJECTION&ndash;&gt;-->
+    <!--</div>-->
+
+    <div class="main-header-bar aui-navgroup-horizontal">
+        <header class="aui-page-header">
+            <div class="aui-page-header-inner">
+                <div class="aui-page-header-main">
+                    <h4>Created rules</h4>
+                </div>
+                <div class="aui-page-header-actions">
+                    <div class="aui-buttons">
+                        <button class="aui-button" ng-click="refresh()">Refresh</button>
+                        <button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="newRule()">New rule</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <script>
+            AJS.$("#dialog-show-button").click(function () {
+                AJS.dialog2("#new-rule-dialog").show();
+            });
+        </script>
+        <!--NEW RULES INJECTION-->
+        <!--<div ng-include="'content/home/partials/new-rule.html'"></div>-->
+        <div ng-include="'content/home/partials/new-rule-aui.html'"></div>
+        <!-- / NEW RULES INJECTION-->
+    </div>
+
+    <!--CREATED RULES INJECTION-->
+    <div ng-include="'content/home/partials/current-rules-aui.html'"></div>
+    <!-- / CREATED RULES INJECTION-->
+
+</div>

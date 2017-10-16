@@ -1,0 +1,43 @@
+<div id="workflow-components">
+    <div class="toggle-components" ng-click="toggleComponentsMenu(null,null,null,'trigger',null)">
+        <span class="aui-icon aui-icon-small aui-iconfont-{{componentsMenuState == 'open' ? 'arrows-right' : 'arrows-left'}} prop-header-ico"></span>
+        <!--<span class="glyphicon glyphicon-menu-{{componentsMenuState == 'open' ? 'right' : 'left'}}"></span>-->
+    </div>
+    <div id="components-wrap">
+        <div class="comp-panel" ng-repeat="component in structuredComps | filter : toolboxsearch">
+            <div class="comp-panel-heading" ng-click="setInitialCollapse($index)">
+                <!--<div class="b-shadow"></div>-->
+                <span class="menu-name"><img src="core/images/{{component.Name | lowercase}}.svg" /> {{component.Name}}</span>
+                <span class="aui-icon aui-icon-small aui-iconfont-{{currentOpenMenu == $index ? 'expanded' : 'collapsed'}} menu-state"></span>
+                <!--<span class="glyphicon menu-state" ng-class="currentOpenMenu == $index ? 'glyphicon-minus' : 'glyphicon-plus'"></span>-->
+                <!--<span class="comp-search-icon glyphicon glyphicon-search" ng-if="ico"></span>-->
+            </div>
+            <div class="comp-search aui-header">
+                <form class="aui-quicksearch">
+                    <label for="quicksearchcomp" class="assistive">Search</label>
+                    <input id="quicksearchcomp" class="search" type="text" placeholder="Search.." name="quicksearchcomp" ng-model="compToFilter">
+                </form>
+                <!--<input type="text" class="form-control" >-->
+            </div>
+            <div class="comp-panel-collapse custom-scroll">
+                <div ng-repeat="(key, value) in component.components | filterComp:compToFilter | groupBy: 'class'">
+                    <div class="clearfix comp-toggle-header p-15" ng-click="toggleCompGroup(key)">
+                        <h4>{{key}}</h4>
+                        <span class="aui-icon aui-icon-small aui-iconfont-{{activeCompGroup == key ? 'expanded' : 'collapsed'}}"></span>
+                    </div>
+                    <div ng-show="activeCompGroup == key && isGroupOpen" ng-hide="activeCompGroup != key">
+                        <div ng-repeat="comp in value" class="template-block" ng-click="newComponentInjection(comp)">
+                            <div class="template-left">
+                                <div class="template-icon" ng-class="comp.ControlType">{{comp.ControlType | limitTo:1 | uppercase}}</div>
+                            </div>
+                            <div class="template-right">
+                                <div class="template-heading">{{comp.DisplayName}}</div>
+                                <div class="template-body">{{comp.Description}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

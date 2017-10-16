@@ -1,0 +1,156 @@
+<div class="container">
+    <header class="aui-page-header p-15">
+        <div class="aui-page-header-inner">
+            <div class="aui-page-header-main">
+                <h4>{{selectedRule.ruleName}}</h4>
+            </div>
+            <div class="aui-toolbar2-secondary">
+                <div id="button-set2" class="aui-buttons">
+                    <button class="aui-button" ng-click="editRule()">
+                        <span class="aui-icon aui-icon-small aui-iconfont-edit">More</span>
+                    </button>
+                    <button class="aui-button" ng-click="removeRule()">
+                        <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete</span> Delete Rule
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <form class="aui p-15">
+        <ul class="property-list" ng-if="!ruleEdit">
+            <li class="item item-right">
+                <div class="wrap">
+                    <strong class="name">Status:</strong>
+                    <span class="value">
+                        <span class="aui-lozenge aui-lozenge{{selectedRule.status == 'Published' ? '-success' : ''}}">{{selectedRule.status}}</span>
+                    </span>
+                </div>
+            </li>
+            <li class="item item-right">
+                <div class="wrap">
+                    <strong class="name">Description:</strong>
+                    <span class="value">{{selectedRule.description}}</span>
+                </div>
+            </li>
+            <!-- <li class="item item-right">
+                <div class="wrap">
+                    <strong class="name">Projects:</strong>
+                    <span class="value">
+                        <span ng-repeat="project in projectList | filter : { check: true }" class="avatar-text">{{project.key}} - {{project.name}}</span>
+                    </span>
+                </div>
+            </li> -->
+            <li class="item item-right">
+                <div class="wrap">
+                    <strong class="name">Created by:</strong>
+                    <span class="value">
+                        <span class="aui-avatar aui-avatar-xsmall">
+                            <span class="aui-avatar-inner">
+                                <img ng-src="{{selectedRule.avatar}}">
+                            </span>
+                    </span>
+                    <span class="avatar-text">{{selectedRule.createdBy}}</span>
+                    </span>
+                </div>
+            </li>
+            <li class="item item-right">
+                <div class="wrap">
+                    <strong class="name">Last updated date:</strong>
+                    <span class="value">{{selectedRule.createdDate | date: 'dd-mm-yyyy'}}</span>
+                </div>
+            </li>
+            <li class="item item-right">
+                <div class="wrap">
+                    <strong class="name">Last updated time:</strong>
+                    <span class="value">{{selectedRule.createdDate | date: 'mediumTime'}}</span>
+                </div>
+            </li>
+        </ul>
+        <div ng-if="ruleEdit">
+            <ul class="property-list editable-property-list">
+                <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Status:</strong>
+                        <span class="value">
+                        <span class="aui-lozenge aui-lozenge{{selectedRule.status == 'Published' ? '-success' : ''}}">{{selectedRule.status}}</span>
+                        </span>
+                    </div>
+                </li>
+                <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Name:</strong>
+                        <span class="value">
+                            <input class="text long-field" type="text"
+                                   id="name" name="name" ng-model="selectedRule.ruleName">
+                        </span>
+                    </div>
+                </li>
+                <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Description:</strong>
+                        <span class="value">
+                        <textarea class="textarea long-field" name="description" ng-model="selectedRule.description"
+                                  id="description"></textarea>
+                    </span>
+                    </div>
+                </li>
+                <!-- <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Projects:</strong>
+                        <span class="value">
+                            <select class="select" name="projects" ng-model="selectedRule.project">
+                                <option>
+                                    <span class="aui-avatar aui-avatar-xsmall">
+                                        <span class="aui-avatar-inner">
+                                            <img src="core/images/cc-cygil.png">
+                                        </span>
+                        </span>
+                        <span class="avatar-text">CloudCharge</span>
+                        </option>
+                        </select>
+                        </span>
+                    </div>
+                </li> -->
+                <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Created date:</strong>
+                        <span class="value">{{selectedRule.createdDate}}</span>
+                    </div>
+                </li>
+                <!-- <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Updated date:</strong>
+                        <span class="value">{{selectedRule.updatedDate}}</span>
+                    </div>
+                </li> -->
+                <li class="item item-right">
+                    <div class="wrap field-group">
+                        <strong class="name">Created by:</strong>
+                        <span class="value">
+                            <span class="aui-avatar aui-avatar-xsmall">
+                                <span class="aui-avatar-inner">
+                                        <img ng-src="{{selectedRule.avatar}}">
+                                </span>
+                        </span>
+                        <span class="avatar-text">{{selectedRule.createdBy}}</span>
+                        </span>
+                    </div>
+                </li>
+
+            </ul>
+            <!-- <div class="aui-navgroup aui-navgroup-horizontal h-40 bg-none b-none p-0">
+                <div class="aui-navgroup-inner pos-rel h-40">
+                    <div class="aui-navgroup-secondary nav-button-right">
+                        <ul class="aui-nav">
+                            <li><button class="aui-button" ng-click="cancelRuleEdit()">Cancel</button></li>
+                            <li><button class="aui-button aui-button-primary" ng-click="updateRule(selectedRule)">Update</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </form>
+    <!--RULE DELETE INJECTION-->
+    <div ng-include="'content/rule/details/rule-delete-dialog.html'"></div>
+    <!-- / RULE DELETE INJECTION-->
+</div>

@@ -1,0 +1,53 @@
+<div class="clearfix" id="current-rules">
+    <table class="aui aui-table-sortable">
+        <thead>
+            <tr>
+                <th class="aui-table-column-issue-key">Rule Name</th>
+                <th>Project</th>
+                <th>Created Date</th>
+                <th>Created By</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--<tr>
+                <td>TEST-12</td>
+                <td>Smoothflow</td>
+                <td>2007-01-15</td>
+                <td>shehan</td>
+                <td>Published</td>
+            </tr>
+            <tr>
+                <td>WIN-87</td>
+                <td>CloudCharge</td>
+                <td>2007-01-15</td>
+                <td>champaka</td>
+                <td>Published</td>
+            </tr>
+            <tr>
+                <td>DRINK-7</td>
+                <td>Smoothflow</td>
+                <td>2007-01-15</td>
+                <td>shehan</td>
+                <td>Published</td>
+            </tr>-->
+            <tr class="clikbl-list-item" ng-repeat="rule in currentRules" ng-click="openSelectedRule(rule, true)">
+                <td>{{rule.ruleName}}</td>
+                <td><img src="core/images/cc-cygil.png" alt="" class="micro-img">CloudCharge</td>
+                <td>{{rule.createdDate | limitTo: 15}}</td>
+                <td><img src="core/images/useravatar.png" alt="" class="micro-img img-circle">{{rule.createdBy}}</td>
+                <td class="list-state">
+                    <span ng-if="rule.status == 'Published'" class="glyphicon glyphicon-floppy-saved ico-published"></span>
+                    <span ng-if="rule.status == 'Saved'" class="glyphicon glyphicon-floppy-disk ico-saved"></span> {{rule.status}}
+                </td>
+                <!--<td>-->
+                <!--<div class="switch" >-->
+                <!--&lt;!&ndash;<button class="btn btn-xs" ng-if="rule.switchState == 'on'">Off</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button class="btn btn-xs" ng-class="{'switchOn':rule.switchState == 'on','switchOff':rule.switchState == 'off'}">{{rule.switchState}}</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button class="btn btn-xs" ng-if="rule.switchState == 'off'">On</button>&ndash;&gt;-->
+                <!--</div>-->
+                <!--</td>-->
+            </tr>
+        </tbody>
+    </table>
+</div>

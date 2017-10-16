@@ -1,0 +1,74 @@
+<!-- Render the dialog -->
+<section role="dialog" id="new-rule-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true" data-aui-remove-on-hide="true">
+    <!-- Dialog header -->
+    <header class="aui-dialog2-header">
+        <!-- The dialog's title -->
+        <h2 class="aui-dialog2-header-main">New rule</h2>
+        <!-- Actions to render on the right of the header -->
+        <!--<div class="aui-dialog2-header-secondary">-->
+        <!--<form class="aui" action="#">-->
+        <!--<input id="demo-search" class="text" type="search" name="search">-->
+        <!--</form>-->
+        <!--</div>-->
+        <!-- Close icon -->
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <!-- Main dialog content -->
+    <div class="aui-dialog2-content">
+        <div class="rule-portion" ng-if="!isNewRuleFormValid">
+            <form class="aui" name="vm.newRuleForm">
+                <div class="field-group">
+                    <label for="name">Name
+                        <span class="aui-icon icon-required">(required)</span></label>
+                    <input class="text long-field" type="text" id="name" name="name" required ng-model="selectedRule.ruleName">
+                </div>
+                <div class="field-group">
+                    <label for="description">Description</label>
+                    <textarea class="textarea long-field" name="description" ng-model="selectedRule.description" id="description"></textarea>
+                </div>
+                <div class="field-group">
+                    <label>Created date</label>
+                    <span>{{selectedRule.createdDate}}</span>
+                </div>
+                <div class="field-group">
+                    <label>Created by</label>
+                    <span class="aui-avatar aui-avatar-xsmall">
+                        <span class="aui-avatar-inner">
+                            <img ng-src="{{selectedRule.avatar}}">
+                        </span>
+                    </span>
+                    <span>{{selectedRule.createdBy}}</span>
+                </div>
+            </form>
+        </div>
+        <div class="templates-portion" ng-if="isNewRuleFormValid">
+            <div class="text-center" style="margin-bottom: 20px">Select a template that suits you to start your workflow</div>
+            <div class="col-md-6 template-block" data-dismiss="modal" aria-label="Close" ng-repeat="component in componentsToDisplay | filter : toolboxsearch"
+                ng-click="openComponent(component, $event)">
+                <div class="template-left">
+                    <!--<div class="template-icon" ng-class="component.ControlType">{{component.DisplayName | limitTo:1 | uppercase}}</div>-->
+                    <div class="template-icon">
+                        <img src="core/images/template-01.svg" alt="">
+                    </div>
+                </div>
+                <div class="template-right">
+                    <div class="template-heading">{{component.DisplayName}}</div>
+                    <div class="template-body">{{component.Description}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Dialog footer -->
+    <footer class="aui-dialog2-footer">
+        <!-- Actions to render on the right of the footer -->
+        <div class="aui-dialog2-footer-actions">
+            <button id="dialog-close-button" class="aui-button aui-button-link" ng-click="clearRule()" ng-if="!isNewRuleFormValid">Clear</button>
+            <button id="dialog-next-button" ng-disabled="!selectedRule.ruleName.length > 0" class="aui-button" ng-click="newTemplate()" ng-if="!isNewRuleFormValid">Next<span class="aui-icon aui-icon-small aui-iconfont-collapsed custom-button-icon">Next icon</span></button>
+            <button id="dialog-back-button" class="aui-button" ng-click="backRule()" ng-if="isNewRuleFormValid">Back</button>
+        </div>
+        <!-- Hint text is rendered on the left of the footer -->
+        <!--<div class="aui-dialog2-footer-hint">this is a hint</div>-->
+    </footer>
+</section>

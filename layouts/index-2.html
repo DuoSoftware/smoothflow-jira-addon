@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app="sfJira" manifest="smoothflow-Jira.3.0.1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SmoothFlow for JIRA</title>
+    <link rel="stylesheet" href="core/styles/style.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.css">
+
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui.min.css" media="all">
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui-experimental.min.css" media="all">
+</head>
+
+<body>
+
+<div class="main-container" ng-controller="MainController">
+
+    <div id="loading" class="aui-page-notification aui-page-focused-medium">
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <section class="aui-page-panel-content">
+                    <div class="button-spinner"></div>
+                    <h2 id="busycontent">Loading the list of rules...</h2>
+                </section>
+            </div>
+        </div>
+        <!--<md-card style="background-color:white;" layout-padding>
+            <div layout-padding layout="row" layout-align="space-around center">
+                <md-progress-circular class="md-primary" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                <p id="busycontent">Getting your Environment ready!</p>
+            </div>
+        </md-card>-->
+    </div>
+
+    <div class="clearfix main-nav">
+        <div class="navbar-header">
+            <a class="navbar-brand" ng-click="changeLocation('home')"><img src="../../images/sf-full-small.png" alt="SmoothFlow"></a>
+            <button class="btn btn-default topnav-btn" type="button" ng-click="changeLocation('home')">My Rules</button>
+        </div>
+    </div>
+    <div ui-view id="main-view"></div>
+</div>
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="bower_components/ng-textcomplete/ng-textcomplete.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+<script type="text/javascript" src="../../js/uimicrokernel.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="../../js/runtimedatastore.js"></script>
+<script type="text/javascript" src="core/controllers/main.controller.js"></script>
+<script type="text/javascript" src="core/controllers/audit.controller.js"></script>
+<script type="text/javascript" src="core/controllers/trigger.controller.js"></script>
+<script type="text/javascript" src="core/services/triggerdataservice.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui.min.js"></script>
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-experimental.min.js"></script>
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.min.js"></script>
+<script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-soy.min.js"></script>
+
+</body>
+
+</html>

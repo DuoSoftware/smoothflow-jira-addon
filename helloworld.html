@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui.min.css" media="all">
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.6/css/aui-experimental.min.css" media="all">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-experimental.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-soy.min.js"></script>
+    <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-header-async.js"></script>
+    <script>
+        AJS.banner({
+            body: 'Your <strong>license has expired!</strong> There are two days left to <a href="#">renew your license</a>.'
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="aui-navgroup aui-navgroup-horizontal">
+        <div class="aui-navgroup-inner">
+            <div class="aui-navgroup-primary">
+                <ul class="aui-nav">
+                    <li><a href="#">Nav item</a></li>
+                    <li class="aui-nav-selected"><a href="#">Selected item</a></li>
+                    <li><a href="#">Pull requests <aui-badge>123</aui-badge></a></li>
+                    <li><a href="#dropdown2-nav1" aria-owns="dropdown2-nav1" aria-haspopup="true" class="aui-dropdown2-trigger">Dropdown <span class="aui-icon-dropdown"></span></a></li>
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Kitchen sink</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <form class="aui">
+        <aui-label for="sync-product-single-select">Choose your product synchronously:</aui-label>
+        <p>
+            <aui-select id="sync-product-single-select" name="product" placeholder="Select a product">
+                <aui-option>HipChat</aui-option>
+                <aui-option>JIRA</aui-option>
+                <aui-option>Confluence</aui-option>
+                <aui-option>Stash</aui-option>
+                <aui-option>FeCru</aui-option>
+            </aui-select>
+        </p>
+    </form>
+
+
+    <div class="aui-page-panel">
+        <div class="aui-page-panel-inner">
+            <section class="aui-page-panel-content">
+                <h2>Page content heading</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </section>
+        </div>
+    </div>
+
+
+    <section id="content" role="main">
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav">
+                    <!-- content such as a vertical nav -->
+                </div>
+                <section class="aui-page-panel-content">
+                    <!-- main area for content -->
+                </section>
+                <aside class="aui-page-panel-sidebar">
+                    <!-- tangental content here -->
+                </aside>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="aui-page-panel">
+        <div class="aui-page-panel-inner">
+            <section class="aui-page-panel-item someclass">
+                <!-- content -->
+            </section>
+            <section class="aui-page-panel-item someotherclass">
+                <!-- content -->
+            </section>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

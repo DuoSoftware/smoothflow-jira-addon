@@ -1,0 +1,85 @@
+{
+    "name": "Smoothflow Automation for JIRA",
+    "description": "Atlassian Connect add-on",
+    "key": "com.duoworld.smoothflow.jira",
+    "baseUrl": "https://dev.smoothflow.io/app/addons/jira/",
+    "vendor": {
+        "name": "Smoothflow.io",
+        "url": "https://www.smoothflow.io"
+    },
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        "installed": "addon-api/client"
+    },
+    "scopes": [
+        "read",
+        "write",
+        "ADMIN",
+        "ACT_AS_USER"
+    ],
+    "modules": {
+        "generalPages": [
+            {
+                "url": "#!/home",
+                "key": "index",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Smoothflow"
+                },
+                "conditions": []
+            }
+        ],
+        "postInstallPage": {
+            "url": "/my-post-install-page",
+            "name": {
+                "value": "My Post-Install Page",
+                "i18n": "mypostinstallpage.name"
+            },
+            "key": "my-post-install-page"
+        },
+        "adminPages": [
+            {
+                "key": "addmon-smoothflow-getting-started",
+                "location": "admin_plugins_menu/addon-smoothflow-settings",
+                "name": {
+                    "value": "Getting Started"
+                },
+                "url": "landing/",
+                "conditions": [
+                    {
+                        "condition": "user_is_admin"
+                    }
+                ]
+            },
+            {
+                "key": "addmon-smoothflow-access",
+                "location": "admin_plugins_menu/addon-smoothflow-settings",
+                "name": {
+                    "value": "Smoothflow Account"
+                },
+                "url": "admin/",
+                "conditions": [
+                    {
+                        "condition": "user_is_admin"
+                    }
+                ]
+            }
+        ],
+        "webSections": [
+            {
+                "key": "addon-smoothflow-settings",
+                "location": "admin_plugins_menu",
+                "name": {
+                    "value": "Smoothflow Settings"
+                },
+                "conditions": [
+                    {
+                        "condition": "user_is_admin"
+                    }
+                ]
+            }
+        ]
+    }
+}

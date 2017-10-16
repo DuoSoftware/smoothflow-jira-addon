@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="landingJira">
+
+<head>
+    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">
+</head>
+
+<body>
+
+    <div ng-controller="landingController" class="ac-content aui-page-focused aui-page-size-large">
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <section class="aui-page-panel-content">
+                    <center>
+                        <img width="150px" src="maintenance.png" />
+                        <h2>Smoothflow.io for JIRA</h2>
+                        <p>Addon offline for maintainance..</p>
+                        <br>
+                        <button ng-click="clickMe()">Click me!</button>
+                        <button ng-click="listProjects()">List Projects</button>
+                        <h3>JIRA Projects</h3>
+                        <ul>
+                            <li ng-repeat="project in projects">{{project.key}} - {{project.name}}</li>
+                        </ul>
+                    </center>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script id="connect-loader" data-options="sizeToParent:true;hideFooter:true;">
+        (function () {
+            var getUrlParam = function (param) {
+                var codedParam = (new RegExp(param + '=([^&]*)')).exec(window.location.search)[1];
+                return decodeURIComponent(codedParam);
+            };
+
+            var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+            var options = document.getElementById('connect-loader').getAttribute('data-options');
+
+            var script = document.createElement("script");
+            //script.src = baseUrl + '/atlassian-connect/all.js';
+            script.src = baseUrl + '/atlassian-connect/all-debug.js';
+
+            if (options) {
+                script.setAttribute('data-options', options);
+            }
+
+            document.getElementsByTagName("head")[0].appendChild(script);
+        })();
+    </script>
+
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+
+
+    <script type="text/javascript" src="landingapp.js"></script>
+    <script type="text/javascript" src="landing.controller.js"></script>
+    <script type="text/javascript" src="../../../js/uimicrokernel.js"></script>
+
+
+
+</body>
+
+</html>

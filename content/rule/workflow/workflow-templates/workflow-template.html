@@ -1,0 +1,44 @@
+<div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName | lowercase}}" ng-repeat="component in workflow = (parent = component).workflow"
+    ng-init="component.parent = parent; component.level = parent.level + 1" ng-style="component.ControlType == 'condition' ? 'margin-top:20px' : ''">
+    <div ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case'" class="h-line"></div>
+    <label class="sub-cond-connector {{component.DisplayName | lowercase}}"></label>
+    <div class="header-bar" ng-click="openComponentInfo(component)">
+        <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
+        <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 40px 40px;"></span>
+        <span class="action">{{component.DisplayName}} </span>
+        <div class="delete-comp">
+            <button class="btn btn-default" type="button" ng-click="deleteNode(workflow, $index)"><label class="glyphicon glyphicon-trash"></label></button>
+            <!--<button class="btn btn-default" type="button" ng-click="deleteComponentConfirmation($index, false)" confirm="Are you sure ?"><label class="glyphicon glyphicon-trash"></label></button>-->
+            <!--<div class="confirmation-box" ng-if="showDeleteConfirmation == $index">-->
+            <!--<div class="confirmation-header">Are you sure</div>-->
+            <!--<div class="confirmation-body"></div>-->
+            <!--<div class="confirmation-footer clearfix">-->
+            <!--<div>-->
+            <!--<button class="btn btn-xs btn-primary" type="button" ng-click="deleteNode(workflow, $index)">Yes</button>-->
+            <!--<button class="btn btn-xs btn-default" type="button" ng-click="cancelDelete()">No</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="body">
+        <!--div>{{component.Description}}</div-->
+        <div ng-repeat="variable in component.Variables"><b>{{variable.Key}}:</b> {{variable.Value}}</div>
+    </div>
+    <div class="workflow-add-node-sub">
+        <div class="header-bar">
+            <div class="component-capsule">
+                <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                <span title="Trigger" class="category-icon trigger" ng-click="toggleComponentsMenu(workflow, $index, true, 'trigger',component)">T</span>
+                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition',component)">C</span>
+                <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, 'action',component)">A</span>
+            </div>
+            <script>
+                AJS.$(".category-icon").tooltip();
+            </script>
+            <span>..</span>
+        </div>
+    </div>
+    <div class="loader-default"></div>
+    <div class="outer" ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'"></div>
+</div>
