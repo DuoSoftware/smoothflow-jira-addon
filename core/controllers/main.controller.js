@@ -1437,6 +1437,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
         ;
 
+    $scope.AdditionalVariable = [
+        { Key: 'jira_attachment_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_board_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_comment_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_issue_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_issue_key', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_mergedVersion_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_modifiedUser_key', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_modifiedUser_name', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_sprint_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_version_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_worklog_id', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_project_key', Value: $scope.Variable.Value, Category: $scope.Variable.Category, Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType }
+
+    ];
+
+    $scope.addtoMainList = function (variable, event) {
+        $scope.AddNewVariable(variable, event);
+    };
     //Add variables
     $scope.AddNewVariable = function (variable, e) {
         var data = {};
