@@ -1302,3 +1302,7 @@ button.button-primary{
     border-width: thin;
     list-style-type: none;
 }
+.linkcolor a:active{
+    border-color: rgb( 153, 153, 153 );
+    background-color: #FFFFFF;
+}

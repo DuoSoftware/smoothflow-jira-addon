@@ -12,22 +12,32 @@
                 <div class="aui-tabs horizontal-tabs">
                     <ul class="tabs-menu">
                         <li class="menu-item">
-                            <a ng-click="scrollTo('tab1')">Basic</a>
+                            <a ng-click="scrollTo('tab1')" class="linkcolor">Basic</a>
                         </li>
                         <li class="menu-item ">
-                            <a ng-click="scrollTo('tab2')">Advance</a>
+                            <a ng-click="scrollTo('tab2')" class="linkcolor">Advance</a>
                         </li>
                     </ul>
                     <div class="tabs-pane active-pane" id="tab1" ng-show="tab=='tab1'" style="padding-top: 34px;">
-                        <h2>Basic</h2>
+                        <div ng-hide="var.advance">
+                            <div class="heading">{{var.Key}}</div>
+
+                            <div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>
+                            <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
+                            <textcomplete args='args' message='var.Value'></textcomplete>
+                        </div>
+
 
                     </div>
                     <div class="tabs-pane active-pane" id="tab2" ng-show="tab=='tab2'" style="padding-top: 34px;">
-                        <div class="heading">{{var.Key}}</div>
 
-                        <div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>
-                        <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
-                        <textcomplete args='args' message='var.Value'></textcomplete>
+                        <div ng-show="var.advance">
+                            <div class="heading">{{var.Key}}</div>
+
+                            <div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>
+                            <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
+                            <textcomplete args='args' message='var.Value'></textcomplete>
+                        </div>
                     </div>
                 </div>
             </div>
