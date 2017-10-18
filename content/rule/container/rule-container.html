@@ -1,31 +1,48 @@
 <div class="clearfix">
     <div ng-if="selectedRule.status == 'Published'" class="container">
         <div class="col-md-12 col-sm-12 content-padding-no">
-            <div class="inner-heading"><span>Container details</span></div>
+            <div class="inner-heading">
+                <span>Container details</span>
+            </div>
             <p>On this window you are capable of monitoring the usage of the workflow.</p>
             <hr>
-            <p><b>Data Received</b> : {{DockerDetails.values.received}}</p>
-            <p><b>Data Sent</b> : {{DockerDetails.values.sent}}</p>
-            <p><b>Processing Requests</b> : {{DockerDetails.values.processing}}</p>
-            <p><b>Total No. Requests received</b> : {{DockerDetails.values.requests}}</p>
-            <p><b>Total No. Requests discarded</b> : {{DockerDetails.values.discarded}}</p>
+            <p>
+                <b>Data Received</b> : {{DockerDetails.values.received}}</p>
+            <p>
+                <b>Data Sent</b> : {{DockerDetails.values.sent}}</p>
+            <p>
+                <b>Processing Requests</b> : {{DockerDetails.values.processing}}</p>
+            <p>
+                <b>Total No. Requests received</b> : {{DockerDetails.values.requests}}</p>
+            <p>
+                <b>Total No. Requests discarded</b> : {{DockerDetails.values.discarded}}</p>
             <h4>Total Requests Breakdown</h4>
             <ul>
-                <li><b>1xx</b> : {{DockerDetails.d1xx}}</li>
-                <li><b>2xx</b> : {{DockerDetails.d2xx}}</li>
-                <li><b>3xx</b> : {{DockerDetails.d3xx}}</li>
-                <li><b>4xx</b> : {{DockerDetails.d4xx}}</li>
-                <li><b>5xx</b> : {{DockerDetails.d5xx}}</li>
-                <li><b>Total</b> : {{DockerDetails.total}}</li>
+                <li>
+                    <b>1xx</b> : {{DockerDetails.d1xx}}</li>
+                <li>
+                    <b>2xx</b> : {{DockerDetails.d2xx}}</li>
+                <li>
+                    <b>3xx</b> : {{DockerDetails.d3xx}}</li>
+                <li>
+                    <b>4xx</b> : {{DockerDetails.d4xx}}</li>
+                <li>
+                    <b>5xx</b> : {{DockerDetails.d5xx}}</li>
+                <li>
+                    <b>Total</b> : {{DockerDetails.total}}</li>
             </ul>
             <hr>
 
             <div class="row">
-                <div class="col-sm-5 col-md-6"><div id="chart_div1" style="width:550; height:300"></div></div>
-                <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"><div id="chart_div" style="width:600; height:300"></div></div>
-              </div>
-            
-      
+                <div class="col-sm-5 col-md-6">
+                    <div id="chart_div1" style="width:550; height:300"></div>
+                </div>
+                <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                    <div id="chart_div" style="width:600; height:300"></div>
+                </div>
+            </div>
+
+
             <hr>
             <h4>Container host URLs</h4>
             <ul>
@@ -35,20 +52,22 @@
                     <button class="aui-button aui-button-primary" style="float:right;" ng-click="callurl(row,optionalJSON)">Call</button>
                     <div ng-show="optionalJSON && row.METHOD=='POST'" style="background: #e4ebec;padding: 10px;border-style: solid;border-width: thin;border-color: #5fa3de;background: #d7faff;margin-top: 33px;">
                         <span style="font-weight: bold;">body</span> :
-                        <textarea style="width: 100%;" class="textarea long-field" name="optionalJSON" ng-model="optionalJSON" id="optionalJSON"></textarea>
+                        <textarea style="width: 100%;height: 100px;font-family: monospace;" class="textarea long-field" name="optionalJSON" ng-model="optionalJSON"
+                            id="optionalJSON"></textarea>
 
                     </div>
                 </li>
 
                 <div ng-show="Iscall" style="background: #e4ebec;padding: 10px;border-style: solid;border-width: thin;border-color: #5fa3de;background: #d7faff;">
-                    <span style="font-weight: bold;">status </span> : {{statuscode}} <br/>
-                    <span style="font-weight: bold;">Respons</span> 
+                    <span style="font-weight: bold;">status </span> : {{statuscode}}
+                    <br/>
+                    <span style="font-weight: bold;">Respons</span>
                     <textarea style="width: 100%;" class="textarea long-field" name="responseMsg" ng-model="responseMsg" id="responseMsg"></textarea>
                 </div>
             </ul>
 
             <hr>
-         
+
         </div>
     </div>
     <div ng-if="selectedRule.status != 'Published'" class="container" style="margin-top: 100px;">
