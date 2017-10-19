@@ -3,14 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="10a0814b-804c-443a-93d0-c67c3138ef11" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/home/home.html" afterPath="$PROJECT_DIR$/content/home/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/home/partials/current-rules-aui.html" afterPath="$PROJECT_DIR$/content/home/partials/current-rules-aui.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/details/rule-details.html" afterPath="$PROJECT_DIR$/content/rule/details/rule-details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aui/css/aui-extended-sf.css" afterPath="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/container/rule-container.html" afterPath="$PROJECT_DIR$/content/rule/container/rule-container.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/rule.html" afterPath="$PROJECT_DIR$/content/rule/rule.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" afterPath="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/controllers/main.controller.js" afterPath="$PROJECT_DIR$/core/controllers/main.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/styles/style.css" afterPath="$PROJECT_DIR$/core/styles/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/controllers/trigger.controller.js" afterPath="$PROJECT_DIR$/core/controllers/trigger.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/services/triggerdataservice.js" afterPath="$PROJECT_DIR$/core/services/triggerdataservice.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,32 +30,9 @@
       <file leaf-file-name="main.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7854">
-              <caret line="462" column="0" lean-forward="false" selection-start-line="462" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
+            <state relative-caret-position="265">
+              <caret line="2286" column="0" lean-forward="true" selection-start-line="2286" selection-start-column="0" selection-end-line="2286" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rule-triggers.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rule-triggers-aui.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-              <folding>
-                <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -64,8 +40,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="67" lean-forward="false" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
+            <state relative-caret-position="136">
+              <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#header#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -73,64 +49,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/content/home/home.html">
+      <file leaf-file-name="rule-triggers-aui.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="22" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="18" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rule.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/content/rule/rule.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="81" lean-forward="false" selection-start-line="2" selection-start-column="81" selection-end-line="2" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="aui-extended-sf.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="234" column="24" lean-forward="false" selection-start-line="234" selection-start-column="24" selection-end-line="234" selection-end-column="24" />
+            <state relative-caret-position="217">
+              <caret line="63" column="197" lean-forward="false" selection-start-line="63" selection-start-column="197" selection-end-line="63" selection-end-column="197" />
               <folding>
-                <element signature="e#59352#59769#1" expanded="true" />
-                <element signature="e#78325#78526#2" expanded="true" />
-                <element signature="e#78761#78966#2" expanded="true" />
-                <element signature="e#79240#79453#2" expanded="true" />
-                <element signature="e#79593#79758#2" expanded="true" />
-                <element signature="e#79996#80161#2" expanded="true" />
-                <element signature="e#80469#80642#2" expanded="true" />
-                <element signature="e#109550#109723#2" expanded="true" />
-                <element signature="e#109808#109993#2" expanded="true" />
-                <element signature="e#110082#110243#2" expanded="true" />
-                <element signature="e#110318#110479#2" expanded="true" />
-                <element signature="e#110564#110725#2" expanded="true" />
-                <element signature="e#110814#110975#2" expanded="true" />
-                <element signature="e#111046#111191#2" expanded="true" />
-                <element signature="e#111266#111415#2" expanded="true" />
-                <element signature="e#111486#111643#2" expanded="true" />
-                <element signature="e#111718#111875#2" expanded="true" />
-                <element signature="e#111993#112190#2" expanded="true" />
-                <element signature="e#112281#112482#2" expanded="true" />
-                <element signature="e#112582#112779#2" expanded="true" />
-                <element signature="e#112870#113207#2" expanded="true" />
-                <element signature="e#113346#113831#2" expanded="true" />
-                <element signature="e#113946#114127#2" expanded="true" />
-                <element signature="e#114281#114466#2" expanded="true" />
-                <element signature="e#153619#166492#1" expanded="true" />
-                <element signature="e#177898#185401#1" expanded="true" />
-                <element signature="e#185999#193522#2" expanded="true" />
-                <element signature="e#193743#195718#2" expanded="true" />
-                <element signature="e#195820#197783#2" expanded="true" />
-                <element signature="e#197868#199831#2" expanded="true" />
-                <element signature="e#203038#203826#1" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="trigger.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/controllers/trigger.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="triggerdataservice.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/services/triggerdataservice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="275" column="3" lean-forward="true" selection-start-line="275" selection-start-column="3" selection-end-line="275" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,9 +85,63 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22134">
-              <caret line="1302" column="24" lean-forward="true" selection-start-line="1302" selection-start-column="24" selection-end-line="1302" selection-end-column="24" />
+            <state relative-caret-position="102">
+              <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="8" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aui-extended-sf.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="6902" column="18" lean-forward="false" selection-start-line="6902" selection-start-column="1" selection-end-line="6902" selection-end-column="18" />
+              <folding>
+                <element signature="e#61898#62315#1" expanded="true" />
+                <element signature="e#80871#81072#2" expanded="true" />
+                <element signature="e#81307#81512#2" expanded="true" />
+                <element signature="e#81786#81999#2" expanded="true" />
+                <element signature="e#82139#82304#2" expanded="true" />
+                <element signature="e#82542#82707#2" expanded="true" />
+                <element signature="e#83015#83188#2" expanded="true" />
+                <element signature="e#112096#112269#2" expanded="true" />
+                <element signature="e#112354#112539#2" expanded="true" />
+                <element signature="e#112628#112789#2" expanded="true" />
+                <element signature="e#112864#113025#2" expanded="true" />
+                <element signature="e#113110#113271#2" expanded="true" />
+                <element signature="e#113360#113521#2" expanded="true" />
+                <element signature="e#113592#113737#2" expanded="true" />
+                <element signature="e#113812#113961#2" expanded="true" />
+                <element signature="e#114032#114189#2" expanded="true" />
+                <element signature="e#114264#114421#2" expanded="true" />
+                <element signature="e#114539#114736#2" expanded="true" />
+                <element signature="e#114827#115028#2" expanded="true" />
+                <element signature="e#115128#115325#2" expanded="true" />
+                <element signature="e#115416#115753#2" expanded="true" />
+                <element signature="e#115892#116377#2" expanded="true" />
+                <element signature="e#116492#116673#2" expanded="true" />
+                <element signature="e#116827#117012#2" expanded="true" />
+                <element signature="e#156165#169038#1" expanded="true" />
+                <element signature="e#180444#187947#1" expanded="true" />
+                <element signature="e#188545#196068#2" expanded="true" />
+                <element signature="e#196289#198264#2" expanded="true" />
+                <element signature="e#198366#200329#2" expanded="true" />
+                <element signature="e#200414#202377#2" expanded="true" />
+                <element signature="e#205584#206372#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rule.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/rule/rule.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="18" column="71" lean-forward="false" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
+              <folding>
+                <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -149,11 +150,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>datahandler</find>
-      <find>.aui-header</find>
-      <find>.aui-header-sf</find>
-      <find>.aui-header</find>
-      <find>.aui-icon</find>
       <find>.aui-button:visited</find>
       <find>.aui-button:focus</find>
       <find>aui-header</find>
@@ -176,9 +172,14 @@
       <find>workflow-ui</find>
       <find>aui-nav-selected</find>
       <find>aui-group</find>
+      <find>aui-item-container</find>
       <find>.aui-navgroup-horizontal</find>
       <find>shadowed</find>
-      <find>aui-item-container</find>
+      <find>pos-rel</find>
+      <find>overhead</find>
+      <find>all 0.5s</find>
+      <find>addedTrigger</find>
+      <find>AddedTriggers</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,11 +192,15 @@
         <option value="$PROJECT_DIR$/content/home/partials/current-rules-aui.html" />
         <option value="$PROJECT_DIR$/content/rule/details/rule-details.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/content/rule/rule.html" />
         <option value="$PROJECT_DIR$/core/styles/style.css" />
-        <option value="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
+        <option value="$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/core/controllers/main.controller.js" />
+        <option value="$PROJECT_DIR$/content/rule/container/rule-container.html" />
+        <option value="$PROJECT_DIR$/content/rule/rule.html" />
         <option value="$PROJECT_DIR$/core/controllers/main.controller.js" />
+        <option value="$PROJECT_DIR$/core/services/triggerdataservice.js" />
         <option value="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
+        <option value="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
+        <option value="$PROJECT_DIR$/core/controllers/trigger.controller.js" />
       </list>
     </option>
   </component>
@@ -319,6 +324,14 @@
               <option name="myItemId" value="content" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="triggers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -331,10 +344,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,7 +387,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/CloudCharge_misc/DEV/Subscription Shell/Shell restructure_3-23-2017/Dev/Dev_topbar_blue" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -464,12 +473,12 @@
       <workItem from="1508140334935" duration="1226000" />
       <workItem from="1508249663850" duration="647000" />
       <workItem from="1508301213680" duration="22506000" />
-      <workItem from="1508388278409" duration="6000" />
+      <workItem from="1508388278409" duration="10684000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25393000" />
+    <option name="totallyTimeSpent" value="36071000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -479,18 +488,18 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,8 +534,8 @@
         <state relative-caret-position="544">
           <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
           <folding>
-            <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -553,7 +562,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="81" lean-forward="false" selection-start-line="2" selection-start-column="81" selection-end-line="2" selection-end-column="81" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -562,37 +573,37 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#59352#59769#1" expanded="true" />
-            <element signature="e#78325#78526#2" expanded="true" />
-            <element signature="e#78761#78966#2" expanded="true" />
-            <element signature="e#79240#79453#2" expanded="true" />
-            <element signature="e#79593#79758#2" expanded="true" />
-            <element signature="e#79996#80161#2" expanded="true" />
-            <element signature="e#80469#80642#2" expanded="true" />
-            <element signature="e#109550#109723#2" expanded="true" />
-            <element signature="e#109808#109993#2" expanded="true" />
-            <element signature="e#110082#110243#2" expanded="true" />
-            <element signature="e#110318#110479#2" expanded="true" />
-            <element signature="e#110564#110725#2" expanded="true" />
-            <element signature="e#110814#110975#2" expanded="true" />
-            <element signature="e#111046#111191#2" expanded="true" />
-            <element signature="e#111266#111415#2" expanded="true" />
-            <element signature="e#111486#111643#2" expanded="true" />
-            <element signature="e#111718#111875#2" expanded="true" />
-            <element signature="e#111993#112190#2" expanded="true" />
-            <element signature="e#112281#112482#2" expanded="true" />
-            <element signature="e#112582#112779#2" expanded="true" />
-            <element signature="e#112870#113207#2" expanded="true" />
-            <element signature="e#113346#113831#2" expanded="true" />
-            <element signature="e#113946#114127#2" expanded="true" />
-            <element signature="e#114281#114466#2" expanded="true" />
-            <element signature="e#153619#166492#1" expanded="true" />
-            <element signature="e#177898#185401#1" expanded="true" />
-            <element signature="e#185999#193522#2" expanded="true" />
-            <element signature="e#193743#195718#2" expanded="true" />
-            <element signature="e#195820#197783#2" expanded="true" />
-            <element signature="e#197868#199831#2" expanded="true" />
-            <element signature="e#203038#203826#1" expanded="true" />
+            <element signature="e#61898#62315#1" expanded="true" />
+            <element signature="e#80871#81072#2" expanded="true" />
+            <element signature="e#81307#81512#2" expanded="true" />
+            <element signature="e#81786#81999#2" expanded="true" />
+            <element signature="e#82139#82304#2" expanded="true" />
+            <element signature="e#82542#82707#2" expanded="true" />
+            <element signature="e#83015#83188#2" expanded="true" />
+            <element signature="e#112096#112269#2" expanded="true" />
+            <element signature="e#112354#112539#2" expanded="true" />
+            <element signature="e#112628#112789#2" expanded="true" />
+            <element signature="e#112864#113025#2" expanded="true" />
+            <element signature="e#113110#113271#2" expanded="true" />
+            <element signature="e#113360#113521#2" expanded="true" />
+            <element signature="e#113592#113737#2" expanded="true" />
+            <element signature="e#113812#113961#2" expanded="true" />
+            <element signature="e#114032#114189#2" expanded="true" />
+            <element signature="e#114264#114421#2" expanded="true" />
+            <element signature="e#114539#114736#2" expanded="true" />
+            <element signature="e#114827#115028#2" expanded="true" />
+            <element signature="e#115128#115325#2" expanded="true" />
+            <element signature="e#115416#115753#2" expanded="true" />
+            <element signature="e#115892#116377#2" expanded="true" />
+            <element signature="e#116492#116673#2" expanded="true" />
+            <element signature="e#116827#117012#2" expanded="true" />
+            <element signature="e#156165#169038#1" expanded="true" />
+            <element signature="e#180444#187947#1" expanded="true" />
+            <element signature="e#188545#196068#2" expanded="true" />
+            <element signature="e#196289#198264#2" expanded="true" />
+            <element signature="e#198366#200329#2" expanded="true" />
+            <element signature="e#200414#202377#2" expanded="true" />
+            <element signature="e#205584#206372#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -640,13 +651,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/home/partials/current-rules.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -657,25 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content/home/partials/current-rules-aui.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/content/rule/details/rule-details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="95" lean-forward="false" selection-start-line="9" selection-start-column="95" selection-end-line="9" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/rule/rule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="81" lean-forward="false" selection-start-line="2" selection-start-column="81" selection-end-line="2" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -687,28 +677,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="67" lean-forward="false" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#header#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/styles/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22134">
-          <caret line="1302" column="24" lean-forward="true" selection-start-line="1302" selection-start-column="24" selection-end-line="1302" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../CloudCharge/CC_custom_auth/css/global.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="75" column="24" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/home/partials/current-rules.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/rule/container/rule-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1508388249611" expanded="false" signature="3552:3570" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/home/partials/current-rules-aui.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="88" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/content/home/partials/current-rules-aui.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/core/controllers/main.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="449" column="9" lean-forward="false" selection-start-line="449" selection-start-column="9" selection-end-line="449" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -720,62 +745,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html">
+    <entry file="file://$PROJECT_DIR$/content/rule/rule.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        <state relative-caret-position="387">
+          <caret line="18" column="71" lean-forward="false" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
           <folding>
-            <element signature="n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#header#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7854">
-          <caret line="462" column="0" lean-forward="false" selection-start-line="462" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
+        <state relative-caret-position="265">
+          <caret line="2286" column="0" lean-forward="true" selection-start-line="2286" selection-start-column="0" selection-end-line="2286" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="234" column="24" lean-forward="false" selection-start-line="234" selection-start-column="24" selection-end-line="234" selection-end-column="24" />
+        <state relative-caret-position="135">
+          <caret line="6902" column="18" lean-forward="false" selection-start-line="6902" selection-start-column="1" selection-end-line="6902" selection-end-column="18" />
           <folding>
-            <element signature="e#59352#59769#1" expanded="true" />
-            <element signature="e#78325#78526#2" expanded="true" />
-            <element signature="e#78761#78966#2" expanded="true" />
-            <element signature="e#79240#79453#2" expanded="true" />
-            <element signature="e#79593#79758#2" expanded="true" />
-            <element signature="e#79996#80161#2" expanded="true" />
-            <element signature="e#80469#80642#2" expanded="true" />
-            <element signature="e#109550#109723#2" expanded="true" />
-            <element signature="e#109808#109993#2" expanded="true" />
-            <element signature="e#110082#110243#2" expanded="true" />
-            <element signature="e#110318#110479#2" expanded="true" />
-            <element signature="e#110564#110725#2" expanded="true" />
-            <element signature="e#110814#110975#2" expanded="true" />
-            <element signature="e#111046#111191#2" expanded="true" />
-            <element signature="e#111266#111415#2" expanded="true" />
-            <element signature="e#111486#111643#2" expanded="true" />
-            <element signature="e#111718#111875#2" expanded="true" />
-            <element signature="e#111993#112190#2" expanded="true" />
-            <element signature="e#112281#112482#2" expanded="true" />
-            <element signature="e#112582#112779#2" expanded="true" />
-            <element signature="e#112870#113207#2" expanded="true" />
-            <element signature="e#113346#113831#2" expanded="true" />
-            <element signature="e#113946#114127#2" expanded="true" />
-            <element signature="e#114281#114466#2" expanded="true" />
-            <element signature="e#153619#166492#1" expanded="true" />
-            <element signature="e#177898#185401#1" expanded="true" />
-            <element signature="e#185999#193522#2" expanded="true" />
-            <element signature="e#193743#195718#2" expanded="true" />
-            <element signature="e#195820#197783#2" expanded="true" />
-            <element signature="e#197868#199831#2" expanded="true" />
-            <element signature="e#203038#203826#1" expanded="true" />
+            <element signature="e#61898#62315#1" expanded="true" />
+            <element signature="e#80871#81072#2" expanded="true" />
+            <element signature="e#81307#81512#2" expanded="true" />
+            <element signature="e#81786#81999#2" expanded="true" />
+            <element signature="e#82139#82304#2" expanded="true" />
+            <element signature="e#82542#82707#2" expanded="true" />
+            <element signature="e#83015#83188#2" expanded="true" />
+            <element signature="e#112096#112269#2" expanded="true" />
+            <element signature="e#112354#112539#2" expanded="true" />
+            <element signature="e#112628#112789#2" expanded="true" />
+            <element signature="e#112864#113025#2" expanded="true" />
+            <element signature="e#113110#113271#2" expanded="true" />
+            <element signature="e#113360#113521#2" expanded="true" />
+            <element signature="e#113592#113737#2" expanded="true" />
+            <element signature="e#113812#113961#2" expanded="true" />
+            <element signature="e#114032#114189#2" expanded="true" />
+            <element signature="e#114264#114421#2" expanded="true" />
+            <element signature="e#114539#114736#2" expanded="true" />
+            <element signature="e#114827#115028#2" expanded="true" />
+            <element signature="e#115128#115325#2" expanded="true" />
+            <element signature="e#115416#115753#2" expanded="true" />
+            <element signature="e#115892#116377#2" expanded="true" />
+            <element signature="e#116492#116673#2" expanded="true" />
+            <element signature="e#116827#117012#2" expanded="true" />
+            <element signature="e#156165#169038#1" expanded="true" />
+            <element signature="e#180444#187947#1" expanded="true" />
+            <element signature="e#188545#196068#2" expanded="true" />
+            <element signature="e#196289#198264#2" expanded="true" />
+            <element signature="e#198366#200329#2" expanded="true" />
+            <element signature="e#200414#202377#2" expanded="true" />
+            <element signature="e#205584#206372#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="63" column="197" lean-forward="false" selection-start-line="63" selection-start-column="197" selection-end-line="63" selection-end-column="197" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/services/triggerdataservice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="275" column="3" lean-forward="true" selection-start-line="275" selection-start-column="3" selection-end-line="275" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/controllers/trigger.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -222,17 +222,114 @@ h5 + h6 {
 }
 .aui-group>div.aui-item-container .shadowed-item{
     box-shadow: 0px 2px 5px #ddd;
-    padding: 10px;
+    /*padding: 10px;*/
     overflow: hidden;
 }
-.aui-group>div.aui-item-container .shadowed-item .overhead-container{
+.aui-group>div.aui-item-container .shadowed-item>h5.product-header{
+    padding: 10px;
+    border-top: solid 2px #0052cc;
+    color: #0052cc;
+}
+.aui-group>div.aui-item-container .shadowed-item>h5.trigger-header{
+    padding: 10px;
+    border-top: solid 2px #5cb85c;
+    color: #5cb85c;
+}
+.aui-group>div.aui-item-container .shadowed-item>form{
+    margin: 0;
+}
+.aui-group>div.aui-item-container .shadowed-item>form fieldset input{
+    border: none;
+    width: 100%;
+    display: block;
+    margin: 0!important;
+    max-width: none;
+    padding: 10px 10px 10px 32px;
+    height: auto;
+    background: #fafafa;
+    border-bottom: solid 1px #eee;
+    border-top: solid 1px #eee;
+    border-radius: 0;
+    outline:none!important;
+}
+.aui-group>div.aui-item-container .shadowed-item>form fieldset .search-input-icon{
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    color: #aaa;
+}
+.aui-group>div.aui-item-container .shadowed-item.mr{
+    margin-right: 10px;
+}
+.aui-group>div.aui-item-container .shadowed-item.ml{
+    margin-left: 10px;
+}
+/*.aui-group>div.aui-item-container .shadowed-item .overhead-container{*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*padding: 10px;*/
+    /*width: 100%;*/
+    /*left: 0;*/
+    /*border-top: solid 1px #eee;*/
+    /*background: #fafafa;*/
+/*}*/
+.overhead-container{
     position: absolute;
     bottom: 0;
-    padding: 10px;
     width: 100%;
     left: 0;
-    border-top: solid 1px #eee;
-    background: #fafafa;
+    padding: 10px;
+    background: #34495e;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+}
+.overhead-container .overhead-container-header{
+    overflow: auto;
+}
+.overhead-container .overhead-container-header>h4{
+    display: inline-block;
+    float: left;
+}
+.overhead-container .overhead-container-header>button.aui-button{
+    display: inline-block;
+    float: right;
+    color: #fff;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.overhead-container .overhead-container-header>button.aui-button>span.aui-icon{
+    color: #fff;
+}
+.overhead-container .overhead-container-header>button.aui-button:hover>span.aui-icon, .overhead-container .overhead-container-header>button.aui-button:active>span.aui-icon{
+    color: #aaa;
+}
+.overhead-container h4{
+    color: #fff;
+}
+.overhead-container .overhead-section{
+    display: inline-block;
+    width: 50%;
+    float: left;
+    padding: 10px;
+}
+.overhead-container .overhead-section .section-header{
+    font-weight: 500;
+    color: #aaa;
+    margin: 20px 0;
+    display: inline-block;
+}
+.overhead-container .overhead-section .section-item-pill{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    float: left;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 15px;
 }
 .aui-group>div.aui-item-container .shadowed-item .group{
     padding: 0px;
@@ -1449,7 +1546,7 @@ aui-header {
     /*border-bottom: 1px solid #ccc;*/
     /*margin: 20px 0;*/
     /*padding: 0 10px;*/
-    padding: 20px 35px!important;
+    padding: 20px 35px 0 35px!important;
 }
 .aui-page-panel-content > .aui-navgroup-horizontal {
     margin-left: -20px;
@@ -6809,4 +6906,17 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
     /*-Padding-*/
 .p-20{
     padding: 20px;
+}
+.m-0{
+    margin: 0!important;
+}
+.fill-height{
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+  /*Colors*/
+.primary-success{
+    color: #5cb85c;
 }

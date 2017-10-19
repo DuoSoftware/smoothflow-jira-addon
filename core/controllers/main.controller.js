@@ -60,20 +60,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     AJS.$('.button-spinner').spin();
     AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
 
-	AJS.$(document).ready(function () {
-		AJS.$(".aui-flatpack-example .aui-icon").tooltip({
-			title: function () {
-				var className = AJS.$(this).attr("class")
-					.replace("aui-icon ", "")
-					.replace("aui-icon-small ", "")
-					.replace("aui-icon-large ", "")
-					.trim();
-				return className;
-			},
-			delayIn: 0
-		});
-	});
-
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
         window.location.href = '#/home';
@@ -458,15 +444,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     // methods
     $scope.$watch(function () {
-        workflowHeight = (window.innerHeight) - 132;
-        workflowUI = document.getElementById('workflow-ui');
+        workflowHeight = (window.innerHeight) - 111;
+		workflowUI = document.getElementById('workflow-ui');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
-        if (workflowUI != undefined){
+		if (workflowUI != undefined){
 			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
 		}
-        if (shadowedGroupItems != undefined){
-        	var itemHeight = workflowHeight - 80;
-        	angular.forEach(shadowedGroupItems, function (item) {
+		if (shadowedGroupItems != undefined){
+			var itemHeight = workflowHeight - 120;
+			angular.forEach(shadowedGroupItems, function (item) {
 				item.setAttribute("style", "height:" + itemHeight + "px");
 			});
 		}
@@ -624,14 +610,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.CallInvoke = function () {
         var optionalJSON = {};
         var inarguments = dataHandler.retrieveInArgumentsKeys();
+
         angular.forEach(inarguments, function (argument) {
             optionalJSON[argument] = "";
         });
 
         console.log(JSON.stringify(optionalJSON));
-        $scope.optionalJSON = JSON.stringify(optionalJSON);
+        $scope.optionalJSON = JSON.stringify(optionalJSON, undefined, 4)
+        // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
-    $scope.CallInvoke();
+
 
     $scope.callurl = function (url, body) {
         var req = {
@@ -1057,6 +1045,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         if (location == "rule.container") {
             $timeout(function () {
+                $scope.CallInvoke();
                 $scope.RealTimeLineChart();
                 $scope.GaugeChart();
             });
@@ -1460,6 +1449,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
         ;
 
+    $scope.AdditionalVariable = [
+        { Key: 'jira_attachment_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_board_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_comment_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_issue_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_issue_key', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_mergedVersion_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_modifiedUser_key', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_modifiedUser_name', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_sprint_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_version_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_worklog_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
+        { Key: 'jira_project_key', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType }
+
+    ];
+
+    $scope.addtoMainList = function (variable, event) {
+        $scope.AddNewVariable(variable, event);
+    };
     //Add variables
     $scope.AddNewVariable = function (variable, e) {
         var data = {};
@@ -2286,4 +2294,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.getRuleDetails();
         $scope.listProjects();
     });
+
+	$scope.selectedExpanded = false;
+	$scope.expandSelected = function () {
+		$scope.selectedExpanded = !$scope.selectedExpanded;
+	}
 }

@@ -67,7 +67,8 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
 
         }, this);
-    };
+		$scope.addedToSelect('Triggers');
+	};
     $scope.selectAllprojects = function () {
         $scope.projectList.forEach(function (element) {
 
@@ -77,9 +78,10 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
                 element.check = false;
             }
 
-
         }, this);
-    };
+		$scope.addedToSelect('Projects');
+
+	};
     $scope.SetTriggerOptions = function () {
 
         $scope.Trigger = TriggerDatafactory.selected;
@@ -103,6 +105,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
     $scope.addedTrigger = function (trigger) {
         TriggerDatafactory.AddedTriggers(trigger);
+        $scope.addedToSelect('Trigger');
     };
 
     $scope.addedProject = function (project) {
@@ -110,7 +113,8 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
             return (trigger.check == true);
         });
         TriggerDatafactory.AddedProject(project, selectedtriggers);
-    };
+		$scope.addedToSelect('Project');
+	};
 
     var items = TriggerDatafactory.getSelectedList();
     angular.forEach(items, function (item) {
@@ -130,6 +134,18 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
             trigger[0].check = true;
         }
     });
+
+    //Trigger selecting notification handler
+	$scope.itemSelected = false;
+	$scope.selectedItemType = "";
+	$scope.addedToSelect = function (item) {
+		$scope.itemSelected = true;
+		$scope.selectedItemType = item;
+		$timeout(function () {
+			$scope.itemSelected = false;
+		}, 1500);
+	}
+    //Trigger selecting notification handler - END
 
 
 }]);
