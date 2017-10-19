@@ -441,19 +441,28 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var directCondConnectors = null;
     var workflowBlocks = null;
     var shadowedGroupItems = null;
+    var selectItemBody = null;
+	var shadowedGroupItemsHeight = null;
 
     // methods
     $scope.$watch(function () {
         workflowHeight = (window.innerHeight) - 111;
 		workflowUI = document.getElementById('workflow-ui');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
+		selectItemBody = document.getElementsByClassName('select-item-body');
 		if (workflowUI != undefined){
 			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
 		}
 		if (shadowedGroupItems != undefined){
-			var itemHeight = workflowHeight - 120;
+			shadowedGroupItemsHeight = workflowHeight - 120;
 			angular.forEach(shadowedGroupItems, function (item) {
-				item.setAttribute("style", "height:" + itemHeight + "px");
+				item.setAttribute("style", "height:" + shadowedGroupItemsHeight + "px");
+			});
+		}
+        if (selectItemBody != undefined){
+			var selectItemBodyHeight = shadowedGroupItemsHeight - 84;
+			angular.forEach(selectItemBody, function (item) {
+				item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
 			});
 		}
         propertiesElem = document.getElementById('property-wrap');

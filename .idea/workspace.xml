@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10a0814b-804c-443a-93d0-c67c3138ef11" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aui/css/aui-extended-sf.css" afterPath="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/container/rule-container.html" afterPath="$PROJECT_DIR$/content/rule/container/rule-container.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/rule.html" afterPath="$PROJECT_DIR$/content/rule/rule.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" afterPath="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/controllers/main.controller.js" afterPath="$PROJECT_DIR$/core/controllers/main.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/controllers/trigger.controller.js" afterPath="$PROJECT_DIR$/core/controllers/trigger.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/services/triggerdataservice.js" afterPath="$PROJECT_DIR$/core/services/triggerdataservice.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,8 +25,8 @@
       <file leaf-file-name="main.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="2286" column="0" lean-forward="true" selection-start-line="2286" selection-start-column="0" selection-end-line="2286" selection-end-column="0" />
+            <state relative-caret-position="184">
+              <caret line="451" column="74" lean-forward="false" selection-start-line="451" selection-start-column="74" selection-end-line="451" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -49,12 +44,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rule-triggers-aui.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rule-triggers-aui.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="63" column="197" lean-forward="false" selection-start-line="63" selection-start-column="197" selection-end-line="63" selection-end-column="197" />
+            <state relative-caret-position="289">
+              <caret line="106" column="18" lean-forward="true" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
               <folding>
+                <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -62,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trigger.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="trigger.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/controllers/trigger.controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="367">
@@ -95,8 +92,8 @@
       <file leaf-file-name="aui-extended-sf.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="6902" column="18" lean-forward="false" selection-start-line="6902" selection-start-column="1" selection-end-line="6902" selection-end-column="18" />
+            <state relative-caret-position="276">
+              <caret line="6916" column="34" lean-forward="true" selection-start-line="6916" selection-start-column="34" selection-end-line="6916" selection-end-column="34" />
               <folding>
                 <element signature="e#61898#62315#1" expanded="true" />
                 <element signature="e#80871#81072#2" expanded="true" />
@@ -150,8 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.aui-button:visited</find>
-      <find>.aui-button:focus</find>
       <find>aui-header</find>
       <find>aui-button</find>
       <find>.bar-buttons</find>
@@ -175,11 +170,13 @@
       <find>aui-item-container</find>
       <find>.aui-navgroup-horizontal</find>
       <find>shadowed</find>
-      <find>pos-rel</find>
       <find>overhead</find>
       <find>all 0.5s</find>
-      <find>addedTrigger</find>
+      <find>pos-rel</find>
       <find>AddedTriggers</find>
+      <find>addedTrigger</find>
+      <find>$watch</find>
+      <find>styled-checkbox</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -196,11 +193,11 @@
         <option value="$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/core/controllers/main.controller.js" />
         <option value="$PROJECT_DIR$/content/rule/container/rule-container.html" />
         <option value="$PROJECT_DIR$/content/rule/rule.html" />
-        <option value="$PROJECT_DIR$/core/controllers/main.controller.js" />
         <option value="$PROJECT_DIR$/core/services/triggerdataservice.js" />
-        <option value="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
-        <option value="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
         <option value="$PROJECT_DIR$/core/controllers/trigger.controller.js" />
+        <option value="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
+        <option value="$PROJECT_DIR$/core/controllers/main.controller.js" />
+        <option value="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
       </list>
     </option>
   </component>
@@ -473,12 +470,12 @@
       <workItem from="1508140334935" duration="1226000" />
       <workItem from="1508249663850" duration="647000" />
       <workItem from="1508301213680" duration="22506000" />
-      <workItem from="1508388278409" duration="10684000" />
+      <workItem from="1508388278409" duration="15505000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36071000" />
+    <option name="totallyTimeSpent" value="40892000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -534,6 +531,8 @@
         <state relative-caret-position="544">
           <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
           <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -755,14 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/styles/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -773,18 +764,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/controllers/trigger.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/services/triggerdataservice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="275" column="3" lean-forward="true" selection-start-line="275" selection-start-column="3" selection-end-line="275" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="2286" column="0" lean-forward="true" selection-start-line="2286" selection-start-column="0" selection-end-line="2286" selection-end-column="0" />
+        <state relative-caret-position="184">
+          <caret line="451" column="74" lean-forward="false" selection-start-line="451" selection-start-column="74" selection-end-line="451" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="6902" column="18" lean-forward="false" selection-start-line="6902" selection-start-column="1" selection-end-line="6902" selection-end-column="18" />
+        <state relative-caret-position="276">
+          <caret line="6916" column="34" lean-forward="true" selection-start-line="6916" selection-start-column="34" selection-end-line="6916" selection-end-column="34" />
           <folding>
             <element signature="e#61898#62315#1" expanded="true" />
             <element signature="e#80871#81072#2" expanded="true" />
@@ -823,28 +838,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="63" column="197" lean-forward="false" selection-start-line="63" selection-start-column="197" selection-end-line="63" selection-end-column="197" />
+        <state relative-caret-position="289">
+          <caret line="106" column="18" lean-forward="true" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
           <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/services/triggerdataservice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="275" column="3" lean-forward="true" selection-start-line="275" selection-start-column="3" selection-end-line="275" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/controllers/trigger.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="145" column="13" lean-forward="false" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
