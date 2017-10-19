@@ -91,8 +91,8 @@ body{
 
 /*Hadings*/
 .main-header-bar{
-    padding: 0 15px!important;
-    border-bottom: solid 1px #ddd;
+    padding: 0 35px!important;
+    /*border-bottom: solid 1px #ddd;*/
 }
 .section-topic{
     margin: 17px 0;
@@ -225,13 +225,17 @@ button.button-primary{
     cursor: pointer;
 }
 .clikbl-list-item:nth-of-type(odd),.action-list-item:nth-of-type(odd){
-    background: #f3fbfa!important;
+    /*background: #f3fbfa!important;*/
 }
 .clikbl-list-item:hover{
     background: #eee!important;
 }
 .clikbl-list-item td, .action-list-item td{
     border-top: none!important;
+}
+.clikbl-list-item td.list-state{
+    max-width: 120px;
+    width: 120px;
 }
 .action-list-item .action-td{
     width: 50px;
@@ -1172,6 +1176,7 @@ button.button-primary{
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 .bar-buttons{
+    display: inline-block;
     position: absolute;
     height: 30px;
     top: 0;
@@ -1197,7 +1202,7 @@ button.button-primary{
     -ms-box-sizing: border-box;
     box-sizing: border-box;
     clear: left;
-    margin-bottom: 7px;
+    margin-bottom: 15px;
 }
 .property-list .item .name {
     -moz-box-sizing: border-box;
@@ -1212,6 +1217,7 @@ button.button-primary{
     padding: 2px 5px 2px 0;
     text-align: left;
     width: 150px;
+    vertical-align: top;
 }
 .editable-property-list .field-group{
     padding-left: 0!important;
@@ -1302,7 +1308,8 @@ button.button-primary{
     border-width: thin;
     list-style-type: none;
 }
-.linkcolor a:active{
-    border-color: rgb( 153, 153, 153 );
-    background-color: #FFFFFF;
+
+.user-alerts{
+    padding: 5px 10px;
+    background: #fafafa;
 }

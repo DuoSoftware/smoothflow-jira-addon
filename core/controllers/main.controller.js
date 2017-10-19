@@ -439,14 +439,32 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var workflowElem = null;
     var componentBlock = null;
     var directCondConnectors = null;
-    var workflowBlocks = null;
+	var workflowBlocks = null;
+	var shadowedGroupItems = null;
+	var selectItemBody = null;
+	var shadowedGroupItemsHeight = null;
 
     // methods
     $scope.$watch(function () {
         workflowHeight = (window.innerHeight) - 90;
         workflowUI = document.getElementById('workflow-ui');
-        if (workflowUI != undefined)
-            workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
+		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
+		selectItemBody = document.getElementsByClassName('select-item-body');
+		if (workflowUI != undefined){
+			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
+		}
+		if (shadowedGroupItems != undefined){
+			shadowedGroupItemsHeight = workflowHeight - 120;
+			angular.forEach(shadowedGroupItems, function (item) {
+				item.setAttribute("style", "height:" + shadowedGroupItemsHeight + "px");
+			});
+		}
+		if (selectItemBody != undefined){
+			var selectItemBodyHeight = shadowedGroupItemsHeight - 84;
+			angular.forEach(selectItemBody, function (item) {
+				item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
+			});
+		}
         propertiesElem = document.getElementById('property-wrap');
         workflowElem = document.getElementById('workflow-wrap');
         componentBlock = document.getElementsByClassName('condition-block');
@@ -2285,4 +2303,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.getRuleDetails();
         $scope.listProjects();
     });
+
+	$scope.selectedExpanded = false;
+	$scope.expandSelected = function () {
+		$scope.selectedExpanded = !$scope.selectedExpanded;
+	}
 }
