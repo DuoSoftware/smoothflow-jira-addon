@@ -446,7 +446,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     // methods
     $scope.$watch(function () {
-        workflowHeight = (window.innerHeight) - 90;
+		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
 		selectItemBody = document.getElementsByClassName('select-item-body');
