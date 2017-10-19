@@ -1,55 +1,65 @@
 <div class="clearfix">
-    <div class="container">
+    <div class="container p-20">
         <div class="col-md-12 col-sm-12 content-padding-no">
-            <div class="inner-heading"><span>Rule Triggers</span></div>
-            <p>Select the projects and the set of triggers when this rule should be executed.</p>
-            <p><b>Note:</b> At least one project should be selected for triggers to work.</p>
+            <div class="aui-page-header-inner">
+                <div class="aui-page-header-main">
+                    <p>Select the projects and the set of triggers when this rule should be executed.</p>
+                </div>
+                <div class="aui-toolbar2-secondary user-alerts">
+                    <span class="aui-primary-color"><b>Important:</b> At least one project should be selected for triggers to work.</span>
+                </div>
+            </div>
 
-
-            <div class="aui-group">
-                <div class="aui-item">
-                    <h3>Projects</h3>
-                    <form class="aui">
-                        <fieldset class="group">
-                            <label for="selectedprojects">Selected Projects</label>
+            <div class="aui-group" id="triggersSection">
+                <div class="aui-item-container">
+                    <div class="shadowed-item">
+                        <h5>Projects</h5>
+                        <form class="aui">
+                            <fieldset class="group">
+                                <input placeholder="Search projects" class="text long-field" type="text" id="searchprojects" name="searchprojects" ng-model="projectsearch"
+                                       style="    margin-top: 10px;">
+                                <input type="checkbox" ng-click="selectAllprojects($event)"> <label>Select All</label>
+                                <div class="checkbox" ng-repeat="project in projectList | filter : projectsearch">
+                                    <input ng-click="addedProject(project)" class="checkbox" type="checkbox" name="{{project.key}}" id="{{project.key}}" ng-model="project.check"
+                                           ng-checked="project.check">
+                                    <label for="{{project.key}}">{{project.key}} - {{project.name}}</label>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <div>
+                            <h5>Selected Projects</h5>
                             <div>
                                 <span ng-repeat="project in projectList | filter : { check: true }" class="label label-primary" style="margin-right: 5px;margin-bottom: 5px;
                                 float: left;">{{project.key}} - {{project.name}}</span>
                             </div>
-                            <br>
-                            <input placeholder="Search projects" class="text long-field" type="text" id="searchprojects" name="searchprojects" ng-model="projectsearch"
-                                style="    margin-top: 10px;">
-                                <input type="checkbox" ng-click="selectAllprojects($event)"> <label>Select All</label>
-                            <div class="checkbox" ng-repeat="project in projectList | filter : projectsearch">
-                                <input ng-click="addedProject(project)" class="checkbox" type="checkbox" name="{{project.key}}" id="{{project.key}}" ng-model="project.check"
-                                    ng-checked="project.check">
-                                <label for="{{project.key}}">{{project.key}} - {{project.name}}</label>
-                            </div>
-                        </fieldset>
-                    </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="aui-item">
-                    <h3>Triggers</h3>
-                    <form class="aui">
+
+                <div class="aui-item-container">
+                    <div class="shadowed-item">
+                        <h5>Triggers</h5>
                         <form class="aui">
-                            <fieldset class="group">
-                                <label for="selectedprojects">Selected Triggers</label>
-                                <div>
+                            <form class="aui">
+                                <fieldset class="group">
+                                    <label for="selectedprojects">Selected Triggers</label>
+                                    <div>
                                     <span ng-repeat="project in triggersOption | filter : { check: true }" class="label label-success" style="margin-right: 5px;margin-bottom: 5px;
                                         float: left;">{{project.Name}}</span>
-                                </div>
-                                <br>
-                                <input placeholder="Search triggers" class="text long-field" type="text" id="searchtriggers" name="searchtriggers" ng-model="triggersearch"
-                                    style="    margin-top: 10px;">
-                                <input type="checkbox" ng-click="selectAlltriggers($event)"> <label>Select All</label>
-                                <div class="checkbox" ng-repeat=" trigger in triggersOption | filter : triggersearch">
-                                    <input ng-click="addedTrigger(trigger)" class="checkbox" type="checkbox" name="{{trigger.code}}" id="{{trigger.code}}" ng-model="trigger.check"
-                                        ng-checked="trigger.check">
-                                    <label for="{{trigger.code}}">{{trigger.Name}}</label>
-                                </div>
-                            </fieldset>
+                                    </div>
+                                    <br>
+                                    <input placeholder="Search triggers" class="text long-field" type="text" id="searchtriggers" name="searchtriggers" ng-model="triggersearch"
+                                           style="    margin-top: 10px;">
+                                    <input type="checkbox" ng-click="selectAlltriggers($event)"> <label>Select All</label>
+                                    <div class="checkbox" ng-repeat=" trigger in triggersOption | filter : triggersearch">
+                                        <input ng-click="addedTrigger(trigger)" class="checkbox" type="checkbox" name="{{trigger.code}}" id="{{trigger.code}}" ng-model="trigger.check"
+                                               ng-checked="trigger.check">
+                                        <label for="{{trigger.code}}">{{trigger.Name}}</label>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </form>
-                    </form>
+                    </div>
                 </div>
             </div>
 

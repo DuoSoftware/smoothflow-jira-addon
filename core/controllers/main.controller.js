@@ -60,6 +60,20 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     AJS.$('.button-spinner').spin();
     AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
 
+	AJS.$(document).ready(function () {
+		AJS.$(".aui-flatpack-example .aui-icon").tooltip({
+			title: function () {
+				var className = AJS.$(this).attr("class")
+					.replace("aui-icon ", "")
+					.replace("aui-icon-small ", "")
+					.replace("aui-icon-large ", "")
+					.trim();
+				return className;
+			},
+			delayIn: 0
+		});
+	});
+
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
         window.location.href = '#/home';
@@ -440,13 +454,22 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var componentBlock = null;
     var directCondConnectors = null;
     var workflowBlocks = null;
+    var shadowedGroupItems = null;
 
     // methods
     $scope.$watch(function () {
-        workflowHeight = (window.innerHeight) - 90;
+        workflowHeight = (window.innerHeight) - 132;
         workflowUI = document.getElementById('workflow-ui');
-        if (workflowUI != undefined)
-            workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
+		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
+        if (workflowUI != undefined){
+			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
+		}
+        if (shadowedGroupItems != undefined){
+        	var itemHeight = workflowHeight - 80;
+        	angular.forEach(shadowedGroupItems, function (item) {
+				item.setAttribute("style", "height:" + itemHeight + "px");
+			});
+		}
         propertiesElem = document.getElementById('property-wrap');
         workflowElem = document.getElementById('workflow-wrap');
         componentBlock = document.getElementsByClassName('condition-block');

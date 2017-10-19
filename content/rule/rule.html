@@ -1,9 +1,11 @@
 <div class="clearfix rule-container">
     <div class="row">
-        <nav class="aui-navgroup aui-navgroup-horizontal">
+        <nav class="aui-navgroup aui-navgroup-horizontal" style="box-shadow: 0px 2px 5px #eee;position:relative">
             <div class="aui-navgroup-inner pos-rel">
                 <div class="aui-navgroup-primary">
-                    <div class="aui-nav-heading"><strong>{{selectedRule.ruleName}}</strong></div>
+                    <div class="aui-nav-heading">
+                        <h4>{{selectedRule.ruleName}}</h4>
+                    </div>
                     <ul class="aui-nav">
                         <li ng-class="{'aui-nav-selected':listState == 'rule.details'}"><a href="" ng-click="changeLocation('rule.details')">Details</a></li>
                         <li ng-class="{'aui-nav-selected':listState == 'rule.triggers'}"><a href="" ng-click="changeLocation('rule.triggers')">Triggers</a></li>
@@ -28,5 +30,6 @@
         <div ng-include="'content/rule/validation-errors.html'"></div>
         <!-- / Error page INJECTION-->
 
-        <div ui-view id="workflow-ui"></div>
+        <div ui-view id="workflow-ui" class="custom-scroll"></div>
     </div>
+</div>

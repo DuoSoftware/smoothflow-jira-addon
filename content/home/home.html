@@ -11,16 +11,18 @@
     <!--&lt;!&ndash; / NEW RULES INJECTION&ndash;&gt;-->
     <!--</div>-->
 
-    <div class="main-header-bar aui-navgroup-horizontal">
+    <div class="aui-navgroup-horizontal">
         <header class="aui-page-header">
             <div class="aui-page-header-inner">
                 <div class="aui-page-header-main">
-                    <h4>Created rules</h4>
+                    <h4>My rules</h4>
                 </div>
                 <div class="aui-page-header-actions">
-                    <div class="aui-buttons">
-                        <button class="aui-button" ng-click="refresh()">Refresh</button>
-                        <button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="newRule()">New rule</button>
+                    <div>
+                        <button class="aui-button" ng-click="refresh()">
+                            <span class="aui-icon aui-icon-small aui-iconfont-build">Refresh</span>
+                        </button>
+                        <button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="newRule()">+ New rule</button>
                     </div>
                 </div>
             </div>
