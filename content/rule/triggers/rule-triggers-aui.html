@@ -17,7 +17,7 @@
                         <form class="aui m-0">
                             <fieldset class="group">
                                 <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
-                                <input placeholder="Search projects" class="text long-field" type="text" id="searchprojects" name="searchprojects" ng-model="projectsearch"
+                                <input placeholder="Search projects" class="text long-field selected-search" type="text" id="searchprojects" name="searchprojects" ng-model="projectsearch"
                                        style="    margin-top: 10px;">
 
 
@@ -58,7 +58,7 @@
                             <form class="aui">
                                 <fieldset class="group">
                                     <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon"></span>
-                                    <input placeholder="Search triggers" class="text long-field" type="text" id="searchtriggers" name="searchtriggers" ng-model="triggersearch">
+                                    <input placeholder="Search triggers" class="text long-field selected-search" type="text" id="searchtriggers" name="searchtriggers" ng-model="triggersearch">
                                     <div class="sf-padding select-item-body custom-scroll">
                                         <ul class="unstyled">
                                             <li class="mb-20">
@@ -100,7 +100,7 @@
         <div class="overhead-container">
             <div class="overhead-container-header">
                 <h4>Selected</h4>
-                <span style="float: right;margin-left: 10px;color: #ffffff" ng-if="itemSelected"><span class="aui-icon aui-icon-small aui-iconfont-approve primary-success"></span>{{selectedItemType}} selected!</span>
+                <span style="float: left;margin-left: 10px;color: #ffffff" ng-if="itemSelected"><span class="aui-icon aui-icon-small aui-iconfont-approve primary-success"></span>{{selectedItemType}} selected!</span>
                 <button class="aui-button" type="button" ng-click="expandSelected()">
                     <span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>
                 </button>

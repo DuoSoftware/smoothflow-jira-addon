@@ -67,7 +67,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
 
         }, this);
-		$scope.addedToSelect('Triggers');
+		$scope.addedToSelect('All the Triggers');
     };
     $scope.selectAllprojects = function () {
         $scope.projectList.forEach(function (element) {
@@ -78,9 +78,8 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
                 element.check = false;
             }
 
-
         }, this);
-		$scope.addedToSelect('Projects');
+		$scope.addedToSelect('All the projects');
     };
     $scope.SetTriggerOptions = function () {
 
@@ -105,7 +104,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
     $scope.addedTrigger = function (trigger) {
         TriggerDatafactory.AddedTriggers(trigger);
-		$scope.addedToSelect('Trigger');
+		$scope.addedToSelect(trigger.Name);
     };
 
     $scope.addedProject = function (project) {
@@ -113,7 +112,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
             return (trigger.check == true);
         });
         TriggerDatafactory.AddedProject(project, selectedtriggers);
-		$scope.addedToSelect('Project');
+		$scope.addedToSelect(project.Name);
     };
 
     var items = TriggerDatafactory.getSelectedList();
@@ -140,6 +139,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 	$scope.itemSelected = false;
 	$scope.selectedItemType = "";
 	$scope.addedToSelect = function (item) {
+		debugger;
 		$scope.itemSelected = true;
 		$scope.selectedItemType = item;
 		$timeout(function () {
