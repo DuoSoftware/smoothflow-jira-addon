@@ -238,7 +238,7 @@ h5 + h6 {
 .aui-group>div.aui-item-container .shadowed-item>form{
     margin: 0;
 }
-.aui-group>div.aui-item-container .shadowed-item>form fieldset input{
+.aui-group>div.aui-item-container .shadowed-item>form fieldset input.selected-search{
     border: none;
     width: 100%;
     display: block;
@@ -6931,7 +6931,8 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
   /*Customized checkbox*/
 
 .styled-checkbox {
-    position: absolute;
+    /*position: absolute;*/
+    display: none;
     opacity: 0;
 }
 .styled-checkbox + label {
