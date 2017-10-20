@@ -301,7 +301,7 @@ button.button-primary{
 }
 #workflow-components{
     position: absolute;
-    margin-right: 451px;
+    /*margin-right: 451px;*/
     /*overflow: hidden;*/
     width: 0;
     right: 0;

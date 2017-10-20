@@ -443,6 +443,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	var shadowedGroupItems = null;
 	var selectItemBody = null;
 	var shadowedGroupItemsHeight = null;
+	var workflowComponentss = null;
 
     // methods
     $scope.$watch(function () {
@@ -450,6 +451,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         workflowUI = document.getElementById('workflow-ui');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
 		selectItemBody = document.getElementsByClassName('select-item-body');
+		workflowComponentss = $('#workflow-components');
+		$scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
+		if(workflowComponentss != undefined){
+			workflowComponentss.css('margin-right',$scope.propertyPanelWidthGLOBAL+'px');
+		}
 		if (workflowUI != undefined){
 			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
 		}
@@ -1548,8 +1554,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.pendingComponentType = category;
         $scope.componentsMenuState == 'open' && !triggeredByComponent ? $scope.componentsMenuState = 'closed' : $scope.componentsMenuState = 'open';
         var componentsMenuElem = document.getElementById('workflow-components');
-        var propertiesMenuElemWidth = $('properties-pane').width();
-        $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:'+propertiesMenuElemWidth+'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight +'px;width:0px');
+        $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:'+$scope.propertyPanelWidthGLOBAL+'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight +'px;width:0px;margin-right:'+$scope.propertyPanelWidthGLOBAL+'px');
         // $scope.componentsMenuState == 'open' ? $scope.compMenuState = "right" : $scope.compMenuState = "left";
     }
 
