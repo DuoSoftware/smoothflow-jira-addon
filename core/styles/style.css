@@ -270,6 +270,7 @@ button.button-primary{
 /*WORKFLOW*/
 #workflow-wrap{
     overflow-x: scroll;
+    background: #fafafa;
 }
 #workflow-wrap::-webkit-scrollbar {
     width: 10px;
@@ -550,7 +551,6 @@ button.button-primary{
 }
 #workflow-ui{
     overflow: auto;
-    background: #fafafa;
 }
 #workflow-ui::-webkit-scrollbar {
     width: 10px;
