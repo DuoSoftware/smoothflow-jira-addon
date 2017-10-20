@@ -1,9 +1,9 @@
-<div id="workflow-components">
+<div id="workflow-components" ng-class="{'dynamic-shadow-l':componentsMenuState == 'open'}">
     <div class="toggle-components" ng-click="toggleComponentsMenu(null,null,null,'trigger',null)">
         <span class="aui-icon aui-icon-small aui-iconfont-{{componentsMenuState == 'open' ? 'arrows-right' : 'arrows-left'}} prop-header-ico"></span>
         <!--<span class="glyphicon glyphicon-menu-{{componentsMenuState == 'open' ? 'right' : 'left'}}"></span>-->
     </div>
-    <div id="components-wrap">
+    <div id="components-wrap" ng-class="{'fade-in':componentsMenuState == 'open', 'fade-out':componentsMenuState == 'closed'}">
         <div class="comp-panel" ng-repeat="component in structuredComps | filter : toolboxsearch">
             <div class="comp-panel-heading" ng-click="setInitialCollapse($index)">
                 <!--<div class="b-shadow"></div>-->

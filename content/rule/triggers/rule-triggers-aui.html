@@ -113,18 +113,20 @@
                     <span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>
                 </button>
             </div>
-            <div class="overhead-section" ng-if="selectedExpanded">
-                <span class="section-header">Selected projects</span>
-                <div>
-                    <span ng-repeat="project in projectList | filter : { check: true }" class="section-item-pill label-primary">{{project.key}} - {{project.name}}</span>
+            <div class="overhead-container-body" ng-if="selectedExpanded">
+                <div class="overhead-section">
+                    <span class="section-header">Selected projects</span>
+                    <div>
+                        <span ng-repeat="project in projectList | filter : { check: true }" class="section-item-pill label-primary">{{project.key}} - {{project.name}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="overhead-section" ng-if="selectedExpanded">
-                <span class="section-header">Selected triggers</span>
-                <div>
-                    <span ng-repeat="project in triggersOption | filter : { check: true }" class="section-item-pill label-success" style="margin-right: 5px;margin-bottom: 5px;float: left;">{{project.Name}}</span>
+                <div class="overhead-section">
+                    <span class="section-header">Selected triggers</span>
+                    <div>
+                        <span ng-repeat="project in triggersOption | filter : { check: true }" class="section-item-pill label-success" style="margin-right: 5px;margin-bottom: 5px;float: left;">{{project.Name}}</span>
+                    </div>
+                    <br>
                 </div>
-                <br>
             </div>
         </div>
     </div>

@@ -289,6 +289,22 @@ h5 + h6 {
 .overhead-container .overhead-container-header{
     overflow: auto;
 }
+.overhead-container .overhead-container-body{
+    overflow-y: scroll;
+    margin-top: 10px;
+    width: 100%;
+    max-height: 500px;
+}
+.overhead-container .overhead-container-body::-webkit-scrollbar {
+    width: 10px;
+    background-color: #34495e;
+}
+.overhead-container .overhead-container-body::-webkit-scrollbar-track {
+    display: none;
+}
+.overhead-container .overhead-container-body::-webkit-scrollbar-thumb {
+    background-color: #777;
+}
 .overhead-container .overhead-container-header>h4{
     display: inline-block;
     float: left;
@@ -6928,10 +6944,29 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 .mb-20{
     margin-bottom: 20px!important;
 }
+.mt-20{
+    margin-top: 20px!important;
+}
 .fill-height{
     height: 100%;
     min-height: 100%;
     max-height: 100%;
+}
+.fade-in{
+    opacity: 1;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+.fade-out{
+    opacity: 0;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
 }
 
   /*Colors*/
