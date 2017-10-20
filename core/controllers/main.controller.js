@@ -1548,7 +1548,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.pendingComponentType = category;
         $scope.componentsMenuState == 'open' && !triggeredByComponent ? $scope.componentsMenuState = 'closed' : $scope.componentsMenuState = 'open';
         var componentsMenuElem = document.getElementById('workflow-components');
-        var propertiesMenuElemWidth = document.getElementById('workflow-properties').offsetWidth;
+        var propertiesMenuElemWidth = $('properties-pane').width();
         $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:'+propertiesMenuElemWidth+'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight +'px;width:0px');
         // $scope.componentsMenuState == 'open' ? $scope.compMenuState = "right" : $scope.compMenuState = "left";
     }
