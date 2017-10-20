@@ -331,6 +331,12 @@ h5 + h6 {
     padding: 2px 8px;
     border-radius: 15px;
 }
+.overhead-container .selector-notif{
+    color: #ffffff;
+    opacity: 0;
+    right: 0;
+    position:absolute
+}
 .aui-group>div.aui-item-container .shadowed-item .group{
     padding: 0px;
 }
@@ -6912,6 +6918,9 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 }
 .m-0{
     margin: 0!important;
+}
+.mr-10{
+    margin-right: 10px!important;
 }
 .mb-20{
     margin-bottom: 20px!important;

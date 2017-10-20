@@ -140,9 +140,9 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             // add current rule for the trigger object 
             for (i = 0; i < alltriggers.length; i++) {
                 if (selectedTrigger.code == alltriggers[i].code) {
-                    debugger
+                    // debugger
                     for (j = 0; j < selectedprojects.length; j++) {
-                        debugger
+                        // debugger
                         var proj = alltriggers[i].projects.filter(function (pro) {
                             return (pro.key == selectedprojects[j].key);
                         });
@@ -201,7 +201,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                                 return (proj.key == selectedProject.key);
                             });
                             if (proj.length > 0) {
-                                debugger
+                                // debugger
                                 if (selectedProject.check) {
 
                                 } else {

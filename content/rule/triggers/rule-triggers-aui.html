@@ -108,7 +108,7 @@
         <div class="overhead-container">
             <div class="overhead-container-header">
                 <h4>Selected</h4>
-                <span style="float: left;margin-left: 10px;color: #ffffff" ng-if="itemSelected"><span class="aui-icon aui-icon-small aui-iconfont-approve primary-success"></span>{{selectedItemType}} selected!</span>
+                <span class="selector-notif"><span class="aui-icon aui-icon-small aui-iconfont-approve primary-success mr-10"></span>{{selectedItemType + selectedItemState}}</span>
                 <button class="aui-button" type="button" ng-click="expandSelected()">
                     <span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>
                 </button>
