@@ -434,6 +434,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var collapsiblePanels = [];
     var compSearch = [];
     var workflowHeight = null;
+    var workflowWidth = null;
     var workflowUI = null;
     var propertiesElem = null;
     var workflowElem = null;
@@ -453,6 +454,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		selectItemBody = document.getElementsByClassName('select-item-body');
 		workflowComponentss = $('#workflow-components');
 		$scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
+		workflowWidth = window.innerWidth - $scope.propertyPanelWidthGLOBAL;
+
 		if(workflowComponentss != undefined){
 			workflowComponentss.css('margin-right',$scope.propertyPanelWidthGLOBAL+'px');
 		}
@@ -562,8 +565,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // }
         if (propertiesElem != undefined && workflowHeight != undefined)
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
-        if (workflowElem != undefined && workflowHeight != undefined)
-            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:scroll");
+        if (workflowElem != undefined && workflowHeight != null)
+            workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
     });
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {

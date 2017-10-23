@@ -274,7 +274,8 @@ button.button-primary{
 }
 #workflow-wrap::-webkit-scrollbar {
     width: 10px;
-    background-color: #fafafa;
+    height: 10px;
+    background-color: #eee;
 }
 #workflow-wrap::-webkit-scrollbar-track {
     display: none;
@@ -602,7 +603,7 @@ button.button-primary{
     background-color: #777;
 }
 #workflow{
-    max-width: 650px;
+    /*max-width: 650px;*/
     margin:0 auto;
 }
 #workflow>div .workflow-block:last-child .body{
@@ -620,7 +621,7 @@ button.button-primary{
 }
 .workflow-block{
     position: relative;
-    min-width: 300px;
+    min-width: 400px;
 }
 .workflow-block .header-bar{
     height: 40px;
@@ -701,7 +702,7 @@ button.button-primary{
     font-size: 15px;
 
 }
-.workflow-block .header-bar span:nth-child(2), .workflow-block .header-bar span:nth-child(3){
+.workflow-block .header-bar span:nth-child(2){
     margin-top: 7px;
     margin-bottom: 7px;
     text-transform: capitalize;
@@ -751,7 +752,7 @@ button.button-primary{
     /*border-left: solid 5px #ffffff;*/
     /*box-shadow: 0 0 5px #aaa;*/
     border-radius: 15px;
-    border-top-left-radius: 18px;
+    border-top-left-radius: 25px;
 }
 .workflow-block:hover>.header-bar span.category-icon{
     /*border: solid 2px #34495e;*/
@@ -828,8 +829,8 @@ button.button-primary{
     /*border: none;*/
     border-radius: 50%;
     padding: 4px;
-    margin-right: -1px;
-    margin-top: -1px;
+    /*margin-right: -1px;*/
+    /*margin-top: -1px;*/
     border: solid 2px #fff;
     text-align: center;
     background: none;
@@ -913,6 +914,23 @@ button.button-primary{
 .workflow-block .conditional-condition .header-bar span{
     font-size: 17px;
 }
+.workflow-block .header-bar span.cat-pill{
+    font-size: 9px;
+    vertical-align: middle;
+    /* position: static; */
+    text-transform: uppercase;
+    padding: 1px 6px;
+    background: #ccc;
+    border: solid 1px #bbb;
+    color: #fff;
+    border-radius: 20px;
+    margin: 14px 10px;
+}
+.workflow-block .header-bar span.separator{
+    font-size: 12px;
+    text-transform: none;
+    margin: 14px 0 0 10px;
+}
 .workflow-block .sub-cond-connector{
     position: absolute;
     height: 27px;
@@ -933,7 +951,7 @@ button.button-primary{
     /*display: none;*/
     position: absolute;
     width: 1px;
-    height:114%;
+    height:100%;
     background: #bbbbbb;
     left: -20px;
 }
@@ -1057,6 +1075,7 @@ button.button-primary{
     margin-left: 20px;
     padding-left: 20px;
     position: relative;
+    top: -10px;
     /*border-left: solid 1px #aaa;*/
 }
 .border-left{
