@@ -498,56 +498,56 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
         }
 
-        // if (workflowBlocks.length != 0) {
-        //     angular.forEach(workflowBlocks, function (block) {
-        //         if (block.previousElementSibling == null && block.className.split(' ')[1] != 'condition-block') {
-        //             var item = angular.element(block);
-        //             if (item != undefined)
-        //                 item.append('<label class="sub-cond-connector"></label>');
-        //         }
-        //         if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-        //             angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-        //         }
-        //         if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-        //             var outers = angular.element(block).find('.outer');
-        //             angular.forEach(outers, function (outer) {
-        //                 angular.forEach(outer.children, function (child) {
-        //                     if (child.className.split(' ')[0] == 'workflow-block') {
-        //                         angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-        //                     } else {
-        //                         angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-        //                     }
-        //                 });
-        //             });
-        //         }
-        //     });
-        // }
+        if (workflowBlocks.length != 0) {
+            angular.forEach(workflowBlocks, function (block) {
+                if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
+                    var item = angular.element(block).find('.sub-cond-connector')[0];
+                    if (item != undefined)
+                        item.remove();
+                }
+                if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+                    angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+                }
+                if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+                    var outers = angular.element(block).find('.outer');
+                    angular.forEach(outers, function (outer) {
+                        angular.forEach(outer.children, function (child) {
+                            if (child.className.split(' ')[0] == 'workflow-block') {
+                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                            } else {
+                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                            }
+                        });
+                    });
+                }
+            });
+        }
 
         // 10_22_2017_Temp_Comment
-		if (workflowBlocks.length != 0) {
-			angular.forEach(workflowBlocks, function (block) {
-				if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
-					var item = angular.element(block).find('.sub-cond-connector')[0];
-					if (item != undefined)
-						item.remove();
-				}
-				if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-					angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-				}
-				if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-					var outers = angular.element(block).find('.outer');
-					angular.forEach(outers, function (outer) {
-						angular.forEach(outer.children, function (child) {
-							if (child.className.split(' ')[0] == 'workflow-block') {
-								angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-							} else {
-								angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-							}
-						});
-					});
-				}
-			});
-		}
+		// if (workflowBlocks.length != 0) {
+			// angular.forEach(workflowBlocks, function (block) {
+			// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
+			// 		var item = angular.element(block).find('.sub-cond-connector')[0];
+			// 		if (item != undefined)
+			// 			item.remove();
+			// 	}
+			// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+			// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+			// 	}
+			// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+			// 		var outers = angular.element(block).find('.outer');
+			// 		angular.forEach(outers, function (outer) {
+			// 			angular.forEach(outer.children, function (child) {
+			// 				if (child.className.split(' ')[0] == 'workflow-block') {
+			// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+			// 				} else {
+			// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+			// 				}
+			// 			});
+			// 		});
+			// 	}
+			// });
+		// }
         // 10_22_2017_Temp_Comment
 
         // if(outers.length != 0){
@@ -1676,7 +1676,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.deleteNode = function (workflow, position) {
         workflow.splice(position, 1);
     }
-    $scope.addNodeToParent = function (component) {
+
+    // Kasun_Wijeratne_2017_10_23
+	// This code gets a set of workflow and expands or collapses the block with given index accordingly
+    $scope.expandComponentBody = function (workflow, position) {
+		workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+    }
+	// Kasun_Wijeratne_2017_10_23 - END
+
+
+	$scope.addNodeToParent = function (component) {
         var parentSibling = {
             "library_id": "1",
             "schema_id": 3,

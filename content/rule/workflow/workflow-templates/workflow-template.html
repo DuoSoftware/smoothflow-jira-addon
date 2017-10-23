@@ -6,6 +6,11 @@
         <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
         <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 40px 40px;"></span>
         <span class="action">{{component.DisplayName}} </span> <span ng-if="component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Case'"><span class="separator"><i>in</i></span> <span class="cat-pill">{{component.Category}}</span></span>
+        <div class="delete-comp" style="right: 30px">
+            <button class="btn btn-default" type="button" ng-click="expandComponentBody(workflow, $index)">
+                <span class="aui-icon aui-icon-small aui-iconfont-{{component.bodyExpanded ? 'arrows-up' : 'arrows-down'}}">Delete component</span>
+            </button>
+        </div>
         <div class="delete-comp">
             <button class="btn btn-default" type="button" ng-click="deleteNode(workflow, $index)">
                 <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete component</span>
@@ -25,7 +30,9 @@
     </div>
     <div class="body">
         <!--div>{{component.Description}}</div-->
-        <div ng-repeat="variable in component.Variables"><b>{{variable.Key}}:</b> {{variable.Value}}</div>
+        <div ng-if="component.bodyExpanded">
+            <div ng-repeat="variable in component.Variables"><b>{{variable.Key}}:</b> {{variable.Value}}</div>
+        </div>
     </div>
     <div class="workflow-add-node-sub">
         <div class="header-bar">
