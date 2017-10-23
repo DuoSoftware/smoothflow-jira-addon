@@ -1,7 +1,6 @@
 var app = angular.module('sfJira', [
     'ui.router',
     'ngTextcomplete',
-    'uiSwitch',
     'uiMicrokernel',
     'angular.filter',
     'angular-cron-generator'
