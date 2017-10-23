@@ -1619,13 +1619,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.newComponentInjection = function (component) {
         var newcompo = angular.copy(component);
+		newcompo.bodyExpanded = true;
 
-        if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False" || $rootScope.candidateComponent.DisplayName == "Case") {
+		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False" || $rootScope.candidateComponent.DisplayName == "Case") {
             $rootScope.candidateComponent.workflow.push(newcompo);
         } else {
             $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
         }
-        $timeout(function () {
+		$timeout(function () {
 			$scope.activeModule = component.$$hashKey;
 		});
 		// if($scope.pendingComponentType == 'condition'){

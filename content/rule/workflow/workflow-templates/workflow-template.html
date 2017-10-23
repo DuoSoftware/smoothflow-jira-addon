@@ -30,6 +30,7 @@
     </div>
     <div class="body">
         <!--div>{{component.Description}}</div-->
+        <span ng-if="!component.bodyExpanded" class="collapsed-content">...</span>
         <div ng-if="component.bodyExpanded">
             <div ng-repeat="variable in component.Variables"><b>{{variable.Key}}:</b> {{variable.Value}}</div>
         </div>

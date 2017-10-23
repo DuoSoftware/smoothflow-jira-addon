@@ -8,10 +8,14 @@ var app = angular.module('sfJira', [
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
 
+        .state('landing', {
+            url: '/',
+            templateUrl: 'content/home/landing.html'
+        })
         .state('home', {
             url: '/home',
             templateUrl: 'content/home/home.html'

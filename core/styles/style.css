@@ -71,7 +71,8 @@ body{
     padding: 0!important;
 }
 .navbar-brand img{
-    width: 150px;
+    width: 130px;
+    margin-right: 20px;
 }
 .topnav-btn{
     margin: 8px 10px;
@@ -86,6 +87,16 @@ body{
 }
 .nav-button-right ul.aui-nav  li{
     margin-left: 5px;
+}
+.rule-nav-group{
+    position:relative;
+    z-index: 1;
+    box-shadow: 0px 2px 5px #eee;
+}
+.rule-nav-group.light-shadow{
+}
+.rule-nav-group.dark-shadow{
+    box-shadow: 0px 2px 5px #ddd!important;
 }
 /*nav*/
 
@@ -297,9 +308,9 @@ button.button-primary{
     background-color: #fff;
 }
 .dynamic-shadow-l{
-    -webkit-box-shadow:  0px 10px 10px  #ddd;
-    -moz-box-shadow:  0px 10px 10px  #ddd;
-    box-shadow:  0px 30px 10px  #ddd;
+    -webkit-box-shadow:  -2px 35px 5px #ddd;
+    -moz-box-shadow:  -2px 35px 5px #ddd;
+    box-shadow:  -2px 35px 5px #ddd;
 }
 #workflow-components{
     position: absolute;
@@ -315,9 +326,9 @@ button.button-primary{
     -ms-transition: width 0.3s;
     -o-transition: width 0.3s;
     transition: width 0.3s;
-    /*-webkit-box-shadow:  0px 10px 10px  #ddd;*/
-    /*-moz-box-shadow:  0px 10px 10px  #ddd;*/
-    /*box-shadow:  0px 10px 10px  #ddd;*/
+    /*-webkit-box-shadow:  -2px 35px 5px #ddd;*/
+    /*-moz-box-shadow:  -2px 35px 5px #ddd;*/
+    /*box-shadow:  -2px 35px 5px #ddd;*/
 }
 /*#workflow-properties .property-heading,#workflow-components .property-heading{*/
     /*display: inline-block;*/
@@ -642,6 +653,10 @@ button.button-primary{
     /*border-left: solid 1px #aaa;*/
     padding-left: 25px;
     padding-bottom: 20px;
+}
+.workflow-block .body .collapsed-content{
+    position: absolute;
+    top: -15px;
 }
 .workflow-block .case .body{
     margin-left: 15px;
@@ -1554,4 +1569,28 @@ button.button-primary{
     100% {
         transform: rotate(360deg)
     }
+}
+
+/*Landing content*/
+.landing-container .landing-content{
+    width: 350px;
+    text-align: center;
+    height: 450px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 4% auto;
+}
+.landing-container .landing-content h4{
+    color: #34495e;
+    font-size: 30px;
+}
+.landing-container .landing-content img{
+    width: 250px;
+    margin: 70px 0;
+}
+.landing-container .landing-content>div{
+    color: #999;
+    margin-bottom: 10px;
 }
