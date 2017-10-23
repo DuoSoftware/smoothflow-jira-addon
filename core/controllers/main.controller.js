@@ -76,7 +76,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.activeCompGroup = group;
         $scope.isGroupOpen = !$scope.isGroupOpen;
     };
-    $scope.tab = "tab2";
+    $scope.tab = "basic";
     $scope.scrollTo = function (id) {
         $location.hash(id);
         $scope.tab = id;

@@ -270,7 +270,7 @@ button.button-primary{
 /*WORKFLOW*/
 #workflow-wrap{
     overflow-x: scroll;
-    background: #fafafa;
+    background: #eee;
 }
 #workflow-wrap::-webkit-scrollbar {
     width: 10px;
@@ -363,7 +363,7 @@ button.button-primary{
     bottom:0;
 }
 #property-wrap{
-    padding-top: 50px;
+    padding: 50px 10px 10px 10px;
     /*padding-bottom: 50px;*/
 }
 .property-footer .form-group{
@@ -426,7 +426,7 @@ button.button-primary{
     /* border-top-right-radius: 5px; */
     /* border-top-left-radius: 5px; */
     border-radius: 5px;
-    margin-top: 1px;
+    /*margin-top: 1px;*/
 }
 #workflow-properties #property-wrap .property-field-wrap .type.bool{
     background: #e6b626;
@@ -438,8 +438,8 @@ button.button-primary{
     background: #4987b9;
 }
 #workflow-properties #property-wrap .property-field-wrap textarea{
-    /*border-top-right-radius: 0;*/
-    /*border-top-left-radius: 0;*/
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
     min-height: 35px;
     height: auto!important;
     -webkit-box-shadow: none!important;
@@ -751,6 +751,7 @@ button.button-primary{
     /*border-left: solid 5px #ffffff;*/
     /*box-shadow: 0 0 5px #aaa;*/
     border-radius: 15px;
+    border-top-left-radius: 18px;
 }
 .workflow-block:hover>.header-bar span.category-icon{
     /*border: solid 2px #34495e;*/
