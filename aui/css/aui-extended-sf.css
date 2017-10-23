@@ -7068,3 +7068,24 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 li {
     margin: 20px 0;
 }
+
+
+/*Atlassian add-on Preloader extended*/
+.ap-status-indicator{
+    position: absolute!important;
+    top: 0!important;
+    left: 0!important;
+    width: 100%!important;
+    height: 100%!important;
+    background: #fff!important;
+}
+.ap-loading{
+    top: 0!important;
+    bottom: 0!important;
+    position: absolute!important;
+    left: 0!important;
+    right: 0!important;
+    width: 130px!important;
+    height: 40px!important;
+    margin: auto!important;
+}
