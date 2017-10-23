@@ -4,7 +4,7 @@
     <label class="sub-cond-connector {{component.DisplayName | lowercase}}"></label>
     <div class="header-bar" ng-click="openComponentInfo(component)">
         <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
-        <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 40px 40px;"></span>
+        <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 37px 37px;"></span>
         <span class="action">{{component.DisplayName}} </span> <span ng-if="component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Case'"><span class="separator"><i>in</i></span> <span class="cat-pill">{{component.Category}}</span></span>
         <div class="delete-comp" title="Expand component" style="right: 30px">
             <button class="btn btn-default" type="button" ng-click="expandComponentBody(workflow, $index)">
@@ -32,7 +32,7 @@
         <!--div>{{component.Description}}</div-->
         <span ng-if="!component.bodyExpanded" class="collapsed-content">...</span>
         <div ng-if="component.bodyExpanded">
-            <div ng-repeat="variable in component.Variables"><b>{{variable.Key}}:</b> {{variable.Value}}</div>
+            <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.Key}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
         </div>
     </div>
     <div class="workflow-add-node-sub">

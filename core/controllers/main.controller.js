@@ -1,4 +1,17 @@
-app.controller('MainController', ['$scope', '$rootScope', '$state', '$timeout', '$http', 'dataHandler', '$auth', '$objectstore', '$filter', 'TriggerDatafactory', '$v6urls', '$helpers', '$location', mainController])
+app.controller('MainController', [
+	'$scope',
+	'$rootScope',
+	'$state',
+	'$timeout',
+	'$http',
+	'dataHandler',
+	'$auth',
+	'$objectstore',
+	'$filter',
+	'TriggerDatafactory',
+	'$v6urls',
+	'$helpers',
+	'$location', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -38,7 +51,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$timeout', 
             }
         }
     }
-    ]).filter('filterComp', function () {
+    ])
+	.filter('filterComp', function () {
         return function (arr, compName) {
             if (!compName) {
                 return arr;
@@ -57,9 +71,6 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$timeout', 
 
 function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location) {
 
-    AJS.$('.button-spinner').spin();
-    AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
-
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
         window.location.href = '#/home';
@@ -70,6 +81,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // Kasun_Wijeratne_27_JUNE_2017
     /*** JIRA component extraction*/
     AJS.$(".category-icon").tooltip();
+	AJS.$('.button-spinner').spin();
+	AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
     /*** JIRA component extraction - END*/
 
     $scope.toggleCompGroup = function (group) {
@@ -447,7 +460,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	var workflowComponentss = null;
 
     // methods
-	$scope.windowInnerWidth = window.innerWidth;
     $scope.$watch(function () {
 		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
@@ -584,8 +596,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 collapsiblePanels[i].setAttribute("style", "display:none");
             }
         }
-    }
-        ;
+    };
 
     $scope.getRuleDetails = function () {
 
@@ -623,8 +634,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
         client.v1getByFiltering("*");
 
-    }
-        ;
+    };
 
     $scope.$on('uiStateChanged', function (event, data) {
         alert("Statue changed");
@@ -653,6 +663,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }];
 
     }
+
     $scope.CallInvoke = function () {
         var optionalJSON = {};
         var inarguments = dataHandler.retrieveInArgumentsKeys();
@@ -665,7 +676,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.optionalJSON = JSON.stringify(optionalJSON, undefined, 4)
         // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
-
 
     $scope.callurl = function (url, body) {
         var req = {
@@ -740,7 +750,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             chart.draw(data, options);
         }
     };
-
     // Bar Chart
     $scope.BarChart = function () { };
     // Gauge Chart
@@ -775,7 +784,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         }
     };
-    /** End */
+    /** Google Chart - End */
+
     $scope.openSelectedRule = function (selectedRule, entry) {
         $timeout(function () {
             //debugger
@@ -829,8 +839,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.listState = 'rule.details';
             $state.go('rule.details');
         });
-    }
-        ;
+    };
 
     $scope.openRuleLatestData = function (nodes) {
         $scope.selectedRule.workflow = nodes;
@@ -1275,7 +1284,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.closeRemoveDialog(e);
         });
         client.onError(function (data) {
-            debugger
             $scope.closeRemoveDialog();
             $rootScope.DisplayMessage("There was an error when removing rule details.", "error", "You may try again later.");
         });
@@ -1511,7 +1519,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         { Key: 'jira_version_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
         { Key: 'jira_worklog_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
         { Key: 'jira_project_key', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType }
-
     ];
 
     $scope.addtoMainList = function (variable, event) {
@@ -1561,8 +1568,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $timeout(function () {
             $scope.Variable = {}
         });
-    }
-        ;
+    };
 
     $scope.getAllArguments = function () {
         // return dataHandler.retrieveArguments();
@@ -1615,8 +1621,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         e.preventDefault();
         AJS.dialog2("#new-rule-dialog").hide();
         //$state.go('rule.new');
-    }
-        ;
+    };
 
     $scope.newComponentInjection = function (component) {
         var newcompo = angular.copy(component);
@@ -1636,7 +1641,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // }
 
         $scope.toggleComponentsMenu(0);
-		$scope.openComponentInfo(component);
+		$scope.openComponentInfo(newcompo);
     }
 
     $scope.addNode = function (component) {
@@ -1669,6 +1674,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "workflow": []
         });
     }
+
     $scope.addNodeToLayer = function (workflow, position) {
         workflow.splice(position + 1, 0, {
             DisplayName: "Component",
@@ -1676,6 +1682,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "workflow": []
         });
     }
+
     $scope.deleteNode = function (workflow, position) {
         workflow.splice(position, 1);
     }
@@ -1686,7 +1693,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
     }
 	// Kasun_Wijeratne_2017_10_23 - END
-
 
 	$scope.addNodeToParent = function (component) {
         var parentSibling = {
@@ -1725,7 +1731,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             component.push(parentSibling);
     }
 
-    // added an comment just to make a commit
     //call Workflow save method
     $scope.saveWorkFlow = function () {
         console.log("Begin Workflow save.");
@@ -1841,7 +1846,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     $scope.setupNodes = function () {
-
         var state = "drawboard";
         var axis_x = 400;
         var axis_y = 100;
@@ -1921,7 +1925,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var flowID, name, displayname, discription, version, createNewVersion, comment, tag;
         createNewVersion = false;
         tag = "Jira Addon Rule".split(" ");
-        ;
         flowID = dataHandler.createuuid();
         name = $scope.getWFName($scope.selectedRule.ruleName);
         displayname = $scope.selectedRule.ruleName;
@@ -1963,8 +1966,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var version = [saveObject.ID];
         saveObjectParent.version = version;
         $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
-    }
-        ;
+    };
 
     $scope.getControlObjectFromLibrary = function (library_id) {
         var returnObj = {};
@@ -1975,8 +1977,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
         return returnObj;
-    }
-        ;
+    };
 
     $scope.getWFName = function (flowname) {
         var conc_username = $rootScope.SessionDetails.Domain;
@@ -1987,8 +1988,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
 
-    ////// workflow scheduling related functionalities 
-
+    ////// workflow scheduling related functionalities
     $scope.cronOptions = {
         allowMultiple: true,
         quartz: true
@@ -2013,8 +2013,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         angular.forEach(inarguments, function (argument) {
             optionalJSON[argument] = "";
         });
-
-        debugger
 
         var payload = {
             "FlowName": $scope.selectedRule.name,
@@ -2056,7 +2054,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
-            debugger
 
             if (response.data.Status) {
                 $scope.scheduleAvailable = true;
@@ -2111,7 +2108,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
     }
-
     /////// end of scheduling functions
 
     $scope.sendProcessToObjectStore = function (saveObj, event, saveObjectParent) {
@@ -2270,7 +2266,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
-            debugger
             if (response.data.response == "success") {
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');
@@ -2347,9 +2342,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.ShowBusyContainer("Refreshing...");
         $scope.getRuleDetails();
     }
-
-
-
 
     // this excecutes only when the document has been fully loaded and ready
     angular.element(document).ready(function () {

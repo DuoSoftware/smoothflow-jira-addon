@@ -661,6 +661,16 @@ button.button-primary{
     color: #888;
     font-weight: 500;
 }
+.workflow-block .body span.component-pro-key{
+    /*font-weight: 500;*/
+    display: inline-block;
+    margin: 3px 10px 3px 0;
+    color: #777;
+}
+.workflow-block .body span.component-pro-value{
+    font-weight: 500;
+    display: inline-block;
+}
 .workflow-block .case .body{
     margin-left: 15px;
 }
