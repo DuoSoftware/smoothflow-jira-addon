@@ -5102,7 +5102,8 @@ aui-tabs {
 /* Horizontal Tabs */
 .aui-tabs.horizontal-tabs > .tabs-menu ~ .tabs-pane {
     /*border-top: 1px solid #ccc;*/
-    padding: 10px;
+    /*padding: 10px;*/
+    margin-top: 20px;
 }
 .aui-tabs.horizontal-tabs > .tabs-menu {
     display: inline-block;
@@ -5124,7 +5125,7 @@ aui-tabs {
     background: #fff;
     border: none;
     display: block;
-    float: left;
+    float: right;
     margin: 0;
 }
 .aui-tabs.horizontal-tabs > .tabs-menu > .menu-item:hover {
