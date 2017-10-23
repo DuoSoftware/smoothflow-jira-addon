@@ -389,12 +389,12 @@ button.button-primary{
     overflow: hidden;
 }
 #workflow-properties #property-wrap .description{
-    padding: 10px 10px 30px 10px;
+    padding: 0px 0px 30px 0px;
 }
 #workflow-properties #property-wrap .property-field-wrap,
 #workflow-components #components-wrap .components-field-wrap{
-    padding: 5px 10px;
-    margin-bottom: 15px;
+    /*padding: 5px 10px;*/
+    margin-bottom: 20px;
 }
 #workflow-properties #property-wrap .property-field-wrap .property-field-head{
     overflow: auto;
@@ -440,7 +440,7 @@ button.button-primary{
     border-radius: 5px;
     /*margin-top: 1px;*/
 }
-#workflow-properties #property-wrap .property-field-wrap .type.bool{
+#workflow-properties #property-wrap .property-field-wrap .type.boolean{
     background: #e6b626;
 }
 #workflow-properties #property-wrap .property-field-wrap .type.string{
@@ -657,6 +657,9 @@ button.button-primary{
 .workflow-block .body .collapsed-content{
     position: absolute;
     top: -15px;
+    transform: rotate(90deg);
+    color: #888;
+    font-weight: 500;
 }
 .workflow-block .case .body{
     margin-left: 15px;

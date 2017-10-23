@@ -447,6 +447,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	var workflowComponentss = null;
 
     // methods
+	$scope.windowInnerWidth = window.innerWidth;
     $scope.$watch(function () {
 		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
@@ -1635,6 +1636,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // }
 
         $scope.toggleComponentsMenu(0);
+		$scope.openComponentInfo(component);
     }
 
     $scope.addNode = function (component) {
