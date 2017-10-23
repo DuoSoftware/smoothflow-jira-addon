@@ -5102,7 +5102,7 @@ aui-tabs {
 /* Horizontal Tabs */
 .aui-tabs.horizontal-tabs > .tabs-menu ~ .tabs-pane {
     /*border-top: 1px solid #ccc;*/
-    padding-bottom: 10px;
+    padding: 10px;
 }
 .aui-tabs.horizontal-tabs > .tabs-menu {
     display: inline-block;
