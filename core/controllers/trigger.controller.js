@@ -55,7 +55,8 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
     $scope.projectList = TriggerDatafactory.getProjectList();
 
-    $scope.selectAlltriggers = function (event) {
+	$scope.allCheckT = false;
+	$scope.selectAlltriggers = function (event) {
 
         $scope.triggersOptions.forEach(function (element) {
 
@@ -65,10 +66,11 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
                 element.check = false;
             }
 
-
         }, this);
-		$scope.addedToSelect('Triggers');
+		$scope.allCheckT = !$scope.allCheckT;
+		$scope.addedToSelect('All the Triggers', $scope.allCheckT);
     };
+	$scope.allCheckP = false;
     $scope.selectAllprojects = function () {
         $scope.projectList.forEach(function (element) {
 
@@ -78,9 +80,9 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
                 element.check = false;
             }
 
-
         }, this);
-		$scope.addedToSelect('Projects');
+		$scope.allCheckP = !$scope.allCheckP;
+		$scope.addedToSelect('All the projects', $scope.allCheckP);
     };
     $scope.SetTriggerOptions = function () {
 
@@ -105,7 +107,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
     $scope.addedTrigger = function (trigger) {
         TriggerDatafactory.AddedTriggers(trigger);
-		$scope.addedToSelect('Trigger');
+		$scope.addedToSelect(trigger.Name, trigger.check);
     };
 
     $scope.addedProject = function (project) {
@@ -113,7 +115,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
             return (trigger.check == true);
         });
         TriggerDatafactory.AddedProject(project, selectedtriggers);
-		$scope.addedToSelect('Project');
+		$scope.addedToSelect(project.key + ' - ' +project.name, project.check);
     };
 
     var items = TriggerDatafactory.getSelectedList();
@@ -139,12 +141,28 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 	//Trigger selecting notification handler
 	$scope.itemSelected = false;
 	$scope.selectedItemType = "";
-	$scope.addedToSelect = function (item) {
-		$scope.itemSelected = true;
+	$scope.addedToSelect = function (item, state) {
 		$scope.selectedItemType = item;
-		$timeout(function () {
-			$scope.itemSelected = false;
-		}, 1500);
+		// $timeout(function () {
+		// 	state ? $scope.selectedItemState = ' selected!' : ' removed!';
+		// });
+		if(state){
+			$scope.selectedItemState = ' selected!';
+		}else{
+			$scope.selectedItemState = ' removed!';
+		}
+		angular.element('.selector-notif').animate({
+			opacity: 1,
+			right: 50
+		}, function () {
+			$timeout(function () {
+				// $scope.itemSelected = false;
+				angular.element('.selector-notif').animate({
+					opacity: 0,
+					right: 0
+				});
+			}, 1500);
+		});
 	}
 	//Trigger selecting notification handler - END
 

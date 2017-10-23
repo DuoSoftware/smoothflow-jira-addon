@@ -1,6 +1,6 @@
 <div class="clearfix rule-container">
     <div class="row">
-        <nav class="aui-navgroup aui-navgroup-horizontal" style="box-shadow: 0px 2px 5px #eee;position:relative">
+        <nav class="aui-navgroup aui-navgroup-horizontal" style="box-shadow: 0px 2px 5px #eee;position:relative;z-index: 1">
             <div class="aui-navgroup-inner pos-rel">
                 <div class="aui-navgroup-primary">
                     <div class="aui-nav-heading">
@@ -19,8 +19,7 @@
                 <div class="aui-navgroup-secondary nav-button-right m-0">
                     <ul class="aui-nav">
                         <li><button class="aui-button" ng-click="saveWorkFlow()">Save</button></li>
-                        <li><button id="validationErrors" class="aui-button aui-button-primary" ng-click="publishWorkflow()"
-                                ng-disabled="selectedRule.status == 'Unsaved'">Publish</button></li>
+                        <li><button id="validationErrors" class="aui-button aui-button-primary" ng-click="publishWorkflow()" ng-disabled="selectedRule.status == 'Unsaved'">Publish</button></li>
                     </ul>
                 </div>
             </div>
@@ -30,6 +29,6 @@
         <div ng-include="'content/rule/validation-errors.html'"></div>
         <!-- / Error page INJECTION-->
 
-        <div ui-view id="workflow-ui" class="custom-scroll"></div>
+        <div ui-view id="workflow-ui"></div>
     </div>
 </div>
