@@ -521,7 +521,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
                 }
                 var componentClass = block.className.split(' ')[2];
-                if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-switch') {
+                if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case') {
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
                         angular.forEach(outer.children, function (child) {
