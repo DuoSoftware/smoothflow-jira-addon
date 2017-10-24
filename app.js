@@ -42,7 +42,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('rule.workflow', {
             url: '/rule-workflow',
-            templateUrl: 'content/rule/workflow/rule-workflow.html'
+            templateUrl: 'content/rule/workflow/rule-workflow.html',
         })
         .state('rule.triggers', {
             url: '/rule-triggers',

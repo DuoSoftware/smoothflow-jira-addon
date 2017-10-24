@@ -435,9 +435,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	$scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
-        'Name': 'Triggers',
-        'components': []
-    }, {
         'Name': 'Actions',
         'components': []
     }, {
@@ -611,7 +608,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.currentOpenMenu = index;
         collapsiblePanels = document.getElementsByClassName('comp-panel-collapse');
         compSearch = document.getElementsByClassName('comp-search');
-        collapsiblePanels[index].setAttribute("style", "display:block;height:" + (workflowHeight - 188) + "px!important;overflow-y:scroll;overflow-x:hidden");
+        collapsiblePanels[index].setAttribute("style", "display:block;height:" + (workflowHeight - 126) + "px!important;overflow-y:scroll;overflow-x:hidden");
         compSearch[index].setAttribute("style", "display:block");
         for (i = 0; i < collapsiblePanels.length; i++) {
             if (i != index) {
@@ -1166,13 +1163,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
             if ($scope.allcomponents.length != 0) {
                 angular.forEach($scope.allcomponents, function (item) {
-                    if (item.ControlType == 'trigger') {
-                        item.workflow = [];
-                        $scope.structuredComps[0].components.push(item);
-                    }
+                    // if (item.ControlType == 'trigger') {
+                    //     item.workflow = [];
+                    //     $scope.structuredComps[0].components.push(item);
+                    // }
                     if (item.ControlType == 'action') {
                         item.workflow = [];
-                        $scope.structuredComps[1].components.push(item);
+                        $scope.structuredComps[0].components.push(item);
                     }
                     if (item.ControlType == 'condition') {
                         if (item.DisplayName.toLowerCase() == 'if') {
@@ -1196,11 +1193,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                                 workflow: []
                             }];
                         }
-                        $scope.structuredComps[2].components.push(item);
+                        $scope.structuredComps[1].components.push(item);
                     }
                 });
             }
-            console.log($scope.structuredComps);
+            // console.log($scope.structuredComps);
         }, function errorCallback(response) {
             console.log(response);
         });
@@ -1586,16 +1583,19 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.toggleComponentsMenu = function (workflow, index, triggeredByComponent, category, component, caseInjeciton) {
-        if (category == 'trigger') {
+        // if (category == 'trigger') {
+        //     $scope.setInitialCollapse(0);
+        // }
+        if (category == 'action') {
             $scope.setInitialCollapse(0);
-        } else if (category == 'action') {
-            $scope.setInitialCollapse(1);
         } else if (category == 'condition') {
-            $scope.setInitialCollapse(2);
+            $scope.setInitialCollapse(1);
         }
 
-        if(component!=undefined && component.DisplayName == 'Case'){
+        if(component!=undefined && component.DisplayName == 'Case' && caseInjeciton){
         	$scope.callFromSwitch = true;
+		}else{
+			$scope.callFromSwitch = false;
 		}
 
         // $rootScope.comToBePushedIndex = parentIndex;
