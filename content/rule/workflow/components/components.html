@@ -26,10 +26,10 @@
                 <div ng-repeat="(key, value) in component.components | filterComp:compToFilter | groupBy: 'class'">
                     <div class="clearfix comp-toggle-header" ng-click="toggleCompGroup(key)">
                         <span>{{key}}</span>
-                        <span class="aui-icon aui-icon-small aui-iconfont-{{activeCompGroup == key ? 'expanded' : 'collapsed'}}"></span>
+                        <span class="aui-icon aui-icon-small aui-iconfont-{{activeCompGroup == key && isGroupOpen ? 'expanded' : 'collapsed'}}"></span>
                     </div>
                     <div ng-show="activeCompGroup == key && isGroupOpen" ng-hide="activeCompGroup != key">
-                        <div ng-repeat="comp in value" class="template-block" ng-click="newComponentInjection(comp)">
+                        <button ng-repeat="comp in value" class="template-block" ng-disabled="!callFromSwitch && comp.DisplayName == 'Case'" ng-click="newComponentInjection(comp)" ng-class="{'disabled-com':!callFromSwitch && comp.DisplayName == 'Case'}">
                             <div class="template-left">
                                 <div class="template-icon" ng-class="comp.ControlType">{{comp.ControlType | limitTo:1 | uppercase}}</div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="template-heading">{{comp.DisplayName}}</div>
                                 <div class="template-body">{{comp.Description}}</div>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>

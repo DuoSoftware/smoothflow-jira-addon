@@ -35,13 +35,27 @@
             <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.Key}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
         </div>
     </div>
-    <div class="workflow-add-node-sub">
+    <div class="workflow-add-node-sub" ng-if="component.DisplayName == 'Case'">
         <div class="header-bar">
             <div class="component-capsule">
-                <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
-                <span title="Trigger" class="category-icon trigger" ng-click="toggleComponentsMenu(workflow, $index, true, 'trigger',component)">T</span>
-                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition',component)">C</span>
-                <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, 'action',component)">A</span>
+                <span title="Add another Case" class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition',component, true)">C</span>
+                <span class="category-icon action" style="opacity: 0.2">A</span>
+            </div>
+            <script>
+				AJS.$(".category-icon").tooltip();
+				AJS.$(".delete-comp").tooltip();
+            </script>
+            <span>..</span>
+        </div>
+    </div>
+    <div class="workflow-add-node-sub" ng-class="{'offset':component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case'}">
+        <div class="header-bar">
+            <div class="component-capsule">
+                <span title="Add to {{component.DisplayName}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                <!--<span title="Trigger" class="category-icon trigger" ng-click="toggleComponentsMenu(workflow, $index, true, 'trigger',component)">T</span>-->
+                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition',component, false)">C</span>
+                <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, 'action',component, false)">A</span>
             </div>
             <script>
                 AJS.$(".category-icon").tooltip();

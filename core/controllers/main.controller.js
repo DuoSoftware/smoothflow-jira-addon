@@ -150,8 +150,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $rootScope.isNullOrEmptyOrUndefined = function (value) {
         return !value;
-    }
-        ;
+    };
 
     $scope.currentRules = [];
     // $scope.currentRules = [{
@@ -417,11 +416,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     //     Variables: []
     // }];
 
-
     $rootScope.changeTab = function (tab) {
         $rootScope.view_tab = tab;
     }
 
+    $scope.selectedRule = {};
+    $scope.selectedRule.workflow = {};
     $scope.ruleEdit = false;
     $scope.componentsMenuState = 'closed';
     $scope.compMenuState = "left";
@@ -432,6 +432,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.listState = "";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
+	$scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
         'Name': 'Triggers',
@@ -460,10 +461,117 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	var workflowComponentss = null;
 	var outerBlocks = null;
 
-    // methods
+    /////////////////////////////// METHODS ////////////////////////////////////////////////////////////////////////
+
+	// Watchers
+	$scope.$watch(function () {
+		componentBlock = document.getElementsByClassName('condition-block');
+		directCondConnectors = document.getElementsByClassName("sub-cond-connector");
+		workflowBlocks = document.getElementsByClassName("workflow-block");
+		outerBlocks = document.getElementsByClassName("outer");
+
+		if (componentBlock.length != 0) {
+			angular.forEach(componentBlock, function (elem) {
+				angular.forEach(elem.childNodes, function (child) {
+					if (child.className != undefined) {
+						if (child.className == 'workflow-add-node-sub') {
+							var separated = child;
+							separated.setAttribute('style', 'margin-top:10px');
+							elem.append(separated);
+						}
+						// else if (child.parentElement.previousElementSibling != null) {
+						//     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
+						//         child.remove();
+						//     }
+						// }
+					}
+				});
+			});
+		}
+
+		if (workflowBlocks.length != 0) {
+			angular.forEach(workflowBlocks, function (block) {
+				var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
+				if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
+					angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+				}
+				var componentClass = block.className.split(' ')[2];
+				if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case') {
+					var outers = angular.element(block).find('.outer');
+					angular.forEach(outers, function (outer) {
+						angular.forEach(outer.children, function (child) {
+							if (child.className.split(' ')[0] == 'workflow-block') {
+								angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+							} else {
+								angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+							}
+						});
+						var outerParent = outer.parentElement.className.split(' ')[2];
+						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case'){
+							var elem = angular.element(outer);
+							var _elem = elem.find('.workflow-block').first();
+							if(_elem != undefined) {
+								if(!_elem.has('.sub-cond-connector').length){
+									_elem.prepend('<label class="sub-cond-connector"></label>');
+								}
+							}
+						}
+					});
+				}
+			});
+		}
+
+		/////// 10_24_2017_Separate_Loop_Outer_WORKING
+		// if(outerBlocks.length != 0){
+		// angular.forEach(outerBlocks, function (outer) {
+		// 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
+		// 			var elem = angular.element(outer);
+		// 			var _elem = elem.find('.workflow-block').first();
+		// 			if(_elem != undefined) {
+		// 				if(!_elem.has('.sub-cond-connector').length){
+		// 					_elem.prepend('<label class="sub-cond-connector"></label>');
+		// 				}
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
+
+
+		/////// 10_22_2017_Temp_Comment
+		// if (workflowBlocks.length != 0) {
+		// angular.forEach(workflowBlocks, function (block) {
+		// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
+		// 		var item = angular.element(block).find('.sub-cond-connector')[0];
+		// 		if (item != undefined)
+		// 			item.remove();
+		// 	}
+		// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+		// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+		// 	}
+		// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+		// 		var outers = angular.element(block).find('.outer');
+		// 		angular.forEach(outers, function (outer) {
+		// 			angular.forEach(outer.children, function (child) {
+		// 				if (child.className.split(' ')[0] == 'workflow-block') {
+		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+		// 				} else {
+		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+		// 				}
+		// 			});
+		// 		});
+		// 	}
+		// });
+		// }
+		// 10_22_2017_Temp_Comment///////
+
+	});
+
     $scope.$watch(function () {
 		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
+		propertiesElem = document.getElementById('property-wrap');
+		workflowElem = document.getElementById('workflow-wrap');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
 		selectItemBody = document.getElementsByClassName('select-item-body');
 		workflowComponentss = $('#workflow-components');
@@ -488,107 +596,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 				item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
 			});
 		}
-        propertiesElem = document.getElementById('property-wrap');
-        workflowElem = document.getElementById('workflow-wrap');
-        componentBlock = document.getElementsByClassName('condition-block');
-        directCondConnectors = document.getElementsByClassName("sub-cond-connector");
-        workflowBlocks = document.getElementsByClassName("workflow-block");
-        outerBlocks = document.getElementsByClassName("outer");
-
-        if (componentBlock.length != 0) {
-            angular.forEach(componentBlock, function (elem) {
-                angular.forEach(elem.childNodes, function (child) {
-                    if (child.className != undefined) {
-                        if (child.className == 'workflow-add-node-sub') {
-                            var separated = child;
-                            separated.setAttribute('style', 'margin-top:10px');
-                            elem.append(separated);
-                        }
-                        // else if (child.parentElement.previousElementSibling != null) {
-                        //     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
-                        //         child.remove();
-                        //     }
-                        // }
-                    }
-                });
-            });
-        }
-
-        if (workflowBlocks.length != 0) {
-            angular.forEach(workflowBlocks, function (block) {
-				var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
-                if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
-                    angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-                }
-                var componentClass = block.className.split(' ')[2];
-                if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case') {
-                    var outers = angular.element(block).find('.outer');
-                    angular.forEach(outers, function (outer) {
-                        angular.forEach(outer.children, function (child) {
-                            if (child.className.split(' ')[0] == 'workflow-block') {
-                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-                            } else {
-                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-                            }
-                        });
-                        var outerParent = outer.parentElement.className.split(' ')[2];
-						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case'){
-							var elem = angular.element(outer);
-							var _elem = elem.find('.workflow-block').first();
-							if(_elem != undefined) {
-								if(!_elem.has('.sub-cond-connector').length){
-									_elem.prepend('<label class="sub-cond-connector"></label>');
-								}
-							}
-						}
-                    });
-                }
-            });
-        }
-
-		/////// 10_24_2017_Separate_Loop_Outer_WORKING
-        // if(outerBlocks.length != 0){
-        	// angular.forEach(outerBlocks, function (outer) {
-		// 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
-		// 			var elem = angular.element(outer);
-		// 			var _elem = elem.find('.workflow-block').first();
-		// 			if(_elem != undefined) {
-		// 				if(!_elem.has('.sub-cond-connector').length){
-		// 					_elem.prepend('<label class="sub-cond-connector"></label>');
-		// 				}
-		// 			}
-		// 		}
-		// 	});
-		// }
-		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
-
-
-		/////// 10_22_2017_Temp_Comment
-		// if (workflowBlocks.length != 0) {
-			// angular.forEach(workflowBlocks, function (block) {
-			// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
-			// 		var item = angular.element(block).find('.sub-cond-connector')[0];
-			// 		if (item != undefined)
-			// 			item.remove();
-			// 	}
-			// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-			// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-			// 	}
-			// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-			// 		var outers = angular.element(block).find('.outer');
-			// 		angular.forEach(outers, function (outer) {
-			// 			angular.forEach(outer.children, function (child) {
-			// 				if (child.className.split(' ')[0] == 'workflow-block') {
-			// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-			// 				} else {
-			// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-			// 				}
-			// 			});
-			// 		});
-			// 	}
-			// });
-		// }
-        // 10_22_2017_Temp_Comment///////
 
         if (propertiesElem != undefined && workflowHeight != undefined)
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
@@ -1578,7 +1585,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, 0);
     }
 
-    $scope.toggleComponentsMenu = function (workflow, index, triggeredByComponent, category, component) {
+    $scope.toggleComponentsMenu = function (workflow, index, triggeredByComponent, category, component, caseInjeciton) {
         if (category == 'trigger') {
             $scope.setInitialCollapse(0);
         } else if (category == 'action') {
@@ -1587,9 +1594,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.setInitialCollapse(2);
         }
 
+        if(component!=undefined && component.DisplayName == 'Case'){
+        	$scope.callFromSwitch = true;
+		}
+
         // $rootScope.comToBePushedIndex = parentIndex;
         $rootScope.candidateWorkflow = workflow;
         $rootScope.candidateIndex = index;
+        $rootScope.caseInjeciton = caseInjeciton;
         if (component != null)
             $rootScope.candidateComponent = component;
         $scope.pendingComponentType = category;
@@ -1628,9 +1640,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var newcompo = angular.copy(component);
 		newcompo.bodyExpanded = true;
 
-		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False" || $rootScope.candidateComponent.DisplayName == "Case") {
-            $rootScope.candidateComponent.workflow.push(newcompo);
-        } else {
+		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
+			$rootScope.candidateComponent.workflow.push(newcompo);
+		}else if($rootScope.candidateComponent.DisplayName == "Case"){
+			if($rootScope.caseInjeciton){
+				$rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
+			}else{
+				$rootScope.candidateComponent.workflow.push(newcompo);
+			}
+		}else {
             $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
         }
 		$timeout(function () {
@@ -1640,7 +1658,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // 	$rootScope.candidateComponent.workflow.push(newcompo);
         // }else{
         // }
-
+		$scope.callFromSwitch = false;
         $scope.toggleComponentsMenu(0);
 		$scope.openComponentInfo(newcompo);
     };
