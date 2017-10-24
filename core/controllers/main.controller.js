@@ -458,6 +458,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	var selectItemBody = null;
 	var shadowedGroupItemsHeight = null;
 	var workflowComponentss = null;
+	var outerBlocks = null;
 
     // methods
     $scope.$watch(function () {
@@ -492,6 +493,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         componentBlock = document.getElementsByClassName('condition-block');
         directCondConnectors = document.getElementsByClassName("sub-cond-connector");
         workflowBlocks = document.getElementsByClassName("workflow-block");
+        outerBlocks = document.getElementsByClassName("outer");
 
         if (componentBlock.length != 0) {
             angular.forEach(componentBlock, function (elem) {
@@ -501,11 +503,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                             var separated = child;
                             separated.setAttribute('style', 'margin-top:10px');
                             elem.append(separated);
-                        } else if (child.parentElement.previousElementSibling != null) {
-                            if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
-                                child.remove();
-                            }
                         }
+                        // else if (child.parentElement.previousElementSibling != null) {
+                        //     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
+                        //         child.remove();
+                        //     }
+                        // }
                     }
                 });
             });
@@ -513,15 +516,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         if (workflowBlocks.length != 0) {
             angular.forEach(workflowBlocks, function (block) {
-                if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
-                    var item = angular.element(block).find('.sub-cond-connector')[0];
-                    if (item != undefined)
-                        item.remove();
-                }
-                if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+				var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
+                if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
                     angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
                 }
-                if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+                var componentClass = block.className.split(' ')[2];
+                if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-switch') {
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
                         angular.forEach(outer.children, function (child) {
@@ -531,12 +531,39 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                                 angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
                             }
                         });
+                        var outerParent = outer.parentElement.className.split(' ')[2];
+						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case'){
+							var elem = angular.element(outer);
+							var _elem = elem.find('.workflow-block').first();
+							if(_elem != undefined) {
+								if(!_elem.has('.sub-cond-connector').length){
+									_elem.prepend('<label class="sub-cond-connector"></label>');
+								}
+							}
+						}
                     });
                 }
             });
         }
 
-        // 10_22_2017_Temp_Comment
+		/////// 10_24_2017_Separate_Loop_Outer_WORKING
+        // if(outerBlocks.length != 0){
+        	// angular.forEach(outerBlocks, function (outer) {
+		// 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
+		// 			var elem = angular.element(outer);
+		// 			var _elem = elem.find('.workflow-block').first();
+		// 			if(_elem != undefined) {
+		// 				if(!_elem.has('.sub-cond-connector').length){
+		// 					_elem.prepend('<label class="sub-cond-connector"></label>');
+		// 				}
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
+
+
+		/////// 10_22_2017_Temp_Comment
 		// if (workflowBlocks.length != 0) {
 			// angular.forEach(workflowBlocks, function (block) {
 			// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
@@ -561,26 +588,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 			// 	}
 			// });
 		// }
-        // 10_22_2017_Temp_Comment
+        // 10_22_2017_Temp_Comment///////
 
-        // if(outers.length != 0){
-        // 	angular.forEach(outers, function (outer) {
-        // 		if(outer.childNodes[1].className == 'workflow-block condition-block'){
-        // 			angular.forEach(outer.childNodes, function (block) {
-        // 				angular.forEach(block.childNodes, function (child) {
-        // 					if (child.className == 'sub-cond-connector') {
-        // 						child.setAttribute('style', 'visibility:visible');
-        // 					}
-        // 				});
-        // 			});
-        // 		}
-        // 	});
-        // }
         if (propertiesElem != undefined && workflowHeight != undefined)
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
         if (workflowElem != undefined && workflowHeight != null)
             workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
     });
+
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
             comp.setAttribute("style", "display:none");
@@ -702,7 +717,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         });
     }
-
 
     /** Google Chart */
     //Line Chart
@@ -850,7 +864,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.getAllArguments();
         //call trigger Service to set workflow ID
         //debugger;
-    }
+    };
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
     ///// Publishing mechanism
@@ -866,15 +880,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
         client.v1getByFiltering("*");
-    }
+    };
 
     $scope.setport = function () {
         if (!$scope.checkport($scope.executable.port)) {
             $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
             $scope.setport();
         }
-    }
-        ;
+    };
 
     $scope.checkport = function (port) {
         for (x = 0; x < $scope.portlist.length; x++) {
@@ -883,7 +896,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
         return true;
-    }
+    };
 
     $scope.getports();
 
@@ -935,8 +948,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
         });
         return flowData;
-    }
-        ;
+    };
 
     $scope.errorList = [];
     $scope.validateBeforeSave = function () {
@@ -955,12 +967,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         } else {
             AJS.dialog2("#validation-errors").hide();
         }
-        ; return result;
-    }
+        return result;
+    };
 
     $scope.closeValidationPage = function () {
         AJS.dialog2("#validation-errors").hide();
-    }
+    };
 
     $scope.publishWorkflow = function () {
         if ($scope.validateBeforeSave()) {
@@ -1025,7 +1037,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 }
             });
         }
-    }
+    };
 
     $scope.PublishToDocker = function (publishObj) {
         var sessionId = dataHandler.createuuid();
@@ -1057,7 +1069,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.HideBusyContainer();
             }
         });
-    }
+    };
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -1069,7 +1081,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
         return obj;
-    }
+    };
 
     $scope.checkScheduleStatus = function () {
         var toggle = document.getElementById('scheduleActive');
@@ -1088,7 +1100,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 toggle2.disabled = true;
             }
         }
-    }
+    };
 
     $scope.changeLocation = function (location) {
         $scope.componentsMenuState = 'closed';
@@ -1109,9 +1121,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $scope.checkScheduleStatus();
             });
         }
-    }
-        ;
-
+    };
 
     $scope.updateWorkflowBeforeStateChange = function (location) {
         var index = 0;
@@ -1127,7 +1137,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
             index++;
         });
-    }
+    };
 
     //Initialization
     $scope.getControlData = function () {
@@ -1187,8 +1197,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, function errorCallback(response) {
             console.log(response);
         });
-    }
-        ;
+    };
+
     $scope.getControlData();
 
     $scope.getTemplateData = function () {
@@ -1211,8 +1221,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, function errorCallback(response) {
             console.log(response);
         });
-    }
-        ;
+    };
+
     $scope.getTemplateData();
 
     // New rule
@@ -1228,30 +1238,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
         // $state.go('rule.new');
-    }
+    };
 
     //Clear rule
     $scope.clearRule = function () {
         $scope.newRule();
-    }
-        ;
+    };
 
     $scope.backRule = function () {
         $scope.isNewRuleFormValid = false;
-    }
-        ;
+    };
 
     //Save rule
     $scope.saveRule = function () {
         $scope.currentRuleID = $scope.selectedRule.id;
         $scope.currentRules.push(angular.copy($scope.selectedRule));
-    }
-        ;
+    };
 
     $scope.closeRemoveDialog = function (e) {
         e.preventDefault();
         AJS.dialog2("#rule-delete-dialog").hide();
-    }
+    };
 
     $scope.deleteContainer = function (WFDetails) {
         $http({
@@ -1317,7 +1324,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         // deleting triggers
         //TriggerDatafactory.DeleteTrigger();
-    }
+    };
 
     $scope.removeRule = function () {
         $scope.disableDeleteButton = false;
@@ -1329,23 +1336,21 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         //delete tigger
         TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
 
-    }
+    };
 
     //Edit rule
     $scope.editRule = function () {
         $timeout(function () {
             $scope.ruleEdit = !$scope.ruleEdit;
         });
-    }
-        ;
+    };
 
     //Cancel rule
     $scope.cancelRuleEdit = function () {
         $timeout(function () {
             $scope.ruleEdit = false;
         });
-    }
-        ;
+    };
 
     //New template
     $scope.newTemplate = function () {
@@ -1357,14 +1362,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
         $scope.componentsToDisplay = newArray;
         $scope.isNewRuleFormValid = true;
-    }
-        ;
+    };
 
     //Open a specific component menu in components
     $scope.openSelectedComponentMenu = function (index) {
         $scope.toggleComponentsMenu();
-    }
-        ;
+    };
 
     //Open component info
     $scope.openComponentInfo = function (component) {
@@ -1422,7 +1425,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
         $scope.componentsToDisplay = comps;
         $state.go('rule.workflow');
-    }
+    };
 
     //Filter components
     $scope.sortType = 'name';
@@ -1463,7 +1466,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         //debugger
         TriggerDatafactory.setworkflowId($scope.getWFName($scope.selectedRule.ruleName));
         $state.go('rule.workflow');
-    }
+    };
 
     $scope.fillPredefinedValues = function (item, values) {
         //debugger;
@@ -1478,12 +1481,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
         return item;
-    }
+    };
 
     $scope.deleteComponentConfirmation = function (index, isSub) {
         if (!isSub)
             $scope.showDeleteConfirmation = index;
-    }
+    };
 
     //Delete component
     $scope.deleteComponent = function (component) {
@@ -1498,13 +1501,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
         $scope.selectedModule = {};
         // $state.go('rule.details');
-    }
-        ;
+    };
 
     $scope.cancelDelete = function (index) {
         $scope.showDeleteConfirmation = null;
-    }
-        ;
+    };
 
     $scope.AdditionalVariable = [
         { Key: 'jira_attachment_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
@@ -1642,7 +1643,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         $scope.toggleComponentsMenu(0);
 		$scope.openComponentInfo(newcompo);
-    }
+    };
 
     $scope.addNode = function (component) {
         component.workflow.push({

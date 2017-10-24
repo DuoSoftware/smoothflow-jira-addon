@@ -400,7 +400,7 @@ button.button-primary{
     overflow: auto;
     background: #fafafa;
     padding: 5px 6px;
-    border-top: solid 2px rgba(0, 82, 204, 0.2);
+    border-top: solid 1px rgba(0, 82, 204, 0.5);
 }
 #workflow-properties #property-wrap .property-field-wrap .heading{
     float: left;

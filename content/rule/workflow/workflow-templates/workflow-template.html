@@ -1,7 +1,7 @@
 <div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName | lowercase}}" ng-repeat="component in workflow = (parent = component).workflow"
     ng-init="component.parent = parent; component.level = parent.level + 1" ng-style="component.ControlType == 'condition' ? 'margin-top:20px' : ''" ng-class="{'selected-bg':activeModule == component.$$hashKey}">
     <div ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case'" class="h-line"></div>
-    <label class="sub-cond-connector {{component.DisplayName | lowercase}}"></label>
+    <label class="sub-cond-connector {{component.DisplayName | lowercase}}" ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case'"></label>
     <div class="header-bar" ng-click="openComponentInfo(component)">
         <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
         <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 37px 37px;"></span>
@@ -30,7 +30,7 @@
     </div>
     <div class="body">
         <!--div>{{component.Description}}</div-->
-        <span ng-if="!component.bodyExpanded" class="collapsed-content">...</span>
+        <span ng-if="!component.bodyExpanded && component.DisplayName != 'True' && component.DisplayName != 'False'" class="collapsed-content">...</span>
         <div ng-if="component.bodyExpanded">
             <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.Key}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
         </div>
