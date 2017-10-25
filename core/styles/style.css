@@ -1656,6 +1656,11 @@ button.button-primary{
 }
 .check-block.selected{
     background: #bbb;
+    /*background: #3572b0;*/
     color: #fff;
+}
+.check-block .aui-icon{
+    float: right;
+    color: #eee;
 }
 /*Check-block - END*/

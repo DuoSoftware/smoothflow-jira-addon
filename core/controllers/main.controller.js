@@ -596,15 +596,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         if (workflowElem != undefined && workflowHeight != null)
             workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
     });
-    $scope.$watch(function () {
-		angular.forEach($scope.allVariables, function (variable) {
-			angular.forEach($scope.AdditionalVariable, function (add) {
-				if(add.Key == variable.Key){
-					add.isSelected = true;
-				}
-			});
-		});
-	});
 
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
@@ -1535,6 +1526,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.addtoMainList = function (variable, event) {
         $scope.AddNewVariable(variable, event);
     };
+
     //Add variables
     $scope.AddNewVariable = function (variable, e) {
         var data = {};
@@ -1557,6 +1549,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $rootScope.DisplayMessage("Key already exists.", "info", "The key you are trying to add is already added to the rule.");
         }
         else {
+			AJS.dialog2("#new-variable-dialog").hide()
+			angular.forEach($scope.allVariables, function (variable) {
+				angular.forEach($scope.AdditionalVariable, function (add) {
+					if(variable.Key == add.Key)
+						add.isSelected = true;
+
+				});
+			});
             $scope.getAllArguments();
         }
         $scope.Variable = {};
@@ -1573,6 +1573,18 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.variableEditOn = null;
         $scope.allVariables[index] = $scope.selectedVaribleToEdit;
     }
+
+    //Delete variables
+    $scope.deleteVariable = function (variable, index) {
+    	angular.forEach($scope.AdditionalVariable, function (_var) {
+			if(_var.Key == variable.Key){
+				_var.isSelected = false;
+			}
+		});
+    	$scope.showVariableConfirmation = true;
+        $scope.variableEditOn = null;
+		$scope.allVariables.splice(index, 1);
+    };
 
     //Cancel variable
     $scope.cancelNewVariable = function () {

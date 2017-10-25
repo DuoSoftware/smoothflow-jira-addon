@@ -16,6 +16,7 @@
         <tbody>
             <tr class="clikbl-list-item" ng-repeat="rule in currentRules" ng-click="openSelectedRule(rule, true)">
                 <td headers="name">{{rule.ruleName}}</td>
+                <td headers="description" style="width: 250px;" ng-if="rule.description == '' || rule.description == null || rule.description == undefined">-</td>
                 <td headers="description" style="width: 250px;" ng-if="rule.description.length <= 25">{{rule.description}}</td>
                 <td headers="description" style="width: 250px;" ng-if="rule.description.length > 25">{{rule.description | limitTo:23}} ...</td>
                 <!-- <td headers="project" class="avatar-text">
