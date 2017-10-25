@@ -89,11 +89,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.activeCompGroup = group;
         $scope.isGroupOpen = !$scope.isGroupOpen;
     };
-    $scope.tab = "basic";
+    $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);
-        $scope.tab = id;
-
+		$scope.tab = id;
     };
 
     // Kasun_Wijeratne_27_JUNE_2017
@@ -534,7 +533,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		// }
 		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
 
-
 		/////// 10_22_2017_Temp_Comment
 		// if (workflowBlocks.length != 0) {
 		// angular.forEach(workflowBlocks, function (block) {
@@ -598,6 +596,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         if (workflowElem != undefined && workflowHeight != null)
             workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
     });
+    $scope.$watch(function () {
+		angular.forEach($scope.allVariables, function (variable) {
+			angular.forEach($scope.AdditionalVariable, function (add) {
+				if(add.Key == variable.Key){
+					add.isSelected = true;
+				}
+			});
+		});
+	});
 
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {

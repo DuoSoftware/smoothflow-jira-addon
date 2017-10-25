@@ -1507,6 +1507,9 @@ button.button-primary{
     background: #fafafa;
 }
 
+.form-control{
+    padding: 10px!important;
+}
 .form-control:focus{
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -1639,3 +1642,20 @@ button.button-primary{
     color: #999;
     margin-bottom: 10px;
 }
+
+/*Check-block*/
+.check-block{
+    background: #eee;
+    padding: 8px 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border-radius: 5px;
+    color: #555;
+    cursor: pointer;
+    width: 100%;
+}
+.check-block.selected{
+    background: #bbb;
+    color: #fff;
+}
+/*Check-block - END*/
