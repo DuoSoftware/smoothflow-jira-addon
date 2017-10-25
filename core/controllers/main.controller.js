@@ -493,7 +493,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 					angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
 				}
 				var componentClass = block.className.split(' ')[2];
-				if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case') {
+				if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
 					var outers = angular.element(block).find('.outer');
 					angular.forEach(outers, function (outer) {
 						angular.forEach(outer.children, function (child) {
@@ -504,7 +504,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 							}
 						});
 						var outerParent = outer.parentElement.className.split(' ')[2];
-						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case'){
+						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough'){
 							var elem = angular.element(outer);
 							var _elem = elem.find('.workflow-block').first();
 							if(_elem != undefined) {
@@ -563,7 +563,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		// 10_22_2017_Temp_Comment///////
 
 	});
-
     $scope.$watch(function () {
 		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
@@ -1592,7 +1591,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.setInitialCollapse(1);
         }
 
-        if(component!=undefined && component.DisplayName == 'Case' && caseInjeciton){
+        if(component!=undefined && component.DisplayName == 'Case' && caseInjeciton ||
+			component!=undefined && component.DisplayName == 'Default' && caseInjeciton ||
+			component!=undefined && component.DisplayName == 'Fallthrough' && caseInjeciton ){
         	$scope.callFromSwitch = true;
 		}else{
 			$scope.callFromSwitch = false;
@@ -1642,7 +1643,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
 		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
 			$rootScope.candidateComponent.workflow.push(newcompo);
-		}else if($rootScope.candidateComponent.DisplayName == "Case"){
+		}else if($rootScope.candidateComponent.DisplayName == "Case" || $rootScope.candidateComponent.DisplayName == "Default" || $rootScope.candidateComponent.DisplayName == "Fallthrough"){
 			if($rootScope.caseInjeciton){
 				$rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
 			}else{
