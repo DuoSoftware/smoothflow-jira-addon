@@ -2020,8 +2020,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.getWFName = function (flowname) {
         var conc_username = $rootScope.SessionDetails.Domain;
-        var res = flowname.replace(/ /g, '_');
-        var sourceString = conc_username + "_" + res.toLowerCase();
+        var res = flowname.replace(/ /g, '');
+        var sourceString = conc_username + res.toLowerCase();
         var outString = sourceString.replace(/[` ~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         return outString;
     }
