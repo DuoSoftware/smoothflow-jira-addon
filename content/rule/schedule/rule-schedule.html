@@ -17,8 +17,8 @@
         <div ng-if="selectedRule.status == 'Published'">
             <p>Executes this flow on a schedule that has been provided.</p>
             <h5 class="content-sub-heading">Current schedule</h5>
-            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #ddd','padding': '10px'} : null">
-                <div ng-show="scheduleEditOn">
+            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #ddd'} : null">
+                <div ng-show="scheduleEditOn" style="padding: 10px">
                     <fieldset class="group schedule-type">
                         <!-- <legend><span>Schedule Type</span></legend> -->
                         <div class="radio radio-block">
@@ -55,7 +55,7 @@
                     </span>
                 </div>
 
-                <div ng-show="scheduleEditOn">
+                <div ng-show="scheduleEditOn" style="padding: 10px">
                     <form class="aui schedule-setup-panel">
                         <div ng-show="fixedrate == 'fixedrate'">
                             <cron-generator ng-model="cronExpression" config="cronOptions"></cron-generator>
