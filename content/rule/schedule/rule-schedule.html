@@ -17,7 +17,7 @@
         <div ng-if="selectedRule.status == 'Published'">
             <p>Executes this flow on a schedule that has been provided.</p>
             <h5 class="content-sub-heading">Current schedule</h5>
-            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #ddd'} : null">
+            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #ddd','margin-bottom':'20px'} : null">
                 <div ng-show="scheduleEditOn" style="padding: 10px">
                     <fieldset class="group schedule-type">
                         <!-- <legend><span>Schedule Type</span></legend> -->
@@ -43,11 +43,11 @@
                         <fieldset class="group">
                             <div>
                                 <aui-label for="scheduleActive">Present</aui-label>
-                                <aui-toggle id="scheduleActive" label="Schedules Active">Schedules Active</aui-toggle>
+                                <aui-toggle id="scheduleActive" label="Schedules Active" ng-disabled="scheduleEditOn">Schedules Active</aui-toggle>
                             </div>
                             <div>
                                 <aui-label for="scheduleAvailable">Active</aui-label>
-                                <aui-toggle id="scheduleAvailable" label="Schedules Available">Schedules Available</aui-toggle>
+                                <aui-toggle id="scheduleAvailable" label="Schedules Available" ng-disabled="scheduleEditOn">Schedules Available</aui-toggle>
                             </div>
                             <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == false"  ng-click="startSchedule()" style="margin-left: 20px">Start</button>
                             <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == true" ng-click="stopSchedule()" style="margin-left: 20px">Stop</button>
