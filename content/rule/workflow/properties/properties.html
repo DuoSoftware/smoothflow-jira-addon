@@ -19,7 +19,7 @@
                 <div class="tabs-pane active-pane">
                     <div class="property-field-wrap" ng-repeat="var in selectedModule.Variables" ng-if="var.advance == tab">
                         <div class="property-field-head">
-                            <div class="heading">{{var.Key}}</div>
+                            <div class="heading">{{var.DisplayName}}</div>
 
                             <div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>
                             <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
