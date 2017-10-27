@@ -325,6 +325,7 @@ h5 + h6 {
 }
 .overhead-container h4{
     color: #fff;
+    font-weight: 500;
 }
 .overhead-container .overhead-section{
     display: inline-block;
@@ -2777,7 +2778,7 @@ div.shim {
 }
 .aui-dialog2-header,
 .aui-dialog2-footer {
-    background: #f5f5f5;
+    background: #fff;
     visibility: visible;
 }
 .aui-dialog2.aui-layer[aria-hidden="true"] .aui-dialog2-header,
@@ -2817,15 +2818,16 @@ div.shim {
     margin-top: -69px;
 }
 .aui-dialog2-header {
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
     border-radius: 5px 5px 0 0;
     box-sizing: border-box;
     color: #333;
     font-weight: normal;
-    height: 69px;
+    height: 40px;
     padding: 0 20px;
     width: 100%;
     display: table;
+    background: #3572b0;
 }
 .aui-dialog2-header-actions {
     width: 100%;
@@ -2851,6 +2853,9 @@ div.shim {
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-right: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
 }
 .aui-dialog2-header-main {
     max-width: 400px;
@@ -2871,7 +2876,8 @@ div.shim {
     vertical-align: middle;
     line-height: 100%;
     cursor: pointer;
-    color: #707070;
+    /*color: #707070;*/
+    color: #fff;
 }
 .aui-iconfont-close-dialog:before {
     content: "\f11b";
@@ -2891,7 +2897,7 @@ div.shim {
     vertical-align: middle;
 }
 .aui-dialog2-footer {
-    border-top: 1px solid #ccc;
+    /*border-top: 1px solid #ccc;*/
     box-sizing: border-box;
     height: 51px;
     overflow: hidden;
@@ -3589,6 +3595,10 @@ form.aui .medium-long-field {
 }
 form.aui .long-field {
     max-width: 500px;
+    outline:none;
+}
+form.aui .long-field:focus, form.aui .select:focus {
+    border: solid 1px rgba(0, 82, 204, 0.25);
 }
 form.aui .full-width-field {
     max-width: none;
@@ -3604,7 +3614,7 @@ form.aui fieldset {
 }
 form.aui legend,
 form.aui label {
-    color: #707070;
+    color: #888;
 }
 form.aui .icon-required {
     left: 100%;
@@ -3636,7 +3646,7 @@ form.aui .date-select {
     clear: both;
     padding: 4px 0 4px 145px;
     position: relative;
-    margin: 1px 0;
+    margin: 10px 0;
     width: 100%;
 }
 form.aui .group {
@@ -3661,11 +3671,12 @@ form.aui .field-group > label,
 form.aui .field-group > aui-label {
     float: left;
     margin-left: -145px;
-    padding: 5px 0 0 0;
+    padding: 0px 0 0 0;
     position: relative;
     text-align: right;
     width: 130px;
     word-wrap: break-word;
+    font-weight: 500;
 }
 form.aui .checkbox > label,
 form.aui .radio > label {
@@ -4957,7 +4968,7 @@ table.aui > thead {
 table.aui > tbody > tr:first-child > td,
 table.aui > tbody > tr:first-child > th,
 table.aui > tfoot > tr:first-child > td {
-    border-top: 1px solid #ccc;
+    /*border-top: 1px solid #ccc;*/
 }
 table.aui > thead > tr > th > ul.menu,
 table.aui > tbody > tr > th > ul.menu,
@@ -4981,10 +4992,6 @@ table.aui.aui-table-interactive > tbody > tr:hover {
 }
 /* End Interactive Tables */
 
-table.aui .aui-table-header-content{
-    color: #777!important;
-    font-weight: normal!important;
-}
 /* stripes - deprecated */
 table.aui.aui-zebra tr {
     border-bottom: 0;
@@ -4996,6 +5003,22 @@ table.aui-zebra > tbody > tr:nth-child(even) > th {
     background: #f5f5f5;
     color: #333;
 }
+
+table.aui-table-sortable th{
+    color: #777!important;
+    font-weight: normal!important;
+}
+table.aui-table-sortable tr.action-input td{
+    vertical-align: middle;
+}
+table.aui-table-sortable tr.action-input td:last-child{
+    width: 100px;
+    text-align: center;
+}
+table.aui-table-sortable tr.toggle-padding td{
+    padding: 0;
+}
+
 /*! AUI Tabs */
 aui-tabs {
     display: block;
@@ -5102,7 +5125,8 @@ aui-tabs {
 /* Horizontal Tabs */
 .aui-tabs.horizontal-tabs > .tabs-menu ~ .tabs-pane {
     /*border-top: 1px solid #ccc;*/
-    padding-bottom: 10px;
+    /*padding: 10px;*/
+    margin-top: 20px;
 }
 .aui-tabs.horizontal-tabs > .tabs-menu {
     display: inline-block;
@@ -5124,7 +5148,7 @@ aui-tabs {
     background: #fff;
     border: none;
     display: block;
-    float: left;
+    float: right;
     margin: 0;
 }
 .aui-tabs.horizontal-tabs > .tabs-menu > .menu-item:hover {
@@ -7066,4 +7090,25 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 
 li {
     margin: 20px 0;
+}
+
+
+/*Atlassian add-on Preloader extended*/
+.ap-status-indicator{
+    position: absolute!important;
+    top: 0!important;
+    left: 0!important;
+    width: 100%!important;
+    height: 100%!important;
+    background: #fff!important;
+}
+.ap-loading{
+    top: 0!important;
+    bottom: 0!important;
+    position: absolute!important;
+    left: 0!important;
+    right: 0!important;
+    width: 130px!important;
+    height: 40px!important;
+    margin: auto!important;
 }

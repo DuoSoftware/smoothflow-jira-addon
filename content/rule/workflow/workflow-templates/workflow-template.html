@@ -1,12 +1,17 @@
 <div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName | lowercase}}" ng-repeat="component in workflow = (parent = component).workflow"
     ng-init="component.parent = parent; component.level = parent.level + 1" ng-style="component.ControlType == 'condition' ? 'margin-top:20px' : ''" ng-class="{'selected-bg':activeModule == component.$$hashKey}">
-    <div ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case'" class="h-line"></div>
-    <!--<label class="sub-cond-connector {{component.DisplayName | lowercase}}"></label>-->
+    <div ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'" class="h-line"></div>
+    <label class="sub-cond-connector {{component.DisplayName | lowercase}}" ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'"></label>
     <div class="header-bar" ng-click="openComponentInfo(component)">
         <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
-        <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 40px 40px;"></span>
-        <span class="action">{{component.DisplayName}} </span>
-        <div class="delete-comp">
+        <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 37px 37px;"></span>
+        <span class="action">{{component.DisplayName}} </span> <span ng-if="component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Case'"><span class="separator"><i>in</i></span> <span class="cat-pill">{{component.Category}}</span></span>
+        <div class="delete-comp" title="Expand component" style="right: 30px">
+            <button class="btn btn-default" type="button" ng-click="expandComponentBody(workflow, $index)">
+                <span class="aui-icon aui-icon-small aui-iconfont-{{component.bodyExpanded ? 'arrows-up' : 'arrows-down'}}">Delete component</span>
+            </button>
+        </div>
+        <div class="delete-comp" title="Deletecomponent">
             <button class="btn btn-default" type="button" ng-click="deleteNode(workflow, $index)">
                 <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete component</span>
             </button>
@@ -25,18 +30,36 @@
     </div>
     <div class="body">
         <!--div>{{component.Description}}</div-->
-        <div ng-repeat="variable in component.Variables"><b>{{variable.Key}}:</b> {{variable.Value}}</div>
+        <span ng-if="!component.bodyExpanded && component.DisplayName != 'True' && component.DisplayName != 'False'" class="collapsed-content">...</span>
+        <div ng-if="component.bodyExpanded">
+            <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.DisplayName}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
+        </div>
     </div>
-    <div class="workflow-add-node-sub">
+    <div class="workflow-add-node-sub" ng-if="component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'">
         <div class="header-bar">
             <div class="component-capsule">
-                <span class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
-                <span title="Trigger" class="category-icon trigger" ng-click="toggleComponentsMenu(workflow, $index, true, 'trigger',component)">T</span>
-                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition',component)">C</span>
-                <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, 'action',component)">A</span>
+                <span title="Add to Switch" class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition', component, true)">C</span>
+                <span class="category-icon action" style="opacity: 0.2">A</span>
+            </div>
+            <script>
+				AJS.$(".category-icon").tooltip();
+				AJS.$(".delete-comp").tooltip();
+            </script>
+            <span>..</span>
+        </div>
+    </div>
+    <div class="workflow-add-node-sub" ng-class="{'offset':component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'}">
+        <div class="header-bar">
+            <div class="component-capsule">
+                <span title="Add to {{component.DisplayName}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
+                <!--<span title="Trigger" class="category-icon trigger" ng-click="toggleComponentsMenu(workflow, $index, true, 'trigger',component)">T</span>-->
+                <span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, 'condition',component, false)">C</span>
+                <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, 'action',component, false)">A</span>
             </div>
             <script>
                 AJS.$(".category-icon").tooltip();
+                AJS.$(".delete-comp").tooltip();
             </script>
             <span>..</span>
         </div>

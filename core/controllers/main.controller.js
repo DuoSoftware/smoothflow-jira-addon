@@ -1,4 +1,17 @@
-app.controller('MainController', ['$scope', '$rootScope', '$state', '$timeout', '$http', 'dataHandler', '$auth', '$objectstore', '$filter', 'TriggerDatafactory', '$v6urls', '$helpers', '$location', mainController])
+app.controller('MainController', [
+	'$scope',
+	'$rootScope',
+	'$state',
+	'$timeout',
+	'$http',
+	'dataHandler',
+	'$auth',
+	'$objectstore',
+	'$filter',
+	'TriggerDatafactory',
+	'$v6urls',
+	'$helpers',
+	'$location', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -38,7 +51,8 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$timeout', 
             }
         }
     }
-    ]).filter('filterComp', function () {
+    ])
+	.filter('filterComp', function () {
         return function (arr, compName) {
             if (!compName) {
                 return arr;
@@ -53,12 +67,18 @@ app.controller('MainController', ['$scope', '$rootScope', '$state', '$timeout', 
             return result;
         }
             ;
-    });
+    })
+	.filter('bytes', function() {
+		return function(bytes, precision) {
+			if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+			if (typeof precision === 'undefined') precision = 1;
+			var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
+				number = Math.floor(Math.log(bytes) / Math.log(1024));
+			return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
+		}
+	});
 
 function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location) {
-
-    AJS.$('.button-spinner').spin();
-    AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
 
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
@@ -70,17 +90,18 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // Kasun_Wijeratne_27_JUNE_2017
     /*** JIRA component extraction*/
     AJS.$(".category-icon").tooltip();
+	AJS.$('.button-spinner').spin();
+	AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
     /*** JIRA component extraction - END*/
 
     $scope.toggleCompGroup = function (group) {
         $scope.activeCompGroup = group;
         $scope.isGroupOpen = !$scope.isGroupOpen;
     };
-    $scope.tab = "tab2";
+    $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);
-        $scope.tab = id;
-
+		$scope.tab = id;
     };
 
     // Kasun_Wijeratne_27_JUNE_2017
@@ -137,8 +158,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $rootScope.isNullOrEmptyOrUndefined = function (value) {
         return !value;
-    }
-        ;
+    };
 
     $scope.currentRules = [];
     // $scope.currentRules = [{
@@ -404,11 +424,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     //     Variables: []
     // }];
 
-
     $rootScope.changeTab = function (tab) {
         $rootScope.view_tab = tab;
     }
 
+    $scope.selectedRule = {};
+    $scope.selectedRule.workflow = {};
     $scope.ruleEdit = false;
     $scope.componentsMenuState = 'closed';
     $scope.compMenuState = "left";
@@ -419,11 +440,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.listState = "";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
+	$scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
-        'Name': 'Triggers',
-        'components': []
-    }, {
         'Name': 'Actions',
         'components': []
     }, {
@@ -434,6 +453,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var collapsiblePanels = [];
     var compSearch = [];
     var workflowHeight = null;
+    var workflowWidth = null;
     var workflowUI = null;
     var propertiesElem = null;
     var workflowElem = null;
@@ -444,15 +464,123 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	var selectItemBody = null;
 	var shadowedGroupItemsHeight = null;
 	var workflowComponentss = null;
+	var outerBlocks = null;
 
-    // methods
+    /////////////////////////////// METHODS ////////////////////////////////////////////////////////////////////////
+
+	// Watchers
+	$scope.$watch(function () {
+		componentBlock = document.getElementsByClassName('condition-block');
+		directCondConnectors = document.getElementsByClassName("sub-cond-connector");
+		workflowBlocks = document.getElementsByClassName("workflow-block");
+		outerBlocks = document.getElementsByClassName("outer");
+
+		if (componentBlock.length != 0) {
+			angular.forEach(componentBlock, function (elem) {
+				angular.forEach(elem.childNodes, function (child) {
+					if (child.className != undefined) {
+						if (child.className == 'workflow-add-node-sub') {
+							var separated = child;
+							separated.setAttribute('style', 'margin-top:10px');
+							elem.append(separated);
+						}
+						// else if (child.parentElement.previousElementSibling != null) {
+						//     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
+						//         child.remove();
+						//     }
+						// }
+					}
+				});
+			});
+		}
+
+		if (workflowBlocks.length != 0) {
+			angular.forEach(workflowBlocks, function (block) {
+				var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
+				if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
+					angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+				}
+				var componentClass = block.className.split(' ')[2];
+				if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+					var outers = angular.element(block).find('.outer');
+					angular.forEach(outers, function (outer) {
+						angular.forEach(outer.children, function (child) {
+							if (child.className.split(' ')[0] == 'workflow-block') {
+								angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+							} else {
+								angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+							}
+						});
+						var outerParent = outer.parentElement.className.split(' ')[2];
+						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough'){
+							var elem = angular.element(outer);
+							var _elem = elem.find('.workflow-block').first();
+							if(_elem != undefined) {
+								if(!_elem.has('.sub-cond-connector').length){
+									_elem.prepend('<label class="sub-cond-connector"></label>');
+								}
+							}
+						}
+					});
+				}
+			});
+		}
+
+		/////// 10_24_2017_Separate_Loop_Outer_WORKING
+		// if(outerBlocks.length != 0){
+		// angular.forEach(outerBlocks, function (outer) {
+		// 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
+		// 			var elem = angular.element(outer);
+		// 			var _elem = elem.find('.workflow-block').first();
+		// 			if(_elem != undefined) {
+		// 				if(!_elem.has('.sub-cond-connector').length){
+		// 					_elem.prepend('<label class="sub-cond-connector"></label>');
+		// 				}
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
+
+		/////// 10_22_2017_Temp_Comment
+		// if (workflowBlocks.length != 0) {
+		// angular.forEach(workflowBlocks, function (block) {
+		// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
+		// 		var item = angular.element(block).find('.sub-cond-connector')[0];
+		// 		if (item != undefined)
+		// 			item.remove();
+		// 	}
+		// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+		// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+		// 	}
+		// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+		// 		var outers = angular.element(block).find('.outer');
+		// 		angular.forEach(outers, function (outer) {
+		// 			angular.forEach(outer.children, function (child) {
+		// 				if (child.className.split(' ')[0] == 'workflow-block') {
+		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+		// 				} else {
+		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+		// 				}
+		// 			});
+		// 		});
+		// 	}
+		// });
+		// }
+		// 10_22_2017_Temp_Comment///////
+
+	});
     $scope.$watch(function () {
 		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
+		propertiesElem = document.getElementById('property-wrap');
+		workflowElem = document.getElementById('workflow-wrap');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
 		selectItemBody = document.getElementsByClassName('select-item-body');
 		workflowComponentss = $('#workflow-components');
 		$scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
+		workflowWidth = window.innerWidth - $scope.propertyPanelWidthGLOBAL;
+
 		if(workflowComponentss != undefined){
 			workflowComponentss.css('margin-right',$scope.propertyPanelWidthGLOBAL+'px');
 		}
@@ -471,100 +599,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 				item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
 			});
 		}
-        propertiesElem = document.getElementById('property-wrap');
-        workflowElem = document.getElementById('workflow-wrap');
-        componentBlock = document.getElementsByClassName('condition-block');
-        directCondConnectors = document.getElementsByClassName("sub-cond-connector");
-        workflowBlocks = document.getElementsByClassName("workflow-block");
 
-        if (componentBlock.length != 0) {
-            angular.forEach(componentBlock, function (elem) {
-                angular.forEach(elem.childNodes, function (child) {
-                    if (child.className != undefined) {
-                        if (child.className == 'workflow-add-node-sub') {
-                            var separated = child;
-                            separated.setAttribute('style', 'margin-top:10px');
-                            elem.append(separated);
-                        } else if (child.parentElement.previousElementSibling != null) {
-                            if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
-                                child.remove();
-                            }
-                        }
-                    }
-                });
-            });
-        }
-
-        if (workflowBlocks.length != 0) {
-            angular.forEach(workflowBlocks, function (block) {
-                if (block.previousElementSibling == null && block.className.split(' ')[1] != 'condition-block') {
-                    var item = angular.element(block);
-                    if (item != undefined)
-                        item.append('<label class="sub-cond-connector"></label>');
-                }
-                if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-                    angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-                }
-                if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-                    var outers = angular.element(block).find('.outer');
-                    angular.forEach(outers, function (outer) {
-                        angular.forEach(outer.children, function (child) {
-                            if (child.className.split(' ')[0] == 'workflow-block') {
-                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-                            } else {
-                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-                            }
-                        });
-                    });
-                }
-            });
-        }
-
-        // 10_22_2017_Temp_Comment
-		// if (workflowBlocks.length != 0) {
-			// angular.forEach(workflowBlocks, function (block) {
-			// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
-			// 		var item = angular.element(block).find('.sub-cond-connector')[0];
-			// 		if (item != undefined)
-			// 			item.remove();
-			// 	}
-			// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-			// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-			// 	}
-			// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-			// 		var outers = angular.element(block).find('.outer');
-			// 		angular.forEach(outers, function (outer) {
-			// 			angular.forEach(outer.children, function (child) {
-			// 				if (child.className.split(' ')[0] == 'workflow-block') {
-			// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-			// 				} else {
-			// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-			// 				}
-			// 			});
-			// 		});
-			// 	}
-			// });
-		// }
-        // 10_22_2017_Temp_Comment
-
-        // if(outers.length != 0){
-        // 	angular.forEach(outers, function (outer) {
-        // 		if(outer.childNodes[1].className == 'workflow-block condition-block'){
-        // 			angular.forEach(outer.childNodes, function (block) {
-        // 				angular.forEach(block.childNodes, function (child) {
-        // 					if (child.className == 'sub-cond-connector') {
-        // 						child.setAttribute('style', 'visibility:visible');
-        // 					}
-        // 				});
-        // 			});
-        // 		}
-        // 	});
-        // }
         if (propertiesElem != undefined && workflowHeight != undefined)
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
-        if (workflowElem != undefined && workflowHeight != undefined)
-            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:scroll");
+        if (workflowElem != undefined && workflowHeight != null)
+            workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
     });
+
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
             comp.setAttribute("style", "display:none");
@@ -573,15 +614,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.currentOpenMenu = index;
         collapsiblePanels = document.getElementsByClassName('comp-panel-collapse');
         compSearch = document.getElementsByClassName('comp-search');
-        collapsiblePanels[index].setAttribute("style", "display:block;height:" + (workflowHeight - 188) + "px!important;overflow-y:scroll;overflow-x:hidden");
+        collapsiblePanels[index].setAttribute("style", "display:block;height:" + (workflowHeight - 126) + "px!important;overflow-y:scroll;overflow-x:hidden");
         compSearch[index].setAttribute("style", "display:block");
         for (i = 0; i < collapsiblePanels.length; i++) {
             if (i != index) {
                 collapsiblePanels[i].setAttribute("style", "display:none");
             }
         }
-    }
-        ;
+    };
 
     $scope.getRuleDetails = function () {
 
@@ -619,8 +659,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
         client.v1getByFiltering("*");
 
-    }
-        ;
+    };
 
     $scope.$on('uiStateChanged', function (event, data) {
         alert("Statue changed");
@@ -649,6 +688,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }];
 
     }
+
     $scope.CallInvoke = function () {
         var optionalJSON = {};
         var inarguments = dataHandler.retrieveInArgumentsKeys();
@@ -661,7 +701,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.optionalJSON = JSON.stringify(optionalJSON, undefined, 4)
         // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
-
 
     $scope.callurl = function (url, body) {
         var req = {
@@ -688,7 +727,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         });
     }
-
 
     /** Google Chart */
     //Line Chart
@@ -736,7 +774,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             chart.draw(data, options);
         }
     };
-
     // Bar Chart
     $scope.BarChart = function () { };
     // Gauge Chart
@@ -771,7 +808,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         }
     };
-    /** End */
+    /** Google Chart - End */
+
     $scope.openSelectedRule = function (selectedRule, entry) {
         $timeout(function () {
             //debugger
@@ -825,8 +863,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.listState = 'rule.details';
             $state.go('rule.details');
         });
-    }
-        ;
+    };
 
     $scope.openRuleLatestData = function (nodes) {
         $scope.selectedRule.workflow = nodes;
@@ -837,7 +874,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.getAllArguments();
         //call trigger Service to set workflow ID
         //debugger;
-    }
+    };
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
     ///// Publishing mechanism
@@ -853,15 +890,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
         client.v1getByFiltering("*");
-    }
+    };
 
     $scope.setport = function () {
         if (!$scope.checkport($scope.executable.port)) {
             $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
             $scope.setport();
         }
-    }
-        ;
+    };
 
     $scope.checkport = function (port) {
         for (x = 0; x < $scope.portlist.length; x++) {
@@ -870,7 +906,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
         return true;
-    }
+    };
 
     $scope.getports();
 
@@ -922,8 +958,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
         });
         return flowData;
-    }
-        ;
+    };
 
     $scope.errorList = [];
     $scope.validateBeforeSave = function () {
@@ -942,12 +977,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         } else {
             AJS.dialog2("#validation-errors").hide();
         }
-        ; return result;
-    }
+        return result;
+    };
 
     $scope.closeValidationPage = function () {
         AJS.dialog2("#validation-errors").hide();
-    }
+    };
 
     $scope.publishWorkflow = function () {
         if ($scope.validateBeforeSave()) {
@@ -1012,7 +1047,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 }
             });
         }
-    }
+    };
 
     $scope.PublishToDocker = function (publishObj) {
         var sessionId = dataHandler.createuuid();
@@ -1044,7 +1079,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.HideBusyContainer();
             }
         });
-    }
+    };
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -1056,7 +1091,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
         return obj;
-    }
+    };
 
     $scope.checkScheduleStatus = function () {
         var toggle = document.getElementById('scheduleActive');
@@ -1075,7 +1110,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 toggle2.disabled = true;
             }
         }
-    }
+    };
 
     $scope.changeLocation = function (location) {
         $scope.componentsMenuState = 'closed';
@@ -1096,9 +1131,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $scope.checkScheduleStatus();
             });
         }
-    }
-        ;
-
+    };
 
     $scope.updateWorkflowBeforeStateChange = function (location) {
         var index = 0;
@@ -1114,7 +1147,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
             index++;
         });
-    }
+    };
 
     //Initialization
     $scope.getControlData = function () {
@@ -1136,13 +1169,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
             if ($scope.allcomponents.length != 0) {
                 angular.forEach($scope.allcomponents, function (item) {
-                    if (item.ControlType == 'trigger') {
-                        item.workflow = [];
-                        $scope.structuredComps[0].components.push(item);
-                    }
+                    // if (item.ControlType == 'trigger') {
+                    //     item.workflow = [];
+                    //     $scope.structuredComps[0].components.push(item);
+                    // }
                     if (item.ControlType == 'action') {
                         item.workflow = [];
-                        $scope.structuredComps[1].components.push(item);
+                        $scope.structuredComps[0].components.push(item);
                     }
                     if (item.ControlType == 'condition') {
                         if (item.DisplayName.toLowerCase() == 'if') {
@@ -1166,16 +1199,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                                 workflow: []
                             }];
                         }
-                        $scope.structuredComps[2].components.push(item);
+                        $scope.structuredComps[1].components.push(item);
                     }
                 });
             }
-            console.log($scope.structuredComps);
+            // console.log($scope.structuredComps);
         }, function errorCallback(response) {
             console.log(response);
         });
-    }
-        ;
+    };
+
     $scope.getControlData();
 
     $scope.getTemplateData = function () {
@@ -1198,8 +1231,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, function errorCallback(response) {
             console.log(response);
         });
-    }
-        ;
+    };
+
     $scope.getTemplateData();
 
     // New rule
@@ -1215,30 +1248,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
         // $state.go('rule.new');
-    }
+    };
 
     //Clear rule
     $scope.clearRule = function () {
         $scope.newRule();
-    }
-        ;
+    };
 
     $scope.backRule = function () {
         $scope.isNewRuleFormValid = false;
-    }
-        ;
+    };
 
     //Save rule
     $scope.saveRule = function () {
         $scope.currentRuleID = $scope.selectedRule.id;
         $scope.currentRules.push(angular.copy($scope.selectedRule));
-    }
-        ;
+    };
 
     $scope.closeRemoveDialog = function (e) {
         e.preventDefault();
         AJS.dialog2("#rule-delete-dialog").hide();
-    }
+    };
 
     $scope.deleteContainer = function (WFDetails) {
         $http({
@@ -1271,7 +1301,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.closeRemoveDialog(e);
         });
         client.onError(function (data) {
-            debugger
             $scope.closeRemoveDialog();
             $rootScope.DisplayMessage("There was an error when removing rule details.", "error", "You may try again later.");
         });
@@ -1305,7 +1334,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         // deleting triggers
         //TriggerDatafactory.DeleteTrigger();
-    }
+    };
 
     $scope.removeRule = function () {
         $scope.disableDeleteButton = false;
@@ -1317,23 +1346,21 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         //delete tigger
         TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
 
-    }
+    };
 
     //Edit rule
     $scope.editRule = function () {
         $timeout(function () {
             $scope.ruleEdit = !$scope.ruleEdit;
         });
-    }
-        ;
+    };
 
     //Cancel rule
     $scope.cancelRuleEdit = function () {
         $timeout(function () {
             $scope.ruleEdit = false;
         });
-    }
-        ;
+    };
 
     //New template
     $scope.newTemplate = function () {
@@ -1345,14 +1372,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
         $scope.componentsToDisplay = newArray;
         $scope.isNewRuleFormValid = true;
-    }
-        ;
+    };
 
     //Open a specific component menu in components
     $scope.openSelectedComponentMenu = function (index) {
         $scope.toggleComponentsMenu();
-    }
-        ;
+    };
 
     //Open component info
     $scope.openComponentInfo = function (component) {
@@ -1410,7 +1435,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
         $scope.componentsToDisplay = comps;
         $state.go('rule.workflow');
-    }
+    };
 
     //Filter components
     $scope.sortType = 'name';
@@ -1451,7 +1476,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         //debugger
         TriggerDatafactory.setworkflowId($scope.getWFName($scope.selectedRule.ruleName));
         $state.go('rule.workflow');
-    }
+    };
 
     $scope.fillPredefinedValues = function (item, values) {
         //debugger;
@@ -1466,12 +1491,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
         return item;
-    }
+    };
 
     $scope.deleteComponentConfirmation = function (index, isSub) {
         if (!isSub)
             $scope.showDeleteConfirmation = index;
-    }
+    };
 
     //Delete component
     $scope.deleteComponent = function (component) {
@@ -1486,13 +1511,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
         $scope.selectedModule = {};
         // $state.go('rule.details');
-    }
-        ;
+    };
 
     $scope.cancelDelete = function (index) {
         $scope.showDeleteConfirmation = null;
-    }
-        ;
+    };
 
     $scope.AdditionalVariable = [
         { Key: 'jira_attachment_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
@@ -1507,12 +1530,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         { Key: 'jira_version_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
         { Key: 'jira_worklog_id', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType },
         { Key: 'jira_project_key', Value: $scope.Variable.Value, Category: "InArgument", Type: 'dynamic', Priority: 'NotMandatory', Group: 'default', DataType: $scope.Variable.DataType }
-
     ];
 
     $scope.addtoMainList = function (variable, event) {
         $scope.AddNewVariable(variable, event);
     };
+
     //Add variables
     $scope.AddNewVariable = function (variable, e) {
         var data = {};
@@ -1535,6 +1558,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $rootScope.DisplayMessage("Key already exists.", "info", "The key you are trying to add is already added to the rule.");
         }
         else {
+			AJS.dialog2("#new-variable-dialog").hide()
+			angular.forEach($scope.allVariables, function (variable) {
+				angular.forEach($scope.AdditionalVariable, function (add) {
+					if(variable.Key == add.Key)
+						add.isSelected = true;
+
+				});
+			});
             $scope.getAllArguments();
         }
         $scope.Variable = {};
@@ -1552,13 +1583,24 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.allVariables[index] = $scope.selectedVaribleToEdit;
     }
 
+    //Delete variables
+    $scope.deleteVariable = function (variable, index) {
+    	angular.forEach($scope.AdditionalVariable, function (_var) {
+			if(_var.Key == variable.Key){
+				_var.isSelected = false;
+			}
+		});
+    	$scope.showVariableConfirmation = true;
+        $scope.variableEditOn = null;
+		$scope.allVariables.splice(index, 1);
+    };
+
     //Cancel variable
     $scope.cancelNewVariable = function () {
         $timeout(function () {
             $scope.Variable = {}
         });
-    }
-        ;
+    };
 
     $scope.getAllArguments = function () {
         // return dataHandler.retrieveArguments();
@@ -1567,18 +1609,28 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, 0);
     }
 
-    $scope.toggleComponentsMenu = function (workflow, index, triggeredByComponent, category, component) {
-        if (category == 'trigger') {
+    $scope.toggleComponentsMenu = function (workflow, index, triggeredByComponent, category, component, caseInjeciton) {
+        // if (category == 'trigger') {
+        //     $scope.setInitialCollapse(0);
+        // }
+        if (category == 'action') {
             $scope.setInitialCollapse(0);
-        } else if (category == 'action') {
-            $scope.setInitialCollapse(1);
         } else if (category == 'condition') {
-            $scope.setInitialCollapse(2);
+            $scope.setInitialCollapse(1);
         }
+
+        if(component!=undefined && component.DisplayName == 'Case' && caseInjeciton ||
+			component!=undefined && component.DisplayName == 'Default' && caseInjeciton ||
+			component!=undefined && component.DisplayName == 'Fallthrough' && caseInjeciton ){
+        	$scope.callFromSwitch = true;
+		}else{
+			$scope.callFromSwitch = false;
+		}
 
         // $rootScope.comToBePushedIndex = parentIndex;
         $rootScope.candidateWorkflow = workflow;
         $rootScope.candidateIndex = index;
+        $rootScope.caseInjeciton = caseInjeciton;
         if (component != null)
             $rootScope.candidateComponent = component;
         $scope.pendingComponentType = category;
@@ -1611,27 +1663,34 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         e.preventDefault();
         AJS.dialog2("#new-rule-dialog").hide();
         //$state.go('rule.new');
-    }
-        ;
+    };
 
     $scope.newComponentInjection = function (component) {
         var newcompo = angular.copy(component);
+		newcompo.bodyExpanded = true;
 
-        if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False" || $rootScope.candidateComponent.DisplayName == "Case") {
-            $rootScope.candidateComponent.workflow.push(newcompo);
-        } else {
+		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
+			$rootScope.candidateComponent.workflow.push(newcompo);
+		}else if($rootScope.candidateComponent.DisplayName == "Case" || $rootScope.candidateComponent.DisplayName == "Default" || $rootScope.candidateComponent.DisplayName == "Fallthrough"){
+			if($rootScope.caseInjeciton){
+				$rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
+			}else{
+				$rootScope.candidateComponent.workflow.push(newcompo);
+			}
+		}else {
             $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
         }
-        $timeout(function () {
+		$timeout(function () {
 			$scope.activeModule = component.$$hashKey;
 		});
 		// if($scope.pendingComponentType == 'condition'){
         // 	$rootScope.candidateComponent.workflow.push(newcompo);
         // }else{
         // }
-
+		$scope.callFromSwitch = false;
         $scope.toggleComponentsMenu(0);
-    }
+		$scope.openComponentInfo(newcompo);
+    };
 
     $scope.addNode = function (component) {
         component.workflow.push({
@@ -1663,6 +1722,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "workflow": []
         });
     }
+
     $scope.addNodeToLayer = function (workflow, position) {
         workflow.splice(position + 1, 0, {
             DisplayName: "Component",
@@ -1670,10 +1730,19 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "workflow": []
         });
     }
+
     $scope.deleteNode = function (workflow, position) {
         workflow.splice(position, 1);
     }
-    $scope.addNodeToParent = function (component) {
+
+    // Kasun_Wijeratne_2017_10_23
+	// This code gets a set of workflow and expands or collapses the block with given index accordingly
+    $scope.expandComponentBody = function (workflow, position) {
+		workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+    }
+	// Kasun_Wijeratne_2017_10_23 - END
+
+	$scope.addNodeToParent = function (component) {
         var parentSibling = {
             "library_id": "1",
             "schema_id": 3,
@@ -1710,7 +1779,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             component.push(parentSibling);
     }
 
-    // added an comment just to make a commit
     //call Workflow save method
     $scope.saveWorkFlow = function () {
         console.log("Begin Workflow save.");
@@ -1826,7 +1894,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     $scope.setupNodes = function () {
-
         var state = "drawboard";
         var axis_x = 400;
         var axis_y = 100;
@@ -1906,7 +1973,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var flowID, name, displayname, discription, version, createNewVersion, comment, tag;
         createNewVersion = false;
         tag = "Jira Addon Rule".split(" ");
-        ;
         flowID = dataHandler.createuuid();
         name = $scope.getWFName($scope.selectedRule.ruleName);
         displayname = $scope.selectedRule.ruleName;
@@ -1948,8 +2014,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var version = [saveObject.ID];
         saveObjectParent.version = version;
         $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
-    }
-        ;
+    };
 
     $scope.getControlObjectFromLibrary = function (library_id) {
         var returnObj = {};
@@ -1960,20 +2025,18 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
         return returnObj;
-    }
-        ;
+    };
 
     $scope.getWFName = function (flowname) {
         var conc_username = $rootScope.SessionDetails.Domain;
-        var res = flowname.replace(/ /g, '_');
-        var sourceString = conc_username + "_" + res.toLowerCase();
+		var res = flowname.replace(/ /g, '');
+		var sourceString = conc_username + res.toLowerCase();
         var outString = sourceString.replace(/[` ~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         return outString;
     }
 
 
-    ////// workflow scheduling related functionalities 
-
+    ////// workflow scheduling related functionalities
     $scope.cronOptions = {
         allowMultiple: true,
         quartz: true
@@ -1991,6 +2054,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.setScheduleforWorkflow = function (value) {
+    	$scope.savingSchedule = true;
         var URL = "https://" + $scope.selectedRule.name + ".plus.smoothflow.io/" + $scope.selectedRule.name + "/smoothflow/schedule/update/";
 
         var optionalJSON = {};
@@ -1998,8 +2062,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         angular.forEach(inarguments, function (argument) {
             optionalJSON[argument] = "";
         });
-
-        debugger
 
         var payload = {
             "FlowName": $scope.selectedRule.name,
@@ -2019,14 +2081,18 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             if (response.data.Status) {
                 $rootScope.DisplayMessage("Schedule added!", "success", response.data.Message);
                 $scope.scheduleActive = false;
-            } else {
+                $scope.scheduleEditOn = false;
+				$scope.savingSchedule = true;
+			} else {
                 $rootScope.DisplayMessage("Error occured!", "error", response.data.Message);
                 //$scope.scheduleActive = false;
-            }
+				$scope.savingSchedule = true;
+			}
         }, function OnError(response) {
             if (response) {
                 $rootScope.DisplayMessage("Error when retriving schedule information.", "error");
-            }
+				$scope.savingSchedule = true;
+			}
         });
     }
 
@@ -2041,7 +2107,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
-            debugger
 
             if (response.data.Status) {
                 $scope.scheduleAvailable = true;
@@ -2097,6 +2162,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
+	$scope.scheduleEditOn = false;
+    $scope.editSchedule = function () {
+		$scope.scheduleEditOn = !$scope.scheduleEditOn;
+	}
     /////// end of scheduling functions
 
     $scope.sendProcessToObjectStore = function (saveObj, event, saveObjectParent) {
@@ -2255,7 +2324,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
-            debugger
             if (response.data.response == "success") {
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');
@@ -2332,9 +2400,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.ShowBusyContainer("Refreshing...");
         $scope.getRuleDetails();
     }
-
-
-
 
     // this excecutes only when the document has been fully loaded and ready
     angular.element(document).ready(function () {
