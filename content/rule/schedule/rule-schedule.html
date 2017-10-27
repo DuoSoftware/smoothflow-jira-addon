@@ -49,8 +49,8 @@
                                 <aui-label for="scheduleAvailable">Active</aui-label>
                                 <aui-toggle id="scheduleAvailable" label="Schedules Available" ng-disabled="scheduleEditOn">Schedules Available</aui-toggle>
                             </div>
-                            <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == false"  ng-click="startSchedule()" style="margin-left: 20px">Start</button>
-                            <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == true" ng-click="stopSchedule()" style="margin-left: 20px">Stop</button>
+                            <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == false" ng-click="startSchedule()" style="margin-left: 20px" ng-disabled="scheduleEditOn">Start</button>
+                            <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == true" ng-click="stopSchedule()" style="margin-left: 20px" ng-disabled="scheduleEditOn">Stop</button>
                         </fieldset>
                     </span>
                 </div>

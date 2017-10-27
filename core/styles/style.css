@@ -1783,6 +1783,9 @@ button.button-primary{
 .current-schedule-wrap span.curr-shed-controls fieldset>div aui-toggle input{
     outline: none;
 }
+.current-schedule-wrap span.curr-shed-controls aui-toggle::after{
+    border-radius: 20px;
+}
 .schedule-type .radio-block{
     display: inline-block;
     margin:0 20px;
@@ -1855,6 +1858,12 @@ button.button-primary{
     /* border: solid 1px #ccc; */
     /* border-bottom: none; */
     /*border-top: solid 2px #0052cc;*/
+}
+}
+.schedule-setup-panel .form-group>label:first-child{
+    /*top: 40px;*/
+    /*left: 10px;*/
+
 }
 .schedule-setup-panel .cron-wrap>div.clearfix{
     width: 220px;
