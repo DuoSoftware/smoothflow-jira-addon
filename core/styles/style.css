@@ -1518,7 +1518,7 @@ button.button-primary{
 }
 
 .form-control{
-    padding: 10px!important;
+    padding: 10px;
 }
 .form-control:focus{
     -webkit-box-shadow: none !important;
@@ -1823,6 +1823,10 @@ button.button-primary{
     text-align: center;
     padding: 9px 0;
     border-radius: 50%;
+}
+.schedule-setup-panel .select-options select[ng-model="myFrequency.days"] option, .schedule-setup-panel .select-options select[ng-model="myFrequency.months"] option{
+    width: 90px!important;
+    border-radius: 20px!important;
 }
 .schedule-setup-panel .select-options select option:hover{
     background: #eeeeee;
