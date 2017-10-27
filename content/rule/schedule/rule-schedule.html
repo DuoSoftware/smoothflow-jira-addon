@@ -2,7 +2,7 @@
     <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
-                <h4>{{selectedRule.ruleName}} schedule</h4>
+                <h4>Rule schedule</h4>
             </div>
             <div class="aui-toolbar2-secondary">
                 <div id="button-set2">
@@ -62,9 +62,12 @@
                         </div>
                     </form>
                     <form class="text-right">
+                        <div class="button-spinner" style="padding-right: 20px;padding-bottom: 5px;display: inline-block" ng-show="savingSchedule"></div>
                         <button ng-click="editSchedule()" class="aui-button">Cancel</button>
-                        <button ng-click="setScheduleforWorkflow(cronExpression)" class="aui-button aui-button-primary">Set Schedule</button>
-                        <br>
+                        <button ng-click="setScheduleforWorkflow(cronExpression)" class="aui-button aui-button-primary" ng-disabled="savingSchedule">Set Schedule</button>
+                        <script>
+							AJS.$('.button-spinner').spin();
+                        </script>
                     </form>
                 </div>
             </div>

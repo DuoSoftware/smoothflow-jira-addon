@@ -67,7 +67,16 @@ app.controller('MainController', [
             return result;
         }
             ;
-    });
+    })
+	.filter('bytes', function() {
+		return function(bytes, precision) {
+			if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+			if (typeof precision === 'undefined') precision = 1;
+			var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
+				number = Math.floor(Math.log(bytes) / Math.log(1024));
+			return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
+		}
+	});
 
 function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location) {
 
@@ -2045,6 +2054,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.setScheduleforWorkflow = function (value) {
+    	$scope.savingSchedule = true;
         var URL = "https://" + $scope.selectedRule.name + ".plus.smoothflow.io/" + $scope.selectedRule.name + "/smoothflow/schedule/update/";
 
         var optionalJSON = {};
@@ -2071,14 +2081,18 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             if (response.data.Status) {
                 $rootScope.DisplayMessage("Schedule added!", "success", response.data.Message);
                 $scope.scheduleActive = false;
-            } else {
+                $scope.scheduleEditOn = false;
+				$scope.savingSchedule = true;
+			} else {
                 $rootScope.DisplayMessage("Error occured!", "error", response.data.Message);
                 //$scope.scheduleActive = false;
-            }
+				$scope.savingSchedule = true;
+			}
         }, function OnError(response) {
             if (response) {
                 $rootScope.DisplayMessage("Error when retriving schedule information.", "error");
-            }
+				$scope.savingSchedule = true;
+			}
         });
     }
 
