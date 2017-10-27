@@ -1,6 +1,6 @@
 <div class="container">
 
-    <header class="aui-page-header p-15">
+    <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
                 <h4>{{selectedRule.ruleName}} fields</h4>
@@ -15,7 +15,7 @@
 
     <div class="clearfix">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-3 col-xs-6">
                 <!--<ul class="unstyled">-->
                 <!--<li class="mb-20 mt-0 check-block" ng-repeat="var in AdditionalVariable">-->
                 <!--<input class="styled-checkbox"-->
@@ -26,12 +26,12 @@
                 <!--<label for="{{var.Key}}">{{var.Key}}</label>-->
                 <!--</li>-->
                 <!--</ul>-->
-                <h5 style="margin: 11px 0 7px 0px;color: #777;font-weight: 500">Pre-defined variables</h5>
+                <h5 class="content-sub-heading">Pre-defined variables</h5>
                 <span ng-repeat="var in AdditionalVariable" class="check-block" ng-click="addtoMainList(var,$event)" ng-class="{'selected':var.isSelected}">
                     <span>{{var.Key}}</span> <span class="aui-icon aui-icon-small aui-iconfont-success" ng-if="var.isSelected">Active variable</span>
                 </span>
             </div>
-            <form class="aui col-md-9" style="margin: 5px 0 0 0">
+            <form class="aui col-md-9 col-sm-9 col-xs-6" style="margin: 5px 0 0 0">
                 <table class="aui aui-table-sortable" id="currentVariablesSortable">
                     <thead>
                     <tr>
