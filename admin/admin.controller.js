@@ -24,7 +24,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
         document.getElementById("loading").style.display = "block";
         document.getElementById("loading").style.animation = "loadingappear 0.2s forwards";
         var element = document.getElementById("busycontent");
-        element.innerHTML = "<h2>" + message + "</h2>";
+        element.innerHTML = "<h3>" + message + "</h3>";
     }
     $rootScope.HideBusyContainer = function () {
         document.getElementById("loading").style.animation = "loadingdisappear 0.2s backwards";
@@ -110,7 +110,6 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
                 'securityToken': 'ignore'
             }
         }).then(function OnSuccess(response) {
-            debugger
             if (response.data.Status == true) {
                 //var obj = JSON.parse(response.data.Message);
                 $scope.pagestatus = "alreadyinuse";
@@ -126,14 +125,12 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
     }
 
     $scope.checkIfUserAlreadyExists = function(){
-        debugger
         var URL = $v6urls.smoothflowIP + "/auth/users/"+$scope.SessionDetails.email;
         $http.get(URL, {
             headers: {
                 'securityToken': 'ignore'
             }
         }).then(function OnSuccess(response) {
-            debugger
             if (response.data.Status) {
                 $scope.pagestatus = "alreadyinuse";
             } else {
@@ -162,7 +159,6 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
-            debugger
             if (response.data.response == "success") {
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');

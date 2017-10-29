@@ -469,6 +469,8 @@ button.button-primary{
 .template-left{
     display: inline-block;
     float: left;
+    width: 55px;
+    height: 70px;
 }
 .template-right{
     display: inline-block;
@@ -1469,6 +1471,7 @@ button.button-primary{
 /*---Lakmini 02_Oct_2017 ---*/
 .postdiv{
     background: #70ce60;
+    border-right: solid 1px #0c9611;
     font-size: 17px;
     /* text-shadow: 0 1px 0 rgba(0,0,0,.1); */
     /* font-family: Titillium Web,sans-serif; */
@@ -1483,7 +1486,8 @@ button.button-primary{
     height: 100%;
 }
 .getdiv{
-    background: #61affe;;
+    background: #61affe;
+    border-right: solid 1px #0872a2;
     font-size: 17px;
     /* text-shadow: 0 1px 0 rgba(0,0,0,.1); */
     /* font-family: Titillium Web,sans-serif; */

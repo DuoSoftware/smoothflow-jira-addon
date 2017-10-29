@@ -1,3 +1,11 @@
+body{
+    background-image: url(../core/images/cover6.png);
+    background-color: #3572b0;
+    background-position-y: -140px;
+    background-position-x: -120px;
+    background-repeat-y: no-repeat;
+    color: #ffffff;
+}
 #loading {
     /* display: flex; */
     opacity: 1;
@@ -7,4 +15,93 @@
     background-color: rgba(0, 0, 0, 0.25);
     z-index: 1000;
     animation: loadingappear 0.5s forwards;
+}
+section.content{
+    display: block;
+    text-align: center;
+    height: 400px;
+    max-width: 800px;
+    margin: auto;
+}
+section.content>h2{
+    color: #dcfbff;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+}
+.user-details-wrap{
+    width: 70%;
+    margin:30px auto;
+}
+.user-details-wrap>div img{
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    border: solid 2px #fff;
+}
+.user-image{
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+.user-details{
+    display: inline-block;
+    width: 70%;
+    text-align: left;
+    color: #ffffff;
+}
+.user-details>div{
+    margin-bottom: 3px;
+}
+.user-details>div.pass{
+    display: block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-top: 10px;
+    background-color: rgb(47, 101, 156);
+    /*background-color: rgba(238, 238, 238, 0.15);*/
+}
+.user-details>div.pass>span:first-child{
+    padding:0;
+}
+.user-details>div.pass p{
+    font-size: 12px;
+    margin-top: 20px;
+}
+.user-details>div.pass .passwordcopy{
+    display: inline-block;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #ffffff;
+}
+.user-details>div.pass .passwordcopybtn{
+    margin-left: 10px;
+    border: none;
+    background: transparent;
+    color: #4febff;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 12px;
+}
+.user-details>div.pass .passwordcopybtn:hover{
+    background: #3572b0;
+}
+.user-details>div>span:first-child{
+    width: 80px;
+    display: inline-block;
+    padding-left: 10px;
+}
+.user-details>div>span:last-child{
+    font-weight: 500;
+}
+.user-details .connectbtn{
+    margin-top: 20px;
+    /*text-align: center;*/
+}
+.user-details .connectbtn button{
+    background: #4c9ef1!important;
+    line-height: 0!important;
+    padding: 15px 25px!important;
 }

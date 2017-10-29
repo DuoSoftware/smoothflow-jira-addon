@@ -2,31 +2,41 @@
 <html lang="en" ng-app="landingJira">
 
 <head>
-    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">
+    <!--<link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">-->
+    <link rel="stylesheet" href="../aui/css/aui-extended-sf.css">
+    <link rel="stylesheet" href="../aui/css/aui-experimental.css">
+    <link rel="stylesheet" href="../core/styles/style.css">
 </head>
 
-<body>
-
-    <div ng-controller="landingController" class="ac-content aui-page-focused aui-page-size-large">
-        <div class="aui-page-panel">
-            <div class="aui-page-panel-inner">
-                <section class="aui-page-panel-content">
-                    <center>
-                        <img width="150px" src="maintenance.png" />
-                        <h2>Smoothflow.io for JIRA</h2>
-                        <p>Addon offline for maintainance..</p>
-                        <br>
-                        <button ng-click="clickMe()">Click me!</button>
-                        <button ng-click="listProjects()">List Projects</button>
-                        <h3>JIRA Projects</h3>
-                        <ul>
-                            <li ng-repeat="project in projects">{{project.key}} - {{project.name}}</li>
-                        </ul>
-                    </center>
-                </section>
-            </div>
+<body style="overflow: hidden">
+    <div class="clearfix landing-container">
+        <div class="landing-content">
+            <h4>SmoothFlow in JIRA</h4>
+            <img src="../core/images/smoothflow-landing-workflow.jpg" />
+            <div>See if you have any projects created</div>
+            <button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="listProjects()">My Projects</button>
         </div>
     </div>
+    <!--<div ng-controller="landingController" class="ac-content aui-page-focused aui-page-size-large">-->
+        <!--<div class="aui-page-panel">-->
+            <!--<div class="aui-page-panel-inner">-->
+                <!--<section class="aui-page-panel-content">-->
+                    <!--<center>-->
+                        <!--<img width="150px" src="maintenance.png" />-->
+                        <!--<h2>Smoothflow.io for JIRA</h2>-->
+                        <!--<p>Addon offline for maintainance..</p>-->
+                        <!--<br>-->
+                        <!--<button ng-click="clickMe()">Click me!</button>-->
+                        <!--<button ng-click="listProjects()">List Projects</button>-->
+                        <!--<h3>JIRA Projects</h3>-->
+                        <!--<ul>-->
+                            <!--<li ng-repeat="project in projects">{{project.key}} - {{project.name}}</li>-->
+                        <!--</ul>-->
+                    <!--</center>-->
+                <!--</section>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <script id="connect-loader" data-options="sizeToParent:true;hideFooter:true;">
         (function () {
@@ -49,18 +59,11 @@
             document.getElementsByTagName("head")[0].appendChild(script);
         })();
     </script>
-
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-
-
-
     <script type="text/javascript" src="landingapp.js"></script>
     <script type="text/javascript" src="landing.controller.js"></script>
     <script type="text/javascript" src="../../../js/uimicrokernel.js"></script>
-
-
-
 </body>
 
 </html>

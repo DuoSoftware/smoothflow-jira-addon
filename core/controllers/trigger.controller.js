@@ -151,11 +151,13 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 		}else{
 			$scope.selectedItemState = ' removed!';
 		}
+		var timer;
+		$timeout.cancel(timer);
 		angular.element('.selector-notif').animate({
 			opacity: 1,
 			right: 50
 		}, function () {
-			$timeout(function () {
+			timer = $timeout(function () {
 				// $scope.itemSelected = false;
 				angular.element('.selector-notif').animate({
 					opacity: 0,
