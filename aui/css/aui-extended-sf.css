@@ -3646,7 +3646,7 @@ form.aui .date-select {
     clear: both;
     padding: 4px 0 4px 145px;
     position: relative;
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     width: 100%;
 }
 form.aui .group {
