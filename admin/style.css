@@ -1,10 +1,11 @@
 body{
     background-image: url(../core/images/cover6.png);
-    background-color: #3572b0;
+    /*background-color: #3572b0;*/
+    background-color: #fff;
     background-position-y: -140px;
     background-position-x: -120px;
     background-repeat-y: no-repeat;
-    color: #ffffff;
+    /*color: #ffffff;*/
 }
 #loading {
     /* display: flex; */
@@ -24,7 +25,8 @@ section.content{
     margin: auto;
 }
 section.content>h2{
-    color: #dcfbff;
+    /*color: #dcfbff;*/
+    color: #3572b0;
     font-weight: 500;
     margin: 0 0 20px 0;
 }
@@ -46,7 +48,8 @@ section.content>h2{
     display: inline-block;
     width: 70%;
     text-align: left;
-    color: #ffffff;
+    /*color: #ffffff;*/
+    color: #000;
 }
 .user-details>div{
     margin-bottom: 3px;
@@ -56,7 +59,8 @@ section.content>h2{
     padding: 5px 10px;
     border-radius: 3px;
     margin-top: 10px;
-    background-color: rgb(47, 101, 156);
+    /*background-color: rgb(47, 101, 156);*/
+    background-color: #f5f5f5;
     /*background-color: rgba(238, 238, 238, 0.15);*/
 }
 .user-details>div.pass>span:first-child{
@@ -77,7 +81,8 @@ section.content>h2{
     margin-left: 10px;
     border: none;
     background: transparent;
-    color: #4febff;
+    /*color: #4febff;*/
+    color: #4c9ef1;
     font-weight: bold;
     padding: 3px 8px;
     border-radius: 10px;

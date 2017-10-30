@@ -1703,27 +1703,135 @@ button.button-primary{
 
 /*Landing content*/
 .landing-container .landing-content{
-    width: 350px;
+    /*width: 350px;*/
     text-align: center;
     height: 450px;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    margin: 4% auto;
+    /*margin: 4% auto;*/
 }
 .landing-container .landing-content h4{
     color: #34495e;
     font-size: 30px;
+    margin: 0;
 }
-.landing-container .landing-content img{
-    width: 250px;
-    margin: 70px 0;
+.landing-container .landing-content>img{
+    /*width: 250px;*/
+    /*margin: 70px 0;*/
+    width: 120px;
+    margin: 20px 0;
 }
 .landing-container .landing-content>div{
     color: #999;
+    margin-bottom: 20px;
+}
+.steps-container {
+
+}
+.steps-container .steps-row {
+    width: 100%;
+    overflow: auto;
+    padding-top: 10px;
+    background: #f5f5f5;
+}
+.steps-container .steps-row .step-control {
+    width: 20%;
+    overflow: auto;
+    display: inline-block;
+    text-align: center;
+}
+.steps-container .steps-row .step-control>div{
+    font-size: 12px;
+    margin-top: 5px;
+}
+.steps-container .steps-row .step-control span{
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    border-radius: 50%;
+    border: solid 2px #aaa;
+    line-height: 22px;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    -ms-transition: background 0.3s;
+    -o-transition: background 0.3s;
+    transition: background 0.3s;
+}
+.steps-container .steps-row .step-control span.active, .steps-container .steps-row .step-control span:hover{
+    border: solid 2px #00c3bb;
+    background: #00c3bb;
+    color: #fff;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    -ms-transition: background 0.3s;
+    -o-transition: background 0.3s;
+    transition: background 0.3s;
+}
+.steps-container .step-body{
+    padding: 0 100px;
+    overflow: auto;
+    margin-top: 40px;
+}
+.steps-container .step-body .breaker{
+    margin-bottom: 50px!important;
+}
+.steps-container .step-body>div>div{
+    color: #555555;
+    text-align: center;
     margin-bottom: 10px;
 }
+.steps-container .step-body>div img{
+    height: 300px;
+    margin-bottom: 10px;
+}
+.steps-container .step-body>div.sm-img img{
+    height: 40px;
+    margin-bottom: 20px;
+}
+.steps-container .guide-list{
+    text-align: left;
+    color: #000;
+    width: 50%;
+    float: left;
+}
+.steps-container .guide-list ol{
+    padding:0;
+}
+.steps-container .guide-list ol li{
+    margin: 0;
+    line-height: 30px;
+}
+.steps-container .guide-image{
+    width: 50%;
+    float: left;
+}
+.steps-container .guide-image img{
+    width: auto;
+    height: 250px;
+    margin:0;
+    float: left;
+    /*box-shadow: 0 0 5px #eee;*/
+    border: solid 2px #eee;
+}
+.steps-container .guide-image>div img{
+    width: 60%;
+    height: auto!important;
+    float: none;
+}
+.steps-container .guide-image>div {
+    text-align: left;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.steps-container .guide-image img:not(:last-child){
+    margin-right: 10px;
+}
+
+/*Landing content - END */
 
 /*Check-block*/
 .check-block{

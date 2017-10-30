@@ -1,4 +1,4 @@
-landingapp.controller('landingController', ['$scope', '$rootScope', '$http', '$helpers', function ($scope, $rootScope, $http, $helpers) {
+landingapp.controller('LandingController', ['$scope', '$rootScope', '$http', '$helpers', function ($scope, $rootScope, $http, $helpers) {
 
     console.log("Hello Landing");
     $scope.projects = [];
@@ -76,7 +76,6 @@ landingapp.controller('landingController', ['$scope', '$rootScope', '$http', '$h
     }
 
     angular.element(document).ready(function () {
-        debugger
         $scope.listProjects();
     });
 
