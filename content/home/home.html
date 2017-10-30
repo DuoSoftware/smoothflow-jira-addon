@@ -11,6 +11,37 @@
     <!--&lt;!&ndash; / NEW RULES INJECTION&ndash;&gt;-->
     <!--</div>-->
 
+    <div class="home-templates-section">
+        <div class="aui-page-header-inner" style="position: absolute;right: 5px;top: 5px;">
+            <div class="aui-page-header-actions">
+                <div>
+                    <!--<button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="newRule()">+ New rule</button>-->
+                </div>
+            </div>
+        </div>
+        <div class="home-templates-wrap">
+            <div class="new-rule-section">
+                <div class="template new-rule" id="dialog-show-button" ng-click="newRule(null, false)">
+                    <div>+</div>
+                    <span>New Rule</span>
+                </div>
+            </div>
+            <div class="template" ng-repeat="t in templates" ng-click="newRule(t, true)">
+                <div>
+                    <img src="core/images/template-01.svg" alt="">
+                </div>
+                <span>{{t.DisplayName}}</span>
+            </div>
+        </div>
+        <!--NEW RULES INJECTION-->
+        <div ng-include="'content/home/partials/new-rule-aui.html'"></div>
+        <!-- / NEW RULES INJECTION-->
+        <!--<script>-->
+			<!--AJS.$("#dialog-show-button").click(function () {-->
+				<!--AJS.dialog2("#new-rule-dialog").show();-->
+			<!--});-->
+        <!--</script>-->
+    </div>
     <div class="aui-navgroup-horizontal">
         <header class="aui-page-header">
             <div class="aui-page-header-inner">
@@ -22,20 +53,10 @@
                         <button class="aui-button" ng-click="refresh()">
                             <span class="aui-icon aui-icon-small aui-iconfont-build">Refresh</span>
                         </button>
-                        <button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="newRule()">+ New rule</button>
                     </div>
                 </div>
             </div>
         </header>
-        <script>
-            AJS.$("#dialog-show-button").click(function () {
-                AJS.dialog2("#new-rule-dialog").show();
-            });
-        </script>
-        <!--NEW RULES INJECTION-->
-        <!--<div ng-include="'content/home/partials/new-rule.html'"></div>-->
-        <div ng-include="'content/home/partials/new-rule-aui.html'"></div>
-        <!-- / NEW RULES INJECTION-->
     </div>
 
     <!--CREATED RULES INJECTION-->

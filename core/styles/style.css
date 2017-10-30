@@ -2092,4 +2092,83 @@ button.button-primary{
     font-size: 20px;
     color: #777;
 }
+
+/*Templates*/
+.home-templates-section{
+    height: 180px;
+    background: #3572b0;
+    padding: 15px!important;
+    position: relative;
+}
+.home-templates-section .home-templates-wrap{
+    overflow: auto;
+    text-align: center;
+    padding: 0 0 0 150px;
+}
+.home-templates-section .home-templates-wrap .template{
+    width: 100px;
+    height: 130px;
+    background: #3d6288;
+    float: left;
+    margin: 10px;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -ms-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    transition: background 0.5s;
+}
+.home-templates-section .home-templates-wrap .template.new-rule>div{
+    font-size: 55px;padding: 0;color: #ffffff
+}
+.home-templates-section .home-templates-wrap .template.new-rule>span{
+    color: #ffffff;
+    font-size: 14px;
+}
+.home-templates-section .home-templates-wrap .template:hover{
+    background: #fff;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -ms-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    transition: background 0.5s;
+}
+.home-templates-section .home-templates-wrap .template:hover>span, .home-templates-section .home-templates-wrap .template:hover>div{
+    color: #000000;
+}
+.home-templates-section .home-templates-wrap .template>span{
+    display: block;
+    /* height: 15%; */
+    padding: 3px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*border-top: solid 1px #bbb;*/
+    line-height: 15px;
+    max-height: 37px;
+    height: 37px;
+    /*background: #ffffff;*/
+    color: #eeeeee;
+    font-size: 12px;
+}
+.home-templates-section .home-templates-wrap .template>div{
+    padding: 20px 0;
+}
+.home-templates-section .home-templates-wrap .template>div img{
+    width: 40px;
+}
+.home-templates-section .home-templates-wrap .new-rule-section{
+    position: absolute;
+    height: 100%;
+    width: 150px;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    background: #4a8dd0;
+}
+/*Templates - END */
+
 /*Usage - END*/

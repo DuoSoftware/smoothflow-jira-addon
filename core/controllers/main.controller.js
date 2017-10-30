@@ -1236,7 +1236,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.getTemplateData();
 
     // New rule
-    $scope.newRule = function () {
+    $scope.newRule = function (template, isFromTemp) {
+    	$rootScope.isFromTemplate = isFromTemp;
+    	$rootScope.selectedTemplate = template;
         $scope.isNewRuleFormValid = false;
         $scope.selectedRule = {};
         $scope.selectedRule.id = dataHandler.createuuid();
@@ -1247,8 +1249,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.status = "Unsaved";
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
+		AJS.dialog2("#new-rule-dialog").show();
         // $state.go('rule.new');
     };
+
+    //Close rule dialog
+	$scope.closeDialog = function (dialog) {
+		AJS.dialog2('#'+dialog).hide();
+	};
 
     //Clear rule
     $scope.clearRule = function () {
@@ -1655,12 +1663,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.openTemplateFlow(component.Name, e);
             $scope.isNewRuleFormValid = false;
         }
-        var backdrop = document.getElementsByClassName('modal-backdrop')[0];
-        if (backdrop != undefined) {
-            backdrop.remove();
-            document.getElementById('newRule').modal('hide');
-        }
-        e.preventDefault();
+        // var backdrop = document.getElementsByClassName('modal-backdrop')[0];
+        // if (backdrop != undefined) {
+        //     backdrop.remove();
+        //     document.getElementById('newRule').modal('hide');
+        // }
+        // e.preventDefault();
         AJS.dialog2("#new-rule-dialog").hide();
         //$state.go('rule.new');
     };
