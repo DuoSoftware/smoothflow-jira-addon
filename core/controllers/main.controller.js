@@ -98,6 +98,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.activeCompGroup = group;
         $scope.isGroupOpen = !$scope.isGroupOpen;
     };
+    $scope.toggleInnerCompGroup = function (group) {
+        $scope.activeInnerCompGroup = group;
+        $scope.isInnerGroupOpen = !$scope.isInnerGroupOpen;
+    };
     $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);

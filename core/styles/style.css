@@ -532,6 +532,15 @@ button.button-primary{
 #components-wrap .comp-panel-collapse{
     display: none;
 }
+#components-wrap .comp-panel-collapse .inner-comp-panel{
+    padding-left: 10px;
+}
+#components-wrap .comp-panel-collapse .inner-header.comp-toggle-header>span:first-child{
+    font-size: 14px;
+    color: #aaaaaa;
+    vertical-align: middle;
+}
+
 #components-wrap .menu-name{
     display: inline-block;
     color: #4d6f8e;
@@ -1440,7 +1449,7 @@ button.button-primary{
 }
 .comp-toggle-header>span:first-child{
     font-size: 14px;
-    color: #aaaaaa;
+    color: #555;
     vertical-align: middle;
 }
 .comp-toggle-header h4{
