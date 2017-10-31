@@ -622,6 +622,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 			}
 		}
 	}
+	setSectionHeight();
 
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
