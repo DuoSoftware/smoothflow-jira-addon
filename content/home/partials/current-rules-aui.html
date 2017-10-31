@@ -3,9 +3,10 @@
         <thead>
             <tr>
                 <th class="aui-table-column-issue-key" id="name">Rule Name</th>
-                <th id="description">Execution count</th>
+                <th id="description">Description</th>
                 <th id="createddate">Last Updated</th>
                 <th id="createdby">Created By</th>
+                <th id="executions">Execution count</th>
                 <th id="status">Status</th>
                 <!--<th class="aui-table-column-issue-key">Issue key</th>-->
                 <!--<th>Name</th>-->
@@ -22,6 +23,7 @@
                 <td headers="description" style="width: 250px;" ng-if="rule.description.length <= 25">{{rule.description}}</td>
                 <td headers="description" style="width: 250px;" ng-if="rule.description.length > 25">{{rule.description | limitTo:23}} ...</td>
                 <!--Description UI-->
+
 
                 <!-- <td headers="project" class="avatar-text">
             <span class="aui-avatar aui-avatar-xsmall">
@@ -41,6 +43,7 @@
                     <span class="avatar-text">{{rule.createdBy}}</span>
                     <!--<img src="core/images/useravatar.png" alt="" class="micro-img img-circle">{{rule.createdBy}}-->
                 </td>
+                <td headers="executions">{{rule.executions}}</td>
                 <td class="list-state" headers="action">
                     <!--<span ng-if="rule.status == '...'" class="glyphicon glyphicon-refresh glyphicon-spin"></span>-->
                     <!--<span ng-if="rule.status == 'Published'" class="glyphicon glyphicon-floppy-saved ico-published"></span>-->

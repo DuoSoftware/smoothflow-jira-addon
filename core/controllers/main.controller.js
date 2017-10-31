@@ -665,6 +665,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         createdBy: rule.AuthorDetails.Name.replace("+", " "),
                         avatar: rule.AuthorDetails.Avatar,
                         status: '...',
+						executions: 0,
                         switchState: 'on',
                         workflow: [],
                         Variables: []
@@ -2308,7 +2309,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         for (var i = 0; i < $scope.currentRules.length; i++) {
             for (var j = 0; j < $scope.NGINXData.length; j++) {
                 if ($scope.currentRules[i].name == $scope.NGINXData[j].zone) {
-                    $scope.currentRules[i].status = "Published"
+                    $scope.currentRules[i].status = "Published";
+                    $scope.currentRules[i].executions += $scope.NGINXData[j].values.requests;
                     $scope.TotalRequestsProcessed += $scope.NGINXData[j].values.requests;
                     $scope.TotalBandwithReceived += $scope.NGINXData[j].values.received;
                     $scope.TotalBandwithSent += $scope.NGINXData[j].values.sent;

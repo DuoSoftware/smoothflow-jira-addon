@@ -13,9 +13,6 @@ body{
 #main-view{
     height: 92%;
 }
-#content{
-    height: 100%;
-}
 .row{
     margin:0!important;
 }
