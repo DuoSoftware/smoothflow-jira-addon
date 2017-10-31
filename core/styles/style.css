@@ -7,6 +7,15 @@ body{
 .pos-rel{
     position: relative;
 }
+.aui-iconfont-error {
+    width: 90px!important;
+    height: 90px!important;
+}
+.aui-iconfont-error:before{
+    font-size: 90px!important;
+    color: #f16e2257!important;
+    line-height: 0!important;
+}
 /*h1,h2,h3,h4,h5{*/
 /*margin:0!important;*/
 /*}*/

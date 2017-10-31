@@ -136,10 +136,13 @@
             </ul>
         </div>
     </div>
-    <div ng-if="selectedRule.status != 'Published'" style="margin-top: 100px;">
+    <div ng-if="selectedRule.status != 'Published'">
         <div class="text-center">
-            <h1>This rule is not yet published!</h1>
-            <h3>Please publish this rule to see the usage statistics.</h3>
+            <span class="aui-icon aui-icon-small aui-iconfont-error"></span>
+            <h3>This rule is not yet published!</h3>
+        </div>
+        <div class="text-center">
+            <h5>Please publish this rule to see the usage statistics.</h5>
         </div>
     </div>
 </div>
