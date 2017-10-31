@@ -441,7 +441,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.pendingComponentType = "";
     $scope.currentRuleID = "";
     $scope.Variable = {};
-    $scope.listState = "";
+    $scope.listState = "home";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
 	$scope.callFromSwitch = false;
@@ -456,6 +456,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     var collapsiblePanels = [];
     var compSearch = [];
+    var mainContent = null;
     var workflowHeight = null;
     var workflowWidth = null;
     var workflowUI = null;
@@ -577,6 +578,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.$watch(function () {
 		workflowHeight = (window.innerHeight) - 111;
         workflowUI = document.getElementById('workflow-ui');
+        mainContent = document.getElementById('content');
 		propertiesElem = document.getElementById('property-wrap');
 		workflowElem = document.getElementById('workflow-wrap');
 		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
@@ -608,7 +610,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
         if (workflowElem != undefined && workflowHeight != null)
             workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
-    });
+		if (mainContent != null && $scope.listState == 'home')
+			mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) +"px");
+		else
+			mainContent.removeAttribute("style");
+
+	});
 
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
