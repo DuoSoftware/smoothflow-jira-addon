@@ -616,15 +616,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		mainContent = document.getElementById('content');
 		if (mainContent != null && mainContent != undefined){
 			if($scope.listState == 'home'){
-				mainContent.setAttribute("style", "overflow-y:scroll;height:" + (document.body.scrollHeight - 50) +"px");
+				mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) +"px");
 			}else{
 				mainContent.removeAttribute("style");
-				$scope.$apply();
 			}
 		}
 	}
 	$(document).ready(function () {
-		setSectionHeight();
+		$timeout(function(){
+			setSectionHeight();
+		}, 2000);
 	});
 
     $scope.setInitialCollapse = function (index) {
