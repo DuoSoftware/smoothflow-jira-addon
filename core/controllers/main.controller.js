@@ -1400,6 +1400,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Open component info
     $scope.openComponentInfo = function (component) {
+		$scope.tab = false;
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
