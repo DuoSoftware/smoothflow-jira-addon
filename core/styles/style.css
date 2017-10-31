@@ -13,7 +13,7 @@ body{
 }
 .aui-iconfont-error:before{
     font-size: 90px!important;
-    color: #f16e2257!important;
+    color: rgba(241, 110, 34, 0.3)!important;
     line-height: 0!important;
 }
 /*h1,h2,h3,h4,h5{*/
