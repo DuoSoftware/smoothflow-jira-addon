@@ -92,7 +92,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     AJS.$(".category-icon").tooltip();
 	AJS.$('.button-spinner').spin();
 	AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
-    /*** JIRA component extraction - END*/
+	AJS.$(".template").tooltip();
+	/*** JIRA component extraction - END*/
 
     $scope.toggleCompGroup = function (group) {
         $scope.activeCompGroup = group;
@@ -615,7 +616,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		mainContent = document.getElementById('content');
 		if (mainContent != null && mainContent != undefined){
 			if($scope.listState == 'home'){
-				mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) +"px");
+				mainContent.setAttribute("style", "overflow-y:scroll;height:" + (document.body.scrollHeight - 50) +"px");
 			}else{
 				mainContent.removeAttribute("style");
 				$scope.$apply();

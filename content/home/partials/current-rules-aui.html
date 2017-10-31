@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th class="aui-table-column-issue-key" id="name">Rule Name</th>
-                <th id="description">Description</th>
+                <th id="description">Execution count</th>
                 <th id="createddate">Last Updated</th>
                 <th id="createdby">Created By</th>
                 <th id="status">Status</th>
@@ -16,9 +16,13 @@
         <tbody>
             <tr class="clikbl-list-item" ng-repeat="rule in currentRules" ng-click="openSelectedRule(rule, true)">
                 <td headers="name">{{rule.ruleName}}</td>
+
+                <!--Description UI-->
                 <td headers="description" style="width: 250px;" ng-if="rule.description == '' || rule.description == null || rule.description == undefined">-</td>
                 <td headers="description" style="width: 250px;" ng-if="rule.description.length <= 25">{{rule.description}}</td>
                 <td headers="description" style="width: 250px;" ng-if="rule.description.length > 25">{{rule.description | limitTo:23}} ...</td>
+                <!--Description UI-->
+
                 <!-- <td headers="project" class="avatar-text">
             <span class="aui-avatar aui-avatar-xsmall">
                 <span class="aui-avatar-inner">

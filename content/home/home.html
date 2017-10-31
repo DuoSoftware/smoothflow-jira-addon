@@ -23,10 +23,10 @@
             <div class="new-rule-section">
                 <div class="template new-rule" id="dialog-show-button" ng-click="newRule(null, false)">
                     <div>+</div>
-                    <span>New Rule</span>
+                    <span>New Automation</span>
                 </div>
             </div>
-            <div class="template" ng-repeat="t in templates" ng-click="newRule(t, true)">
+            <div class="template" title="Create {{t.DisplayName}} automation" ng-repeat="t in templates" ng-click="newRule(t, true)">
                 <div>
                     <img src="core/images/template-01.svg" alt="">
                 </div>
@@ -40,13 +40,14 @@
 			<!--AJS.$("#dialog-show-button").click(function () {-->
 				<!--AJS.dialog2("#new-rule-dialog").show();-->
 			<!--});-->
+            <!--AJS.$(".template").tooltip();-->
         <!--</script>-->
     </div>
     <div class="aui-navgroup-horizontal">
         <header class="aui-page-header">
             <div class="aui-page-header-inner">
                 <div class="aui-page-header-main">
-                    <h4>My rules</h4>
+                    <h4>Automations</h4>
                 </div>
                 <div class="aui-page-header-actions">
                     <div>
