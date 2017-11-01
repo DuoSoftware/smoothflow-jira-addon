@@ -626,16 +626,16 @@ button.button-primary{
 #workflow-ui{
     overflow: auto;
 }
-#workflow-ui::-webkit-scrollbar {
-    width: 10px;
-    background-color: #fafafa;
-}
-#workflow-ui::-webkit-scrollbar-track {
-    display: none;
-}
-#workflow-ui::-webkit-scrollbar-thumb {
-    background-color: #777;
-}
+/*#workflow-ui::-webkit-scrollbar {*/
+    /*width: 10px;*/
+    /*background-color: #fafafa;*/
+/*}*/
+/*#workflow-ui::-webkit-scrollbar-track {*/
+    /*display: none;*/
+/*}*/
+/*#workflow-ui::-webkit-scrollbar-thumb {*/
+    /*background-color: #777;*/
+/*}*/
 #workflow-ui .container .aui-page-header .aui-page-header-inner{
     min-height: 35px;
 }
