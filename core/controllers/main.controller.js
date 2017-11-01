@@ -11,7 +11,8 @@ app.controller('MainController', [
 	'TriggerDatafactory',
 	'$v6urls',
 	'$helpers',
-	'$location', mainController])
+	'$location',
+	'$window', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -78,7 +79,7 @@ app.controller('MainController', [
 		}
 	});
 
-function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location) {
+function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window) {
 
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
@@ -610,6 +611,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
         if (workflowElem != undefined && workflowHeight != null)
             workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+	});
+
+	angular.element($window).bind('resize', function(){
+		if(workflowComponentss != undefined){
+			workflowComponentss.css('margin-right',$('.properties-pane').width()+'px');
+		}
+		if (workflowElem != undefined && workflowHeight != null)
+			workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
 	});
 
     function setSectionHeight() {
