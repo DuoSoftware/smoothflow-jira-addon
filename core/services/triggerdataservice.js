@@ -201,7 +201,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                                 return (proj.key == selectedProject.key);
                             });
                             if (proj.length > 0) {
-                                debugger
+                                // debugger
                                 if (selectedProject.check) {
 
                                 } else {

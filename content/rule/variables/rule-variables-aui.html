@@ -1,5 +1,6 @@
 <div class="container">
-    <header class="aui-page-header p-15">
+
+    <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
                 <h4>{{selectedRule.ruleName}} fields</h4>
@@ -11,81 +12,107 @@
             </div>
         </div>
     </header>
-    <form class="aui">
-        <table class="aui aui-table-sortable" id="currentRulesSortable">
-        <thead>
-            <tr>
-                <th id="key">Field Name</th>
-                <th id="value">Field Data</th>
-                <th id="category">Category</th>
-                <th id="datatype">Data Type</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr ng-if="allVariables.length == 0" class="empty-list-msg" style="border: none;">
-            <td colspan="4" class="text-center" style="text-align: center;color: #aaaaaa;">There are no variables available in this Rule.</td>
-        </tr>
-        <tr ng-repeat="flowVariable in allVariables" class="tr-input">
-            <td>
-                <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.Key}}</span>
-                <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
-                    <span class="value">
-                        <input class="text long-field" type="text"
-                               id="varkey" name="key" ng-model="selectedVaribleToEdit.Key">
-                    </span>
-                </div>
-            </td>
-            <td>
-                <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.Value}}</span>
-                <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
-                    <span class="value">
-                        <input class="text long-field" type="text"
-                               id="varvalue" name="value" ng-model="selectedVaribleToEdit.Key">
-                    </span>
-                </div>
-            </td>
-            <td>
-                <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.Category}}</span>
-                <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
-                    <span class="value">
-                        <select class="select" name="projects" ng-model="selectedVaribleToEdit.Category">
-                             <option value="Custom">Custom</option>
-                            <option value="InArgument">InArgument</option>
-                            <option value="OutArgument">OutArgument</option>
-                        </select>
-                    </span>
-                </div>
-            </td>
-            <td>
-                <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.DataType}}</span>
-                <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
-                    <span class="value">
-                        <select class="select" name="projects" ng-model="selectedVaribleToEdit.DataType">
-                            <option value="string">string</option>
-                            <option value="int">int</option>
-                            <option value="float">float</option>
-                            <option value="boolean">boolean</option>
-                        </select>
-                    </span>
-                </div>
-            </td>
-            <td width="10">
-                <button ng-if="variableEditOn != 'SelectedVarible'+$index" aria-controls="compact-button-dropdown" class="aui-button aui-button-compact aui-button-subtle aui-dropdown2-trigger-arrowless" resolved="" ng-click="editVariable(flowVariable, $index)">
-                    <span class="aui-icon aui-icon-small aui-iconfont-edit">Edit</span>
-                </button>
-                <button ng-if="variableEditOn == 'SelectedVarible'+$index" aria-controls="compact-button-dropdown" class="aui-button aui-button-compact aui-button-subtle aui-dropdown2-trigger-arrowless" resolved="" ng-click="saveVariable(selectedVaribleToEdit, $index)">
-                    <span class="aui-icon aui-icon-small aui-iconfont-success">Done</span>
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    </form>
+
+    <div class="clearfix">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <!--<ul class="unstyled">-->
+                <!--<li class="mb-20 mt-0 check-block" ng-repeat="var in AdditionalVariable">-->
+                <!--<input class="styled-checkbox"-->
+                <!--type="checkbox"-->
+                <!--name="{{var.Key}}"-->
+                <!--id="{{var.Key}}"-->
+                <!--ng-click="addtoMainList(var,$event)">-->
+                <!--<label for="{{var.Key}}">{{var.Key}}</label>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <h5 class="content-sub-heading">Pre-defined variables</h5>
+                <span ng-repeat="var in AdditionalVariable" class="check-block" ng-click="addtoMainList(var,$event)" ng-class="{'selected':var.isSelected}">
+                    <span>{{var.Key}}</span> <span class="aui-icon aui-icon-small aui-iconfont-success" ng-if="var.isSelected">Active variable</span>
+                </span>
+            </div>
+            <form class="aui col-md-9 col-sm-9 col-xs-6" style="margin: 5px 0 0 0">
+                <table class="aui aui-table-sortable" id="currentVariablesSortable">
+                    <thead>
+                    <tr>
+                        <th id="key">Field Name</th>
+                        <th id="value">Field Data</th>
+                        <th id="category">Category</th>
+                        <th id="datatype">Data Type</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-if="allVariables.length == 0" class="empty-list-msg" style="border: none;">
+                        <td colspan="4" class="text-center" style="text-align: center;color: #aaaaaa;">There are no variables available in this Rule.</td>
+                    </tr>
+                    <tr ng-repeat="flowVariable in allVariables" class="tr-input action-input" ng-class="{'toggle-padding':variableEditOn == 'SelectedVarible'+$index}">
+                        <td>
+                            <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.Key}}</span>
+                            <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
+                            <span class="value">
+                                <input class="text long-field" type="text" id="varkey" name="key" ng-model="selectedVaribleToEdit.Key">
+                            </span>
+                            </div>
+                        </td>
+                        <td>
+                            <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.Value}}</span>
+                            <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
+                                <span class="value">
+                                    <input class="text long-field" type="text" id="varvalue" name="value" ng-model="selectedVaribleToEdit.Key">
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.Category}}</span>
+                            <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
+                                <span class="value">
+                                    <select class="select" name="projects" ng-model="selectedVaribleToEdit.Category">
+                                         <option value="Custom">Custom</option>
+                                        <option value="InArgument">InArgument</option>
+                                        <option value="OutArgument">OutArgument</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <span ng-if="variableEditOn != 'SelectedVarible'+$index">{{flowVariable.DataType}}</span>
+                            <div class="wrap field-group" ng-if="variableEditOn == 'SelectedVarible'+$index">
+                                <span class="value">
+                                    <select class="select" name="projects" ng-model="selectedVaribleToEdit.DataType">
+                                        <option value="string">string</option>
+                                        <option value="int">int</option>
+                                        <option value="float">float</option>
+                                        <option value="boolean">boolean</option>
+                                    </select>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <button ng-if="variableEditOn != 'SelectedVarible'+$index" aria-controls="compact-button-dropdown" class="aui-button aui-button-compact aui-button-subtle aui-dropdown2-trigger-arrowless"
+                                    resolved="" ng-click="editVariable(flowVariable, $index)">
+                                <span class="aui-icon aui-icon-small aui-iconfont-edit">Edit</span>
+                            </button>
+                            <button ng-if="variableEditOn == 'SelectedVarible'+$index" aria-controls="compact-button-dropdown" class="aui-button aui-button-compact aui-button-subtle aui-dropdown2-trigger-arrowless"
+                                    resolved="" ng-click="saveVariable(selectedVaribleToEdit, $index)">
+                                <span class="aui-icon aui-icon-small aui-iconfont-success">Done</span>
+                            </button>
+                            <button aria-controls="compact-button-dropdown" class="aui-button aui-button-compact aui-button-subtle aui-dropdown2-trigger-arrowless" ng-click="deleteVariable(flowVariable, $index)">
+                                <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
     <div ng-include="'content/rule/variables/rule-newvariable-aui.html'"></div>
+
     <script>
-//		AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
-		AJS.$("#newvariable-show-button").click(function() {
+		//        AJS.tablessortable.setTableSortable(AJS.$("#currentVariablesSortable"));
+		AJS.$("#newvariable-show-button").click(function () {
 			AJS.dialog2("#new-variable-dialog").show();
 		});
     </script>

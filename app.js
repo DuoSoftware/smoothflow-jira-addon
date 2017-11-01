@@ -1,7 +1,6 @@
 var app = angular.module('sfJira', [
     'ui.router',
     'ngTextcomplete',
-    'uiSwitch',
     'uiMicrokernel',
     'angular.filter',
     'angular-cron-generator'
@@ -13,6 +12,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
+        .state('landing', {
+            url: '/',
+            templateUrl: 'content/home/landing.html'
+        })
         .state('home', {
             url: '/home',
             templateUrl: 'content/home/home.html'
@@ -39,7 +42,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('rule.workflow', {
             url: '/rule-workflow',
-            templateUrl: 'content/rule/workflow/rule-workflow.html'
+            templateUrl: 'content/rule/workflow/rule-workflow.html',
         })
         .state('rule.triggers', {
             url: '/rule-triggers',

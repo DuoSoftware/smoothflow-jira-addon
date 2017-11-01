@@ -1,11 +1,12 @@
-<div class="container">
+<div class="container mt-20">
     <table class="aui aui-table-sortable" id="currentRulesSortable">
         <thead>
             <tr>
                 <th class="aui-table-column-issue-key" id="name">Rule Name</th>
-                <!--<th id="description">Description</th>-->
+                <th id="description">Description</th>
                 <th id="createddate">Last Updated</th>
                 <th id="createdby">Created By</th>
+                <th id="executions">Execution count</th>
                 <th id="status">Status</th>
                 <!--<th class="aui-table-column-issue-key">Issue key</th>-->
                 <!--<th>Name</th>-->
@@ -16,7 +17,14 @@
         <tbody>
             <tr class="clikbl-list-item" ng-repeat="rule in currentRules" ng-click="openSelectedRule(rule, true)">
                 <td headers="name">{{rule.ruleName}}</td>
-                <!--<td headers="description">{{rule.description}}</td>-->
+
+                <!--Description UI-->
+                <td headers="description" style="width: 250px;" ng-if="rule.description == '' || rule.description == null || rule.description == undefined">-</td>
+                <td headers="description" style="width: 250px;" ng-if="rule.description.length <= 25">{{rule.description}}</td>
+                <td headers="description" style="width: 250px;" ng-if="rule.description.length > 25">{{rule.description | limitTo:23}} ...</td>
+                <!--Description UI-->
+
+
                 <!-- <td headers="project" class="avatar-text">
             <span class="aui-avatar aui-avatar-xsmall">
                 <span class="aui-avatar-inner">
@@ -35,6 +43,7 @@
                     <span class="avatar-text">{{rule.createdBy}}</span>
                     <!--<img src="core/images/useravatar.png" alt="" class="micro-img img-circle">{{rule.createdBy}}-->
                 </td>
+                <td headers="executions">{{rule.executions}}</td>
                 <td class="list-state" headers="action">
                     <!--<span ng-if="rule.status == '...'" class="glyphicon glyphicon-refresh glyphicon-spin"></span>-->
                     <!--<span ng-if="rule.status == 'Published'" class="glyphicon glyphicon-floppy-saved ico-published"></span>-->

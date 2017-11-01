@@ -1,20 +1,20 @@
 <div class="clearfix fill-height">
     <div class="container p-20 pos-rel fill-height">
         <div class="col-md-12 col-sm-12 content-padding-no">
-            <div class="aui-page-header-inner" style="margin-bottom: 10px">
+            <div class="aui-page-header-inner">
                 <div class="aui-page-header-main">
-                    <p>Select a project and the set of triggers when this rule should be executed.</p>
+                    <p>Select the projects and the set of triggers when this rule should be executed.</p>
                 </div>
                 <div class="aui-toolbar2-secondary user-alerts">
                     <span class="aui-primary-color"><b>Important:</b> At least one project should be selected for triggers to work.</span>
                 </div>
             </div>
 
-            <div class="aui-group" id="triggersSection" ng-style="showTriggesrPanel ? {'width':'100%'} : {'width':'70%'}">
+            <div class="aui-group" id="triggersSection">
 
-                <div class="aui-item-container projects {{showTriggesrPanel ? 'width-50' : 'width-100'}}">
-                    <div class="shadowed-item">
-                        <h5 class="project-header">Projects</h5>
+                <div class="aui-item-container">
+                    <div class="shadowed-item mr">
+                        <h5 class="product-header">Projects</h5>
                         <form class="aui m-0">
                             <fieldset class="group">
                                 <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
@@ -23,7 +23,15 @@
 
 
                                 <div class="sf-padding select-item-body custom-scroll">
-                                    <ul class="unstyled project-list">
+                                    <ul class="unstyled">
+                                        <li class="mb-20 mt-0">
+                                            <input class="styled-checkbox"
+                                                   type="checkbox"
+                                                   name="selectAllProjects"
+                                                   id="selectAllProjects"
+                                                   ng-click="selectAllprojects($event)">
+                                            <label for="selectAllProjects" class="mainchild">Select All</label>
+                                        </li>
                                         <li ng-repeat="project in projectList | filter : projectsearch">
                                             <input class="styled-checkbox"
                                                    ng-click="addedProject(project)"
@@ -33,14 +41,13 @@
                                                    ng-model="project.check"
                                                    ng-checked="project.check">
                                             <label for="{{project.key}}">{{project.key}} - {{project.name}}</label>
-                                            <span class="aui-icon aui-icon-small aui-iconfont-edit-small edit-project-triggers-btn" ng-click="toggleTriggersPanel(true)"></span>
                                         </li>
                                     </ul>
                                     <!--<input type="checkbox" ng-click="selectAllprojects($event)"> <label>Select All</label>-->
                                     <!--<div class="checkbox" ng-repeat="project in projectList | filter : projectsearch">-->
-                                    <!--<input ng-click="addedProject(project)" class="checkbox" type="checkbox" name="{{project.key}}" id="{{project.key}}" ng-model="project.check"-->
-                                    <!--ng-checked="project.check">-->
-                                    <!--<label for="{{project.key}}">{{project.key}} - {{project.name}}</label>-->
+                                        <!--<input ng-click="addedProject(project)" class="checkbox" type="checkbox" name="{{project.key}}" id="{{project.key}}" ng-model="project.check"-->
+                                               <!--ng-checked="project.check">-->
+                                        <!--<label for="{{project.key}}">{{project.key}} - {{project.name}}</label>-->
                                     <!--</div>-->
                                 </div>
                             </fieldset>
@@ -48,8 +55,8 @@
                     </div>
                 </div>
 
-                <div class="aui-item-container triggers">
-                    <div class="shadowed-item">
+                <div class="aui-item-container">
+                    <div class="shadowed-item ml">
                         <h5 class="trigger-header">Triggers</h5>
                         <form class="aui">
                             <form class="aui">
@@ -86,7 +93,6 @@
                                 </fieldset>
                             </form>
                         </form>
-                        <button ng-click="toggleTriggersPanel(false)">Done</button>
                     </div>
                 </div>
 

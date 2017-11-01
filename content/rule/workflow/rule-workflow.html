@@ -1,9 +1,13 @@
-<div class="workflow-container">
+<!--<div class="workflow-preloader" ng-if="!workflowLoaded">-->
+    <!--<div class="button-spinner"></div>-->
+    <!--Loading workflow..-->
+<!--</div>-->
+<div class="workflow-container pos-rel">
     <div class="row">
         <div class="col-md-8 col-sm-11 col-xs-12 workflow-pane no-float">
             <div id="workflow-wrap" class="custom-scroll">
                 <div class="clearfix" id="workflow">
-                    <div ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'"></div>
+                    <div ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'" style="padding: 20px 10px 20px 20px;"></div>
                 </div>
             </div>
         </div>
@@ -13,3 +17,6 @@
         </div>
     </div>
 </div>
+<!--<script>-->
+	<!--AJS.$('.button-spinner').spin();-->
+<!--</script>-->

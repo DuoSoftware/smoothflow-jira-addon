@@ -13,38 +13,50 @@
             <div class="aui-page-panel-inner">
                 <section class="aui-page-panel-content">
                     <div class="button-spinner"></div>
-                    <h2 id="busycontent">Loading your information...</h2>
+                    <h3 id="busycontent">Loading your information...</h3>
                 </section>
             </div>
         </div>
     </div>
     <div class="ac-content aui-page-fixed">
-        <section>
-            <center>
-                <img width="100px" src="connection.png" />
-                <h2>Connect with Smoothflow.io</h2>
+        <div style="text-align: center">
+            <img src="../core/images/smooth_flow.png" alt="SmoothFlow">
+        </div>
+        <!--ng-if="pagestatus=='newuser'"-->
+        <section class="content" ng-if="pagestatus=='newuser'">
+            <!--<img width="100px" src="connection.png" />-->
+            <h2>Connect with Smoothflow.io</h2>
 
-                <div ng-if="pagestatus=='newuser'">
-                    <p>On this page you can connect to a Smoothflow Account.</p>
-                    <p>We will create an account on Smoothflow on behalf of you using the following information. The "password"
-                        field was auto generated. Please note it down to access your account on Smoothflow.io. You will also receive an email with the credentials.</p>
-                    <br>
-                    <img ng-src="{{SessionDetails.Avatar}}" style="width:40px;">
-                    <p><b>Name</b>: {{SessionDetails.name}}</p>
-                    <p><b>Tenant</b>: {{SessionDetails.Domain}}</p>
-                    <p><b>Email</b>: {{SessionDetails.email}}</p>
-                    <p><b>Password</b>: <input class="passwordcopy" readonly ng-model="SessionDetails.password"> <button ng-click="copytoClipboard(SessionDetails.password)">Copy</button></p>
-                    <br>
-                    <button class="aui-button aui-button-primary" ng-click="createUser()">Connect</button>
+            <div style="color: #aaa">
+                <p>On this page you can connect to a Smoothflow Account.</br>We will create an account on Smoothflow on behalf of you using the following information.</p>
+                <br>
+                <div class="user-details-wrap">
+                    <div class="user-image">
+                        <img ng-src="{{SessionDetails.Avatar}}">
+                    </div>
+                    <div class="user-details" ng-cloak>
+                        <div><span>Name</span>: <span>{{SessionDetails.name}}</span></div>
+                        <div><span>Tenant</span>: <span>{{SessionDetails.Domain}}</span></div>
+                        <div><span>Email</span>: <span>{{SessionDetails.email}}</span></div>
+                        <div class="pass">
+                            <span>Password</span>: <input class="passwordcopy" ng-model="SessionDetails.password"> <button class="passwordcopybtn" ng-click="copytoClipboard(SessionDetails.password)">Copy</button>
+                            <p>The "password" field was auto generated. Please note it down to access your account on Smoothflow.io. You will also receive an email with the credentials.</p>
+                        </div>
+                        <div class="connectbtn">
+                            <button class="aui-button aui-button-primary" ng-click="createUser()">Connect</button>
+                        </div>
+                    </div>
                 </div>
-                <div ng-if="pagestatus=='alreadyinuse'">
-                    <h3>You are connected to Smoothflow.io</h3>
-                </div>
-                <div ng-if="pagestatus=='loading'">
-                    <h3>Loading...</h3>
-                </div>
-            </center>
+            </div>
         </section>
+
+        <div ng-if="pagestatus=='alreadyinuse'" style="margin: 60px;text-align: center">
+            <img width="100px" src="connection.png" />
+            <h2 style="color: #ffffff;">You are connected</h2>
+        </div>
+        <div ng-if="pagestatus=='loading'">
+            <h3>Loading...</h3>
+        </div>
 
     </div>
 
@@ -83,7 +95,7 @@
 
     <script type="text/javascript" src="adminapp.js"></script>
     <script type="text/javascript" src="admin.controller.js"></script>
-    <script type="text/javascript" src="../../../js/uimicrokernel.js"></script>
+    <script type="text/javascript" src="../js/uimicrokernel.js"></script>
 
 
 

@@ -443,6 +443,15 @@ app.factory('dataHandler', function () {
             ; if (arguments[i].ValueType == undefined) {
                 arguments[i].ValueType = "";
             }
+            ; if (arguments[i].control == undefined) {
+                arguments[i].control = "Textbox";
+            }
+            ; if (arguments[i].advance == undefined) {
+                arguments[i].advance = false;
+            }
+            ; if (arguments[i].DisplayName == undefined) {
+                arguments[i].DisplayName = arguments[i].Key;
+            }
         }
         ;//console.log(arguments);
         return arguments;

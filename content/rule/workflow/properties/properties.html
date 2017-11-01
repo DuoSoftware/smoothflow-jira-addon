@@ -1,5 +1,5 @@
-<div id="workflow-properties">
-    <h4 class="property-heading"> <span class="aui-icon aui-icon-small aui-iconfont-configure prop-header-ico"></span> {{selectedModule.DisplayName}}</h4>
+<div id="workflow-properties" ng-class="{'dynamic-shadow-l':componentsMenuState == 'closed'}">
+    <h4 class="property-heading"> <span class="aui-icon aui-icon-small aui-iconfont-configure prop-header-ico"></span> Properties {{'- '+selectedModule.DisplayName.toUpperCase()}}</h4>
     <form>
         <div id="property-wrap" class="custom-scroll dark">
             <div class="description">{{selectedModule.Description}}</div>
@@ -7,30 +7,58 @@
                 <textarea name="module_description" id="" ng-model="selectedModule.Description" class="form-control"></textarea>
             </div>-->
 
-            <div class="property-field-wrap" ng-repeat="var in selectedModule.Variables">
+            <div class="aui-tabs horizontal-tabs">
+                <ul class="tabs-menu">
+                    <li class="menu-item" ng-class="{'active-tab': tab==true}">
+                        <a ng-click="scrollTo(true)" class="linkcolor">Advance</a>
+                    </li>
+                    <li class="menu-item" ng-class="{'active-tab': tab==false}">
+                        <a ng-click="scrollTo(false)" class="linkcolor">Basic</a>
+                    </li>
+                </ul>
+                <div class="tabs-pane active-pane">
+                    <div class="property-field-wrap" ng-repeat="var in selectedModule.Variables" ng-if="var.advance == tab">
+                        <div class="property-field-head">
+                            <div class="heading">{{var.DisplayName}}</div>
 
-                <div class="aui-tabs horizontal-tabs">
-                    <ul class="tabs-menu">
-                        <li class="menu-item">
-                            <a ng-click="scrollTo('tab1')">Basic</a>
-                        </li>
-                        <li class="menu-item ">
-                            <a ng-click="scrollTo('tab2')">Advance</a>
-                        </li>
-                    </ul>
-                    <div class="tabs-pane active-pane" id="tab1" ng-show="tab=='tab1'" style="padding-top: 34px;">
-                        <h2>Basic</h2>
-
-                    </div>
-                    <div class="tabs-pane active-pane" id="tab2" ng-show="tab=='tab2'" style="padding-top: 34px;">
-                        <div class="heading">{{var.Key}}</div>
-
-                        <div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>
-                        <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
+                            <div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>
+                            <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
+                        </div>
                         <textcomplete args='args' message='var.Value'></textcomplete>
                     </div>
                 </div>
             </div>
+
+            <!--<div class="aui-tabs horizontal-tabs">-->
+                <!--<ul class="tabs-menu">-->
+                    <!--<li class="menu-item" ng-class="{'active-tab': tab=='tab1'}">-->
+                        <!--<a ng-click="scrollTo('tab1')" class="linkcolor">Basic</a>-->
+                    <!--</li>-->
+                    <!--<li class="menu-item" ng-class="{'active-tab': tab=='tab2'}">-->
+                        <!--<a ng-click="scrollTo('tab2')" class="linkcolor">Advance</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<div class="tabs-pane active-pane" id="tab1" ng-show="tab=='tab1'" ng-repeat="var in selectedModule.Variables">-->
+                    <!--<div ng-hide="var.advance">-->
+                        <!--<div class="heading">{{var.Key}}</div>-->
+
+                        <!--<div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>-->
+                        <!--<span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>-->
+                        <!--<textcomplete args='args' message='var.Value'></textcomplete>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="tabs-pane active-pane" id="tab2" ng-show="tab=='tab2'" ng-repeat="var in selectedModule.Variables">-->
+
+                    <!--<div ng-show="var.advance">-->
+                        <!--<div class="heading">{{var.Key}}</div>-->
+
+                        <!--<div class="type {{var.DataType}}">{{var.DataType == 'int' ? 'integer' : var.DataType}}</div>-->
+                        <!--<span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>-->
+                        <!--<textcomplete args='args' message='var.Value'></textcomplete>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
             <script>
                 AJS.$(".arg-ico").tooltip();
             </script>

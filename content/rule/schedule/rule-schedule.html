@@ -1,60 +1,145 @@
-<div class="clearfix">
-    <div ng-if="selectedRule.status == 'Published'" class="container">
-        <div class="col-md-12 col-sm-12 content-padding-no">
-            <div class="inner-heading"><span>Rule Scheduling</span></div>
-            <p>Executes this flow on a schedule that has been provided. </p>
-
-            <fieldset class="group">
-                <aui-label for="scheduleActive">Schedules Present</aui-label>
-                <aui-toggle id="scheduleActive" label="Schedules Active">Schedules Active</aui-toggle>
-
-                <aui-label for="scheduleAvailable">Schedules Active</aui-label>
-                <aui-toggle id="scheduleAvailable" label="Schedules Available">Schedules Available</aui-toggle>
-            </fieldset>
-
-
-            <form class="aui">
-                <fieldset class="group">
-                    <!-- <legend><span>Schedule Type</span></legend> -->
-                    <div class="radio">
-                        <input class="radio" type="radio" name="radiobuttons" id="radioButtonOne" ng-model="fixedrate" value="fixedrate" ng-checked="scheduleSelection(fixedrate)">
-                        <label for="radioButtonOne">Fixed rate of every</label>
-                    </div>
-                    <div class="radio">
-                        <input class="radio" type="radio" name="radiobuttons" id="radioButtonTwo" ng-model="fixedrate" value="cronexpression" ng-checked="scheduleSelection(fixedrate)">
-                        <label for="radioButtonTwo">Cron expression</label>
-                    </div>
-                </fieldset>
-
-                <div ng-show="fixedrate == 'fixedrate'">
-                    <cron-generator ng-model="cronExpression" config="cronOptions"></cron-generator>
+<div class="container">
+    <header class="aui-page-header p-15 ph-0">
+        <div class="aui-page-header-inner">
+            <div class="aui-page-header-main">
+                <h4>Automation schedule</h4>
+            </div>
+            <div class="aui-toolbar2-secondary">
+                <div id="button-set2">
+                    <button class="aui-button" ng-click="editSchedule()">
+                        <span class="aui-icon aui-icon-small aui-iconfont-edit">Edit rule</span>
+                    </button>
                 </div>
-                <div ng-show="fixedrate == 'cronexpression'">
-                    <input ng-model="cronExpression" placeholder="0 0 */2 * * ?" class="text" type="text" id="text-input" name="text-input" title="Text input">
+            </div>
+        </div>
+    </header>
+    <div class="clearfix">
+        <div ng-if="selectedRule.status == 'Published'">
+            <p>Executes this flow on a schedule that has been provided.</p>
+            <h5 class="content-sub-heading">Current schedule</h5>
+            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #ddd','margin-bottom':'20px'} : null">
+                <div ng-show="scheduleEditOn" style="padding: 10px">
+                    <fieldset class="group schedule-type">
+                        <!-- <legend><span>Schedule Type</span></legend> -->
+                        <div class="radio radio-block">
+                            <input class="radio" type="radio" name="radiobuttons" id="radioButtonOne" ng-model="fixedrate" value="fixedrate" ng-checked="scheduleSelection(fixedrate)">
+                            <label for="radioButtonOne">Fixed rate of every</label>
+                        </div>
+                        <div class="radio radio-block">
+                            <input class="radio" type="radio" name="radiobuttons" id="radioButtonTwo" ng-model="fixedrate" value="cronexpression" ng-checked="scheduleSelection(fixedrate)">
+                            <label for="radioButtonTwo">Manual input</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="current-schedule-wrap row">
+                    <span class="curr-shed col-md-6 col-sm-6 col-xs-6">
+                        <span ng-show="fixedrate == 'fixedrate' && !scheduleEditOn">{{currentScheduleRule}}</span>
+                        <span ng-show="fixedrate == 'fixedrate' && scheduleEditOn">{{cronExpression}}</span>
+                        <div ng-show="fixedrate == 'cronexpression'">
+                            <input ng-model="cronExpression" placeholder="0 0 */2 * * ?" class="text" type="text" id="text-input" name="text-input" title="Text input">
+                        </div>
+                    </span>
+                    <span class="curr-shed-controls col-md-6 col-sm-6 col-xs-6 text-right p-0">
+                        <fieldset class="group">
+                            <div>
+                                <aui-label for="scheduleActive">Present</aui-label>
+                                <aui-toggle id="scheduleActive" label="Schedules Active" ng-disabled="scheduleEditOn">Schedules Active</aui-toggle>
+                            </div>
+                            <div>
+                                <aui-label for="scheduleAvailable">Active</aui-label>
+                                <aui-toggle id="scheduleAvailable" label="Schedules Available" ng-disabled="scheduleEditOn">Schedules Available</aui-toggle>
+                            </div>
+                            <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == false" ng-click="startSchedule()" style="margin-left: 20px" ng-disabled="scheduleEditOn">Start</button>
+                            <button class="aui-button aui-button-primary" ng-if="scheduleAvailable == true" ng-click="stopSchedule()" style="margin-left: 20px" ng-disabled="scheduleEditOn">Stop</button>
+                        </fieldset>
+                    </span>
                 </div>
 
-                <p>Output: {{cronExpression}}</p>
-                <p>Current schedule: {{currentScheduleRule}}</p>
-            </form>
+                <div ng-show="scheduleEditOn" style="padding: 10px">
+                    <form class="aui schedule-setup-panel">
+                        <div ng-show="fixedrate == 'fixedrate'">
+                            <cron-generator ng-model="cronExpression" config="cronOptions"></cron-generator>
+                        </div>
+                    </form>
+                    <form class="text-right">
+                        <div class="button-spinner" style="padding-right: 20px;padding-bottom: 5px;display: inline-block" ng-show="savingSchedule"></div>
+                        <button ng-click="editSchedule()" class="aui-button">Cancel</button>
+                        <button ng-click="setScheduleforWorkflow(cronExpression)" class="aui-button aui-button-primary" ng-disabled="savingSchedule">Set Schedule</button>
+                        <script>
+							AJS.$('.button-spinner').spin();
+                        </script>
+                    </form>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 content-padding-no">
-            <form>
-                <button ng-click="setScheduleforWorkflow(cronExpression)" class="aui-button aui-button-primary">Set Schedule</button>
-                <br>
-                <button ng-click="startSchedule()" ng-if="scheduleAvailable == false" class="aui-button">Start</button>
-                <button ng-click="stopSchedule()" ng-if="scheduleAvailable == true" class="aui-button">Stop</button>
-            </form>
+        <div ng-if="selectedRule.status != 'Published'">
+            <div class="text-center">
+                <span class="aui-icon aui-icon-small aui-iconfont-error"></span>
+                <h3>This rule is not yet published!</h3>
+            </div>
+            <div class="text-center">
+                <h5>Please publish this rule to set a schedule.</h5>
+            </div>
         </div>
-    </div>
-    <div ng-if="selectedRule.status != 'Published'" class="container" style="margin-top: 100px;">
-        <div class="col-md-12 col-sm-12 content-padding-no">
-            <center>
-                <h1>This rule is not yet published!</h1>
-            </center>
-            <center>
-                <h3>Please publish this rule to set a schedule.</h3>
-            </center>
-        </div>
+
+
+
+        <!--<div ng-if="selectedRule.status == 'Published'" class="container">-->
+            <!--<div class="col-md-12 col-sm-12 content-padding-no">-->
+                <!--<p>Executes this flow on a schedule that has been provided.</p>-->
+                <!--<fieldset class="group">-->
+                    <!--<aui-label for="scheduleActive">Schedules Present</aui-label>-->
+                    <!--<aui-toggle id="scheduleActive" label="Schedules Active">Schedules Active</aui-toggle>-->
+
+                    <!--<aui-label for="scheduleAvailable">Schedules Active</aui-label>-->
+                    <!--<aui-toggle id="scheduleAvailable" label="Schedules Available">Schedules Available</aui-toggle>-->
+                <!--</fieldset>-->
+
+
+                <!--<form class="aui">-->
+                    <!--<fieldset class="group">-->
+                        <!--&lt;!&ndash; <legend><span>Schedule Type</span></legend> &ndash;&gt;-->
+                        <!--<div class="radio">-->
+                            <!--<input class="radio" type="radio" name="radiobuttons" id="radioButtonOne" ng-model="fixedrate" value="fixedrate" ng-checked="scheduleSelection(fixedrate)">-->
+                            <!--<label for="radioButtonOne">Fixed rate of every</label>-->
+                        <!--</div>-->
+                        <!--<div class="radio">-->
+                            <!--<input class="radio" type="radio" name="radiobuttons" id="radioButtonTwo" ng-model="fixedrate" value="cronexpression" ng-checked="scheduleSelection(fixedrate)">-->
+                            <!--<label for="radioButtonTwo">Cron expression</label>-->
+                        <!--</div>-->
+                    <!--</fieldset>-->
+
+                    <!--<div ng-show="fixedrate == 'fixedrate'">-->
+                        <!--<cron-generator ng-model="cronExpression" config="cronOptions"></cron-generator>-->
+                    <!--</div>-->
+                    <!--<div ng-show="fixedrate == 'cronexpression'">-->
+                        <!--<input ng-model="cronExpression" placeholder="0 0 */2 * * ?" class="text" type="text" id="text-input" name="text-input" title="Text input">-->
+                    <!--</div>-->
+
+                    <!--<p>Output: {{cronExpression}}</p>-->
+                    <!--<p>Current schedule: {{currentScheduleRule}}</p>-->
+                <!--</form>-->
+            <!--</div>-->
+
+            <!--<div class="col-md-12 col-sm-12 content-padding-no">-->
+                <!--<form>-->
+                    <!--<button ng-click="setScheduleforWorkflow(cronExpression)" class="aui-button aui-button-primary">Set Schedule</button>-->
+                    <!--<br>-->
+                    <!--<button ng-click="startSchedule()" ng-if="scheduleAvailable == false" class="aui-button">Start</button>-->
+                    <!--<button ng-click="stopSchedule()" ng-if="scheduleAvailable == true" class="aui-button">Stop</button>-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div ng-if="selectedRule.status != 'Published'" class="container" style="margin-top: 100px;">-->
+            <!--<div class="col-md-12 col-sm-12 content-padding-no">-->
+                <!--<center>-->
+                    <!--<h1>This rule is not yet published!</h1>-->
+                <!--</center>-->
+                <!--<center>-->
+                    <!--<h3>Please publish this rule to set a schedule.</h3>-->
+                <!--</center>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
