@@ -5,6 +5,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
     var allprojects = [];
     var selectedTriggersAndProjects = [];
     var WorkFlowId = "";
+    var Selectedtri=[];
 
     this.setProjectList = function (projectList) {
         angular.forEach(projectList, function (project) {
@@ -107,16 +108,16 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                                         return true
                                     }
                                 });
-                                //debugger
+                                //   debugger
                                 angular.forEach(temptriggers, function (trig) {
-                                    //debugger
+                                    //   debugger
                                     trig.trigger = alltriggers[i].code;
                                     selectedTriggersAndProjects.push(trig);
                                 });
                             }
                         }
                     }
-                    //debugger
+                    debugger
                     //$rootScope.$broadcast('selectedTriggers', selectedTriggersAndProjects);
                     $rootScope.HideBusyContainer();
                 }
@@ -126,7 +127,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
     };
 
     this.setworkflowId = function (WorkFlowID) {
-        //debugger
+        debugger
         WorkFlowId = WorkFlowID;
         this.GetAllTriggers(WorkFlowId);
     }
@@ -260,17 +261,40 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
         alltriggers.forEach(function (element) {
             for (j = 0; j < element.projects.length; j++) {
                 for (i = 0; i < element.projects[j].WFID.length; i++) {
-                    if(WorkFlowID==element.projects[j].WFID[i]){
+                    if (WorkFlowID == element.projects[j].WFID[i]) {
                         debugger;
                         element.projects[j].WFID.splice(i, 1);
                     }
-                 }
+                }
             }
 
         }, this);
-        this.SaveTriggers(WorkFlowID);        
+        this.SaveTriggers(WorkFlowID);
     };
+    this.GetProjectTrigger = function (Project) {
+        debugger;
+        // this.GetAllTriggers();
+        // debugger;
+       Selectedtri = [];
+        for (var index = 0; index < alltriggers.length; index++) {
+            alltriggers[index].projects.forEach(function (element) {
+                if (element.key == Project.key) {
+                    element.WFID.forEach(function (Workflow) {
+                        console.log(Workflow);
+                        if (Workflow != null)
+                            Workflow = Workflow.replace(/[_-]/g, "");
+                        console.log(Workflow);
+                        if (Workflow == WorkFlowId) {
+                            Selectedtri.push(alltriggers[index]);
+                        }
+                    }, this);
+                    //  Selectedtri.push(alltriggers[index]);
+                }
+            }, this);
 
+        }
+        return Selectedtri;
+    }
 
     return this;
 });
