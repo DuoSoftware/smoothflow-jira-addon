@@ -741,7 +741,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: body
+            data: { body }
         }
         $http(req).then(function (data) {
             $scope.Iscall = true;
@@ -911,7 +911,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
     ///// Publishing mechanism
-
     $scope.executable = {};
     $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
     $scope.getports = function () {
@@ -1102,7 +1101,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function OnSuccess(response) {
             if (response.data.Status) {
                 $rootScope.DisplayMessage("Published to a container successfully.", "success");
-                $scope.changeLocation("rule.container");
             } else {
                 $rootScope.DisplayMessage("Error occured when publishing the rule to a container.", "error");
             }
@@ -1114,7 +1112,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
     };
-
+	///// Publishing mechanism - END
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
     $scope.getVersionForWF = function (ID) {

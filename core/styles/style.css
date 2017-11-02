@@ -1653,6 +1653,41 @@ button.button-primary{
 }
 
 
+.animate-slide-right {
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    transition-property: none;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+}
+.animate-slide-right.ng-enter {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.animate-slide-right.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translateX(0);
+    opacity: 1;
+}
+.animate-slide-right.ng-leave {
+    transform: translateX(0);
+    opacity: 1;
+}
+.animate-slide-right.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translateX(100%);
+    opacity: 0;
+}
+.animate-slide-right.ng-hide {
+    transform: translateX(100%);
+    opacity: 0;
+}
+.animate-slide-right.ng-hide-add-active, .animate-slide-right.ng-hide-remove-active {
+    transition-property: all;
+}
+
+
 /*----------------------------------------------------------------*/
 /*  @ Custom Animation Keyframes
 /*----------------------------------------------------------------*/

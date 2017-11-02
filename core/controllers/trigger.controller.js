@@ -147,7 +147,8 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 		// 	state ? $scope.selectedItemState = ' selected!' : ' removed!';
 		// });
 		if(state){
-			$scope.selectedItemState = ' selected!';
+			// $scope.selectedItemState = ' selected!';
+			$scope.showTriggesrPanel = true;
 		}else{
 			$scope.selectedItemState = ' removed!';
 		}
@@ -166,6 +167,10 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 			}, 1500);
 		});
 	}
+
+	$scope.toggleTriggersPanel = function (state) {
+		$scope.showTriggesrPanel = state;
+	};
 	//Trigger selecting notification handler - END
 
 
