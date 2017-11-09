@@ -255,7 +255,6 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             });
 
     }
-
     //trigger Delete
     this.DeleteTriggers = function (WorkFlowID) {
         alltriggers.forEach(function (element) {
@@ -329,11 +328,8 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                     if(tt.WFID[index]==WorkFlowId){
                         alltriggers[code].projects[projs].WFID.splice(index, 1);
                     }
-                }
-               
-                //delete
+                } 
             }
-
         }
         
     }
