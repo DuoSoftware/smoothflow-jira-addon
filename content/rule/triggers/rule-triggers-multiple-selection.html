@@ -34,7 +34,7 @@
                                         </li>
                                         <li ng-repeat="project in projectList | filter : projectsearch">
                                             <input class="styled-checkbox"
-                                                   ng-click="addedProject(project)"
+                                                   ng-click="SetProjectTrigger(project,$event);addedProject(project)"
                                                    type="checkbox"
                                                    name="{{project.key}}"
                                                    id="{{project.key}}"

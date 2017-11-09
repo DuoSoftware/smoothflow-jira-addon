@@ -33,7 +33,7 @@
                                                    ng-model="project.check"
                                                    ng-checked="project.check">
                                             <label for="{{project.key}}">{{project.key}} - {{project.name}}</label>
-                                            <span class="aui-icon aui-icon-small aui-iconfont-edit-small edit-project-triggers-btn" ng-click="toggleTriggersPanel(true)"></span>
+                                            <span class="aui-icon aui-icon-small aui-iconfont-edit-small edit-project-triggers-btn" ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project)"></span>
                                         </li>
                                     </ul>
                                     <!--<input type="checkbox" ng-click="selectAllprojects($event)"> <label>Select All</label>-->
@@ -86,7 +86,7 @@
                                 </fieldset>
                             </form>
                         </form>
-                        <button ng-click="toggleTriggersPanel(false)">Done</button>
+                        <button ng-click="saveProjectTrigger();toggleTriggersPanel(false)">Done</button>
                     </div>
                 </div>
 
