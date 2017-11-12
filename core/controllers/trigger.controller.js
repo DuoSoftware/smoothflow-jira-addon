@@ -233,7 +233,14 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
 	// This function will remove a selected project from Automation
 	$scope.removeSelectedProject = function (project) {
-		TriggerDatafactory.DeleteProject(project);
-		$scope.getProjectsWithTriggers();
+		for(var p=0; p < $scope.projectsWithTriggers.length;p++){
+			if($scope.projectsWithTriggers[p].project.key == project.project.key){
+				$timeout(function(){
+					$scope.projectsWithTriggers[p].splice(j, 1);
+				});
+			}
+		}
+		TriggerDatafactory.DeleteProject(project.project);
+		// $scope.getProjectsWithTriggers();
 	}
 }]);
