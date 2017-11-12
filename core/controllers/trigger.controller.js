@@ -201,6 +201,31 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
         $scope.triggersOption = $scope.triggersOptions;
     }
+
+    // This function takes all the Triggers which are entitled with selected Projects.
+	// Returns an array with Project+Triggers elements
+	$scope.projectsWithTriggers = [];
+	$scope.getProjectsWithTriggers = function () {
+		angular.forEach($scope.projectList, function (project) {
+			if(project.check){
+				var projectTriggers = TriggerDatafactory.GetProjectTrigger(project);
+				if(projectTriggers.length > 0){
+					$scope.projectsWithTriggers.push({
+						key: project.key + ' - ' + project.name,
+						triggers: projectTriggers
+					});
+				}else{
+					$scope.projectsWithTriggers.push({
+						key: project.key + ' - ' + project.name,
+						triggers: ['No triggers have been added to this project yet']
+					});
+				}
+			}
+		});
+	};
+	$scope.getProjectsWithTriggers();
+
+
     $scope.saveProjectTrigger = function () {
         TriggerDatafactory.SaveTriggers($scope.triggersOption);
     }

@@ -117,7 +117,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             }
                         }
                     }
-                    debugger
+                    // debugger
                     //$rootScope.$broadcast('selectedTriggers', selectedTriggersAndProjects);
                     $rootScope.HideBusyContainer();
                 }
@@ -127,7 +127,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
     };
 
     this.setworkflowId = function (WorkFlowID) {
-        debugger
+        // debugger
         WorkFlowId = WorkFlowID;
         this.GetAllTriggers(WorkFlowId);
     }
@@ -261,7 +261,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             for (j = 0; j < element.projects.length; j++) {
                 for (i = 0; i < element.projects[j].WFID.length; i++) {
                     if (WorkFlowID == element.projects[j].WFID[i]) {
-                        debugger;
+                        // debugger;
                         element.projects[j].WFID.splice(i, 1);
                     }
                 }
