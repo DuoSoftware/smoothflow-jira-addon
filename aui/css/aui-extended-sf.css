@@ -361,14 +361,21 @@ h5 + h6 {
     max-height: 480px;
 }
 .overhead-container .overhead-container-body .head{
-    margin: 10px;
     color: #aaa;
     font-weight: 500;
+    overflow: auto;
 }
 .overhead-container .overhead-container-body .head span{
     display: inline-block;
+    padding: 10px;
     float: left;
-    width: 50%;
+    width: 47.5%;
+}
+.overhead-container .overhead-container-body .head span:last-child{
+    display: inline-block;
+    float: left;
+    text-align: right;
+    width: 5%;
 }
 .overhead-container .overhead-container-body::-webkit-scrollbar {
     width: 10px;
@@ -404,9 +411,23 @@ h5 + h6 {
 }
 .overhead-container .overhead-section{
     display: inline-block;
-    width: 50%;
+    width: 47.5%;
     float: left;
     padding: 10px;
+}
+.overhead-container .overhead-controls{
+    display: inline-block;
+    width: 5%;
+    float: left;
+    text-align: right;
+    padding: 10px;
+}
+.overhead-container .overhead-controls .aui-icon{
+    color: #CCCCCC;
+    cursor: pointer;
+}
+.overhead-container .overhead-controls .aui-icon:hover{
+    color: #ffffff;
 }
 .overhead-container .overhead-section .section-header{
     font-weight: 500;

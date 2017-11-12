@@ -130,11 +130,12 @@
                 <div class="head">
                     <span>Project</span>
                     <span>Triggers</span>
+                    <span></span>
                 </div>
                 <div class="clearfix mb-10" ng-repeat="project in projectsWithTriggers">
                     <div class="overhead-section">
                         <div>
-                            <span class="section-item-pill label-primary">{{project.key}}</span>
+                            <span class="section-item-pill label-primary">{{project.project.key}} - {{project.project.name}}</span>
                         </div>
                     </div>
                     <div class="overhead-section">
@@ -142,6 +143,9 @@
                             <span ng-repeat="tr in project.triggers" class="section-item-pill label-success" style="margin-right: 5px;margin-bottom: 5px;float: left;">{{tr.code}}</span>
                         </div>
                         <br>
+                    </div>
+                    <div class="overhead-controls">
+                        <span class="aui-icon aui-icon-small aui-iconfont-delete" ng-click="removeSelectedProject(project)"></span>
                     </div>
                 </div>
             </div>

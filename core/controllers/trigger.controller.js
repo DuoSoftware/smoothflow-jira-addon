@@ -201,22 +201,24 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 
         $scope.triggersOption = $scope.triggersOptions;
     }
+    //Trigger selecting notification handler - END
 
-    // This function takes all the Triggers which are entitled with selected Projects.
+	// This function takes all the Triggers which are entitled with selected Projects.
 	// Returns an array with Project+Triggers elements
 	$scope.projectsWithTriggers = [];
 	$scope.getProjectsWithTriggers = function () {
+		$scope.projectsWithTriggers = [];
 		angular.forEach($scope.projectList, function (project) {
 			if(project.check){
 				var projectTriggers = TriggerDatafactory.GetProjectTrigger(project);
 				if(projectTriggers.length > 0){
 					$scope.projectsWithTriggers.push({
-						key: project.key + ' - ' + project.name,
+						project: project,
 						triggers: projectTriggers
 					});
 				}else{
 					$scope.projectsWithTriggers.push({
-						key: project.key + ' - ' + project.name,
+						project: project,
 						triggers: ['No triggers have been added to this project yet']
 					});
 				}
@@ -225,10 +227,13 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
 	};
 	$scope.getProjectsWithTriggers();
 
+	$scope.saveProjectTrigger = function () {
+		TriggerDatafactory.SaveTriggers($scope.triggersOption);
+	}
 
-    $scope.saveProjectTrigger = function () {
-        TriggerDatafactory.SaveTriggers($scope.triggersOption);
-    }
-    //Trigger selecting notification handler - END
-
+	// This function will remove a selected project from Automation
+	$scope.removeSelectedProject = function (project) {
+		TriggerDatafactory.DeleteProject(project);
+		$scope.getProjectsWithTriggers();
+	}
 }]);
