@@ -53,6 +53,29 @@ app.controller('MainController', [
         }
     }
     ])
+    .directive('dropdown', function () {
+        // console.log(value);
+        return {
+            restrict: 'EA',
+            scope: {
+                args: '=',
+                message: '=',
+                all: '='
+            },
+            
+            template: '<select style="width:100%" placeholder="Select" ng-model="message" style="font-size:smaller;margin-top:0px;"><option ng-repeat="type in all"    value="{{type}}" ng-click="switchValue(type)">{{type}}</option>   </select>',
+            link: function (scope, iElement, iAttrs) {
+                var mentions = scope.args;
+    
+                console.log(scope.message);
+                scope.switchValue = function (item) {
+                    debugger;
+                    console.log(item);
+                }
+            }
+    
+        }
+    })
 	.filter('filterComp', function () {
         return function (arr, compName) {
             if (!compName) {
