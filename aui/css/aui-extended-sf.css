@@ -360,6 +360,23 @@ h5 + h6 {
     width: 100%;
     max-height: 480px;
 }
+.overhead-container .overhead-container-body .head{
+    color: #aaa;
+    font-weight: 500;
+    overflow: auto;
+}
+.overhead-container .overhead-container-body .head span{
+    display: inline-block;
+    padding: 10px;
+    float: left;
+    width: 47.5%;
+}
+.overhead-container .overhead-container-body .head span:last-child{
+    display: inline-block;
+    float: left;
+    text-align: right;
+    width: 5%;
+}
 .overhead-container .overhead-container-body::-webkit-scrollbar {
     width: 10px;
     background-color: #34495e;
@@ -394,9 +411,23 @@ h5 + h6 {
 }
 .overhead-container .overhead-section{
     display: inline-block;
-    width: 50%;
+    width: 47.5%;
     float: left;
     padding: 10px;
+}
+.overhead-container .overhead-controls{
+    display: inline-block;
+    width: 5%;
+    float: left;
+    text-align: right;
+    padding: 10px;
+}
+.overhead-container .overhead-controls .aui-icon{
+    color: #CCCCCC;
+    cursor: pointer;
+}
+.overhead-container .overhead-controls .aui-icon:hover{
+    color: #ffffff;
 }
 .overhead-container .overhead-section .section-header{
     font-weight: 500;
@@ -7153,6 +7184,7 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 }
 .unstyled.project-list li{
     padding: 5px;
+    cursor: pointer;
     /*background: #f5f5f5;*/
     margin-top: 0;
     margin-bottom: 10px;
@@ -7163,12 +7195,13 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 }
 .unstyled.project-list li label{
     margin: 0;
+    cursor: pointer;
 }
 .unstyled.project-list li label:before{
     border-radius: 50%;
     border: none;
 }
-.unstyled.project-list .styled-checkbox:checked + label:before{
+.unstyled.project-list .styled-checkbox:checked + label:before, .unstyled.project-list li:hover .styled-checkbox + label:before{
     background: #0052cc;
 }
 

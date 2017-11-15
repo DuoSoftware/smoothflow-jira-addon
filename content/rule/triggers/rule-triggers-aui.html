@@ -24,16 +24,16 @@
 
                                 <div class="sf-padding select-item-body custom-scroll">
                                     <ul class="unstyled project-list">
-                                        <li ng-repeat="project in projectList | filter : projectsearch">
+                                        <li ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project)" ng-repeat="project in projectList | filter : projectsearch">
                                             <input class="styled-checkbox"
                                                    ng-click="addedProject(project)"
                                                    type="checkbox"
                                                    name="{{project.key}}"
                                                    id="{{project.key}}"
                                                    ng-model="project.check"
-                                                   ng-checked="project.check">
+                                                   ng-checked="project.check" disabled>
                                             <label for="{{project.key}}">{{project.key}} - {{project.name}}</label>
-                                            <span class="aui-icon aui-icon-small aui-iconfont-edit-small edit-project-triggers-btn" ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project)"></span>
+                                            <span ng-if="project.check" class="aui-icon aui-icon-small aui-iconfont-edit-small edit-project-triggers-btn" ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project)"></span>
                                         </li>
                                     </ul>
                                     <!--<input type="checkbox" ng-click="selectAllprojects($event)"> <label>Select All</label>-->
@@ -50,7 +50,7 @@
 
                 <div class="aui-item-container triggers">
                     <div class="shadowed-item">
-                        <h5 class="trigger-header">Triggers</h5>
+                        <h5 class="trigger-header">Triggers<span class="aui-icon aui-icon-small aui-iconfont-close-dialog edit-project-triggers-btn" ng-click="toggleTriggersPanel(false)" style="display: inline-block;float: right;cursor: pointer"></span></h5>
                         <form class="aui">
                             <form class="aui">
                                 <fieldset class="group">
@@ -107,19 +107,46 @@
                     <span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>
                 </button>
             </div>
+
+            <!--Unsorted Projects+Triggers container-->
+            <!--<div class="overhead-container-body" ng-if="selectedExpanded">-->
+                <!--<div class="overhead-section">-->
+                    <!--<span class="section-header">Selected projects</span>-->
+                    <!--<div>-->
+                        <!--<span ng-repeat="project in projectList | filter : { check: true }" class="section-item-pill label-primary">{{project.key}} - {{project.name}}</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="overhead-section">-->
+                    <!--<span class="section-header">Selected triggers</span>-->
+                    <!--<div>-->
+                        <!--<span ng-repeat="project in triggersOption | filter : { check: true }" class="section-item-pill label-success" style="margin-right: 5px;margin-bottom: 5px;float: left;">{{project.Name}}</span>-->
+                    <!--</div>-->
+                    <!--<br>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--Unsorted Projects+Triggers container - END-->
+
             <div class="overhead-container-body" ng-if="selectedExpanded">
-                <div class="overhead-section">
-                    <span class="section-header">Selected projects</span>
-                    <div>
-                        <span ng-repeat="project in projectList | filter : { check: true }" class="section-item-pill label-primary">{{project.key}} - {{project.name}}</span>
-                    </div>
+                <div class="head">
+                    <span>Project</span>
+                    <span>Triggers</span>
+                    <span></span>
                 </div>
-                <div class="overhead-section">
-                    <span class="section-header">Selected triggers</span>
-                    <div>
-                        <span ng-repeat="project in triggersOption | filter : { check: true }" class="section-item-pill label-success" style="margin-right: 5px;margin-bottom: 5px;float: left;">{{project.Name}}</span>
+                <div class="clearfix mb-10" ng-repeat="project in projectsWithTriggers">
+                    <div class="overhead-section">
+                        <div>
+                            <span class="section-item-pill label-primary">{{project.project.key}} - {{project.project.name}}</span>
+                        </div>
                     </div>
-                    <br>
+                    <div class="overhead-section">
+                        <div>
+                            <span ng-repeat="tr in project.triggers" class="section-item-pill label-success" style="margin-right: 5px;margin-bottom: 5px;float: left;">{{tr.code}}</span>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="overhead-controls">
+                        <span class="aui-icon aui-icon-small aui-iconfont-delete" ng-click="removeSelectedProject(project)"></span>
+                    </div>
                 </div>
             </div>
         </div>
