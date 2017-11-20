@@ -2390,7 +2390,19 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // retrive data from JIRA
     $scope.JiraSession = {};
     $scope.CurrentUserProfile = {};
-   
+    /** Copy to Clipboard */
+    $scope.copyToClipboard = function (row) {
+        debugger;
+        var copyElement = document.createElement("textarea");
+        copyElement.style.position = 'fixed';
+        copyElement.style.opacity = '0';
+        copyElement.textContent = row.URL;
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(copyElement);
+        copyElement.select();
+        document.execCommand('copy');
+        body.removeChild(copyElement);
+    }
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";
