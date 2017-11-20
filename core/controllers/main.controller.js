@@ -1,18 +1,18 @@
 app.controller('MainController', [
-	'$scope',
-	'$rootScope',
-	'$state',
-	'$timeout',
-	'$http',
-	'dataHandler',
-	'$auth',
-	'$objectstore',
-	'$filter',
-	'TriggerDatafactory',
-	'$v6urls',
-	'$helpers',
-	'$location',
-	'$window', mainController])
+    '$scope',
+    '$rootScope',
+    '$state',
+    '$timeout',
+    '$http',
+    'dataHandler',
+    '$auth',
+    '$objectstore',
+    '$filter',
+    'TriggerDatafactory',
+    '$v6urls',
+    '$helpers',
+    '$location',
+    '$window', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -62,21 +62,21 @@ app.controller('MainController', [
                 message: '=',
                 all: '='
             },
-            
+
             template: '<select style="width:100%" placeholder="Select" ng-model="message" style="font-size:smaller;margin-top:0px;"><option ng-repeat="type in all"    value="{{type}}" ng-click="switchValue(type)">{{type}}</option>   </select>',
             link: function (scope, iElement, iAttrs) {
                 var mentions = scope.args;
-    
+
                 console.log(scope.message);
                 scope.switchValue = function (item) {
                     debugger;
                     console.log(item);
                 }
             }
-    
+
         }
     })
-	.filter('filterComp', function () {
+    .filter('filterComp', function () {
         return function (arr, compName) {
             if (!compName) {
                 return arr;
@@ -92,15 +92,15 @@ app.controller('MainController', [
         }
             ;
     })
-	.filter('bytes', function() {
-		return function(bytes, precision) {
-			if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
-			if (typeof precision === 'undefined') precision = 1;
-			var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
-				number = Math.floor(Math.log(bytes) / Math.log(1024));
-			return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
-		}
-	});
+    .filter('bytes', function () {
+        return function (bytes, precision) {
+            if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+            if (typeof precision === 'undefined') precision = 1;
+            var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
+                number = Math.floor(Math.log(bytes) / Math.log(1024));
+            return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) + ' ' + units[number];
+        }
+    });
 
 function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window) {
 
@@ -114,10 +114,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // Kasun_Wijeratne_27_JUNE_2017
     /*** JIRA component extraction*/
     AJS.$(".category-icon").tooltip();
-	AJS.$('.button-spinner').spin();
-	AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
-	AJS.$(".template").tooltip();
-	/*** JIRA component extraction - END*/
+    AJS.$('.button-spinner').spin();
+    AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
+    AJS.$(".template").tooltip();
+    /*** JIRA component extraction - END*/
 
     $scope.toggleCompGroup = function (group) {
         $scope.activeCompGroup = group;
@@ -130,7 +130,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);
-		$scope.tab = id;
+        $scope.tab = id;
     };
 
     // Kasun_Wijeratne_27_JUNE_2017
@@ -469,7 +469,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.listState = "home";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
-	$scope.callFromSwitch = false;
+    $scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
         'Name': 'Actions',
@@ -489,176 +489,176 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var workflowElem = null;
     var componentBlock = null;
     var directCondConnectors = null;
-	var workflowBlocks = null;
-	var shadowedGroupItems = null;
-	var selectItemBody = null;
-	var shadowedGroupItemsHeight = null;
-	var workflowComponentss = null;
-	var outerBlocks = null;
+    var workflowBlocks = null;
+    var shadowedGroupItems = null;
+    var selectItemBody = null;
+    var shadowedGroupItemsHeight = null;
+    var workflowComponentss = null;
+    var outerBlocks = null;
 
     /////////////////////////////// METHODS ////////////////////////////////////////////////////////////////////////
 
-	// Watchers
-	$scope.$watch(function () {
-		componentBlock = document.getElementsByClassName('condition-block');
-		directCondConnectors = document.getElementsByClassName("sub-cond-connector");
-		workflowBlocks = document.getElementsByClassName("workflow-block");
-		outerBlocks = document.getElementsByClassName("outer");
-
-		if (componentBlock.length != 0) {
-			angular.forEach(componentBlock, function (elem) {
-				angular.forEach(elem.childNodes, function (child) {
-					if (child.className != undefined) {
-						if (child.className == 'workflow-add-node-sub') {
-							var separated = child;
-							separated.setAttribute('style', 'margin-top:10px');
-							elem.append(separated);
-						}
-						// else if (child.parentElement.previousElementSibling != null) {
-						//     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
-						//         child.remove();
-						//     }
-						// }
-					}
-				});
-			});
-		}
-
-		if (workflowBlocks.length != 0) {
-			angular.forEach(workflowBlocks, function (block) {
-				var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
-				if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
-					angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-				}
-				var componentClass = block.className.split(' ')[2];
-				if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
-					var outers = angular.element(block).find('.outer');
-					angular.forEach(outers, function (outer) {
-						angular.forEach(outer.children, function (child) {
-							if (child.className.split(' ')[0] == 'workflow-block') {
-								angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-							} else {
-								angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-							}
-						});
-						var outerParent = outer.parentElement.className.split(' ')[2];
-						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough'){
-							var elem = angular.element(outer);
-							var _elem = elem.find('.workflow-block').first();
-							if(_elem != undefined) {
-								if(!_elem.has('.sub-cond-connector').length){
-									_elem.prepend('<label class="sub-cond-connector"></label>');
-								}
-							}
-						}
-					});
-				}
-			});
-		}
-
-		/////// 10_24_2017_Separate_Loop_Outer_WORKING
-		// if(outerBlocks.length != 0){
-		// angular.forEach(outerBlocks, function (outer) {
-		// 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
-		// 			var elem = angular.element(outer);
-		// 			var _elem = elem.find('.workflow-block').first();
-		// 			if(_elem != undefined) {
-		// 				if(!_elem.has('.sub-cond-connector').length){
-		// 					_elem.prepend('<label class="sub-cond-connector"></label>');
-		// 				}
-		// 			}
-		// 		}
-		// 	});
-		// }
-		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
-
-		/////// 10_22_2017_Temp_Comment
-		// if (workflowBlocks.length != 0) {
-		// angular.forEach(workflowBlocks, function (block) {
-		// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
-		// 		var item = angular.element(block).find('.sub-cond-connector')[0];
-		// 		if (item != undefined)
-		// 			item.remove();
-		// 	}
-		// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-		// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-		// 	}
-		// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-		// 		var outers = angular.element(block).find('.outer');
-		// 		angular.forEach(outers, function (outer) {
-		// 			angular.forEach(outer.children, function (child) {
-		// 				if (child.className.split(' ')[0] == 'workflow-block') {
-		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-		// 				} else {
-		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-		// 				}
-		// 			});
-		// 		});
-		// 	}
-		// });
-		// }
-		// 10_22_2017_Temp_Comment///////
-
-	});
+    // Watchers
     $scope.$watch(function () {
-		workflowHeight = (window.innerHeight) - 111;
-        workflowUI = document.getElementById('workflow-ui');
-		propertiesElem = document.getElementById('property-wrap');
-		workflowElem = document.getElementById('workflow-wrap');
-		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
-		selectItemBody = document.getElementsByClassName('select-item-body');
-		workflowComponentss = $('#workflow-components');
-		$scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
-		workflowWidth = window.innerWidth - $scope.propertyPanelWidthGLOBAL;
+        componentBlock = document.getElementsByClassName('condition-block');
+        directCondConnectors = document.getElementsByClassName("sub-cond-connector");
+        workflowBlocks = document.getElementsByClassName("workflow-block");
+        outerBlocks = document.getElementsByClassName("outer");
 
-		if(workflowComponentss != undefined){
-			workflowComponentss.css('margin-right',$scope.propertyPanelWidthGLOBAL+'px');
-		}
-		if (workflowUI != undefined){
-			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
-		}
-		if (shadowedGroupItems != undefined){
-			shadowedGroupItemsHeight = workflowHeight - 120;
-			angular.forEach(shadowedGroupItems, function (item) {
-				item.setAttribute("style", "height:" + shadowedGroupItemsHeight + "px");
-			});
-		}
-		if (selectItemBody != undefined){
-			var selectItemBodyHeight = shadowedGroupItemsHeight - 84;
-			angular.forEach(selectItemBody, function (item) {
-				item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
-			});
-		}
+        if (componentBlock.length != 0) {
+            angular.forEach(componentBlock, function (elem) {
+                angular.forEach(elem.childNodes, function (child) {
+                    if (child.className != undefined) {
+                        if (child.className == 'workflow-add-node-sub') {
+                            var separated = child;
+                            separated.setAttribute('style', 'margin-top:10px');
+                            elem.append(separated);
+                        }
+                        // else if (child.parentElement.previousElementSibling != null) {
+                        //     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
+                        //         child.remove();
+                        //     }
+                        // }
+                    }
+                });
+            });
+        }
+
+        if (workflowBlocks.length != 0) {
+            angular.forEach(workflowBlocks, function (block) {
+                var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
+                if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
+                    angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+                }
+                var componentClass = block.className.split(' ')[2];
+                if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+                    var outers = angular.element(block).find('.outer');
+                    angular.forEach(outers, function (outer) {
+                        angular.forEach(outer.children, function (child) {
+                            if (child.className.split(' ')[0] == 'workflow-block') {
+                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                            } else {
+                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                            }
+                        });
+                        var outerParent = outer.parentElement.className.split(' ')[2];
+                        if (outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough') {
+                            var elem = angular.element(outer);
+                            var _elem = elem.find('.workflow-block').first();
+                            if (_elem != undefined) {
+                                if (!_elem.has('.sub-cond-connector').length) {
+                                    _elem.prepend('<label class="sub-cond-connector"></label>');
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        /////// 10_24_2017_Separate_Loop_Outer_WORKING
+        // if(outerBlocks.length != 0){
+        // angular.forEach(outerBlocks, function (outer) {
+        // 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
+        // 			var elem = angular.element(outer);
+        // 			var _elem = elem.find('.workflow-block').first();
+        // 			if(_elem != undefined) {
+        // 				if(!_elem.has('.sub-cond-connector').length){
+        // 					_elem.prepend('<label class="sub-cond-connector"></label>');
+        // 				}
+        // 			}
+        // 		}
+        // 	});
+        // }
+        //10_24_2017_Separate_Loop_Outer_WORKING - END ///////
+
+        /////// 10_22_2017_Temp_Comment
+        // if (workflowBlocks.length != 0) {
+        // angular.forEach(workflowBlocks, function (block) {
+        // 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
+        // 		var item = angular.element(block).find('.sub-cond-connector')[0];
+        // 		if (item != undefined)
+        // 			item.remove();
+        // 	}
+        // 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+        // 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+        // 	}
+        // 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+        // 		var outers = angular.element(block).find('.outer');
+        // 		angular.forEach(outers, function (outer) {
+        // 			angular.forEach(outer.children, function (child) {
+        // 				if (child.className.split(' ')[0] == 'workflow-block') {
+        // 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+        // 				} else {
+        // 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+        // 				}
+        // 			});
+        // 		});
+        // 	}
+        // });
+        // }
+        // 10_22_2017_Temp_Comment///////
+
+    });
+    $scope.$watch(function () {
+        workflowHeight = (window.innerHeight) - 111;
+        workflowUI = document.getElementById('workflow-ui');
+        propertiesElem = document.getElementById('property-wrap');
+        workflowElem = document.getElementById('workflow-wrap');
+        shadowedGroupItems = document.getElementsByClassName('shadowed-item');
+        selectItemBody = document.getElementsByClassName('select-item-body');
+        workflowComponentss = $('#workflow-components');
+        $scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
+        workflowWidth = window.innerWidth - $scope.propertyPanelWidthGLOBAL;
+
+        if (workflowComponentss != undefined) {
+            workflowComponentss.css('margin-right', $scope.propertyPanelWidthGLOBAL + 'px');
+        }
+        if (workflowUI != undefined) {
+            workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
+        }
+        if (shadowedGroupItems != undefined) {
+            shadowedGroupItemsHeight = workflowHeight - 120;
+            angular.forEach(shadowedGroupItems, function (item) {
+                item.setAttribute("style", "height:" + shadowedGroupItemsHeight + "px");
+            });
+        }
+        if (selectItemBody != undefined) {
+            var selectItemBodyHeight = shadowedGroupItemsHeight - 84;
+            angular.forEach(selectItemBody, function (item) {
+                item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
+            });
+        }
 
         if (propertiesElem != undefined && workflowHeight != undefined)
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
         if (workflowElem != undefined && workflowHeight != null)
-            workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
-	});
+            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+    });
 
-	angular.element($window).bind('resize', function(){
-		if(workflowComponentss != undefined){
-			workflowComponentss.css('margin-right',$('.properties-pane').width()+'px');
-		}
-		if (workflowElem != undefined && workflowHeight != null)
-			workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
-	});
+    angular.element($window).bind('resize', function () {
+        if (workflowComponentss != undefined) {
+            workflowComponentss.css('margin-right', $('.properties-pane').width() + 'px');
+        }
+        if (workflowElem != undefined && workflowHeight != null)
+            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+    });
 
     function setSectionHeight() {
-		mainContent = document.getElementById('content');
-		if (mainContent != null && mainContent != undefined){
-			if($scope.listState == 'home'){
-				mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) +"px");
-			}else{
-				mainContent.removeAttribute("style");
-			}
-		}
-	}
-	$(document).ready(function () {
-		$timeout(function(){
-			setSectionHeight();
-		}, 2000);
-	});
+        mainContent = document.getElementById('content');
+        if (mainContent != null && mainContent != undefined) {
+            if ($scope.listState == 'home') {
+                mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) + "px");
+            } else {
+                mainContent.removeAttribute("style");
+            }
+        }
+    }
+    $(document).ready(function () {
+        $timeout(function () {
+            setSectionHeight();
+        }, 2000);
+    });
 
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
@@ -697,7 +697,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         createdBy: rule.AuthorDetails.Name.replace("+", " "),
                         avatar: rule.AuthorDetails.Avatar,
                         status: '...',
-						executions: 0,
+                        executions: 0,
                         switchState: 'on',
                         workflow: [],
                         Variables: []
@@ -719,7 +719,20 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.$on('uiStateChanged', function (event, data) {
         alert("Statue changed");
     });
+    /** get API key */
+    $scope.GetAPIKey = function () {
+        $http({
+            method: "GET",
+            url: "https://nginxproxymaker.plus.smoothflow.io/getKeyFile/" + $scope.SessionDetails.Domain + "/ignore"
+        }).then(function Success(response) {
 
+            if (response.data.success == true) {
+                $scope.APIKey = response.data.apikey;
+            }
+        }, function Error(response) {
+        });
+    }
+   
     $scope.setDockerInformation = function (name) {
         var selected = $scope.NGINXData.filter(function (container) {
             return (container.zone == name);
@@ -735,10 +748,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
 
         $scope.GeneratedURL = [{
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke",
+            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke?apikey=" + $scope.APIKey,
             METHOD: "POST"
         }, {
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello",
+            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello?apikey=" + $scope.APIKey,
             METHOD: "GET"
         }];
 
@@ -917,7 +930,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             // TriggerDataService.setWorkflowID($scope.currentRuleID);
             $scope.listState = 'rule.details';
             $state.go('rule.details');
-			setSectionHeight();
+            setSectionHeight();
         });
     };
 
@@ -1135,7 +1148,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
     };
-	///// Publishing mechanism - END
+    ///// Publishing mechanism - END
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
     $scope.getVersionForWF = function (ID) {
@@ -1186,7 +1199,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $scope.checkScheduleStatus();
             });
         }
-		setSectionHeight();
+        setSectionHeight();
     };
 
     $scope.updateWorkflowBeforeStateChange = function (location) {
@@ -1293,8 +1306,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     // New rule
     $scope.newRule = function (template, isFromTemp) {
-    	$rootScope.isFromTemplate = isFromTemp;
-    	$rootScope.selectedTemplate = template;
+        $rootScope.isFromTemplate = isFromTemp;
+        $rootScope.selectedTemplate = template;
         $scope.isNewRuleFormValid = false;
         $scope.selectedRule = {};
         $scope.selectedRule.id = dataHandler.createuuid();
@@ -1305,14 +1318,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.status = "Unsaved";
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
-		AJS.dialog2("#new-rule-dialog").show();
+        AJS.dialog2("#new-rule-dialog").show();
         // $state.go('rule.new');
     };
 
     //Close rule dialog
-	$scope.closeDialog = function (dialog) {
-		AJS.dialog2('#'+dialog).hide();
-	};
+    $scope.closeDialog = function (dialog) {
+        AJS.dialog2('#' + dialog).hide();
+    };
 
     //Clear rule
     $scope.clearRule = function () {
@@ -1445,13 +1458,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Open component info
     $scope.openComponentInfo = function (component) {
-		$scope.tab = false;
+        $scope.tab = false;
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
-		$timeout(function () {
-			$scope.activeModule = component.$$hashKey;
-		});
+        $timeout(function () {
+            $scope.activeModule = component.$$hashKey;
+        });
     };
 
     //New component
@@ -1623,14 +1636,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $rootScope.DisplayMessage("Key already exists.", "info", "The key you are trying to add is already added to the rule.");
         }
         else {
-			AJS.dialog2("#new-variable-dialog").hide()
-			angular.forEach($scope.allVariables, function (variable) {
-				angular.forEach($scope.AdditionalVariable, function (add) {
-					if(variable.Key == add.Key)
-						add.isSelected = true;
+            AJS.dialog2("#new-variable-dialog").hide()
+            angular.forEach($scope.allVariables, function (variable) {
+                angular.forEach($scope.AdditionalVariable, function (add) {
+                    if (variable.Key == add.Key)
+                        add.isSelected = true;
 
-				});
-			});
+                });
+            });
             $scope.getAllArguments();
         }
         $scope.Variable = {};
@@ -1650,14 +1663,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Delete variables
     $scope.deleteVariable = function (variable, index) {
-    	angular.forEach($scope.AdditionalVariable, function (_var) {
-			if(_var.Key == variable.Key){
-				_var.isSelected = false;
-			}
-		});
-    	$scope.showVariableConfirmation = true;
+        angular.forEach($scope.AdditionalVariable, function (_var) {
+            if (_var.Key == variable.Key) {
+                _var.isSelected = false;
+            }
+        });
+        $scope.showVariableConfirmation = true;
         $scope.variableEditOn = null;
-		$scope.allVariables.splice(index, 1);
+        $scope.allVariables.splice(index, 1);
     };
 
     //Cancel variable
@@ -1684,13 +1697,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.setInitialCollapse(1);
         }
 
-        if(component!=undefined && component.DisplayName == 'Case' && caseInjeciton ||
-			component!=undefined && component.DisplayName == 'Default' && caseInjeciton ||
-			component!=undefined && component.DisplayName == 'Fallthrough' && caseInjeciton ){
-        	$scope.callFromSwitch = true;
-		}else{
-			$scope.callFromSwitch = false;
-		}
+        if (component != undefined && component.DisplayName == 'Case' && caseInjeciton ||
+            component != undefined && component.DisplayName == 'Default' && caseInjeciton ||
+            component != undefined && component.DisplayName == 'Fallthrough' && caseInjeciton) {
+            $scope.callFromSwitch = true;
+        } else {
+            $scope.callFromSwitch = false;
+        }
 
         // $rootScope.comToBePushedIndex = parentIndex;
         $rootScope.candidateWorkflow = workflow;
@@ -1701,7 +1714,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.pendingComponentType = category;
         $scope.componentsMenuState == 'open' && !triggeredByComponent ? $scope.componentsMenuState = 'closed' : $scope.componentsMenuState = 'open';
         var componentsMenuElem = document.getElementById('workflow-components');
-        $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:'+$scope.propertyPanelWidthGLOBAL+'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight +'px;width:0px;margin-right:'+$scope.propertyPanelWidthGLOBAL+'px');
+        $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:' + $scope.propertyPanelWidthGLOBAL + 'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:0px;margin-right:' + $scope.propertyPanelWidthGLOBAL + 'px');
         // $scope.componentsMenuState == 'open' ? $scope.compMenuState = "right" : $scope.compMenuState = "left";
     }
 
@@ -1732,29 +1745,29 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.newComponentInjection = function (component) {
         var newcompo = angular.copy(component);
-		newcompo.bodyExpanded = true;
+        newcompo.bodyExpanded = true;
 
-		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
-			$rootScope.candidateComponent.workflow.push(newcompo);
-		}else if($rootScope.candidateComponent.DisplayName == "Case" || $rootScope.candidateComponent.DisplayName == "Default" || $rootScope.candidateComponent.DisplayName == "Fallthrough"){
-			if($rootScope.caseInjeciton){
-				$rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
-			}else{
-				$rootScope.candidateComponent.workflow.push(newcompo);
-			}
-		}else {
+        if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
+            $rootScope.candidateComponent.workflow.push(newcompo);
+        } else if ($rootScope.candidateComponent.DisplayName == "Case" || $rootScope.candidateComponent.DisplayName == "Default" || $rootScope.candidateComponent.DisplayName == "Fallthrough") {
+            if ($rootScope.caseInjeciton) {
+                $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
+            } else {
+                $rootScope.candidateComponent.workflow.push(newcompo);
+            }
+        } else {
             $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
         }
-		$timeout(function () {
-			$scope.activeModule = component.$$hashKey;
-		});
-		// if($scope.pendingComponentType == 'condition'){
+        $timeout(function () {
+            $scope.activeModule = component.$$hashKey;
+        });
+        // if($scope.pendingComponentType == 'condition'){
         // 	$rootScope.candidateComponent.workflow.push(newcompo);
         // }else{
         // }
-		$scope.callFromSwitch = false;
+        $scope.callFromSwitch = false;
         $scope.toggleComponentsMenu(0);
-		$scope.openComponentInfo(newcompo);
+        $scope.openComponentInfo(newcompo);
     };
 
     $scope.addNode = function (component) {
@@ -1801,13 +1814,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     // Kasun_Wijeratne_2017_10_23
-	// This code gets a set of workflow and expands or collapses the block with given index accordingly
+    // This code gets a set of workflow and expands or collapses the block with given index accordingly
     $scope.expandComponentBody = function (workflow, position) {
-		workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+        workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
     }
-	// Kasun_Wijeratne_2017_10_23 - END
+    // Kasun_Wijeratne_2017_10_23 - END
 
-	$scope.addNodeToParent = function (component) {
+    $scope.addNodeToParent = function (component) {
         var parentSibling = {
             "library_id": "1",
             "schema_id": 3,
@@ -2094,8 +2107,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.getWFName = function (flowname) {
         var conc_username = $rootScope.SessionDetails.Domain;
-		var res = flowname.replace(/ /g, '');
-		var sourceString = conc_username + res.toLowerCase();
+        var res = flowname.replace(/ /g, '');
+        var sourceString = conc_username + res.toLowerCase();
         var outString = sourceString.replace(/[` ~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         return outString;
     }
@@ -2119,7 +2132,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.setScheduleforWorkflow = function (value) {
-    	$scope.savingSchedule = true;
+        $scope.savingSchedule = true;
         var URL = "https://" + $scope.selectedRule.name + ".plus.smoothflow.io/" + $scope.selectedRule.name + "/smoothflow/schedule/update/";
 
         var optionalJSON = {};
@@ -2147,17 +2160,17 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.DisplayMessage("Schedule added!", "success", response.data.Message);
                 $scope.scheduleActive = false;
                 $scope.scheduleEditOn = false;
-				$scope.savingSchedule = true;
-			} else {
+                $scope.savingSchedule = true;
+            } else {
                 $rootScope.DisplayMessage("Error occured!", "error", response.data.Message);
                 //$scope.scheduleActive = false;
-				$scope.savingSchedule = true;
-			}
+                $scope.savingSchedule = true;
+            }
         }, function OnError(response) {
             if (response) {
                 $rootScope.DisplayMessage("Error when retriving schedule information.", "error");
-				$scope.savingSchedule = true;
-			}
+                $scope.savingSchedule = true;
+            }
         });
     }
 
@@ -2227,10 +2240,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
-	$scope.scheduleEditOn = false;
+    $scope.scheduleEditOn = false;
     $scope.editSchedule = function () {
-		$scope.scheduleEditOn = !$scope.scheduleEditOn;
-	}
+        $scope.scheduleEditOn = !$scope.scheduleEditOn;
+    }
     /////// end of scheduling functions
 
     $scope.sendProcessToObjectStore = function (saveObj, event, saveObjectParent) {
@@ -2376,6 +2389,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // retrive data from JIRA
     $scope.JiraSession = {};
     $scope.CurrentUserProfile = {};
+    $scope.GetAPIKey();
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";
@@ -2474,8 +2488,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.listProjects();
     });
 
-	$scope.selectedExpanded = false;
-	$scope.expandSelected = function () {
-		$scope.selectedExpanded = !$scope.selectedExpanded;
-	}
+    $scope.selectedExpanded = false;
+    $scope.expandSelected = function () {
+        $scope.selectedExpanded = !$scope.selectedExpanded;
+    }
 }
