@@ -120,8 +120,9 @@
                 <li class="url" ng-repeat="row in GeneratedURL" ng-class="row.METHOD=='POST'?'posturldiv':'geturldiv'">
                     <div class="url-header"><span ng-class="row.METHOD=='POST'?'postdiv':'getdiv'">{{row.METHOD}}</span>
                         <span>{{row.URL}}</span>
+                        <button class="aui-button aui-button-primary" style="margin-left: 5px;" ng-click="copyToClipboard(row);">Copy</button>
                         <button class="aui-button aui-button-primary" ng-click="callurl(row,optionalJSON)">Call</button>
-                        <button class="aui-button aui-button-primary" ng-click="callurl(row)">Copy</button>
+                        
                     </div>
                     <div ng-show="optionalJSON && row.METHOD=='POST'" class="url-body">
                         <div>body</div>
