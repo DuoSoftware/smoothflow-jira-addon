@@ -16,7 +16,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
         { Type: 'Comment', Name: 'Comment Update', code: 'comment_updated', check: false },
         { Type: 'Comment', Name: 'Comment Delete', code: 'comment_deleted', check: false },
         { Type: 'Attachment', Name: 'Attachment Created', code: 'attachment_created', check: false },
-        { Type: 'Attachment', Name: 'Attachment Delete', code: 'attachment_delete', check: false },
+        { Type: 'Attachment', Name: 'Attachment Delete', code: 'attachment_deleted', check: false },
         { Type: 'Issue link', Name: 'Issue link Created', code: 'issuelink_created', check: false },
         { Type: 'Issue link', Name: 'Issue link Delete', code: 'issuelink_deleted', check: false },
         { Type: 'Worklog', Name: 'Worklog Created', code: 'worklog_created', check: false },
