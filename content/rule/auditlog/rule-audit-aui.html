@@ -7,7 +7,7 @@
         </div>
     </header>
 
-    <div class="clearfix">
+    <div ng-if="selectedRule.status == 'Published'" class="clearfix">
         <div ng-if="selectedLogDetails !=''">
             <h4>Log Details</h4>
             <pre>{{selectedLogDetails}}</pre>
@@ -26,31 +26,15 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <div class="aui-tabs horizontal-tabs">
-            <ul class="tabs-menu">
-                <li class="menu-item active-tab">
-                    <a href="#rule.audit.#PE">Process engine</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#rule.audit.#ACT">Activity</a>
-                </li>
-                <li class="menu-item">
-                    <a href="#rule.audit.#WF">Workflow</a>
-                </li>
-            </ul>
-            <div class="tabs-pane active-pane" id="rule.audit.#PE">
-                <pre ng-if="processEngine.SessionDetails !=''">{{processEngine.SessionDetails}}</pre>
-                <pre ng-if="processEngine.SessionDetails ==''">{{processEngine.Message}}</pre>
-            </div>
-            <div class="tabs-pane" id="rule.audit.#ACT">
-                <pre ng-if="activity.SessionDetails !=''">{{activity.SessionDetails}}</pre>
-                <pre ng-if="activity.SessionDetails ==''">{{activity.Message}}</pre>
-            </div>
-            <div class="tabs-pane" id="rule.audit.#WF">
-                <pre ng-if="workflow.SessionDetails !=''">{{workflow.SessionDetails}}</pre>
-                <pre ng-if="workflow.SessionDetails ==''">{{workflow.Message}}</pre>
-            </div>
-        </div> -->
+    </div>
+    <div ng-if="selectedRule.status != 'Published'">
+        <div class="text-center">
+            <span class="aui-icon aui-icon-small aui-iconfont-error"></span>
+            <h3>This rule is not yet published!</h3>
+        </div>
+        <div class="text-center">
+            <h5>Please publish this rule to see the logs.</h5>
+        </div>
     </div>
 
 </div>
