@@ -2384,12 +2384,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.Domain = profile.domain;
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
+        $scope.GetAPIKey();
     };
 
     // retrive data from JIRA
     $scope.JiraSession = {};
     $scope.CurrentUserProfile = {};
-    $scope.GetAPIKey();
+   
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";
