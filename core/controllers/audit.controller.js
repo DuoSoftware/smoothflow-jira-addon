@@ -10,7 +10,7 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
             var index = 0;
             angular.forEach(response.data,function(log){
                 debugger
-                response.data[index] = log.replace(/(?:Logs\/WF_)/g, '');
+                response.data[index] = log.replace("Logs/", '');
                 index++;
             });
             $scope.AllLogs = response.data;
@@ -25,7 +25,7 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
         $scope.selectedLogDetails = "";
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs/WF_"+logname,
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs/"+logname,
             transformResponse: [function (data) {
                 return data;
             }]

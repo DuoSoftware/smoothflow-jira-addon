@@ -58,6 +58,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }).state('rule.schedule', {
             url: '/rule-schedule',
             templateUrl: 'content/rule/schedule/rule-schedule.html'
+        }).state('rule.notifications', {
+            url: '/rule-notifications',
+            templateUrl: 'content/rule/notifications/rule-notifications.html'
+        }).state('rule.api', {
+            url: '/rule-api',
+            templateUrl: 'content/rule/api/rule-api.html'
         });
 
 }

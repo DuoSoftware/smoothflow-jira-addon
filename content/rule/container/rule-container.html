@@ -11,95 +11,101 @@
         <div class="clearfix">
             <p>On this window you are capable of monitoring the usage of the workflow.</p>
             <div class="row cube-panel">
-                    <div class="col-md-4 col-sm-4 col-xs-12">
-                        <div class="info-cube-iconed h-onethird">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="info-cube-iconed h-onethird">
+                        <div>
                             <div>
-                                <div>
-                                    <span class="glyphicon glyphicon glyphicon-import"></span>
-                                    <div class="right-potion">
-                                        <span class="heading">Data received</span>
-                                        <span class="value">{{DockerDetails.values.received | bytes}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="info-cube-iconed h-onethird">
-                            <div>
-                                <div>
-                                    <span class="glyphicon glyphicon glyphicon-export"></span>
-                                    <div class="right-potion">
-                                        <span class="heading">Data sent</span>
-                                        <span class="value">{{DockerDetails.values.sent | bytes}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="info-cube-iconed h-onethird">
-                            <div>
-                                <div>
-                                    <span class="glyphicon glyphicon glyphicon-transfer"></span>
-                                    <div class="right-potion">
-                                        <span class="heading">Processing requests</span>
-                                        <span class="value">{{DockerDetails.values.processing}}</span>
-                                    </div>
+                                <span class="glyphicon glyphicon glyphicon-import"></span>
+                                <div class="right-potion">
+                                    <span class="heading">Data received</span>
+                                    <span class="value">{{DockerDetails.values.received | bytes}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="info-cube-iconed h-half">
+
+                    <div class="info-cube-iconed h-onethird">
+                        <div>
                             <div>
-                                <div>
-                                    <span class="aui-icon aui-icon-small aui-iconfont-deploy-success"></span>
-                                    <div class="right-potion">
-                                        <span class="heading">Total requests received</span>
-                                        <span class="value">{{DockerDetails.values.requests}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="info-cube-iconed h-half">
-                            <div>
-                                <div>
-                                    <span class="aui-icon aui-icon-small aui-iconfont-deploy-fail"></span>
-                                    <div class="right-potion">
-                                        <span class="heading">Total requests discarded</span>
-                                        <span class="value">{{DockerDetails.values.discarded}}</span>
-                                    </div>
+                                <span class="glyphicon glyphicon glyphicon-export"></span>
+                                <div class="right-potion">
+                                    <span class="heading">Data sent</span>
+                                    <span class="value">{{DockerDetails.values.sent | bytes}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="info-cube-iconed h-full">
+
+                    <div class="info-cube-iconed h-onethird">
+                        <div>
                             <div>
-                                <span style="color: #aaa;/* font-weight: 500; */font-size: 16px;display: inline-block;margin-bottom: 10px">Status wise request breakdown</span>
-                                <ul class="req-breakdown">
-                                    <li class="req-status hundred">
-                                        <span>1XX</span>  <span>{{DockerDetails.d1xx}}</span>
-                                    </li>
-                                    <li class="req-status twohundred">
-                                        <span>2XX</span>  <span>{{DockerDetails.d2xx}}</span>
-                                    </li>
-                                    <li class="req-status thhundred">
-                                        <span>3XX</span>  <span>{{DockerDetails.d3xx}}</span>
-                                    </li>
-                                    <li class="req-status fohundred">
-                                        <span>4XX</span>  <span>{{DockerDetails.d4xx}}</span>
-                                    </li>
-                                    <li class="req-status fihundred">
-                                        <span>5XX</span>  <span>{{DockerDetails.d5xx}}</span>
-                                    </li>
-                                    <li class="req-total">
-                                        <span class="total p-0">Total</span>  <span>{{DockerDetails.total}}</span>
-                                    </li>
-                                </ul>
+                                <span class="glyphicon glyphicon glyphicon-transfer"></span>
+                                <div class="right-potion">
+                                    <span class="heading">Processing requests</span>
+                                    <span class="value">{{DockerDetails.values.processing}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="info-cube-iconed h-half">
+                        <div>
+                            <div>
+                                <span class="aui-icon aui-icon-small aui-iconfont-deploy-success"></span>
+                                <div class="right-potion">
+                                    <span class="heading">Total requests received</span>
+                                    <span class="value">{{DockerDetails.values.requests}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-cube-iconed h-half">
+                        <div>
+                            <div>
+                                <span class="aui-icon aui-icon-small aui-iconfont-deploy-fail"></span>
+                                <div class="right-potion">
+                                    <span class="heading">Total requests discarded</span>
+                                    <span class="value">{{DockerDetails.values.discarded}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="info-cube-iconed h-full">
+                        <div>
+                            <span style="color: #aaa;/* font-weight: 500; */font-size: 16px;display: inline-block;margin-bottom: 10px">Status wise request breakdown</span>
+                            <ul class="req-breakdown">
+                                <li class="req-status hundred">
+                                    <span>1XX</span>
+                                    <span>{{DockerDetails.d1xx}}</span>
+                                </li>
+                                <li class="req-status twohundred">
+                                    <span>2XX</span>
+                                    <span>{{DockerDetails.d2xx}}</span>
+                                </li>
+                                <li class="req-status thhundred">
+                                    <span>3XX</span>
+                                    <span>{{DockerDetails.d3xx}}</span>
+                                </li>
+                                <li class="req-status fohundred">
+                                    <span>4XX</span>
+                                    <span>{{DockerDetails.d4xx}}</span>
+                                </li>
+                                <li class="req-status fihundred">
+                                    <span>5XX</span>
+                                    <span>{{DockerDetails.d5xx}}</span>
+                                </li>
+                                <li class="req-total">
+                                    <span class="total p-0">Total</span>
+                                    <span>{{DockerDetails.total}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="clearfix">
@@ -113,30 +119,6 @@
                 <!--</div>-->
             </div>
         </div>
-
-        <div class="clearfix">
-            <h5 class="content-sub-heading">Container URLs</h5>
-            <ul class="p-0 container-urls">
-                <li class="url" ng-repeat="row in GeneratedURL" ng-class="row.METHOD=='POST'?'posturldiv':'geturldiv'">
-                    <div class="url-header"><span ng-class="row.METHOD=='POST'?'postdiv':'getdiv'">{{row.METHOD}}</span>
-                        <span style="display: inline-block;width: 88%">{{row.URL}}</span>
-                        <button class="aui-button aui-button-primary" style="margin-left: 5px;" ng-click="copyToClipboard(row);">Copy</button>
-                        <button class="aui-button aui-button-primary" ng-click="callurl(row,optionalJSON)">Call</button>
-                        
-                    </div>
-                    <div ng-show="optionalJSON && row.METHOD=='POST'" class="url-body">
-                        <div>body</div>
-                        <textarea class="textarea long-field req-body" name="optionalJSON" ng-model="optionalJSON" id="optionalJSON"></textarea>
-                    </div>
-                </li>
-
-                <div class="response" ng-show="Iscall">
-                    <div>Status : <span>{{statuscode}}</span></div>
-                    <div>Response</div>
-                    <textarea class="textarea long-field" name="responseMsg" ng-model="responseMsg" id="responseMsg"></textarea>
-                </div>
-            </ul>
-        </div>
     </div>
     <div ng-if="selectedRule.status != 'Published'">
         <div class="text-center">
@@ -148,6 +130,3 @@
         </div>
     </div>
 </div>
-
-
-

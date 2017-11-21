@@ -469,6 +469,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.listState = "home";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
+    $scope.successNotifications = [];
+    $scope.errorNotifications = [];
     $scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
@@ -732,7 +734,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, function Error(response) {
         });
     }
-   
+
     $scope.setDockerInformation = function (name) {
         var selected = $scope.NGINXData.filter(function (container) {
             return (container.zone == name);
@@ -2245,6 +2247,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.scheduleEditOn = !$scope.scheduleEditOn;
     }
     /////// end of scheduling functions
+
+    $scope.addNotificationMethod = function (flag, value) {
+        if (flag == "success") {
+            $scope.successNotifications.push(value);
+            $scope.successemail = "";
+        } else if ("failed") {
+            $scope.errorNotifications.push(value);
+            $scope.failedemail = "";
+        }
+    };
+
+    $scope.deleteFromNotificationMethod = function (flag, emailAddress, index) {
+        debugger
+        if (flag == "success") {
+            $scope.successNotifications.splice(index, 1);
+        } else if ("failed") {
+            $scope.errorNotifications.splice(index, 1);
+        }
+    };
 
     $scope.sendProcessToObjectStore = function (saveObj, event, saveObjectParent) {
 
