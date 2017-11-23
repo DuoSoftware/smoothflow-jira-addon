@@ -60,6 +60,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             { 'code': 'worklog_created', 'projects': [] },
                             { 'code': 'worklog_updated', 'projects': [] },
                             { 'code': 'worklog_deleted', 'projects': [] },
+<<<<<<< HEAD
                             { 'code': 'jira_voting', 'projects': [] },
                             { 'code': 'jira_watching', 'projects': [] },
                             { 'code': 'jira_unassigned issues', 'projects': [] },
@@ -67,13 +68,19 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             { 'code': 'jira_attachments', 'projects': [] },
                             { 'code': 'jira_issue_link', 'projects': [] },
                             { 'code': 'jira_time tracking_provider', 'projects': [] },
+=======
+>>>>>>> bb4a844a9b9177f76f650526bc45876e0804b56e
                             { 'code': 'option_voting_changed', 'projects': [] },
                             { 'code': 'option_watching_changed', 'projects': [] },
                             { 'code': 'option_unassigned_issues_changed', 'projects': [] },
                             { 'code': 'option_subtasks_changed', 'projects': [] },
                             { 'code': 'option_attachments_changed', 'projects': [] },
                             { 'code': 'option_issuelinks_changed', 'projects': [] },
+<<<<<<< HEAD
                             { 'code': 'option_timetracking_changed', 'projects': [] },
+=======
+                            { 'code': 'option_timetracking_changed', 'projects': [] },                         
+>>>>>>> bb4a844a9b9177f76f650526bc45876e0804b56e
                             { 'code': 'board_created', 'projects': [] },
                             { 'code': 'board_updated', 'projects': [] },
                             { 'code': 'board_deleted', 'projects': [] },
@@ -309,7 +316,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
     this.addProjectwithTrigger = function (project, selectedtriggers) {
         if (selectedtriggers != undefined) {
             var code = alltriggers.findIndex(alltriggers => alltriggers.code === selectedtriggers.code);
-            if (alltriggers[code].projects.length > 0 || typeof (alltriggers[code].projects) == 'undefined') {
+            if (alltriggers[code].projects.length > 0) {
                 var ee = alltriggers[code].projects;
                 var projs = ee.findIndex(ee => ee.key === project.key);
                 if (projs != -1) {
