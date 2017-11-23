@@ -181,7 +181,6 @@ class client
             echo "$name: $value\n";
         }
 
-        echo getBody();
 
         $ch = curl_init();
 
