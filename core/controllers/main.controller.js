@@ -2469,11 +2469,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
+            debugger
             if (response.data.response == "success") {
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');
                 tenant = tenant.replace(/(?:\.atlassian\.net)/g, '');
-                $scope.CurrentUserProfile.domain = tenant + "jira";
+                $scope.CurrentUserProfile.domain = tenant + "jiradevsmoothflowio";
                 $rootScope.Domain = $scope.CurrentUserProfile.domain;
                 console.log($scope.CurrentUserProfile);
                 $scope.loadJiraUser($scope.CurrentUserProfile);
@@ -2514,7 +2515,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var temUser = {
             displayName: "Mr Shehan",
             emailAddress: "shehan@duosoftware.com",
-            domain: "duosoftwarejira"
+            domain: "duosoftwarejiradevsmoothflowio"
         }
         temUser.avatarUrls = {};
         temUser.avatarUrls["24x24"] = "https://avatar-cdn.atlassian.com/7272996f825bd268885d6b20484d325c?s=24&d=https%3A%2F%2Fduosoftware.atlassian.net%2Fsecure%2Fuseravatar%3Fsize%3Dsmall%26ownerId%3Dshehan%26avatarId%3D17100%26noRedirect%3Dtrue";
