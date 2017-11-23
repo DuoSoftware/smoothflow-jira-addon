@@ -181,7 +181,7 @@ class client
             echo "$name: $value\n";
         }
 
-
+        var_dump($_POST);
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
