@@ -175,13 +175,14 @@ class client
 
     function processWebHook(){
 
+        $post=json_decode(Flight::request()->getBody());
         $headers = getallheaders();
 
         foreach (getallheaders() as $name => $value) {
             echo "$name: $value\n";
         }
 
-        var_dump($_POST);
+        var_dump($post)
 
         $ch = curl_init();
 
