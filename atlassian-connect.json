@@ -88,6 +88,174 @@
             {
                 "event": "jira:issue_created",
                 "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "jira:issue_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "jira:issue_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "comment_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "comment_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "comment_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "attachment_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "attachment_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "worklog_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "issuelink_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "issuelink_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "worklog_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "worklog_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "worklog_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_voting_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_watching_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_unassigned_issues_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_subtasks_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_attachments_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_issuelinks_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "option_timetracking_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "board_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "board_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "board_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "board_configuration_changed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "sprint_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "sprint_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "sprint_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "sprint_started",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "sprint_closed",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "project_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "project_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "project_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_released",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_unreleased",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_merged",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "version_moved",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "user_created",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "user_updated",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+            },
+            {
+                "event": "user_deleted",
+                "url": "addon-api/webhookForward?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
             }
         ]
     }
