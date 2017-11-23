@@ -49,7 +49,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             { 'code': 'issue_created', 'projects': [] },
                             { 'code': 'issue_updated', 'projects': [] },
                             { 'code': 'issue_deleted', 'projects': [] },
-                            { 'code': 'issue_working_change', 'projects': [] },                           
+                            { 'code': 'issue_working_change', 'projects': [] },
                             { 'code': 'comment_created', 'projects': [] },
                             { 'code': 'comment_update', 'projects': [] },
                             { 'code': 'comment_delete', 'projects': [] },
@@ -66,7 +66,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             { 'code': 'jira_subtasks', 'projects': [] },
                             { 'code': 'jira_attachments', 'projects': [] },
                             { 'code': 'jira_issue_link', 'projects': [] },
-                            { 'code': 'jira_time tracking_provider', 'projects': [] },                         
+                            { 'code': 'jira_time tracking_provider', 'projects': [] },
                             { 'code': 'board_created', 'projects': [] },
                             { 'code': 'board_update', 'projects': [] },
                             { 'code': 'board_delete', 'projects': [] },
@@ -302,7 +302,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
     this.addProjectwithTrigger = function (project, selectedtriggers) {
         if (selectedtriggers != undefined) {
             var code = alltriggers.findIndex(alltriggers => alltriggers.code === selectedtriggers.code);
-            if (alltriggers[code].projects.length > 0) {
+            if (alltriggers[code].projects.length > 0 || typeof (alltriggers[code].projects) == 'undefined') {
                 var ee = alltriggers[code].projects;
                 var projs = ee.findIndex(ee => ee.key === project.key);
                 if (projs != -1) {
@@ -325,13 +325,13 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             if (projs != -1) {
                 var tt = alltriggers[code].projects[projs];
                 for (var index = 0; index < tt.WFID.length; index++) {
-                    if(tt.WFID[index]==WorkFlowId){
+                    if (tt.WFID[index] == WorkFlowId) {
                         alltriggers[code].projects[projs].WFID.splice(index, 1);
                     }
-                } 
+                }
             }
         }
-        
+
     }
     return this;
 });
