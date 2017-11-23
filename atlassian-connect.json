@@ -11,7 +11,10 @@
         "type": "jwt"
     },
     "lifecycle": {
-        "installed": "addon-api/client"
+        "installed": "addon-api/client",
+        "uninstalled": "addon-api/uninstall",
+        "enabled": "addon-api/enable",
+        "disabled": "addon-api/disable"
     },
     "scopes": [
         "read",
@@ -32,12 +35,12 @@
             }
         ],
         "postInstallPage": {
-            "url": "/my-post-install-page",
+            "url": "landing/",
             "name": {
-                "value": "My Post-Install Page",
+                "value": "Getting started with Smoothflow Automation",
                 "i18n": "mypostinstallpage.name"
             },
-            "key": "my-post-install-page"
+            "key": "addmon-smoothflow-getting-started-page"
         },
         "adminPages": [
             {
@@ -84,7 +87,7 @@
         "webhooks": [
             {
                 "event": "jira:issue_created",
-                "url": "https://devprocessengine.plus.smoothflow.io/processengine/JiraWebHook?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}"
+                "url": "addon-api/webhookForward/${project.id}/${project.key}/${issue.key}/${issue.id}"
             }
         ]
     }
