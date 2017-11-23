@@ -180,7 +180,7 @@ class client
 
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test'.$_SERVER['QUERY_STRING']);
+        curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('body' => $post)));
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
