@@ -182,7 +182,7 @@ class client
             echo "$name: $value\n";
         }
 
-        var_dump($post)
+        var_dump($post);
 
         $ch = curl_init();
 
