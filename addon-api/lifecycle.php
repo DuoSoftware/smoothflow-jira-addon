@@ -193,7 +193,7 @@ class client
         $ch = curl_init();
 
         //curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
-        curl_setopt($ch, CURLOPT_URL, SVC_PROCESSENGINE_HOST.'?'.$_SERVER['QUERY_STRING']);
+        curl_setopt($ch, CURLOPT_URL, SVC_PROCESSENGINE_HOST.'/JiraWebHook?'.$_SERVER['QUERY_STRING']);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', 'Authorization: '.$_SERVER['HTTP_AUTHORIZATION']));
