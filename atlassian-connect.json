@@ -87,7 +87,7 @@
         "webhooks": [
             {
                 "event": "jira:issue_created",
-                "url": "addon-api/webhookForward/${project.id}/${project.key}/${issue.key}/${issue.id}"
+                "url": "addon-api/webhookForward"
             }
         ]
     }
