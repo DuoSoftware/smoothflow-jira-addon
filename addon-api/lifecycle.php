@@ -187,7 +187,7 @@ class client
 
         curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
