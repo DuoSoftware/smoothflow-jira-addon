@@ -749,6 +749,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.DockerDetails.total = $scope.DockerDetails.values.responses['total'];
         }
 
+        $scope.GeneratedURL = null;
         $scope.GeneratedURL = [{
             URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke?apikey=" + $scope.APIKey,
             METHOD: "POST"
@@ -1056,7 +1057,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.publishWorkflow = function () {
         if ($scope.validateBeforeSave()) {
-            $rootScope.ShowBusyContainer("Building rule...");
+            $rootScope.ShowBusyContainer("Building your automation rule...");
             // building the workflow into an executable
 
             var flowChartJson = dataHandler.getSaveJson();
@@ -1098,7 +1099,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     'SecurityToken': $helpers.getCookie("securityToken")
                 }
             }).then(function OnSuccess(response) {
-                $rootScope.ShowBusyContainer("Publishing rule to a container...");
+                $rootScope.ShowBusyContainer("Publishing automation to a container...");
                 if (response.data.Status) {
                     var obj = {};
                     obj.wfname = $scope.getWFName($scope.selectedRule.ruleName);
@@ -1118,6 +1119,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
         }
     };
+
+    $scope.setCurrentRuleStatus = function (status) {
+        $scope.selectedRule.status = status;
+    }
 
     $scope.PublishToDocker = function (publishObj) {
         var sessionId = dataHandler.createuuid();
@@ -1139,6 +1144,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function OnSuccess(response) {
             if (response.data.Status) {
                 $rootScope.DisplayMessage("Published to a container successfully.", "success");
+                $scope.GetAPIKey();
+                $scope.setCurrentRuleStatus("Published");
+                $scope.changeLocation("rule.container");
+                $timeout(function () {
+                    $scope.getDockerDetails();
+                    $scope.setDockerInformation($scope.getWFName($scope.selectedRule.ruleName));
+                });
             } else {
                 $rootScope.DisplayMessage("Error occured when publishing the rule to a container.", "error");
             }
@@ -1349,7 +1361,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         AJS.dialog2("#rule-delete-dialog").hide();
     };
 
-    $scope.deleteContainer = function (WFDetails) {
+    $scope.removeFromNGINX = function (name, username) {
+        var obj = {
+            "process": name,
+            "securityToken": "ignore",
+            "userName": username
+        }
+        var URL = $v6urls.nginxserver + "/removefromnginxplus/"
+        $http.post(URL, obj, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data) {
+            debugger
+            $rootScope.DisplayMessage("The container was removed successfully.", "success", "You may try again later.");
+        }, function (data) {
+            debugger
+            $rootScope.DisplayMessage("There was an error when removing the container.", "error", "You may try again later.");
+        });
+    }
+
+    $scope.deleteContainer = function () {
         $http({
             method: 'GET',
             url: $v6urls.nginxserver + '/removedocker/' + $rootScope.SessionDetails.Domain + '/' + $scope.selectedRule.id,
@@ -1358,8 +1390,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             },
         })
             .then(function (data) {
-                $rootScope.DisplayMessage("The container was removed successfully.", "success", "You may try again later.");
+                debugger
+                $scope.removeFromNGINX($scope.getWFName($scope.selectedRule.ruleName), $scope.SessionDetails.Domain);
             }, function (data) {
+                debugger
                 $rootScope.DisplayMessage("There was an error when removing the container.", "error", "You may try again later.");
             })
 
@@ -1411,8 +1445,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.deleteContainer();
         }
 
-        // deleting triggers
-        //TriggerDatafactory.DeleteTrigger();
+        //delete tigger
+        TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
     };
 
     $scope.removeRule = function () {
@@ -1422,9 +1456,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.hasContainer = true;
         }
         AJS.dialog2("#rule-delete-dialog").show();
-        //delete tigger
-        TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
-
     };
 
     //Edit rule

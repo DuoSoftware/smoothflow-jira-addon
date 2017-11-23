@@ -80,6 +80,12 @@
                     }
                 ]
             }
+        ],
+        "webhooks": [
+            {
+                "event": "jira:issue_created",
+                "url": "addon-api/webhookForward"
+            }
         ]
     }
 }
