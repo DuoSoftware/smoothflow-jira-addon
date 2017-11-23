@@ -313,7 +313,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                     "key": project.key,
                     "WFID": [WorkFlowId]
                 }
-                alltriggers[j].projects.push(record);
+                alltriggers[code].projects.push(record);
             }
         }
     };
