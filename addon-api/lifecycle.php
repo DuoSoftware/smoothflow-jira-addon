@@ -179,8 +179,11 @@ class client
         $headers = getallheaders();
 
 
-        $papa = fopen('headers.txt', json_encode($headers));
-        $papa = fopen('body.txt', json_encode($post));
+        $file1 = fopen('headers.txt','w');
+        fwrite($file1, json_encode($headers));
+
+        $file2 = fopen('body.txt','w');
+        fwrite($file2, json_encode($post));
 
         foreach (getallheaders() as $name => $value) {
             echo "$name: $value\n";
