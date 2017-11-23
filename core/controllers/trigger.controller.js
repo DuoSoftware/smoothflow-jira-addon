@@ -10,8 +10,7 @@ app.controller('TriggerController', ['$scope', '$rootScope', '$http', '$auth', '
     $scope.triggersOptions = [
         { Type: 'Issue', Name: 'Issue Created', code: 'issue_created', check: false },
         { Type: 'Issue', Name: 'Issue Update', code: 'issue_updated', check: false },
-        { Type: 'Issue', Name: 'Issue Delete', code: 'issue_deleted', check: false },
-        { Type: 'Issue', Name: 'Issue Working Change', code: 'worklog_updated', check: false },       
+        { Type: 'Issue', Name: 'Issue Delete', code: 'issue_deleted', check: false },     
         { Type: 'Comment', Name: 'Comment Created', code: 'comment_created', check: false },
         { Type: 'Comment', Name: 'Comment Update', code: 'comment_updated', check: false },
         { Type: 'Comment', Name: 'Comment Delete', code: 'comment_deleted', check: false },
