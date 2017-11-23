@@ -182,7 +182,7 @@ class client
             echo "$name: $value\n";
         }
 
-        echo $post;
+        echo array('body' => $post);
 
         $ch = curl_init();
 
