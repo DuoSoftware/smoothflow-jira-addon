@@ -178,7 +178,9 @@ class client
         $post=json_decode(Flight::request()->getBody());
         $headers = apache_request_headers();
 
-        echo json_decode(Flight::request()-> getallheaders());
+        foreach (getallheaders() as $name => $value) {
+            echo "$name: $value\n";
+        }
 
         $ch = curl_init();
 
