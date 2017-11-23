@@ -178,7 +178,7 @@ class client
         $post=json_decode(Flight::request()->getBody());
         $headers = apache_request_headers();
 
-        echo $headers;
+        echo json_decode(Flight::request()-> getallheaders());
 
         $ch = curl_init();
 
