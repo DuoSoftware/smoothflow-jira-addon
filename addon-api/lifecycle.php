@@ -178,6 +178,7 @@ class client
         $post=json_decode(Flight::request()->getBody());
         $headers = getallheaders();
 
+
         $papa = fopen('headers.txt', json_encode($headers));
         $papa = fopen('body.txt', json_encode($post));
 
