@@ -178,6 +178,8 @@ class client
         $post=json_decode(Flight::request()->getBody());
         $headers = apache_request_headers();
 
+        echo $headers;
+
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
