@@ -182,6 +182,7 @@ class client
             echo "$name: $value\n";
         }
 
+        echo $_SERVER['HTTP_AUTHORIZATION'];
 
         $ch = curl_init();
 
