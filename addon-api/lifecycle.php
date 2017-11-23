@@ -176,14 +176,14 @@ class client
     function processWebHook(){
 
         $post=json_decode(Flight::request()->getBody());
-        $Auth = $_SERVER['HTTP_Authorization'];
+        $headers = apache_request_headers();
 
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, SVC_NGINXPROXYMAKER_HOST.'/test'.$_SERVER['QUERY_STRING']);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('body' => $post)));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:'.$Auth, 'Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $server_output = curl_exec ($ch);
