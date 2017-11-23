@@ -953,14 +953,30 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.executable = {};
     $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
     $scope.getports = function () {
-        var client = $objectstore.getClient("occupiedPorts");
-        client.onGetMany(function (data) {
-            if (data) {
-                $scope.portlist = data;
-                $scope.setport();
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "GET",
+            headers: {
+                'securityToken': "ignore"
             }
-        });
-        client.v1getByFiltering("*");
+        }).
+            then(function (data, status, headers, config) {
+                if (data) {
+                    $scope.portlist = data;
+                    $scope.setport();
+                }
+            }, function (data, status, headers, config) {
+                $rootScope.DisplayMessage("Error when retriving port information", "error", "Please contact an administrator.");
+            });
+
+        // var client = $objectstore.getClient("occupiedPorts");
+        // client.onGetMany(function (data) {
+        //     if (data) {
+        //         $scope.portlist = data;
+        //         $scope.setport();
+        //     }
+        // });
+        // client.v1getByFiltering("*");
     };
 
     $scope.setport = function () {
@@ -980,6 +996,23 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     $scope.getports();
+
+    $scope.saveports = function (portObj) {
+        debugger
+        var port = { "Object": portObj, "Parameters": { "KeyProperty": "id" } }
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "POST",
+            headers: {
+                'securityToken': "ignore"
+            },
+            data: port
+        }).then(function (data, status, headers, config) {
+            $rootScope.DisplayMessage("Port details saved successfully.", "success");
+        }, function (data, status, headers, config) {
+            $rootScope.DisplayMessage("Error when saving port information", "error", "Please contact an administrator.");
+        });
+    };
 
     $scope.stripConvertionDetails = function (flowData) {
         angular.forEach(flowData.arguments, function (argument) {
@@ -1057,6 +1090,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.publishWorkflow = function () {
         if ($scope.validateBeforeSave()) {
+            // generate new port for the rule which is not currently in use.
+            $scope.setport();
             $rootScope.ShowBusyContainer("Building your automation rule...");
             // building the workflow into an executable
 
@@ -1103,10 +1138,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 if (response.data.Status) {
                     var obj = {};
                     obj.wfname = $scope.getWFName($scope.selectedRule.ruleName);
-                    ; obj.port = $scope.executable.port.toString();
+                    obj.port = $scope.executable.port.toString();
                     obj.RAM = "300";
                     obj.CPU = "10";
                     $scope.PublishToDocker(obj);
+                    // save port information only if the build is successfull.
+                    var portObj = {
+                        id: $scope.getWFName($scope.selectedRule.ruleName),
+                        port: $scope.executable.port
+                    }
+                    $scope.saveports(portObj);
                 } else {
                     $rootScope.DisplayMessage("Error when building the rule.", "error", "Please contact an administrator.");
                     $rootScope.HideBusyContainer();
@@ -2391,7 +2432,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.processPublishedList();
             $scope.setDockerInformation($scope.selectedRule.name);
         }, function (e, a) {
-            console.log(e, a);
+            $rootScope.DisplayMessage("Error loading container details.", "error", "Please contact an administrator.");
         });
     };
 
