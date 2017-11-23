@@ -176,7 +176,7 @@ class client
     function processWebHook(){
 
         $post=json_decode(Flight::request()->getBody());
-        $headers = apache_request_headers();
+        $headers = getallheaders();
 
         foreach (getallheaders() as $name => $value) {
             echo "$name: $value\n";
