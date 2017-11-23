@@ -175,7 +175,6 @@ class client
 
     function processWebHook(){
 
-        $post=json_decode(Flight::request()->getBody());
         $headers = getallheaders();
 
         foreach (getallheaders() as $name => $value) {
@@ -188,7 +187,7 @@ class client
 
         curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('body' => $post)));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_POST));
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
