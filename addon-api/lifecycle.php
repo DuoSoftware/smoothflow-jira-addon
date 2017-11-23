@@ -176,12 +176,15 @@ class client
     function processWebHook(){
 
         $post=json_decode(Flight::request()->getBody());
+        $Auth = $_SERVER['HTTP_Authorization'];
 
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, SVC_PROCESSENGINE_HOST.'/JiraWebHook'.$_SERVER['QUERY_STRING']);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('body' => $post)));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:'.$Auth, 'Content-Type: application/json'));
+
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $server_output = curl_exec ($ch);
         curl_close ($ch);
