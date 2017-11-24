@@ -49,7 +49,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             { 'code': 'issue_created', 'projects': [] },
                             { 'code': 'issue_updated', 'projects': [] },
                             { 'code': 'issue_deleted', 'projects': [] },
-                            { 'code': 'issue_working_change', 'projects': [] },                           
+                            { 'code': 'issue_working_change', 'projects': [] },
                             { 'code': 'comment_created', 'projects': [] },
                             { 'code': 'comment_updated', 'projects': [] },
                             { 'code': 'comment_deleted', 'projects': [] },
@@ -60,13 +60,28 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                             { 'code': 'worklog_created', 'projects': [] },
                             { 'code': 'worklog_updated', 'projects': [] },
                             { 'code': 'worklog_deleted', 'projects': [] },
+
+                            { 'code': 'jira_voting', 'projects': [] },
+                            { 'code': 'jira_watching', 'projects': [] },
+                            { 'code': 'jira_unassigned issues', 'projects': [] },
+                            { 'code': 'jira_subtasks', 'projects': [] },
+                            { 'code': 'jira_attachments', 'projects': [] },
+                            { 'code': 'jira_issue_link', 'projects': [] },
+                            { 'code': 'jira_time tracking_provider', 'projects': [] },
+
                             { 'code': 'option_voting_changed', 'projects': [] },
                             { 'code': 'option_watching_changed', 'projects': [] },
                             { 'code': 'option_unassigned_issues_changed', 'projects': [] },
                             { 'code': 'option_subtasks_changed', 'projects': [] },
                             { 'code': 'option_attachments_changed', 'projects': [] },
                             { 'code': 'option_issuelinks_changed', 'projects': [] },
+
+                            { 'code': 'option_timetracking_changed', 'projects': [] },
+
                             { 'code': 'option_timetracking_changed', 'projects': [] },                         
+
+                            { 'code': 'option_timetracking_changed', 'projects': [] },                         
+
                             { 'code': 'board_created', 'projects': [] },
                             { 'code': 'board_updated', 'projects': [] },
                             { 'code': 'board_deleted', 'projects': [] },
@@ -325,13 +340,13 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             if (projs != -1) {
                 var tt = alltriggers[code].projects[projs];
                 for (var index = 0; index < tt.WFID.length; index++) {
-                    if(tt.WFID[index]==WorkFlowId){
+                    if (tt.WFID[index] == WorkFlowId) {
                         alltriggers[code].projects[projs].WFID.splice(index, 1);
                     }
-                } 
+                }
             }
         }
-        
+
     }
     return this;
 });
