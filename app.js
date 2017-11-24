@@ -3,7 +3,8 @@ var app = angular.module('sfJira', [
     'ngTextcomplete',
     'uiMicrokernel',
     'angular.filter',
-    'angular-cron-generator'
+    'angular-cron-generator',
+    'angular-screenshot'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
