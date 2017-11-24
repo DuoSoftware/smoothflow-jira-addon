@@ -1,4 +1,4 @@
-app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', function ($scope, $http, $v6urls, $rootScope) {
+app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'dataHandler', function ($scope, $http, $v6urls, $rootScope, dataHandler) {
 
     //Use for authorization
     $scope.theme = sessionStorage.cur_theme || 'default';
@@ -25,7 +25,6 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', fu
                     $scope.gettasklist();
                     creatEngagement();
                 }
-
             } else {
                 $scope.userStatus = true;
                 createProfile();
@@ -104,7 +103,7 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', fu
 
     // 4) create Engagement using user ID
     function creatEngagement() {
-        $scope.SessionID = $rootScope.createuuid();
+        $scope.SessionID = dataHandler.createuuid();
         var engagement = {
             '_id': $scope.SessionID,    //Session id
             'engagement_id': $scope.SessionID,   //Session id
@@ -193,8 +192,13 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', fu
             },
             data: comment
         }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
+            if (!data.IsSuccess == false) {
+                if (!angular.isUndefined(data.Result) || data.Result != null) {
+                    $scope.ticket.comment = "";
+                }
+            } else {
+                console.log(data);
+            }
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
