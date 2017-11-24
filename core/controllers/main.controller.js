@@ -1009,6 +1009,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             data: port
         }).then(function (data, status, headers, config) {
             $rootScope.DisplayMessage("Port details saved successfully.", "success");
+            $scope.getports();
         }, function (data, status, headers, config) {
             $rootScope.DisplayMessage("Error when saving port information", "error", "Please contact an administrator.");
         });
