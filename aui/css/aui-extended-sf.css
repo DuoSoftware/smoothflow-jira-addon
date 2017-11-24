@@ -227,6 +227,19 @@ h5 + h6 {
     -o-transition: width 0.5s ease;
     transition: width 0.5s ease;
 }
+#FeedbackSection{
+    position: relative;
+    width: 95%;
+    
+    -webkit-box-shadow: 0px 2px 5px #ddd;
+    -moz-box-shadow: 0px 2px 5px #ddd;
+    box-shadow: 0px 2px 5px #ddd;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
 
 .width-50{
     width: 70%!important;
