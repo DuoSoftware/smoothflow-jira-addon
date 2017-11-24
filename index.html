@@ -23,7 +23,7 @@
     <div ng-cloak ng-controller="ScreenshotController" style="position: absolute;width:  100%;height: 100%;">
         <button id="captureButton" class="btn btn-fab" ng-class="{true: 'btn-danger', false: 'btn-default'}[isUrlOpen]" ng-click="displayHideScreenshot()"
             style="bottom:  0;right: 0;position:  absolute;margin-bottom: 20px;margin-right: 20px;z-index:  100;">
-            <i ng-if="!isUrlOpen" class="material-icons">Send Feedback</i>
+            <i ng-if="!isUrlOpen" class="material-icons">Capture Screen for Feedback</i>
             <i ng-if="isUrlOpen" class="material-icons">Right-click to Close</i>
         </button>
 
@@ -43,7 +43,7 @@
                 <div class="aui-page-panel-inner">
                     <section class="aui-page-panel-content">
                         <div class="button-spinner"></div>
-                        <h2 id="busycontent">Loading your rules...</h2>
+                        <h2 id="busycontent">Loading your Automations...</h2>
                     </section>
                 </div>
             </div>
@@ -53,14 +53,14 @@
                 <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
                     <div class="aui-header-inner">
                         <div class="aui-header-primary">
-                            <div ng-click="changeLocation('home')" class="navbar-brand">
+                            <div ng-click="$root.changeLocation('home')" class="navbar-brand">
                                 <!--<img src="//dev.smoothflow.io/app/images/sf-full-small.png" alt="SmoothFlow">-->
                                 <img src="core/images/smoothflow_logo.svg">
                             </div>
                             <div class="bar-buttons">
-                                <button class="aui-button" type="button" ng-click="changeLocation('home')">Automations</button>
-                                <!-- <button class="aui-button" type="button" ng-click="changeLocation('dashboard')">Dashboard</button> -->
-                                <button class="aui-button" type="button" ng-click="changeLocation('feedback')">Feedback</button>
+                                <button class="aui-button" type="button" ng-click="$root.changeLocation('home')">Automations</button>
+                                <!-- <button class="aui-button" type="button" ng-click="$root.changeLocation('dashboard')">Dashboard</button> -->
+                                <button class="aui-button" type="button" ng-click="$root.changeLocation('feedback')">Feedback</button>
                             </div>
                         </div>
                     </div>

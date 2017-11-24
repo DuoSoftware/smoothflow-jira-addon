@@ -6,7 +6,7 @@ app.controller('ScreenshotController', ['$scope', '$rootScope', '$http', '$auth'
         if ($scope.imageApi) {
             $scope.imageApi.toPng(function (dataUrl) {
                 console.log(dataUrl);
-                alert('Please open console and print dataUrl then you can send dataUrl to your backend api do more feature like send mail.');
+                $rootScope.changeLocation('feedback');
             });
         }
     }
