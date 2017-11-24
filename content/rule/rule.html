@@ -34,9 +34,6 @@
                             <a href="" ng-click="changeLocation('rule.audit')">Audit Logs</a>
                         </li>
                         <!-- <li ng-class="{'aui-nav-selected':listState == 'rule.notifications'}"><a href="" ng-click="changeLocation('rule.notifications')">Notifications</a></li> -->
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.feedback'}">
-                            <a href="" ng-click="changeLocation('rule.feedback')">Feedback</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="aui-navgroup-secondary nav-button-right m-0">
@@ -45,8 +42,7 @@
                             <button class="aui-button" ng-click="saveWorkFlow()">Save</button>
                         </li>
                         <li>
-                            <button id="validationErrors" class="aui-button aui-button-primary" ng-click="publishWorkflow()"
-                                ng-disabled="selectedRule.status == 'Unsaved'">Publish</button>
+                            <button id="validationErrors" class="aui-button aui-button-primary" ng-click="publishWorkflow()" ng-disabled="selectedRule.status == 'Unsaved'">Publish</button>
                         </li>
                     </ul>
                 </div>
@@ -59,6 +55,8 @@
 
         <div ui-view id="workflow-ui" class="custom-scroll"></div>
 
-        <a class="btn-floating btn-lg purple-gradient"><i class="fa fa-bolt"></i></a>
+        <a class="btn-floating btn-lg purple-gradient">
+            <i class="fa fa-bolt"></i>
+        </a>
     </div>
 </div>
