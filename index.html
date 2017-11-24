@@ -20,17 +20,18 @@
 </head>
 
 <body>
-    <div ng-controller="ScreenshotController as appCtrl">
-        <button class="btn btn-fab" ng-class="{true: 'btn-danger', false: 'btn-default'}[appCtrl.isUrlOpen]" ng-click="appCtrl.isUrlOpen = !appCtrl.isUrlOpen">
-            <i ng-if="!appCtrl.isUrlOpen" class="material-icons">crop</i>
-            <i ng-if="appCtrl.isUrlOpen" class="material-icons">close</i>
+    <div ng-cloak ng-controller="ScreenshotController" style="position: absolute;width:  100%;height: 100%;">
+        <button id="captureButton" class="btn btn-fab" ng-class="{true: 'btn-danger', false: 'btn-default'}[isUrlOpen]" ng-click="displayHideScreenshot()"
+            style="bottom:  0;right: 0;position:  absolute;margin-bottom: 20px;margin-right: 20px;z-index:  100;">
+            <i ng-if="!isUrlOpen" class="material-icons">Send Feedback</i>
+            <i ng-if="isUrlOpen" class="material-icons">Right-click to Close</i>
         </button>
 
-        <screenshot is-open="appCtrl.isUrlOpen" api="appCtrl.imageApi">
+        <screenshot id="screenFilter" ng-cloak is-open="isUrlOpen" api="imageApi" style="width: 100%;height: 100%;position:  absolute;left: 0;top: 0;">
             <screenshot-toolbox>
                 <div class="btn-group-sm">
-                    <button class="btn btn-success" ng-click="appCtrl.sendImage()">
-                        sendImage
+                    <button ng-cloak class="btn btn-success" ng-click="sendImage()">
+                        Create Ticket
                     </button>
                 </div>
             </screenshot-toolbox>
@@ -59,7 +60,7 @@
                             <div class="bar-buttons">
                                 <button class="aui-button" type="button" ng-click="changeLocation('home')">Automations</button>
                                 <!-- <button class="aui-button" type="button" ng-click="changeLocation('dashboard')">Dashboard</button> -->
-                                <button class="aui-button" type="button" ng-click="uploadScreenshot()">Screenshot</button>
+                                <button class="aui-button" type="button" ng-click="uploadScreenshot()">Feedback</button>
                             </div>
                         </div>
                     </div>
