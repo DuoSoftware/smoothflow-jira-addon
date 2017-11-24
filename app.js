@@ -65,8 +65,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }).state('rule.api', {
             url: '/rule-api',
             templateUrl: 'content/rule/api/rule-api.html'
-        }).state('rule.feedback', {
-            url: '/rule-feedback',
+        }).state('feedback', {
+            url: '/feedback',
             templateUrl: 'content/rule/feedback/rule-feedback.html'
         });
 
