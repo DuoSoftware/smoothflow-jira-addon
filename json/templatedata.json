@@ -2,7 +2,7 @@
     "Templates": [
         {
             "Name": "Blank",
-            "DisplayName": "Blank",
+            "DisplayName": "Blank Automation",
             "Description": "Template description goes here",
             "ControlType": "template",
             "modules": [
@@ -19,7 +19,7 @@
         },
         {
             "Name": "SimpleMsg",
-            "DisplayName": "Simple message print",
+            "DisplayName": "Simple Message Print",
             "Description": "This rule can be used to print a simple message when the rule is been executed.",
             "ControlType": "template",
             "modules": [
@@ -45,7 +45,7 @@
         },
         {
             "Name": "TwilioSMS",
-            "DisplayName": "Twilio SMS",
+            "DisplayName": "Twilio SMS Notification",
             "Description": "Send a SMS to someone using Twilio SMS APIs.",
             "ControlType": "template",
             "modules": [
@@ -81,7 +81,7 @@
         },
         {
             "Name": "FlowWithMultipleLevels",
-            "DisplayName": "Flow with If condition",
+            "DisplayName": "Automation with an If condition",
             "Description": "You can use an 'IF' condition inside your rule.",
             "ControlType": "template",
             "modules": [

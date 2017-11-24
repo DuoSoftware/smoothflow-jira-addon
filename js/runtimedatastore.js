@@ -258,7 +258,7 @@ app.factory('dataHandler', function () {
         // first break the value into two by the . and if a section is available after . it should be validated
         if (value != undefined && value != "") {
             // check if the value has a plus. which means its a custom event.
-            values = value.split(/(?=[+])/gi);
+            values = value.split("+");
             /*values = value.split("*");*/
             values.forEach(function (value) {
                 value = value.trim();
@@ -451,6 +451,9 @@ app.factory('dataHandler', function () {
             }
             ; if (arguments[i].DisplayName == undefined) {
                 arguments[i].DisplayName = arguments[i].Key;
+            } 
+            if (arguments[i].APIMethod == undefined) {
+                arguments[i].APIMethod = "";
             }
         }
         ;//console.log(arguments);
