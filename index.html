@@ -20,6 +20,22 @@
 </head>
 
 <body>
+    <div ng-controller="ScreenshotController as appCtrl">
+        <button class="btn btn-fab" ng-class="{true: 'btn-danger', false: 'btn-default'}[appCtrl.isUrlOpen]" ng-click="appCtrl.isUrlOpen = !appCtrl.isUrlOpen">
+            <i ng-if="!appCtrl.isUrlOpen" class="material-icons">crop</i>
+            <i ng-if="appCtrl.isUrlOpen" class="material-icons">close</i>
+        </button>
+
+        <screenshot is-open="appCtrl.isUrlOpen" api="appCtrl.imageApi">
+            <screenshot-toolbox>
+                <div class="btn-group-sm">
+                    <button class="btn btn-success" ng-click="appCtrl.sendImage()">
+                        sendImage
+                    </button>
+                </div>
+            </screenshot-toolbox>
+        </screenshot>
+    </div>
     <div ng-controller="MainController" class="ac-content">
         <div id="loading" class="aui-page-notification aui-page-focused-medium">
             <div class="aui-page-panel">
@@ -94,6 +110,7 @@
     <script type="text/javascript" src="js/runtimedatastore.js"></script>
     <script type="text/javascript" src="core/controllers/main.controller.js"></script>
     <script type="text/javascript" src="core/controllers/audit.controller.js"></script>
+    <script type="text/javascript" src="core/controllers/screenshot.controller.js"></script>
     <script type="text/javascript" src="core/controllers/trigger.controller.js"></script>
     <script type="text/javascript" src="core/services/triggerdataservice.js"></script>
     <script type="text/javascript" src="core/js/angular-cron-generator.min.js"></script>
