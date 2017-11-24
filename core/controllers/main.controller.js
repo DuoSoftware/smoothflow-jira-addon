@@ -1009,6 +1009,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             data: port
         }).then(function (data, status, headers, config) {
             $rootScope.DisplayMessage("Port details saved successfully.", "success");
+            $scope.getports();
         }, function (data, status, headers, config) {
             $rootScope.DisplayMessage("Error when saving port information", "error", "Please contact an administrator.");
         });
@@ -2414,6 +2415,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
+    $scope.uploadScreenshot = function(){
+        alert("hola");
+    }
+
     $scope.getDockerDetails = function () {
         $rootScope.ShowBusyContainer("Loading container details...");
         // getting published dockers dd
@@ -2433,6 +2438,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.setDockerInformation($scope.selectedRule.name);
         }, function (e, a) {
             $rootScope.DisplayMessage("Error loading container details.", "error", "Please contact an administrator.");
+            $rootScope.HideBusyContainer();
         });
     };
 
