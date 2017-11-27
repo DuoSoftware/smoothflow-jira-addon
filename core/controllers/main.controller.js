@@ -2530,7 +2530,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.DisplayMessage("Error when retriving user profile.", "error");
             }
         }, function OnError(response) {
-            if (onError) {
+            if (response) {
                 $rootScope.DisplayMessage("Error when retriving user profile.", "error");
             }
         });
