@@ -15,17 +15,31 @@
         <table class="aui aui-table-sortable">
             <thead>
                 <tr>
-                    <th>All logs</th>
+                    <th style="background-color: #ffeded;">Error Logs</th>
                     <tr>
             </thead>
             <tbody>
-                <tr class="clikbl-list-item" ng-repeat="log in AllLogs" ng-click="getLogDetails(log)">
+                <tr class="clikbl-list-item" ng-repeat="log in ErrorLogs" ng-click="getLogDetails(log)">
                     <td>
                         {{log}}
                     </td>
                 </tr>
             </tbody>
         </table>
+        <table class="aui aui-table-sortable">
+                <thead>
+                    <tr>
+                        <th style="background-color: #e4fbe4;" >Success Logs</th>
+                        <tr>
+                </thead>
+                <tbody>
+                    <tr class="clikbl-list-item" ng-repeat="log in SuccessLogs" ng-click="getLogDetails(log)">
+                        <td>
+                            {{log}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </div>
     <div ng-if="selectedRule.status != 'Published'">
         <div class="text-center">

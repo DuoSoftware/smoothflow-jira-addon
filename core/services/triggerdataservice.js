@@ -33,7 +33,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
         alltriggers = [];
         var tempData = [];
         //var url = $v6urls.globalOS + "/jiraAddonTriggers";
-        var url = "https://devobj.plus.smoothflow.io/" + $rootScope.Domain + "/jiraAddonTriggers";
+        var url = globalOS + $rootScope.Domain + "/jiraAddonTriggers";
         // get all trigger details from the global location
         $http({
             url: url,
@@ -243,7 +243,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
         var payload = { "Objects": saveJson, "Parameters": { "KeyProperty": "code" } };
         var load = JSON.stringify(payload);
         var payload = JSON.parse(load);
-        var url = "https://devobj.plus.smoothflow.io/" + $rootScope.Domain + "/jiraAddonTriggers";
+        var url = globalOS + $rootScope.Domain + "/jiraAddonTriggers";
         console.log(load);
         console.log(url);
         $http.post(url, payload, {

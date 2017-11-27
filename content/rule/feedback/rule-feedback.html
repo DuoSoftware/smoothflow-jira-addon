@@ -1,10 +1,15 @@
 <div class="container">
+    
     <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
                 <h4>Feedback</h4>
+                <!-- <button id="new-Feedback-dialog" ng-click="OpenCreateFeedback()" class="aui-button">New Feedback</button> -->
+            
             </div>
-
+            <!-- <div ng-include="'content/rule/feedback/rule-feedback-create.html'"></div> -->
+            <button id="NewFeedback" ng-click="CreateNewTicket()" class="aui-button">New</button>
+            
         </div>
     </header>
     <div class="clearfix">
@@ -13,6 +18,7 @@
             <div class="aui-item-container projects">
                 <div class="shadowed-item">
                     <h5 class="project-header">Feedback</h5>
+                    <div ng-hide="IsNew">
                     <form class="aui m-0">
                         <fieldset class="group">
                             <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
@@ -32,6 +38,10 @@
                             </div>
                         </fieldset>
                     </form>
+                </div>
+                <div ng-show="IsNew">
+                    <p>Create New Task</p>
+                </div>
                 </div>
             </div>
         </div>

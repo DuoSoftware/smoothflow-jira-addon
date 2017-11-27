@@ -2444,7 +2444,7 @@
             cebproxyservice: p + "//cebrest.plus.smoothflow.io",//use for ceb service
             veery: ".app.facetone.com/DVP/API/1.0.0.0/",
             globalOS: "https://obj.plus.smoothflow.io/com.duosoftware.com",
-            jiraAPI: p + "//jiraconnector.plus.smoothflow.io",
+            jiraAPI: p + "//devjiraconnector.plus.smoothflow.io",
             plan: "https://payment.plus.smoothflow.io"
         };
     });
