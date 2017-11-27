@@ -18,8 +18,8 @@
             }
             selected = selected.replace(/(?:xdm_e=https:\/\/)/g, '');
             selected = selected.replace(/(?:\.atlassian\.net)/g, '');
-            host = selected + "jira.dev.smoothflow.io";
-            //host = "tistus.dev.smoothflow.io";
+            host = selected + "jira.smoothflow.io";
+            //host = "tistus.smoothflow.io";
         }
 
         return host;
@@ -2436,16 +2436,16 @@
         return {
             auth: p + "//" + host + "/auth",
             objectStore: p + "//" + host + "/data",
-            fws: p + "//devceb.plus.smoothflow.io",
-            processManager: "https://devprocessengine.plus.smoothflow.io",
-            smoothflowIP: "https://dev.smoothflow.io",
+            fws: p + "//ceb.plus.smoothflow.io",
+            processManager: "https://processengine.plus.smoothflow.io",
+            smoothflowIP: "https://smoothflow.io",
             nginxserver: "https://nginxproxymaker.plus.smoothflow.io",
             mediaLib: p + "//" + host + "/apis/media",
-            cebproxyservice: p + "//devcebrest.plus.smoothflow.io",//use for ceb service
+            cebproxyservice: p + "//cebrest.plus.smoothflow.io",//use for ceb service
             veery: ".app.facetone.com/DVP/API/1.0.0.0/",
-            globalOS: "https://devobj.plus.smoothflow.io/com.duosoftware.com",
+            globalOS: "https://obj.plus.smoothflow.io/com.duosoftware.com",
             jiraAPI: p + "//jiraconnector.plus.smoothflow.io",
-            plan: "https://devpayment.plus.smoothflow.io"
+            plan: "https://payment.plus.smoothflow.io"
         };
     });
 

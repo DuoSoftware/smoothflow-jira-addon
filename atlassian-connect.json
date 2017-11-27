@@ -2,7 +2,7 @@
     "name": "Smoothflow Automation for JIRA",
     "description": "Atlassian Connect add-on",
     "key": "com.duoworld.smoothflow.jira",
-    "baseUrl": "https://dev.smoothflow.io/app/addons/jira/",
+    "baseUrl": "https://smoothflow.io/app/addons/jira/",
     "vendor": {
         "name": "Smoothflow.io",
         "url": "https://www.smoothflow.io"
