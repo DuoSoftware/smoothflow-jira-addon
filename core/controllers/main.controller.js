@@ -729,7 +729,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function Success(response) {
 
             if (response.data.success == true) {
-                $scope.APIKey = response.data.apikey;
+                $rootScope.APIKey = response.data.apikey;
             }
         }, function Error(response) {
         });
@@ -751,10 +751,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         $scope.GeneratedURL = null;
         $scope.GeneratedURL = [{
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke?apikey=" + $scope.APIKey,
+            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke?apikey=" + $rootScope.APIKey,
             METHOD: "POST"
         }, {
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello?apikey=" + $scope.APIKey,
+            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello?apikey=" + $rootScope.APIKey,
             METHOD: "GET"
         }];
 

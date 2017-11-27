@@ -1,16 +1,16 @@
 app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', function ($scope, $rootScope, $http, $auth) {
 
     $scope.selectedRuleName = $rootScope.selectedRuleName;
-    $scope.getAllLogs = function() {
+    $scope.getAllLogs = function () {
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs",
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/success?apikey=" + $rootScope.APIKey,
 
         }).then(function Success(response) {
             var index = 0;
-            angular.forEach(response.data,function(log){
+            angular.forEach(response.data, function (log) {
                 debugger
-                response.data[index] = log.replace("Logs/", '');
+                response.data[index] = log.replace("Logs/SuccessLogs/", '');
                 index++;
             });
             $scope.AllLogs = response.data;
@@ -21,11 +21,11 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
     $scope.getAllLogs();
 
     $scope.selectedLogDetails = "";
-    $scope.getLogDetails = function(logname) {
+    $scope.getLogDetails = function (logname) {
         $scope.selectedLogDetails = "";
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs/"+logname,
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs/success/" + logname + "?apikey=" + $rootScope.APIKey,
             transformResponse: [function (data) {
                 return data;
             }]

@@ -1,11 +1,14 @@
 app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'dataHandler', function ($scope, $http, $v6urls, $rootScope, dataHandler) {
 
     //Use for authorization
+    $scope.IsNew = false;
     $scope.theme = sessionStorage.cur_theme || 'default';
     $scope.authcode = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmcm9kb29kIiwianRpIjoiMDIxYzQ4MWEtNTUxMC00MzlkLTk1YjgtZWY5OTY3MmY1ZmFhIiwic3ViIjoiNTZhOWU3NTlmYjA3MTkwN2EwMDAwMDAxMjVkOWU4MGI1YzdjNGY5ODQ2NmY5MjExNzk2ZWJmNDMiLCJleHAiOjIzMzQxMjMzNjAsInRlbmFudCI6LTEsImNvbXBhbnkiOi0xLCJzY29wZSI6W3sicmVzb3VyY2UiOiJhbGwiLCJhY3Rpb25zIjoiYWxsIn1dLCJpYXQiOjE0NzAyMDk3NjB9.Wh-E2OVg6nwsicj9yQdx92js6rPg6pzkZkmwk69FHmc';
 
 
-
+    $scope.OpenCreateFeedback = function () {
+        AJS.dialog2("#new-Feedback-dialog").show();
+    }
     // 1) Get User profile
     function getprofiledata(email) {
         $http({
@@ -192,42 +195,21 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
             },
             data: comment
         }).then(function successCallback(response) {
-            if (!data.IsSuccess == false) {
-                if (!angular.isUndefined(data.Result) || data.Result != null) {
+            if (!response.data.IsSuccess == false) {
+                if (!angular.isUndefined(response.data.Result) || response.data.Result != null) {
                     $scope.ticket.comment = "";
                 }
             } else {
-                console.log(data);
+                console.log(response.data);
             }
         }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
+            console.log(response.data);
         });
 
-
-
-
-
-        $http({
-            method: 'PUT',
-            url: 'https://liteticket' + $v6urls.veery + 'Ticket/' + ticketid + '/Comment',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': $scope.authcode
-            },
-            data: comment
-        })
-            .success(function (data) {
-                if (!data.IsSuccess == false) {
-                    if (!angular.isUndefined(data.Result) || data.Result != null) {
-                        $scope.ticket.comment = "";
-                    }
-                } else {
-                    console.log(data);
-                }
-            })
-            .error(function (data) {
-                console.log(data);
-            });
     };
+
+    $scope.CreateNewTicket = function () {
+        $scope.IsNew=true;
+     };
+
 }])
