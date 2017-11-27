@@ -1,51 +1,103 @@
 <div class="container">
-    
+
     <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
                 <h4>Feedback</h4>
                 <!-- <button id="new-Feedback-dialog" ng-click="OpenCreateFeedback()" class="aui-button">New Feedback</button> -->
-            
+
             </div>
             <!-- <div ng-include="'content/rule/feedback/rule-feedback-create.html'"></div> -->
-            <button id="NewFeedback" ng-click="CreateNewTicket()" class="aui-button">New</button>
-            
+            <button id="NewFeedback" ng-hide="IsNew" ng-click="CreateNewTicket(IsNew)" class="aui-button">New</button>
+            <button id="NewFeedback" ng-show="IsNew" ng-click="CreateNewTicket(IsNew)" class="aui-button">Details</button>
+
         </div>
     </header>
     <div class="clearfix">
-        <div class="aui-group" id="FeedbackSection">
+        <div ng-hide="IsNew">
+            <div class="aui-group" id="FeedbackSection">
 
-            <div class="aui-item-container projects">
-                <div class="shadowed-item">
-                    <h5 class="project-header">Feedback</h5>
-                    <div ng-hide="IsNew">
-                    <form class="aui m-0">
-                        <fieldset class="group">
-                            <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
-                            <input placeholder="Search Feedback" class="text long-field selected-search" type="text" id="searchFeedback" name="searchFeedback"
-                                ng-model="Feedbacksearch" style="    margin-top: 10px;">
+                <div class="aui-item-container projects">
+                    <div class="shadowed-item">
 
-                            <div class="sf-padding select-item-body custom-scroll">
-                                <ul class="unstyled project-list">
-                                    <li ng-repeat="task in tasklist| filter : Feedbacksearch">
-                                        <h4>
-                                            <b>{{task.subject}}</b>
-                                        </h4>
-                                        <h4>{{task.description}}</h4>
+                        <h5 class="project-header">Feedback</h5>
+                        <!-- <div ng-hide="IsNew"> -->
+                        <form class="aui m-0">
+                            <fieldset class="group">
 
-                                    </li>
-                                </ul>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <div ng-show="IsNew">
-                    <p>Create New Task</p>
-                </div>
+                                <input placeholder="Search Feedback" class="text long-field selected-search" type="text" id="searchFeedback" name="searchFeedback"
+                                    ng-model="Feedbacksearch" style="margin-top: 10px;">
+                                <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
+                                <div class="sf-padding select-item-body custom-scroll">
+                                    <ul class="unstyled project-list">
+                                        <li ng-repeat="task in tasklist| filter : Feedbacksearch">
+                                            <h4>
+                                                <b>{{task.subject}}</b>
+                                            </h4>
+                                            <h4>{{task.description}}</h4>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div ng-show="IsNew">
+        <div class="aui-group" id="FeedbackCreate">
 
+            <div class="aui-item-container projects">
+                <div class="shadowed-item">
+
+                    <h5 class="project-header">New Feedback</h5>
+                    <!-- <div ng-hide="IsNew"> -->
+                    <form class="aui m-0">
+                        <div class="field-group">
+                            <label for="TicketName">Ticket Name
+                                <span class="aui-icon icon-required">(required)</span>
+                            </label>
+                            <input class="text long-field" type="text" id="TicketName" name="TicketName">
+
+                        </div>
+                        <div class="field-group">
+                            <label for="description">Description</label>
+                            <textarea class="textarea" name="description-input" id="description-input" placeholder="Description"></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label for="tag">Tag</label>
+                            <input class="text long-field" disabled="true" type="text" id="tagname" name="tagname" value="SmoothFlow , SmoothFlow_Jira">
+
+                        </div>
+                        <div class="field-group">
+                            <label for="select-type">Select Type</label>
+                            <select class="select" id="select-type" name="select-type">
+                                <option>Select</option>
+                                <option>Complain</option>
+                                <option>Bug</option>
+                                <option>Improvement</option>
+                                <option>Suggestion</option>
+                            </select>
+                        </div>
+                        <fieldset>
+                            <legend>
+                                <span>Attached Image</span>
+                            </legend>
+                            <div class="field-group">
+                                <label for="file-upload-image">Upload file</label>
+                                <input class="upfile" type="file" id="file-upload-image" name="file-upload-image">
+                            </div>
+                            <button class="aui-button" ng-click="createtTicket()">
+                                    <span class="aui-icon aui-icon-small aui-iconfont-add">Add</span>  Create</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

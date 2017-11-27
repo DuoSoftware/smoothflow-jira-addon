@@ -208,8 +208,12 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
 
     };
 
-    $scope.CreateNewTicket = function () {
-        $scope.IsNew=true;
-     };
+    $scope.CreateNewTicket = function (IsNew) {
+        if (IsNew) { $scope.IsNew = false; } else { $scope.IsNew = true; }
 
+    };
+    $scope.scrollTo = function (id) {
+        $location.hash(id);
+        $scope.tab = id;
+    };
 }])
