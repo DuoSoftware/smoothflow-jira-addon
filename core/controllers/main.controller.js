@@ -1188,7 +1188,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.DisplayMessage("Published to a container successfully.", "success");
                 $scope.GetAPIKey();
                 $scope.setCurrentRuleStatus("Published");
-                $scope.changeLocation("rule.container");
+                $rootScope.changeLocation("rule.container");
                 $timeout(function () {
                     $scope.getDockerDetails();
                     $scope.setDockerInformation($scope.getWFName($scope.selectedRule.ruleName));
@@ -1236,7 +1236,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
     };
 
-    $scope.changeLocation = function (location) {
+    $rootScope.changeLocation = function (location) {
         $scope.componentsMenuState = 'closed';
         $scope.listState = location;
         // update WF before leaving to another state
@@ -1448,7 +1448,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             angular.forEach($scope.currentRules, function (rule) {
                 if (rule.id == $scope.currentRuleID) {
                     $scope.currentRules.splice(index, 1);
-                    $scope.changeLocation("home");
+                    $rootScope.changeLocation("home");
                     dataHandler.resetFactory();
                 }
                 index++;
