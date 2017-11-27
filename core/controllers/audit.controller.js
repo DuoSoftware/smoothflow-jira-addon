@@ -36,6 +36,7 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
         });
     };
     $scope.getAllSuccessLogsLogs();
+    $scope.getAllErrorLogsLogs();
 
     $scope.selectedLogDetails = "";
     $scope.getLogDetails = function (logname) {
