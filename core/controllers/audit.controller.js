@@ -30,6 +30,11 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
                 response.data[index] = log.replace("Logs/ErrorLogs/", '');
                 index++;
             });
+            if (response.data == null) { 
+                $scope.ErrorLogs=["No Errors"]
+            } else {
+                $scope.ErrorLogs = response.data;
+             }
             $scope.ErrorLogs = response.data;
         }, function Error(response) {
             console.log($scope.ErrorStatus);
