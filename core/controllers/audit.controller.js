@@ -21,7 +21,7 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
     $scope.getAllErrorLogsLogs = function () {
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/success?apikey=" + $rootScope.APIKey,
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/error?apikey=" + $rootScope.APIKey,
 
         }).then(function Success(response) {
             var index = 0;
