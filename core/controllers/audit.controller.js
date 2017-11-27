@@ -25,7 +25,7 @@ app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', fun
         $scope.selectedLogDetails = "";
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs/success/" + logname + "?apikey=" + $rootScope.APIKey,
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/success/" + logname + "?apikey=" + $rootScope.APIKey,
             transformResponse: [function (data) {
                 return data;
             }]
