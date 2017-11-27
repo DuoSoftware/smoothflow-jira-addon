@@ -2,9 +2,9 @@
     <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
-                <h4>Rule schedule</h4>
+                <h4>Automation schedule</h4>
             </div>
-            <div class="aui-toolbar2-secondary">
+            <div ng-if="selectedRule.status == 'Published'" class="aui-toolbar2-secondary">
                 <div id="button-set2">
                     <button class="aui-button" ng-click="editSchedule()">
                         <span class="aui-icon aui-icon-small aui-iconfont-edit">Edit rule</span>
@@ -17,7 +17,7 @@
         <div ng-if="selectedRule.status == 'Published'">
             <p>Executes this flow on a schedule that has been provided.</p>
             <h5 class="content-sub-heading">Current schedule</h5>
-            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #ddd','margin-bottom':'20px'} : null">
+            <div ng-style="scheduleEditOn ? {'box-shadow':'0 1px 5px #aaa','margin-bottom':'20px'} : null">
                 <div ng-show="scheduleEditOn" style="padding: 10px">
                     <fieldset class="group schedule-type">
                         <!-- <legend><span>Schedule Type</span></legend> -->
@@ -75,10 +75,11 @@
 
         <div ng-if="selectedRule.status != 'Published'">
             <div class="text-center">
-                <h1>This rule is not yet published!</h1>
+                <span class="aui-icon aui-icon-small aui-iconfont-error"></span>
+                <h3>This rule is not yet published!</h3>
             </div>
             <div class="text-center">
-                <h3>Please publish this rule to set a schedule.</h3>
+                <h5>Please publish this rule to set a schedule.</h5>
             </div>
         </div>
 

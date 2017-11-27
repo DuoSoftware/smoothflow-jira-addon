@@ -1,66 +1,228 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="landingJira">
+<html lang="en" ng-app="landingJIRA">
 
 <head>
-    <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">
+    <!--<link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">-->
+    <link rel="stylesheet" href="../aui/css/aui-extended-sf.css">
+    <link rel="stylesheet" href="../aui/css/aui-experimental.css">
+    <link rel="stylesheet" href="../core/styles/style.css">
 </head>
 
-<body>
+<body ng-controller="LandingJIRA">
 
-    <div ng-controller="landingController" class="ac-content aui-page-focused aui-page-size-large">
-        <div class="aui-page-panel">
-            <div class="aui-page-panel-inner">
-                <section class="aui-page-panel-content">
-                    <center>
-                        <img width="150px" src="maintenance.png" />
-                        <h2>Smoothflow.io for JIRA</h2>
-                        <p>Addon offline for maintainance..</p>
-                        <br>
-                        <button ng-click="clickMe()">Click me!</button>
-                        <button ng-click="listProjects()">List Projects</button>
-                        <h3>JIRA Projects</h3>
-                        <ul>
-                            <li ng-repeat="project in projects">{{project.key}} - {{project.name}}</li>
-                        </ul>
-                    </center>
-                </section>
+    <div class="ac-content aui-page-size-large clearfix landing-container">
+        <div class="landing-content">
+            <img src="../core/images/smoothflow-landing-workflow.jpg" />
+            <h4>SmoothFlow in JIRA</h4>
+            <div>Go through the guide to get started Smoothflow in your JIRA</div>
+            <!--<button id="dialog-show-button" class="aui-button aui-button-primary" ng-click="listProjects()">My Projects</button>-->
+
+            <div class="steps-container">
+                <div class="steps-row">
+                    <div class="step-control" ng-repeat="s in steps">
+                        <span ng-click="stepActive($index)" ng-class="{'active':s.active}">{{s.step}}</span>
+                        <div>{{s.title}}</div>
+                    </div>
+                </div>
+
+                <div class="step-body">
+                    <div ng-if="activeStep == 0">
+                        <div>1. Navigate to "Settings"</div>
+                        <div>2. Navigate to "System"</div>
+                        <div>3. Scroll down to the "Advanced" section</div>
+                        <img src="../core/images/guide_images/navigate_to_webhook.png" alt="Navigate to webhook" class="breaker">
+                        <div>4. Click on "WebHooks"</div>
+                        <img src="../core/images/guide_images/create_webhook.png" alt="Create a Webhook">
+                    </div>
+                    <div class="sm-img" ng-if="activeStep == 1">
+                        <div>1. Enter a name for the WebHook eg: "Smoothflow Invoker"</div>
+                        <img src="../core/images/guide_images/new_webhook_listner.png" alt="Navigate to webhook" class="breaker">
+                        <div>2. Set it to "Enabled"</div>
+                        <img src="../core/images/guide_images/set_it_enable.png" alt="Enable webhook" class="breaker">
+                        <div style="line-height: 20px">3. Copy the following URL and Paste it in the following field. <div style="color: blue;">https://devprocessengine.plus.smoothflow.io/processengine/JiraWebHook/duosoftwarejira/$%7Bproject.key%7D?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}&jira_comment_id=${comment.id}&jira_issue_id=${issue.id}&jira_issue_key=${issue.key}&jira_mergedVersion_id=</br>${mergedVersion.id}&jira_modifiedUser_key=${modifiedUser.key}&jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=${sprint.id}&jira_version_id=${version.id}&</br>jira_worklog_id=${worklog.id}&jira_project_key=${project.key}</div></div>
+                        <img src="../core/images/guide_images/url.png" alt="Copy url" class="breaker">
+                        <div>4. Navigate to "Events" section and select all the Issue related events as displayed on the image</div>
+                        <img src="../core/images/guide_images/events.png" alt="Events" class="breaker">
+                        <div>5. Click on "Create" button to create a webhook</div>
+                        <img src="../core/images/guide_images/create.png" alt="Create" class="breaker">
+                        <div>6. On success you would see a message as displayed</div>
+                        <img src="../core/images/guide_images/success.png" alt="Success" class="breaker">
+                    </div>
+                    <div ng-if="activeStep == 2">
+                        <div>1. Navigate to "Settings"</div>
+                        <div>2. Navigate to "Add-ons"</div>
+                        <div>3. Scroll down to the "Smoothflow Settings" section</div>
+                        <div>4. Click on "Smoothflow Account"</div>
+                        <img src="../core/images/guide_images/smoothflow_account.png" alt="Smoothflow account">
+                    </div>
+                    <div ng-if="activeStep == 3">
+                        <div>Click on "Connect with Smoothflow" button to create a Smoothflow account and get started</div>
+                        <img src="../core/images/guide_images/connect_smoothflow.png" alt="Get started smoothflow">
+                    </div>
+                </div>
+
+                <!--<div class="step-body">-->
+                    <!--<div ng-if="activeStep == 0">-->
+                        <!--<div class="guide-list">-->
+                        <!--<ol>-->
+                            <!--<li>Navigate to "Settings"</li>-->
+                            <!--<li>Navigate to "System"</li>-->
+                            <!--<li>Scroll down to the "Advanced" section</li>-->
+                            <!--<li>Click on "WebHooks"</li>-->
+                        <!--</ol>-->
+                    <!--</div>-->
+                        <!--<div class="guide-image">-->
+                            <!--<img src="../core/images/guide_images/navigate_to_webhook.png" alt="Navigate to webhook">-->
+                            <!--<img src="../core/images/guide_images/create_webhook.png" alt="Create a Webhook">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div ng-if="activeStep == 1">-->
+                        <!--<div class="guide-list">-->
+                        <!--<ol>-->
+                            <!--<li>Enter a name for the WebHook eg: "Smoothflow Invoker"</li>-->
+                            <!--<li>Set it to "Enabled"</li>-->
+                            <!--<li style="line-height: 20px">Copy the following URL and Paste it in the following field. <div style="color: blue;">https://devprocessengine.plus.smoothflow.io/processengine/</br>JiraWebHook/duosoftwarejira/$%7Bproject.key%7D?jira_attachment_id=${attachment.id}&jira_board_id=${board.id}</br>&jira_comment_id=${comment.id}&jira_issue_id</br>=${issue.id}&jira_issue_key</br>=${issue.key}&jira_mergedVersion_id=${mergedVersion.id}&</br>jira_modifiedUser_key=${modifiedUser.key}&</br>jira_modifiedUser_name=${modifiedUser.name}&jira_sprint_id=</br>${sprint.id}&jira_version_id=</br>${version.id}&jira_worklog_id=${worklog.id}&jira_project_key=${project.key}</div></li>-->
+                            <!--<li>Navigate to "Events" section and select all the Issue related events as displayed on the image</li>-->
+                            <!--<li>Click on "Create" button to create a webhook</li>-->
+                            <!--<li>On success you would see a message as displayed</li>-->
+                        <!--</ol>-->
+                    <!--</div>-->
+                        <!--<div class="guide-image">-->
+                            <!--<div>-->
+                                <!--<img src="../core/images/guide_images/new_webhook_listner.png" alt="Navigate to webhook">-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<img src="../core/images/guide_images/set_it_enable.png" alt="Enable webhook" style="width: 20%">-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<img src="../core/images/guide_images/url.png" alt="Copy url">-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<img src="../core/images/guide_images/events.png" alt="Events">-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<img src="../core/images/guide_images/create.png" alt="Create" style="width: 20%">-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<img src="../core/images/guide_images/success.png" alt="Success">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div ng-if="activeStep == 2">-->
+                        <!--<div class="guide-list">-->
+                        <!--<ol>-->
+                            <!--<li>Navigate to "Settings"</li>-->
+                            <!--<li>Navigate to "Add-ons"</li>-->
+                            <!--<li>Scroll down to the "Smoothflow Settings" section</li>-->
+                            <!--<li>Click on "Smoothflow Account"</li>-->
+                        <!--</ol>-->
+                    <!--</div>-->
+                        <!--<div class="guide-image">-->
+                            <!--<img src="../core/images/guide_images/smoothflow_account.png" alt="Smoothflow account">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div ng-if="activeStep == 3">-->
+                        <!--<div class="guide-list">-->
+                        <!--<ol>-->
+                            <!--<li>Click on "Connect with Smoothflow" button to create a Smoothflow account and get started</li>-->
+                        <!--</ol>-->
+                    <!--</div>-->
+                        <!--<div class="guide-image">-->
+                        <!--<img src="../core/images/guide_images/connect_smoothflow.png" alt="Get started smoothflow">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
+    <!--<div ng-controller="landingController" class="ac-content aui-page-focused aui-page-size-large">-->
+        <!--<div class="aui-page-panel">-->
+            <!--<div class="aui-page-panel-inner">-->
+                <!--<section class="aui-page-panel-content">-->
+                    <!--<center>-->
+                        <!--<img width="150px" src="maintenance.png" />-->
+                        <!--<h2>Smoothflow.io for JIRA</h2>-->
+                        <!--<p>Addon offline for maintainance..</p>-->
+                        <!--<br>-->
+                        <!--<button ng-click="clickMe()">Click me!</button>-->
+                        <!--<button ng-click="listProjects()">List Projects</button>-->
+                        <!--<h3>JIRA Projects</h3>-->
+                        <!--<ul>-->
+                            <!--<li ng-repeat="project in projects">{{project.key}} - {{project.name}}</li>-->
+                        <!--</ul>-->
+                    <!--</center>-->
+                <!--</section>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
     <script id="connect-loader" data-options="sizeToParent:true;hideFooter:true;">
-        (function () {
-            var getUrlParam = function (param) {
-                var codedParam = (new RegExp(param + '=([^&]*)')).exec(window.location.search)[1];
-                return decodeURIComponent(codedParam);
-            };
+        (function(){
+        	var app = angular.module('landingJIRA', []);
+			app.controller('LandingJIRA',['$scope', '$timeout', function ($scope, $timeout) {
+				$scope.steps = [
+                    {
+                    	step:1,
+                        active:true,
+                        title: 'Create a Webhook'
+                    },
+                    {
+                    	step:2,
+                        active:false,
+						title: 'Create webhook'
+                    },
+                    {
+                    	step:3,
+                        active:false,
+						title: 'Smoothflow account'
+                    },
+                    {
+                    	step:4,
+                        active:false,
+						title: 'Get started'
+                    }
 
-            var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
-            var options = document.getElementById('connect-loader').getAttribute('data-options');
+                ];
+				$scope.activeStep = 0;
 
-            var script = document.createElement("script");
-            //script.src = baseUrl + '/atlassian-connect/all.js';
-            script.src = baseUrl + '/atlassian-connect/all-debug.js';
-
-            if (options) {
-                script.setAttribute('data-options', options);
-            }
-
-            document.getElementsByTagName("head")[0].appendChild(script);
-        })();
+				$scope.stepActive = function (index) {
+					$timeout(function(){
+						$scope.activeStep = index;
+					});
+					for(i=0;i<index+1;i++){
+						$scope.steps[i].active = true;
+                    }
+                    for(j=index+1;j<$scope.steps.length+1;j++){
+						$scope.steps[j].active = false;
+                    }
+				}
+			}]);
+		})();
+//        (function () {
+//            var getUrlParam = function (param) {
+//                var codedParam = (new RegExp(param + '=([^&]*)')).exec(window.location.search)[1];
+//                return decodeURIComponent(codedParam);
+//            };
+//
+//            var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
+//            var options = document.getElementById('connect-loader').getAttribute('data-options');
+//
+//            var script = document.createElement("script");
+//            //script.src = baseUrl + '/atlassian-connect/all.js';
+//            script.src = baseUrl + '/atlassian-connect/all-debug.js';
+//
+//            if (options) {
+//                script.setAttribute('data-options', options);
+//            }
+//
+//            document.getElementsByTagName("head")[0].appendChild(script);
+//        })();
     </script>
-
-    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-
-
-
-    <script type="text/javascript" src="landingapp.js"></script>
-    <script type="text/javascript" src="landing.controller.js"></script>
-    <script type="text/javascript" src="../../../js/uimicrokernel.js"></script>
-
-
-
+    <!--<script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>-->
+    <!--<script type="text/javascript" src="landingapp.js"></script>-->
+    <!--<script type="text/javascript" src="landing.controller.js"></script>-->
+    <!--<script type="text/javascript" src="../../../js/uimicrokernel.js"></script>-->
 </body>
 
 </html>

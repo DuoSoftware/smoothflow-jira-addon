@@ -3,12 +3,13 @@ var app = angular.module('sfJira', [
     'ngTextcomplete',
     'uiMicrokernel',
     'angular.filter',
-    'angular-cron-generator'
+    'angular-cron-generator',
+    'angular-screenshot'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
 
     $stateProvider
 
@@ -58,6 +59,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }).state('rule.schedule', {
             url: '/rule-schedule',
             templateUrl: 'content/rule/schedule/rule-schedule.html'
+        }).state('rule.notifications', {
+            url: '/rule-notifications',
+            templateUrl: 'content/rule/notifications/rule-notifications.html'
+        }).state('rule.api', {
+            url: '/rule-api',
+            templateUrl: 'content/rule/api/rule-api.html'
+        }).state('feedback', {
+            url: '/feedback',
+            templateUrl: 'content/rule/feedback/rule-feedback.html',
+            controller:'HelpController'
         });
 
 }

@@ -11,7 +11,8 @@ app.controller('MainController', [
     'TriggerDatafactory',
     '$v6urls',
     '$helpers',
-    '$location', mainController])
+    '$location',
+    '$window', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -52,6 +53,29 @@ app.controller('MainController', [
         }
     }
     ])
+    .directive('dropdown', function () {
+        // console.log(value);
+        return {
+            restrict: 'EA',
+            scope: {
+                args: '=',
+                message: '=',
+                all: '='
+            },
+
+            template: '<select style="width:100%" placeholder="Select" ng-model="message" style="font-size:smaller;margin-top:0px;"><option ng-repeat="type in all"    value="{{type}}" ng-click="switchValue(type)">{{type}}</option>   </select>',
+            link: function (scope, iElement, iAttrs) {
+                var mentions = scope.args;
+
+                console.log(scope.message);
+                scope.switchValue = function (item) {
+                    debugger;
+                    console.log(item);
+                }
+            }
+
+        }
+    })
     .filter('filterComp', function () {
         return function (arr, compName) {
             if (!compName) {
@@ -78,7 +102,7 @@ app.controller('MainController', [
         }
     });
 
-function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location) {
+function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window) {
 
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
@@ -92,11 +116,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     AJS.$(".category-icon").tooltip();
     AJS.$('.button-spinner').spin();
     AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
+    AJS.$(".template").tooltip();
     /*** JIRA component extraction - END*/
 
     $scope.toggleCompGroup = function (group) {
         $scope.activeCompGroup = group;
         $scope.isGroupOpen = !$scope.isGroupOpen;
+    };
+    $scope.toggleInnerCompGroup = function (group) {
+        $scope.activeInnerCompGroup = group;
+        $scope.isInnerGroupOpen = !$scope.isInnerGroupOpen;
     };
     $scope.tab = false;
     $scope.scrollTo = function (id) {
@@ -437,9 +466,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.pendingComponentType = "";
     $scope.currentRuleID = "";
     $scope.Variable = {};
-    $scope.listState = "";
+    $scope.listState = "home";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
+    $scope.successNotifications = [];
+    $scope.errorNotifications = [];
     $scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
@@ -452,6 +483,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     var collapsiblePanels = [];
     var compSearch = [];
+    var mainContent = null;
     var workflowHeight = null;
     var workflowWidth = null;
     var workflowUI = null;
@@ -606,6 +638,30 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
     });
 
+    angular.element($window).bind('resize', function () {
+        if (workflowComponentss != undefined) {
+            workflowComponentss.css('margin-right', $('.properties-pane').width() + 'px');
+        }
+        if (workflowElem != undefined && workflowHeight != null)
+            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+    });
+
+    function setSectionHeight() {
+        mainContent = document.getElementById('content');
+        if (mainContent != null && mainContent != undefined) {
+            if ($scope.listState == 'home') {
+                mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) + "px");
+            } else {
+                mainContent.removeAttribute("style");
+            }
+        }
+    }
+    $(document).ready(function () {
+        $timeout(function () {
+            setSectionHeight();
+        }, 2000);
+    });
+
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
             comp.setAttribute("style", "display:none");
@@ -643,6 +699,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         createdBy: rule.AuthorDetails.Name.replace("+", " "),
                         avatar: rule.AuthorDetails.Avatar,
                         status: '...',
+                        executions: 0,
                         switchState: 'on',
                         workflow: [],
                         Variables: []
@@ -664,6 +721,19 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.$on('uiStateChanged', function (event, data) {
         alert("Statue changed");
     });
+    /** get API key */
+    $scope.GetAPIKey = function () {
+        $http({
+            method: "GET",
+            url: "https://nginxproxymaker.plus.smoothflow.io/getKeyFile/" + $scope.SessionDetails.Domain + "/ignore"
+        }).then(function Success(response) {
+
+            if (response.data.success == true) {
+                $scope.APIKey = response.data.apikey;
+            }
+        }, function Error(response) {
+        });
+    }
 
     $scope.setDockerInformation = function (name) {
         var selected = $scope.NGINXData.filter(function (container) {
@@ -679,11 +749,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.DockerDetails.total = $scope.DockerDetails.values.responses['total'];
         }
 
+        $scope.GeneratedURL = null;
         $scope.GeneratedURL = [{
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke",
+            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke?apikey=" + $scope.APIKey,
             METHOD: "POST"
         }, {
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello",
+            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello?apikey=" + $scope.APIKey,
             METHOD: "GET"
         }];
 
@@ -862,6 +933,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             // TriggerDataService.setWorkflowID($scope.currentRuleID);
             $scope.listState = 'rule.details';
             $state.go('rule.details');
+            setSectionHeight();
         });
     };
 
@@ -878,18 +950,33 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
     ///// Publishing mechanism
-
     $scope.executable = {};
     $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
     $scope.getports = function () {
-        var client = $objectstore.getClient("occupiedPorts");
-        client.onGetMany(function (data) {
-            if (data) {
-                $scope.portlist = data;
-                $scope.setport();
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "GET",
+            headers: {
+                'securityToken': "ignore"
             }
-        });
-        client.v1getByFiltering("*");
+        }).
+            then(function (data, status, headers, config) {
+                if (data) {
+                    $scope.portlist = data;
+                    $scope.setport();
+                }
+            }, function (data, status, headers, config) {
+                $rootScope.DisplayMessage("Error when retriving port information", "error", "Please contact an administrator.");
+            });
+
+        // var client = $objectstore.getClient("occupiedPorts");
+        // client.onGetMany(function (data) {
+        //     if (data) {
+        //         $scope.portlist = data;
+        //         $scope.setport();
+        //     }
+        // });
+        // client.v1getByFiltering("*");
     };
 
     $scope.setport = function () {
@@ -909,6 +996,24 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     $scope.getports();
+
+    $scope.saveports = function (portObj) {
+        debugger
+        var port = { "Object": portObj, "Parameters": { "KeyProperty": "id" } }
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "POST",
+            headers: {
+                'securityToken': "ignore"
+            },
+            data: port
+        }).then(function (data, status, headers, config) {
+            $rootScope.DisplayMessage("Port details saved successfully.", "success");
+            $scope.getports();
+        }, function (data, status, headers, config) {
+            $rootScope.DisplayMessage("Error when saving port information", "error", "Please contact an administrator.");
+        });
+    };
 
     $scope.stripConvertionDetails = function (flowData) {
         angular.forEach(flowData.arguments, function (argument) {
@@ -986,7 +1091,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.publishWorkflow = function () {
         if ($scope.validateBeforeSave()) {
-            $rootScope.ShowBusyContainer("Building rule...");
+            // generate new port for the rule which is not currently in use.
+            $scope.setport();
+            $rootScope.ShowBusyContainer("Building your automation rule...");
             // building the workflow into an executable
 
             var flowChartJson = dataHandler.getSaveJson();
@@ -1028,14 +1135,20 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     'SecurityToken': $helpers.getCookie("securityToken")
                 }
             }).then(function OnSuccess(response) {
-                $rootScope.ShowBusyContainer("Publishing rule to a container...");
+                $rootScope.ShowBusyContainer("Publishing automation to a container...");
                 if (response.data.Status) {
                     var obj = {};
                     obj.wfname = $scope.getWFName($scope.selectedRule.ruleName);
-                    ; obj.port = $scope.executable.port.toString();
+                    obj.port = $scope.executable.port.toString();
                     obj.RAM = "300";
                     obj.CPU = "10";
                     $scope.PublishToDocker(obj);
+                    // save port information only if the build is successfull.
+                    var portObj = {
+                        id: $scope.getWFName($scope.selectedRule.ruleName),
+                        port: $scope.executable.port
+                    }
+                    $scope.saveports(portObj);
                 } else {
                     $rootScope.DisplayMessage("Error when building the rule.", "error", "Please contact an administrator.");
                     $rootScope.HideBusyContainer();
@@ -1048,6 +1161,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
         }
     };
+
+    $scope.setCurrentRuleStatus = function (status) {
+        $scope.selectedRule.status = status;
+    }
 
     $scope.PublishToDocker = function (publishObj) {
         var sessionId = dataHandler.createuuid();
@@ -1069,6 +1186,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function OnSuccess(response) {
             if (response.data.Status) {
                 $rootScope.DisplayMessage("Published to a container successfully.", "success");
+                $scope.GetAPIKey();
+                $scope.setCurrentRuleStatus("Published");
+                $rootScope.changeLocation("rule.container");
+                $timeout(function () {
+                    $scope.getDockerDetails();
+                    $scope.setDockerInformation($scope.getWFName($scope.selectedRule.ruleName));
+                });
             } else {
                 $rootScope.DisplayMessage("Error occured when publishing the rule to a container.", "error");
             }
@@ -1080,7 +1204,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
     };
-
+    ///// Publishing mechanism - END
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
     $scope.getVersionForWF = function (ID) {
@@ -1112,7 +1236,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
     };
 
-    $scope.changeLocation = function (location) {
+    $rootScope.changeLocation = function (location) {
         $scope.componentsMenuState = 'closed';
         $scope.listState = location;
         // update WF before leaving to another state
@@ -1130,12 +1254,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $timeout(function () {
                 $scope.checkScheduleStatus();
             });
-        } else if (location == "rule.trigger") {
-            $timeout(function () {
-                TriggerDatafactory.GetAllTriggers();
-            });
-        };
-    }
+        }
+        setSectionHeight();
+    };
+
     $scope.updateWorkflowBeforeStateChange = function (location) {
         var index = 0;
         angular.forEach($scope.currentRules, function (rule) {
@@ -1239,7 +1361,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.getTemplateData();
 
     // New rule
-    $scope.newRule = function () {
+    $scope.newRule = function (template, isFromTemp) {
+        $rootScope.isFromTemplate = isFromTemp;
+        $rootScope.selectedTemplate = template;
         $scope.isNewRuleFormValid = false;
         $scope.selectedRule = {};
         $scope.selectedRule.id = dataHandler.createuuid();
@@ -1250,7 +1374,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.status = "Unsaved";
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
+        AJS.dialog2("#new-rule-dialog").show();
         // $state.go('rule.new');
+    };
+
+    //Close rule dialog
+    $scope.closeDialog = function (dialog) {
+        AJS.dialog2('#' + dialog).hide();
     };
 
     //Clear rule
@@ -1273,7 +1403,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         AJS.dialog2("#rule-delete-dialog").hide();
     };
 
-    $scope.deleteContainer = function (WFDetails) {
+    $scope.removeFromNGINX = function (name, username) {
+        var obj = {
+            "process": name,
+            "securityToken": "ignore",
+            "userName": username
+        }
+        var URL = $v6urls.nginxserver + "/removefromnginxplus/"
+        $http.post(URL, obj, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data) {
+            debugger
+            $rootScope.DisplayMessage("The container was removed successfully.", "success", "You may try again later.");
+        }, function (data) {
+            debugger
+            $rootScope.DisplayMessage("There was an error when removing the container.", "error", "You may try again later.");
+        });
+    }
+
+    $scope.deleteContainer = function () {
         $http({
             method: 'GET',
             url: $v6urls.nginxserver + '/removedocker/' + $rootScope.SessionDetails.Domain + '/' + $scope.selectedRule.id,
@@ -1282,8 +1432,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             },
         })
             .then(function (data) {
-                $rootScope.DisplayMessage("The container was removed successfully.", "success", "You may try again later.");
+                debugger
+                $scope.removeFromNGINX($scope.getWFName($scope.selectedRule.ruleName), $scope.SessionDetails.Domain);
             }, function (data) {
+                debugger
                 $rootScope.DisplayMessage("There was an error when removing the container.", "error", "You may try again later.");
             })
 
@@ -1296,7 +1448,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             angular.forEach($scope.currentRules, function (rule) {
                 if (rule.id == $scope.currentRuleID) {
                     $scope.currentRules.splice(index, 1);
-                    $scope.changeLocation("home");
+                    $rootScope.changeLocation("home");
                     dataHandler.resetFactory();
                 }
                 index++;
@@ -1335,8 +1487,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.deleteContainer();
         }
 
-        // deleting triggers
-        //TriggerDatafactory.DeleteTrigger();
+        //delete tigger
+        TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
     };
 
     $scope.removeRule = function () {
@@ -1346,9 +1498,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.hasContainer = true;
         }
         AJS.dialog2("#rule-delete-dialog").show();
-        //delete tigger
-        TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
-
     };
 
     //Edit rule
@@ -1384,6 +1533,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Open component info
     $scope.openComponentInfo = function (component) {
+        $scope.tab = false;
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
@@ -1658,12 +1808,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.openTemplateFlow(component.Name, e);
             $scope.isNewRuleFormValid = false;
         }
-        var backdrop = document.getElementsByClassName('modal-backdrop')[0];
-        if (backdrop != undefined) {
-            backdrop.remove();
-            document.getElementById('newRule').modal('hide');
-        }
-        e.preventDefault();
+        // var backdrop = document.getElementsByClassName('modal-backdrop')[0];
+        // if (backdrop != undefined) {
+        //     backdrop.remove();
+        //     document.getElementById('newRule').modal('hide');
+        // }
+        // e.preventDefault();
         AJS.dialog2("#new-rule-dialog").hide();
         //$state.go('rule.new');
     };
@@ -2171,6 +2321,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
     /////// end of scheduling functions
 
+    $scope.addNotificationMethod = function (flag, value) {
+        if (flag == "success") {
+            $scope.successNotifications.push(value);
+            $scope.successemail = "";
+        } else if ("failed") {
+            $scope.errorNotifications.push(value);
+            $scope.failedemail = "";
+        }
+    };
+
+    $scope.deleteFromNotificationMethod = function (flag, emailAddress, index) {
+        debugger
+        if (flag == "success") {
+            $scope.successNotifications.splice(index, 1);
+        } else if ("failed") {
+            $scope.errorNotifications.splice(index, 1);
+        }
+    };
+
     $scope.sendProcessToObjectStore = function (saveObj, event, saveObjectParent) {
 
         /*var data = {
@@ -2246,6 +2415,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
+    $scope.uploadScreenshot = function(){
+        alert("hola");
+    }
+
     $scope.getDockerDetails = function () {
         $rootScope.ShowBusyContainer("Loading container details...");
         // getting published dockers dd
@@ -2264,7 +2437,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.processPublishedList();
             $scope.setDockerInformation($scope.selectedRule.name);
         }, function (e, a) {
-            console.log(e, a);
+            $rootScope.DisplayMessage("Error loading container details.", "error", "Please contact an administrator.");
+            $rootScope.HideBusyContainer();
         });
     };
 
@@ -2278,7 +2452,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         for (var i = 0; i < $scope.currentRules.length; i++) {
             for (var j = 0; j < $scope.NGINXData.length; j++) {
                 if ($scope.currentRules[i].name == $scope.NGINXData[j].zone) {
-                    $scope.currentRules[i].status = "Published"
+                    $scope.currentRules[i].status = "Published";
+                    $scope.currentRules[i].executions += $scope.NGINXData[j].values.requests;
                     $scope.TotalRequestsProcessed += $scope.NGINXData[j].values.requests;
                     $scope.TotalBandwithReceived += $scope.NGINXData[j].values.received;
                     $scope.TotalBandwithSent += $scope.NGINXData[j].values.sent;
@@ -2308,11 +2483,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.Domain = profile.domain;
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
+        $scope.GetAPIKey();
     };
 
     // retrive data from JIRA
     $scope.JiraSession = {};
     $scope.CurrentUserProfile = {};
+    /** Copy to Clipboard */
+    $scope.copyToClipboard = function (row) {
+        debugger;
+        var copyElement = document.createElement("textarea");
+        copyElement.style.position = 'fixed';
+        copyElement.style.opacity = '0';
+        copyElement.textContent = row.URL;
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(copyElement);
+        copyElement.select();
+        document.execCommand('copy');
+        body.removeChild(copyElement);
+    }
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";
@@ -2327,11 +2516,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
+            debugger
             if (response.data.response == "success") {
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');
                 tenant = tenant.replace(/(?:\.atlassian\.net)/g, '');
-                $scope.CurrentUserProfile.domain = tenant + "jira";
+                $scope.CurrentUserProfile.domain = tenant + "jiradevsmoothflowio";
                 $rootScope.Domain = $scope.CurrentUserProfile.domain;
                 console.log($scope.CurrentUserProfile);
                 $scope.loadJiraUser($scope.CurrentUserProfile);
@@ -2372,7 +2562,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var temUser = {
             displayName: "Mr Shehan",
             emailAddress: "shehan@duosoftware.com",
-            domain: "duosoftwarejira"
+            domain: "duosoftwarejiradevsmoothflowio"
         }
         temUser.avatarUrls = {};
         temUser.avatarUrls["24x24"] = "https://avatar-cdn.atlassian.com/7272996f825bd268885d6b20484d325c?s=24&d=https%3A%2F%2Fduosoftware.atlassian.net%2Fsecure%2Fuseravatar%3Fsize%3Dsmall%26ownerId%3Dshehan%26avatarId%3D17100%26noRedirect%3Dtrue";

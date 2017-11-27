@@ -78,6 +78,17 @@ class client
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $server_output = curl_exec ($ch);
         curl_close ($ch);
+
+
+        $ch2 = curl_init();
+
+        curl_setopt($ch2, CURLOPT_URL, SVC_NGINXPROXYMAKER_HOST.'/createKeyFile/'.$post->teanatId.'/none');
+        curl_setopt($ch2, CURLOPT_PORT, SVC_NGINXPROXYMAKER_PORT);
+        curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec ($ch2);
+        curl_close ($ch2);
+
+
         echo json_encode(["IsSuccess"=> true, "message" => $server_output]);
 
 
@@ -162,9 +173,45 @@ class client
         echo '{"message" : "Hello from the WF configuration service "}';
     }
 
+    function processWebHook(){
+
+        $post=json_decode(Flight::request()->getBody());
+        $headers = getallheaders();
+
+
+        $file1 = fopen('headers.txt','w');
+        fwrite($file1, json_encode($headers));
+
+        $file2 = fopen('body.txt','w');
+        fwrite($file2, json_encode($post));
+
+        foreach (getallheaders() as $name => $value) {
+            echo "$name: $value\n";
+        }
+
+
+        $ch = curl_init();
+        //curl_setopt($ch, CURLOPT_URL, 'https://nginxproxymaker.plus.smoothflow.io/test?'.$_SERVER['QUERY_STRING']);
+        curl_setopt($ch, CURLOPT_URL, SVC_PROCESSENGINE_HOST.'/processengine/JiraWebHook?'.$_SERVER['QUERY_STRING']);
+
+        echo SVC_PROCESSENGINE_HOST.'/processengine/JiraWebHook?'.$_SERVER['QUERY_STRING'];
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', 'Authorization: '.$_SERVER['HTTP_AUTHORIZATION']));
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec ($ch);
+        curl_close ($ch);
+        echo json_encode(["IsSuccess"=> true, "message" => $server_output]);
+
+
+
+    }
+
 
 
     function __construct(){
+        Flight::route("POST /webhookForward",function(){$this->processWebHook();});
         Flight::route("POST /client",function(){$this->saveClient();});
         Flight::route("POST /enable",function(){$this->enable();});
         Flight::route("POST /disable",function(){$this->disable();});

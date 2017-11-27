@@ -7,19 +7,43 @@
                         <h4>{{selectedRule.ruleName}}</h4>
                     </div>
                     <ul class="aui-nav">
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.details'}"><a href="" ng-click="changeLocation('rule.details')">Details</a></li>
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.triggers'}"><a href="" ng-click="changeLocation('rule.triggers')">Triggers</a></li>
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.workflow'}"><a href="" ng-click="changeLocation('rule.workflow')">Flows & Rules</a></li>
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.variables'}"><a href="" ng-click="changeLocation('rule.variables')">Fields <aui-badge>{{allVariables.length}}</aui-badge></a></li>
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.schedule'}"><a href="" ng-click="changeLocation('rule.schedule')">Schedule</a></li>
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.container'}"><a href="" ng-click="changeLocation('rule.container')">Usage</a></li>
-                        <li ng-class="{'aui-nav-selected':listState == 'rule.audit'}"><a href="" ng-click="changeLocation('rule.audit')">Audit Logs</a></li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.details'}">
+                            <a href="" ng-click="$root.changeLocation('rule.details')">Details</a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.triggers'}">
+                            <a href="" ng-click="$root.changeLocation('rule.triggers')">Triggers</a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.workflow'}">
+                            <a href="" ng-click="$root.changeLocation('rule.workflow')">Flows & Rules</a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.variables'}">
+                            <a href="" ng-click="$root.changeLocation('rule.variables')">Fields
+                                <aui-badge>{{allVariables.length}}</aui-badge>
+                            </a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.schedule'}">
+                            <a href="" ng-click="$root.changeLocation('rule.schedule')">Schedule</a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.container'}">
+                            <a href="" ng-click="$root.changeLocation('rule.container')">Usage</a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.api'}">
+                            <a href="" ng-click="$root.changeLocation('rule.api')">Container APIs</a>
+                        </li>
+                        <li ng-class="{'aui-nav-selected':listState == 'rule.audit'}">
+                            <a href="" ng-click="$root.changeLocation('rule.audit')">Audit Logs</a>
+                        </li>
+                        <!-- <li ng-class="{'aui-nav-selected':listState == 'rule.notifications'}"><a href="" ng-click="$root.changeLocation('rule.notifications')">Notifications</a></li> -->
                     </ul>
                 </div>
                 <div class="aui-navgroup-secondary nav-button-right m-0">
                     <ul class="aui-nav">
-                        <li><button class="aui-button" ng-click="saveWorkFlow()">Save</button></li>
-                        <li><button id="validationErrors" class="aui-button aui-button-primary" ng-click="publishWorkflow()" ng-disabled="selectedRule.status == 'Unsaved'">Publish</button></li>
+                        <li>
+                            <button class="aui-button" ng-click="saveWorkFlow()">Save</button>
+                        </li>
+                        <li>
+                            <button id="validationErrors" class="aui-button aui-button-primary" ng-click="publishWorkflow()" ng-disabled="selectedRule.status == 'Unsaved'">Publish</button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -29,6 +53,10 @@
         <div ng-include="'content/rule/validation-errors.html'"></div>
         <!-- / Error page INJECTION-->
 
-        <div ui-view id="workflow-ui"></div>
+        <div ui-view id="workflow-ui" class="custom-scroll"></div>
+
+        <a class="btn-floating btn-lg purple-gradient">
+            <i class="fa fa-bolt"></i>
+        </a>
     </div>
 </div>

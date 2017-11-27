@@ -2,23 +2,29 @@
     <table class="aui aui-table-sortable" id="currentRulesSortable">
         <thead>
             <tr>
-                <th class="aui-table-column-issue-key" id="name">Rule Name</th>
+                <th class="aui-table-column-issue-key" id="name">Automation Name</th>
                 <th id="description">Description</th>
                 <th id="createddate">Last Updated</th>
                 <th id="createdby">Created By</th>
+                <th id="executions">Execution count</th>
                 <th id="status">Status</th>
                 <!--<th class="aui-table-column-issue-key">Issue key</th>-->
                 <!--<th>Name</th>-->
                 <!--<th>Age</th>-->
                 <!--<th class="aui-table-column-unsortable">Description</th>-->
-                <tr>
+            </tr>
         </thead>
         <tbody>
             <tr class="clikbl-list-item" ng-repeat="rule in currentRules" ng-click="openSelectedRule(rule, true)">
-                <td headers="name">{{rule.ruleName}}</td>
-                <td headers="description" style="width: 250px;" ng-if="rule.description == '' || rule.description == null || rule.description == undefined">-</td>
-                <td headers="description" style="width: 250px;" ng-if="rule.description.length <= 25">{{rule.description}}</td>
-                <td headers="description" style="width: 250px;" ng-if="rule.description.length > 25">{{rule.description | limitTo:23}} ...</td>
+                <!--<td headers="name" ng-if="rule.ruleName.length <= 25">{{rule.ruleName}}</td>-->
+                <td headers="name">{{rule.ruleName.length > 25 ? rule.ruleName.substring(0, 23)+'...' : rule.ruleName}}</td>
+
+                <!--Description UI-->
+                <td headers="description" ng-if="rule.description == null">-</td>
+                <td headers="description" ng-if="rule.description != null">{{rule.description.length > 25 ? rule.description.substring(0, 23)+'...' : rule.description}}</td>
+                <!--Description UI-->
+
+
                 <!-- <td headers="project" class="avatar-text">
             <span class="aui-avatar aui-avatar-xsmall">
                 <span class="aui-avatar-inner">
@@ -27,7 +33,7 @@
             </span>
                 <span class="avatar-text">CloudCharge</span>
             </td> -->
-                <td headers="createddate">{{rule.createdDate | date : 'short'}}</td>
+                <td headers="createddate">{{rule.createdDate | date : 'yyyy-mm-dd'}}</td>
                 <td headers="action" class="avatar-text">
                     <span class="aui-avatar aui-avatar-xsmall">
                         <span class="aui-avatar-inner">
@@ -37,6 +43,7 @@
                     <span class="avatar-text">{{rule.createdBy}}</span>
                     <!--<img src="core/images/useravatar.png" alt="" class="micro-img img-circle">{{rule.createdBy}}-->
                 </td>
+                <td headers="executions">{{rule.executions}}</td>
                 <td class="list-state" headers="action">
                     <!--<span ng-if="rule.status == '...'" class="glyphicon glyphicon-refresh glyphicon-spin"></span>-->
                     <!--<span ng-if="rule.status == 'Published'" class="glyphicon glyphicon-floppy-saved ico-published"></span>-->

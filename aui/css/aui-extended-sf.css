@@ -214,18 +214,81 @@ h5 + h6 {
     margin-top: 0;
 }
 
+#triggersSection{
+    position: relative;
+    width: 70%;
+    margin:0 auto;
+    -webkit-box-shadow: 0px 2px 5px #ddd;
+    -moz-box-shadow: 0px 2px 5px #ddd;
+    box-shadow: 0px 2px 5px #ddd;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+#FeedbackSection{
+    position: relative;
+    width: 95%;
+    
+    -webkit-box-shadow: 0px 2px 5px #ddd;
+    -moz-box-shadow: 0px 2px 5px #ddd;
+    box-shadow: 0px 2px 5px #ddd;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+
+.width-50{
+    width: 70%!important;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+.width-100{
+    width: 100%!important;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+
 .aui-group>div.aui-item-container{
     display: inline-block;
-    float: left;
-    width:50%;
+    /*float: left;*/
+    width:100%;
     /*padding: 10px;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*margin: auto;*/
+    background: #fff;
+}
+.aui-group>div.aui-item-container.projects{
+    position: relative;
+    z-index: 1;
+}
+.aui-group>div.aui-item-container.triggers{
+    z-index: 0;
+    position: absolute;
+    right:0;
+    width: 30%;
+    border-left: solid 5px #ffffff;
+}
+.aui-group>div.aui-item-container.triggers.open{
+    left:0;
 }
 .aui-group>div.aui-item-container .shadowed-item{
-    box-shadow: 0px 2px 5px #ddd;
+    /*box-shadow: 0px 2px 5px #ddd;*/
     /*padding: 10px;*/
     overflow: hidden;
 }
-.aui-group>div.aui-item-container .shadowed-item>h5.product-header{
+.aui-group>div.aui-item-container .shadowed-item>h5.project-header{
     padding: 10px;
     border-top: solid 2px #0052cc;
     color: #0052cc;
@@ -264,6 +327,20 @@ h5 + h6 {
 .aui-group>div.aui-item-container .shadowed-item.ml{
     margin-left: 10px;
 }
+.aui-group>div.aui-item-container .shadowed-item button{
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    border: none;
+    background: #5cb85c;
+    padding: 3px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+}
+.aui-group>div.aui-item-container .shadowed-item button:hover{
+    background: #4b984b;
+}
 /*.aui-group>div.aui-item-container .shadowed-item .overhead-container{*/
     /*position: absolute;*/
     /*bottom: 0;*/
@@ -275,6 +352,7 @@ h5 + h6 {
 /*}*/
 .overhead-container{
     position: absolute;
+    z-index: 2;
     bottom: 0;
     width: 100%;
     left: 0;
@@ -294,6 +372,23 @@ h5 + h6 {
     margin-top: 10px;
     width: 100%;
     max-height: 480px;
+}
+.overhead-container .overhead-container-body .head{
+    color: #aaa;
+    font-weight: 500;
+    overflow: auto;
+}
+.overhead-container .overhead-container-body .head span{
+    display: inline-block;
+    padding: 10px;
+    float: left;
+    width: 47.5%;
+}
+.overhead-container .overhead-container-body .head span:last-child{
+    display: inline-block;
+    float: left;
+    text-align: right;
+    width: 5%;
 }
 .overhead-container .overhead-container-body::-webkit-scrollbar {
     width: 10px;
@@ -329,9 +424,23 @@ h5 + h6 {
 }
 .overhead-container .overhead-section{
     display: inline-block;
-    width: 50%;
+    width: 47.5%;
     float: left;
     padding: 10px;
+}
+.overhead-container .overhead-controls{
+    display: inline-block;
+    width: 5%;
+    float: left;
+    text-align: right;
+    padding: 10px;
+}
+.overhead-container .overhead-controls .aui-icon{
+    color: #CCCCCC;
+    cursor: pointer;
+}
+.overhead-container .overhead-controls .aui-icon:hover{
+    color: #ffffff;
 }
 .overhead-container .overhead-section .section-header{
     font-weight: 500;
@@ -3646,7 +3755,7 @@ form.aui .date-select {
     clear: both;
     padding: 4px 0 4px 145px;
     position: relative;
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     width: 100%;
 }
 form.aui .group {
@@ -7029,7 +7138,6 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
 
 
   /*Customized checkbox*/
-
 .styled-checkbox {
     /*position: absolute;*/
     display: none;
@@ -7048,7 +7156,7 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
     content: '';
     margin-right: 10px;
     display: inline-block;
-    vertical-align: text-top;
+    vertical-align: middle;
     width: 20px;
     height: 20px;
     background: white;
@@ -7086,6 +7194,28 @@ aui-inline-dialog.aui-help.aui-alignment-side-right.aui-alignment-element-attach
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+.unstyled.project-list li{
+    padding: 5px;
+    cursor: pointer;
+    /*background: #f5f5f5;*/
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.unstyled.project-list li .edit-project-triggers-btn{
+    cursor: pointer;
+    float: right;
+}
+.unstyled.project-list li label{
+    margin: 0;
+    cursor: pointer;
+}
+.unstyled.project-list li label:before{
+    border-radius: 50%;
+    border: none;
+}
+.unstyled.project-list .styled-checkbox:checked + label:before, .unstyled.project-list li:hover .styled-checkbox + label:before{
+    background: #0052cc;
 }
 
 li {
