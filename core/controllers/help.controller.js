@@ -137,6 +137,7 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
 
     // 5) Create Ticket
     $scope.createtTicket = function () {
+        debugger;
         var ticketObj = {
             "channel": "api",
             "description": $scope.ticket.description,
@@ -157,11 +158,11 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
             data: ticketObj
         }).then(function successCallback(response) {
             if (!response.data.IsSuccess == false) {
-                $scope.showToast(response.data.CustomMessage);
+               
                 $scope.ticket = [];
                 $scope.gettasklist();
             } else {
-                $scope.showToast(response.data.CustomMessage);
+               
                 $scope.ticket = [];
                 console.log(response.data);
             }

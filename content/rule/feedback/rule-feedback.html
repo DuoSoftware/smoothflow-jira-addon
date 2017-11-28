@@ -74,8 +74,8 @@
                         </div>
                         <div class="field-group">
                             <label for="select-type">Select Type</label>
-                            <select class="select" id="select-type" name="select-type">
-                                <option ng-repeat="typeaa in Tasktypes" ng-value="typeaa">{{typeaa}}</option>
+                            <select class="select" ng-model="ticket.typeaa" id="select-type" name="select-type">
+                                <option ng-repeat="typeaa in Tasktypes" value="{{typeaa}}">{{typeaa}}</option>
                             </select>
                         </div>
                         <fieldset>
