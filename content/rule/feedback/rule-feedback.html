@@ -60,12 +60,12 @@
                             <label for="TicketName">Ticket Name
                                 <span class="aui-icon icon-required">(required)</span>
                             </label>
-                            <input class="text long-field" type="text" id="TicketName" name="TicketName">
+                            <input class="text long-field" type="text" id="TicketName" name="TicketName" ng-model="ticket.taskcode">
 
                         </div>
                         <div class="field-group">
                             <label for="description">Description</label>
-                            <textarea class="textarea" name="description-input" id="description-input" placeholder="Description"></textarea>
+                            <textarea class="textarea" name="description-input" id="description-input" ng-model="ticket.description" placeholder="Description"></textarea>
                         </div>
                         <div class="field-group">
                             <label for="tag">Tag</label>
@@ -75,11 +75,7 @@
                         <div class="field-group">
                             <label for="select-type">Select Type</label>
                             <select class="select" id="select-type" name="select-type">
-                                <option>Select</option>
-                                <option>Complain</option>
-                                <option>Bug</option>
-                                <option>Improvement</option>
-                                <option>Suggestion</option>
+                                <option ng-repeat="typeaa in Tasktypes" ng-value="typeaa">{{typeaa}}</option>
                             </select>
                         </div>
                         <fieldset>
@@ -91,7 +87,7 @@
                                 <input class="upfile" type="file" id="file-upload-image" name="file-upload-image">
                             </div>
                             <button class="aui-button" ng-click="createtTicket()">
-                                    <span class="aui-icon aui-icon-small aui-iconfont-add">Add</span>  Create</button>
+                                <span class="aui-icon aui-icon-small aui-iconfont-add">Add</span> Create</button>
                         </fieldset>
                     </form>
 

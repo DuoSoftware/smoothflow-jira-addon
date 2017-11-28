@@ -5,10 +5,8 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
     $scope.theme = sessionStorage.cur_theme || 'default';
     $scope.authcode = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmcm9kb29kIiwianRpIjoiMDIxYzQ4MWEtNTUxMC00MzlkLTk1YjgtZWY5OTY3MmY1ZmFhIiwic3ViIjoiNTZhOWU3NTlmYjA3MTkwN2EwMDAwMDAxMjVkOWU4MGI1YzdjNGY5ODQ2NmY5MjExNzk2ZWJmNDMiLCJleHAiOjIzMzQxMjMzNjAsInRlbmFudCI6LTEsImNvbXBhbnkiOi0xLCJzY29wZSI6W3sicmVzb3VyY2UiOiJhbGwiLCJhY3Rpb25zIjoiYWxsIn1dLCJpYXQiOjE0NzAyMDk3NjB9.Wh-E2OVg6nwsicj9yQdx92js6rPg6pzkZkmwk69FHmc';
 
+    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement', 'Suggestion'];
 
-    $scope.OpenCreateFeedback = function () {
-        AJS.dialog2("#new-Feedback-dialog").show();
-    }
     // 1) Get User profile
     function getprofiledata(email) {
         $http({
