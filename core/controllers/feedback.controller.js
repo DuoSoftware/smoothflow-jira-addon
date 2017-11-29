@@ -14,7 +14,7 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 "description": $scope.ticket.description,
                 "attachmant": [$rootScope.imageUrl],
                 "subject": $scope.ticket.taskcode,
-                "tags": ["SmoothFlow", "V6"],
+                "tags": ["SmoothFlow", "V6","HelpDesk"],
                 "type": $scope.ticket.type,
                 "domain": $rootScope.SessionDetails.Domain,
                 "email": $rootScope.SessionDetails.emails[0],
