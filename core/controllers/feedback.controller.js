@@ -1,6 +1,6 @@
 app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope', 'dataHandler', function ($scope, $http, $v6urls, $rootScope, dataHandler) {
     $scope.IsNew = true;
-    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement', 'Suggestion'];
+    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement'];
 
     $scope.CreateNewTicket = function (IsNew) {
         if (IsNew) { $scope.IsNew = false; }
