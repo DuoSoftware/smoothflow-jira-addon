@@ -7242,3 +7242,7 @@ li {
     height: 40px!important;
     margin: auto!important;
 }
+.bug{background: #b72c2c;padding: 5px;border-radius: 5px;color: white;}
+.improvement{background: #0d87a8;padding: 5px;border-radius: 5px;color: white;}
+.complain{background: #FFB74D;padding: 5px;border-radius: 5px;color: white;}
+.suggestion{background: #18b36d;padding: 5px;border-radius: 5px;color: white;}
