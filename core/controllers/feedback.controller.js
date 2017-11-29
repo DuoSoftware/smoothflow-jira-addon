@@ -17,7 +17,7 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 "tags": ["SmoothFlow", "V6"],
                 "type": $scope.ticket.type,
                 "domain": $rootScope.SessionDetails.Domain,
-                "email": $rootScope.SessionDetails.email,
+                "email": $rootScope.SessionDetails.emails[0],
                 "name": $rootScope.CurrentUser.key,
                 "displayname":$rootScope.SessionDetails.name
             }
