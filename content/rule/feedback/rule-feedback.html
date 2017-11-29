@@ -102,7 +102,11 @@
                             <div class="field-group">
                                 <label for="Image">Attached Image</label>
                                 <input class="text long-field" disabled="true" type="text" id="url" name="url" ng-model="$root.imageUrl">
+                               
+                            
+                            
                             </div>
+                            <img ng-src="{{$root.imageUrl}}" id="image" style="width: 200px;height: 200px;margin: 20px 20px 0px;border: 1px lightgrey solid;">
                             <fieldset>
                                 <!-- <legend>
                                     <span>Attached Image</span>
