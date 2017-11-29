@@ -685,7 +685,7 @@
                             } else {
                                 if (onComplete) onComplete(data.result);
                             }
-                        },function (data, status, headers, config) {
+                        }, function (data, status, headers, config) {
                             if (onError) {
                                 $backdoor.log("Error deleting object from objectstore");
                                 $backdoor.log(data);
@@ -2076,13 +2076,12 @@
                     headers: {
                         'Content-Type': (isMedia ? "multipart/form-data" : undefined)
                     }
-                })
-                .success(function (e) {
-                    $rootScope.$emit("uploader_success", e);
-                })
-                .error(function (e) {
-                    $rootScope.$emit("uploader_fail", e);
+                }).then(function successCallback(response) {
+                    $rootScope.$emit("uploader_success", response.data);
+                }, function errorCallback(response) {
+                    $rootScope.$emit("uploader_fail", response.data);
                 });
+
         }
 
         return {

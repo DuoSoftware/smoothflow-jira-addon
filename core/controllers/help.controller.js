@@ -5,10 +5,8 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
     $scope.theme = sessionStorage.cur_theme || 'default';
     $scope.authcode = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmcm9kb29kIiwianRpIjoiMDIxYzQ4MWEtNTUxMC00MzlkLTk1YjgtZWY5OTY3MmY1ZmFhIiwic3ViIjoiNTZhOWU3NTlmYjA3MTkwN2EwMDAwMDAxMjVkOWU4MGI1YzdjNGY5ODQ2NmY5MjExNzk2ZWJmNDMiLCJleHAiOjIzMzQxMjMzNjAsInRlbmFudCI6LTEsImNvbXBhbnkiOi0xLCJzY29wZSI6W3sicmVzb3VyY2UiOiJhbGwiLCJhY3Rpb25zIjoiYWxsIn1dLCJpYXQiOjE0NzAyMDk3NjB9.Wh-E2OVg6nwsicj9yQdx92js6rPg6pzkZkmwk69FHmc';
 
-
-    $scope.OpenCreateFeedback = function () {
-        AJS.dialog2("#new-Feedback-dialog").show();
-    }
+    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement', 'Suggestion'];
+//$scope.tasklist=[{"_id":"59e0a7af897b910001df8bd3","ticket_matrix":{"created_at":"2017-10-13T11:46:55.276Z","last_updated":"2017-10-13T11:46:55.276Z","last_status_changed":"2017-10-13T11:46:55.276Z","waited_time":0,"worked_time":0,"resolution_time":0,"sla_violated":false,"reopens":0,"replies":0,"assignees":0,"groups":0,"_id":"59e0a7af897b910001df8bd4"},"requester":{"_id":"599172301f052c0001d3a27c","name":"lakmi","avatar":"unknown","phone":"4547057501","email":"lakmini@duosoftware.com"},"tid":8,"active":true,"is_sub_ticket":false,"type":"Bug","subject":"test","reference":"null-8","description":"test","submitter":{"_id":"58a6f851dd3da800010496d8","name":"frodood"},"company":-1,"tenant":-1,"engagement_session":"bGFrbWkuZGV2LnNtb290aGZsb3cuaW8tMWFkMjNl","channel":"api","__v":0,"slot_attachment":[],"events":[{"_id":"59e0a7af897b910001df8bd2","body":{"message":"frodood Created Ticket","time":"2017-10-13T11:46:55.261Z"},"create_at":"2017-10-13T11:46:55.261Z","author":"frodood","type":"status"}],"comments":[],"custom_fields":[],"isolated_tags":["SmoothFlow","V6"],"tags":["SmoothFlow","V6"],"merged_tickets":[],"related_tickets":[],"sub_tickets":[],"attachments":[],"watchers":["58a6f851dd3da800010496d8"],"collaborators":[],"status":"new","priority":"normal","updated_at":"2017-10-13T11:46:55.276Z","created_at":"2017-10-13T11:46:55.276Z"},{"_id":"59b29684918b2e000194c213","ticket_matrix":{"created_at":"2017-09-08T13:09:24.765Z","last_updated":"2017-09-08T13:09:24.765Z","last_status_changed":"2017-09-08T13:09:24.765Z","waited_time":0,"worked_time":0,"resolution_time":0,"sla_violated":false,"reopens":0,"replies":0,"assignees":0,"groups":0,"_id":"59b29684918b2e000194c214"},"requester":{"_id":"599172301f052c0001d3a27c","name":"lakmi","avatar":"unknown","phone":"4547057501","email":"lakmini@duosoftware.com"},"tid":7,"active":true,"is_sub_ticket":false,"type":"Improvement","subject":"Task 01","reference":"null-7","description":"Test","submitter":{"_id":"58a6f851dd3da800010496d8","name":"frodood"},"company":-1,"tenant":-1,"engagement_session":"bGFrbWkuZGV2LnNtb290aGZsb3cuaW8tODU4YjEw","channel":"api","__v":0,"slot_attachment":[],"events":[{"_id":"59b29684918b2e000194c212","body":{"message":"frodood Created Ticket","time":"2017-09-08T13:09:24.761Z"},"create_at":"2017-09-08T13:09:24.762Z","author":"frodood","type":"status"}],"comments":[],"custom_fields":[],"isolated_tags":["SmoothFlow","V6"],"tags":["SmoothFlow","V6"],"merged_tickets":[],"related_tickets":[],"sub_tickets":[],"attachments":[],"watchers":["58a6f851dd3da800010496d8"],"collaborators":[],"status":"new","priority":"normal","updated_at":"2017-09-08T13:09:24.765Z","created_at":"2017-09-08T13:09:24.765Z"},{"_id":"59a6b427918b2e000194c04e","ticket_matrix":{"created_at":"2017-08-30T12:48:39.607Z","last_updated":"2017-08-30T12:49:20.529Z","last_status_changed":"2017-08-30T12:48:39.607Z","waited_time":0,"worked_time":0,"resolution_time":0,"sla_violated":false,"reopens":0,"replies":0,"assignees":0,"groups":0,"external_replies":1,"last_commented":"2017-08-30T12:49:20.529Z","_id":"59a6b427918b2e000194c04f"},"requester":{"_id":"599172301f052c0001d3a27c","name":"lakmi","avatar":"unknown","phone":"4547057501","email":"lakmini@duosoftware.com"},"tid":6,"active":true,"is_sub_ticket":false,"type":"Improvement","subject":"Test_100","reference":"null-6","description":"test","submitter":{"_id":"58a6f851dd3da800010496d8","name":"frodood"},"company":-1,"tenant":-1,"engagement_session":"bGFrbWkuZGV2LnNtb290aGZsb3cuaW8tY2QxYTVj","channel":"api","__v":1,"slot_attachment":[],"events":[{"_id":"59a6b427918b2e000194c04d","body":{"message":"frodood Created Ticket","time":"2017-08-30T12:48:39.606Z"},"create_at":"2017-08-30T12:48:39.606Z","author":"frodood","type":"status"},{"_id":"59a6b450918b2e000194c05c","body":{"message":"frodood Make Comment 59a6b450918b2e000194c05b","time":"2017-08-30T12:49:20.529Z"},"create_at":"2017-08-30T12:49:20.529Z","author":"frodood","type":"status"}],"comments":["59a6b450918b2e000194c05b"],"custom_fields":[],"isolated_tags":["SmoothFlow","V6"],"tags":["SmoothFlow","V6"],"merged_tickets":[],"related_tickets":[],"sub_tickets":[],"attachments":[],"watchers":["58a6f851dd3da800010496d8"],"collaborators":[],"status":"new","priority":"normal","updated_at":"2017-08-30T12:49:20.529Z","created_at":"2017-08-30T12:48:39.607Z"},{"_id":"59a69e51918b2e000194c02f","ticket_matrix":{"created_at":"2017-08-30T11:15:29.644Z","last_updated":"2017-08-30T11:15:29.644Z","last_status_changed":"2017-08-30T11:15:29.644Z","waited_time":0,"worked_time":0,"resolution_time":0,"sla_violated":false,"reopens":0,"replies":0,"assignees":0,"groups":0,"_id":"59a69e51918b2e000194c030"},"requester":{"_id":"599172301f052c0001d3a27c","name":"lakmi","avatar":"unknown","phone":"4547057501","email":"lakmini@duosoftware.com"},"tid":5,"active":true,"is_sub_ticket":false,"type":"Improvement","subject":"task 06","reference":"null-5","description":"test","submitter":{"_id":"58a6f851dd3da800010496d8","name":"frodood"},"company":-1,"tenant":-1,"engagement_session":"bGFrbWkuZGV2LnNtb290aGZsb3cuaW8tNjJlZDUx","channel":"api","__v":0,"slot_attachment":[],"events":[{"_id":"59a69e51918b2e000194c02e","body":{"message":"frodood Created Ticket","time":"2017-08-30T11:15:29.643Z"},"create_at":"2017-08-30T11:15:29.643Z","author":"frodood","type":"status"}],"comments":[],"custom_fields":[],"isolated_tags":["SmoothFlow","V6"],"tags":["SmoothFlow","V6"],"merged_tickets":[],"related_tickets":[],"sub_tickets":[],"attachments":[],"watchers":["58a6f851dd3da800010496d8"],"collaborators":[],"status":"new","priority":"normal","updated_at":"2017-08-30T11:15:29.644Z","created_at":"2017-08-30T11:15:29.644Z"}];
     // 1) Get User profile
     function getprofiledata(email) {
         $http({
@@ -139,6 +137,7 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
 
     // 5) Create Ticket
     $scope.createtTicket = function () {
+        debugger;
         var ticketObj = {
             "channel": "api",
             "description": $scope.ticket.description,
@@ -159,11 +158,11 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
             data: ticketObj
         }).then(function successCallback(response) {
             if (!response.data.IsSuccess == false) {
-                $scope.showToast(response.data.CustomMessage);
+               
                 $scope.ticket = [];
                 $scope.gettasklist();
             } else {
-                $scope.showToast(response.data.CustomMessage);
+               
                 $scope.ticket = [];
                 console.log(response.data);
             }
@@ -208,8 +207,12 @@ app.controller('HelpController', ['$scope', '$http', '$v6urls', '$rootScope', 'd
 
     };
 
-    $scope.CreateNewTicket = function () {
-        $scope.IsNew=true;
-     };
+    $scope.CreateNewTicket = function (IsNew) {
+        if (IsNew) { $scope.IsNew = false; } else { $scope.IsNew = true; }
 
+    };
+    $scope.scrollTo = function (id) {
+        $location.hash(id);
+        $scope.tab = id;
+    };
 }])
