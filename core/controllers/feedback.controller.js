@@ -1,6 +1,6 @@
 app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope', 'dataHandler', function ($scope, $http, $v6urls, $rootScope, dataHandler) {
     $scope.IsNew = true;
-    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement', 'Suggestion'];
+    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement'];
 
     $scope.CreateNewTicket = function (IsNew) {
         if (IsNew) { $scope.IsNew = false; }
@@ -14,10 +14,10 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 "description": $scope.ticket.description,
                 "attachmant": [$rootScope.imageUrl],
                 "subject": $scope.ticket.taskcode,
-                "tags": ["SmoothFlow", "V6"],
-                "type": $scope.ticket.type,
+                "tags": ["SmoothFlow", "V6","HelpDesk"],
+                "type": $scope.ticket.typeaa,
                 "domain": $rootScope.SessionDetails.Domain,
-                "email": $rootScope.SessionDetails.email,
+                "email": $rootScope.SessionDetails.emails[0],
                 "name": $rootScope.CurrentUser.key,
                 "displayname":$rootScope.SessionDetails.name
             }

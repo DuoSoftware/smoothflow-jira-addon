@@ -35,7 +35,7 @@
             }
         ],
         "postInstallPage": {
-            "url": "landing/",
+            "url": "admin/",
             "name": {
                 "value": "Getting started with Smoothflow Automation",
                 "i18n": "mypostinstallpage.name"
@@ -43,19 +43,6 @@
             "key": "addmon-smoothflow-getting-started-page"
         },
         "adminPages": [
-            {
-                "key": "addmon-smoothflow-getting-started",
-                "location": "admin_plugins_menu/addon-smoothflow-settings",
-                "name": {
-                    "value": "Getting Started"
-                },
-                "url": "landing/",
-                "conditions": [
-                    {
-                        "condition": "user_is_admin"
-                    }
-                ]
-            },
             {
                 "key": "addmon-smoothflow-access",
                 "location": "admin_plugins_menu/addon-smoothflow-settings",

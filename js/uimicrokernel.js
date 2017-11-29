@@ -497,6 +497,11 @@
                     send("GET");
                     return this;
                 },
+                V1getAll: function (parameters) {
+                    appendGet(undefined, undefined, "");
+                    V1send("GET");
+                    return this;
+                },
                 getByFiltering: function (filter, parameters) {
                     send("POST", {
                         "Query": {
@@ -2076,38 +2081,67 @@
                     headers: {
                         'Content-Type': (isMedia ? "multipart/form-data" : undefined)
                     }
+                })
+                .success(function (e) {
+                    $rootScope.$emit("uploader_success", e);
+                })
+                .error(function (e) {
+                    $rootScope.$emit("uploader_fail", e);
+                });
+        }
+        function V1upload(namespace, cls, file, customName, isMedia) {
+            if (!customName) customName = file.name;
+            var uUrl;
+            if (isMedia) uUrl = $v6urls.mediaLib + "/" + cls + "/" + customName;
+            else uUrl = $v6urls.objectStore + "/" + namespace + "/" + cls + "/" + customName + "/";
+
+            var fd;
+            if (isMedia) fd = file;
+            else {
+                fd = new FormData();
+                fd.append('file', file);
+            }
+
+            $http
+                .post(uUrl, fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': (isMedia ? "multipart/form-data" : undefined)
+                    }
                 }).then(function successCallback(response) {
                     $rootScope.$emit("uploader_success", response.data);
                 }, function errorCallback(response) {
                     $rootScope.$emit("uploader_fail", response.data);
                 });
-
-        }
-
-        return {
-            upload: function (namespace, cls, file, customName, useGlobal) {
-                upload(useGlobal ? namespace : getHost(), cls, file, customName, false)
-            },
-            uploadMedia: function (cls, file, customName) {
-                upload(getHost(), "tenant/" + cls, file, customName, true)
-            },
-            uploadUserMedia: function (cls, file, customName) {
-                upload(getHost(), "user/" + cls, file, customName, true)
-            },
-            onSuccess: function (func) {
-                var of = $rootScope.$on("uploader_success", function (e, data) {
-                    func(e, data);
-                    of();
-                });
-            },
-            onError: function (func) {
-                var of = $rootScope.$on("uploader_fail", function (e, data) {
-                    func(e, data);
-                    of();
-                });
             }
-        };
-    });
+
+            return {
+                upload: function (namespace, cls, file, customName, useGlobal) {
+                    upload(useGlobal ? namespace : getHost(), cls, file, customName, false)
+                },
+                uploadMedia: function (cls, file, customName) {
+                    upload(getHost(), "tenant/" + cls, file, customName, true)
+                },
+                V1uploadMedia: function (cls, file, customName) {
+                    V1upload(getHost(), "tenant/" + cls, file, customName, true)
+                },
+                uploadUserMedia: function (cls, file, customName) {
+                    upload(getHost(), "user/" + cls, file, customName, true)
+                },
+                onSuccess: function (func) {
+                    var of = $rootScope.$on("uploader_success", function (e, data) {
+                        func(e, data);
+                        of();
+                    });
+                },
+                onError: function (func) {
+                    var of = $rootScope.$on("uploader_fail", function (e, data) {
+                        func(e, data);
+                        of();
+                    });
+                }
+            };
+        });
 
     mkm.factory('$backdoor', function () {
 
