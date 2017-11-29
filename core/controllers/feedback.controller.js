@@ -18,7 +18,8 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 "type": $scope.ticket.type,
                 "domain": $rootScope.SessionDetails.Domain,
                 "email": $rootScope.SessionDetails.email,
-                "name": $rootScope.SessionDetails.name
+                "name": $rootScope.CurrentUser.key,
+                "displayname":$rootScope.SessionDetails.name
             }
         $http({
             method: 'POST',

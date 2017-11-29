@@ -9,7 +9,7 @@ app.controller('ScreenshotController', ['$scope', '$rootScope', '$http', '$auth'
                 var randomnumber = Math.floor(Math.random() * 21) - 10;
                 console.log(dataUrl);
                 $scope.name = "Screenshot" + randomnumber + ".png";
-                uploader.uploadMedia(window.location.hostname, dataUrl, $scope.name);
+                uploader.V1uploadMedia(window.location.hostname, dataUrl, $scope.name);
 
 
             });
