@@ -99,15 +99,20 @@
                                     <option ng-repeat="typeaa in Tasktypes" value="{{typeaa}}">{{typeaa}}</option>
                                 </select>
                             </div>
+                            <div class="field-group">
+                                <label for="Image">Attached Image</label>
+                                <input class="text long-field" disabled="true" type="text" id="url" name="url" ng-model="$root.imageUrl">
+                            </div>
                             <fieldset>
-                                <legend>
+                                <!-- <legend>
                                     <span>Attached Image</span>
-                                </legend>
-                                <div class="field-group">
+
+                                </legend> -->
+                                <!-- <div class="field-group">
                                     <label for="file-upload-image">Upload file</label>
                                     <input class="upfile" type="file" id="file-upload-image" name="file-upload-image">
-                                </div>
-                                <button class="aui-button" ng-click="createtTicket()">
+                                </div> -->
+                                <button class="aui-button" ng-click="CreateTicket(ticket)">
                                     <span class="aui-icon aui-icon-small aui-iconfont-add">Add</span> Create</button>
                             </fieldset>
                         </form>
