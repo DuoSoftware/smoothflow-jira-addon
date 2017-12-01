@@ -326,20 +326,20 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
     //tigger save
     this.SaveTriggers = function (WorkFlowID) {
-        //debugger
+        debugger
         var saveJson = alltriggers;
         var payload = { "Objects": saveJson, "Parameters": { "KeyProperty": "code" } };
 
         var client = $objectstore.getClient("jiraAddonTriggers");
         client.onComplete(function (data) {
-            $rootScope.DisplayMessage("Rule saved successfully.", "success", "You can access saved rules under 'My Rules' page.");
+            $rootScope.DisplayMessage("Trigger details updated successfully.", "success");
             $rootScope.HideBusyContainer();
         });
         client.onError(function (data) {
-            $rootScope.DisplayMessage("Error occured when saving rule.", "error", "You can access saved rules under 'My Rules' page.");
+            $rootScope.DisplayMessage("Error occured when saving trigger details.", "error", "Please contact an administrator.");
             $rootScope.HideBusyContainer();
         });
-        client.V1insert([saveJson], {
+        client.V1insert(saveJson, {
             KeyProperty: "code"
         });
 
