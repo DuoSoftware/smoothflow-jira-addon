@@ -60,7 +60,7 @@ class client
         if($respond['IsSuccess']==true){
             $ch2 = curl_init();
 
-            $namespace = preg_replace("/\.$/","",$namespace);
+            $namespace = preg_replace('/\./', '', $namespace);
             curl_setopt($ch2, CURLOPT_URL, SVC_NGINXPROXYMAKER_HOST.'/createKeyFile/'.$namespace.'/none');
             curl_setopt($ch2, CURLOPT_PORT, SVC_NGINXPROXYMAKER_PORT);
             curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
