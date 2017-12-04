@@ -25,19 +25,19 @@ app.controller('ScreenshotController', ['$scope', '$rootScope', '$http', '$auth'
         // }
     }
 
-    $rootScope.$on('uploader_success', function (event, data) {
-        debugger;
-        console.log('uploader_success recived:', data);
-        $rootScope.imageUrl = storage.getMediaUrl(window.location.hostname, $scope.name);
-        console.log('Image Url', $rootScope.imageUrl);        //set image name
+    // $rootScope.$on('uploader_success', function (event, data) {
+    //     debugger;
+    //     console.log('uploader_success recived:', data);
+    //     $rootScope.imageUrl = storage.getMediaUrl(window.location.hostname, $scope.name);
+    //     console.log('Image Url', $rootScope.imageUrl);        //set image name
 
-        $rootScope.changeLocation('feedback');
-    });
+    //     $rootScope.changeLocation('feedback');
+    // });
 
-    $rootScope.$on('uploader_fail', function (event, data) {
-        debugger;
-        console.log('uploader_fail recived:', data);
+    // $rootScope.$on('uploader_fail', function (event, data) {
+    //     debugger;
+    //     console.log('uploader_fail recived:', data);
 
-    });
+    // });
 
 }]);
