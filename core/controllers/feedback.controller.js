@@ -17,7 +17,7 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
     $scope.uploadImage = function () {
         debugger;
         angular.element(document.querySelector('#file')).on('change', function () {
-            $scope.name = this.files[0].name;            
+            $scope.name = this.files[0].name;
             uploader.V1uploadMedia(window.location.hostname, this.files[0], $scope.name);
         })
 
@@ -43,7 +43,7 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 "description": $scope.ticket.description,
                 "attachmant": [$rootScope.imageUrl],
                 "subject": $scope.ticket.taskcode,
-                "tags": ["SmoothFlow", "V6", "HelpDesk"],
+                "tags": ["SmoothFlow", "V6", "HelpDesk", $rootScope.SessionDetails.Domain],
                 "type": $scope.ticket.typeaa,
                 "domain": $rootScope.SessionDetails.Domain,
                 "email": $rootScope.SessionDetails.emails[0],
