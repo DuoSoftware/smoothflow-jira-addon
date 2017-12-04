@@ -52,12 +52,21 @@ class client
         $namespace = str_replace("https://",'', $namespace);
         $namespace = str_replace("http://", '' , $namespace);
         $namespace = str_replace("atlassian.net", '' , $namespace);
-        $namespace = $namespace.'JIRA'.MAIN_DOMAIN;
+        $namespace = $namespace.'jira'.MAIN_DOMAIN;
         $clientConn = ObjectStoreClient::WithNamespace($namespace,'jira',"123");
         $respond=$clientConn->store()->byKeyField("baseUrl")->andStore($clientData);
         $respond = json_decode(json_encode($respond), true);
         //$respond=json_encode($respond);
         if($respond['IsSuccess']==true){
+            $ch2 = curl_init();
+
+            $namespace = preg_replace('/\./', '', $namespace);
+            curl_setopt($ch2, CURLOPT_URL, SVC_NGINXPROXYMAKER_HOST.'/createKeyFile/'.$namespace.'/none');
+            curl_setopt($ch2, CURLOPT_PORT, SVC_NGINXPROXYMAKER_PORT);
+            curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+            $server_output = curl_exec ($ch2);
+            curl_close ($ch2);
+
             echo json_encode(["IsSuccess"=> true]);
         }
         else{
