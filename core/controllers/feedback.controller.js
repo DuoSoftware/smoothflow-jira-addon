@@ -14,16 +14,16 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 "description": $scope.ticket.description,
                 "attachmant": [$rootScope.imageUrl],
                 "subject": $scope.ticket.taskcode,
-                "tags": ["SmoothFlow", "V6","HelpDesk"],
+                "tags": ["SmoothFlow", "V6", "HelpDesk"],
                 "type": $scope.ticket.typeaa,
                 "domain": $rootScope.SessionDetails.Domain,
                 "email": $rootScope.SessionDetails.emails[0],
                 "name": $rootScope.CurrentUser.key,
-                "displayname":$rootScope.SessionDetails.name
+                "displayname": $rootScope.SessionDetails.name
             }
         $http({
             method: 'POST',
-            url: $v6urls.processManager + '/jira/helpdesk/createissue',
+            url: $v6urls.processManager + '/processengine/jira/helpdesk/createissue',
             headers: {
                 'Content-Type': 'application/json'
             },
