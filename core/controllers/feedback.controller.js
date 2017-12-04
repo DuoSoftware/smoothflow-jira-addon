@@ -11,22 +11,13 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
 
 
     $scope.CreateNewTicket = function (IsNew) {
-        // if (IsNew) { $scope.IsNew = false; }
-        // else { $scope.IsNew = true; }
-
         $scope.ticket = [];
     };
     //Create Ticket
     $scope.uploadImage = function () {
         debugger;
         angular.element(document.querySelector('#file')).on('change', function () {
-            $scope.name = this.files[0].name;
-            // var reader = new FileReader();
-            // // file read
-            // reader.onload = function (e) {
-            //     $scope.dataUrl = e.target.result;
-            // }
-            // reader.readAsDataURL(this.files[0]);
+            $scope.name = this.files[0].name;            
             uploader.V1uploadMedia(window.location.hostname, this.files[0], $scope.name);
         })
 
@@ -38,8 +29,6 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
         $rootScope.imageUrl = storage.getMediaUrl(window.location.hostname, $scope.name);
         $scope.IsImageShow = true;
         console.log('Image Url', $rootScope.imageUrl);        //set image name
-
-
     });
 
     $rootScope.$on('uploader_fail', function (event, data) {
