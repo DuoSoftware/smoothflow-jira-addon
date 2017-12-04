@@ -415,6 +415,12 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                 var projs = ee.findIndex(ee => ee.key === project.key);
                 if (projs != -1) {
                     alltriggers[code].projects[projs].WFID.push(WorkFlowId);
+                } else {
+                    var record = {
+                        "key": project.key,
+                        "WFID": [WorkFlowId]
+                    }
+                    alltriggers[code].projects.push(record);
                 }
             } else {
                 var record = {
