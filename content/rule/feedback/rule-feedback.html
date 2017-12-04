@@ -5,90 +5,129 @@
             <div class="aui-page-header-main">
                 <h4>Feedback</h4>
             </div>
-            <button id="NewFeedback" style="float: right;" ng-click="CreateNewTicket(IsNew)" class="aui-button">New</button>
-            <!-- <button id="NewFeedback" style="float: right;" ng-show="IsNew" ng-click="CreateNewTicket(IsNew)" class="aui-button">Details</button> -->
+            <button id="NewFeedback" style="float: right;" ng-click="CreateNewTicket(IsNew)" class="aui-button">{{name}}</button>
+            <!-- <button id="NewFeedback" style="float: right;" ng-click="CreateNewTicket(IsNew)" class="aui-button">Details</button> -->
         </div>
     </header>
     <div class="clearfix">
-        <div ng-hide="IsNew">
-            <div style="padding: 10px;background-color: #daffcb;">
-                <span>{{ticketDetails.Message}}</span>
-            </div>
-
-            <hr/>
-            <div style="padding: 5px;background-color: #efefef">
-                <h5>
-                    <b>{{ticketDetails.Data.IssueKey}}</b>
-                </h5>
-                <span>{{ticketDetails.Data.IssueUrl}}</span>
-            </div>
-
-
-
-        </div>
-        <div ng-show="IsNew">
+        <div ng-if="IsFirst">
             <div class="aui-group" id="FeedbackCreate">
-
                 <div class="aui-item-container projects">
                     <div class="shadowed-item">
 
-                        <h5 class="project-header">New Feedback</h5>
+                        <h5 class="project-header">Feedback</h5>
                         <!-- <div ng-hide="IsNew"> -->
                         <form class="aui m-0">
-                            <div class="field-group">
-                                <label for="TicketName">Ticket Name
-                                    <span class="aui-icon icon-required">(required)</span>
-                                </label>
-                                <input class="text long-field" type="text" id="TicketName" name="TicketName" ng-model="ticket.taskcode">
+                            <fieldset class="group">
+                                <input placeholder="Search Feedback" class="text long-field selected-search" type="text" id="searchFeedback" name="searchFeedback"
+                                    ng-model="Feedbacksearch" style="margin-top: 10px;">
+                                <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
+                                <div class="sf-padding select-item-body custom-scroll" style="height: unset">
+                                    <ul class="unstyled project-list">
+                                        <li ng-repeat="task in tasklist| filter : Feedbacksearch" style="border-bottom: 1px solid #d0d0d0;overflow: auto" ng-click="IsCommentShow=!IsCommentShow">
+                                            <h5>
+                                                <b>{{task.key}}</b>
+                                            </h5>
+                                            <span>{{task.fields.summary}}</span>
+                                            <div style="float: right;">
+                                                <p style="color: #757575;;font-size: 12px;padding-top: 22px;">
+                                                    <span style="padding: 5px;border-radius: 5px;">{{task.fields.created| date:'medium'}}</span>
+                                                    <span style="background: #d8d8d8;padding: 5px;border-radius: 5px;"> Status: {{task.fields.status.name}}</span>
+                                                    <span style="background: #ffffff;padding: 5px;border-radius: 5px;"> Type </span> :
+                                                    <span ng-class="{'bug': task.fields.issuetype.name == 'Bug','improvement': task.fields.issuetype.name == 'Improvement','complain': task.fields.issuetype.name == 'Complain','suggestion': task.fields.issuetype.name == 'Suggestion'}">{{task.fields.issuetype.name}} </span>
+                                                    <span style="background: #ffffff;padding: 5px;border-radius: 5px;"> Priority</span> :
+                                                    <span style="background: #ffffff;padding: 5px;border-radius: 5px;">{{task.fields.priority.name}} </span>
+                                                </p>
+                                            </div>
 
-                            </div>
-                            <div class="field-group">
-                                <label for="description">Description</label>
-                                <textarea class="textarea" name="description-input" id="description-input" ng-model="ticket.description" placeholder="Description"></textarea>
-                            </div>
-                            <div class="field-group">
-                                <label for="tag">Tag</label>
-                                <input class="text long-field" disabled="true" type="text" id="tagname" name="tagname" value="SmoothFlow , SmoothFlow_Jira, HelpDesk">
-
-                            </div>
-                            <div class="field-group">
-                                <label for="select-type">Select Type</label>
-                                <select class="select" ng-model="ticket.typeaa" id="select-type" name="select-type">
-                                    <option ng-repeat="typeaa in Tasktypes" value="{{typeaa}}">{{typeaa}}</option>
-                                </select>
-                            </div>
-                            <!-- <div class="field-group">
-                                <label for="Image">Attached Image</label> -->
-                            <!-- <input class="text long-field" disabled="true" type="text" id="url" name="url" ng-model="$root.imageUrl"> -->
-
-
-
-                            <!-- </div> -->
-                            <div class="field-group">
-                                <button class="aui-button" ng-click="CreateTicket(ticket)">
-                                    <span class="aui-icon aui-icon-small aui-iconfont-add">Add</span> Create</button>
-                            </div>
-
-
-                            <fieldset>
-                                <!-- <legend>
-                                    <span>Attached Image</span>
-
-                                </legend> -->
-                                <div class="field-group">
-                                    <label for="file-upload-image">Upload file</label>
-                                    <input class="upfile" type="file" id="file" ng-click="uploadImage();" name="file-upload-image">
-                                    <!-- <input type="file" ng-file-select="uploadImage($files)" ng-model="imageSrc"> -->
+                                        </li>
+                                    </ul>
                                 </div>
-                                <img ng-src="{{$root.imageUrl}}" ng-show="IsImageShow" id="image" style="border: 1px lightgrey solid;">
-
                             </fieldset>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+            <div ng-if="IsSatus">
+                <div style="padding: 10px;background-color: #daffcb;">
+                    <span>{{ticketDetails.Message}}</span>
+                </div>
 
-</div>
+                <hr/>
+                <div style="padding: 5px;background-color: #efefef">
+                    <h5>
+                        <b>{{ticketDetails.Data.IssueKey}}</b>
+                    </h5>
+                    <span>{{ticketDetails.Data.IssueUrl}}</span>
+                </div>
+
+
+
+            </div>
+            <div ng-if="IsNew">
+                <div class="aui-group" id="FeedbackCreate">
+
+                    <div class="aui-item-container projects">
+                        <div class="shadowed-item">
+
+                            <h5 class="project-header">New Feedback</h5>
+                            <!-- <div ng-hide="IsNew"> -->
+                            <form class="aui m-0">
+                                <div class="field-group">
+                                    <label for="TicketName">Ticket Name
+                                        <span class="aui-icon icon-required">(required)</span>
+                                    </label>
+                                    <input class="text long-field" type="text" id="TicketName" name="TicketName" ng-model="ticket.taskcode">
+
+                                </div>
+                                <div class="field-group">
+                                    <label for="description">Description</label>
+                                    <textarea class="textarea" name="description-input" id="description-input" ng-model="ticket.description" placeholder="Description"></textarea>
+                                </div>
+                                <div class="field-group">
+                                    <label for="tag">Tag</label>
+                                    <input class="text long-field" disabled="true" type="text" id="tagname" name="tagname" value="SmoothFlow , SmoothFlow_Jira, HelpDesk">
+
+                                </div>
+                                <div class="field-group">
+                                    <label for="select-type">Select Type</label>
+                                    <select class="select" ng-model="ticket.typeaa" id="select-type" name="select-type">
+                                        <option ng-repeat="typeaa in Tasktypes" value="{{typeaa}}">{{typeaa}}</option>
+                                    </select>
+                                </div>
+                                <!-- <div class="field-group">
+                                <label for="Image">Attached Image</label> -->
+                                <!-- <input class="text long-field" disabled="true" type="text" id="url" name="url" ng-model="$root.imageUrl"> -->
+
+
+
+                                <!-- </div> -->
+                                <div class="field-group">
+                                    <button class="aui-button" ng-click="CreateTicket(ticket)">
+                                        <span class="aui-icon aui-icon-small aui-iconfont-add">Add</span> Create</button>
+                                </div>
+
+
+                                <fieldset>
+                                    <!-- <legend>
+                                    <span>Attached Image</span>
+
+                                </legend> -->
+                                    <div class="field-group">
+                                        <label for="file-upload-image">Upload file</label>
+                                        <input class="upfile" type="file" id="file" ng-click="uploadImage();" name="file-upload-image">
+                                        <!-- <input type="file" ng-file-select="uploadImage($files)" ng-model="imageSrc"> -->
+                                    </div>
+                                    <img ng-src="{{$root.imageUrl}}" ng-show="IsImageShow" id="image" style="border: 1px lightgrey solid;">
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
