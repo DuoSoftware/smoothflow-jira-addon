@@ -6,7 +6,7 @@ app.controller('ScreenshotController', ['$scope', '$rootScope', '$http', '$auth'
         if ($scope.imageApi) {
             $scope.imageApi.toPng(function (dataUrl) {
                 //var aa = Math.random()
-                var randomnumber = Math.floor(Math.random() * 21) - 10;
+                var randomnumber = Math.floor(Math.random() * 21);
                 console.log(dataUrl);
                 $scope.name = "Screenshot" + randomnumber + ".png";
                 uploader.V1uploadMedia(window.location.hostname, dataUrl, $scope.name);
