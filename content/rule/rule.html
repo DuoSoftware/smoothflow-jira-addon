@@ -4,7 +4,7 @@
             <div class="aui-navgroup-inner pos-rel">
                 <div class="aui-navgroup-primary">
                     <div class="aui-nav-heading">
-                        <h4>{{selectedRule.ruleName}}</h4>
+                        <h4>{{selectedRule.ruleName | limitTo: 20}}{{selectedRule.ruleName.length >= 20 ? '...' : null}}</h4>
                     </div>
                     <ul class="aui-nav">
                         <li ng-class="{'aui-nav-selected':listState == 'rule.details'}">
@@ -54,9 +54,5 @@
         <!-- / Error page INJECTION-->
 
         <div ui-view id="workflow-ui" class="custom-scroll"></div>
-
-        <a class="btn-floating btn-lg purple-gradient">
-            <i class="fa fa-bolt"></i>
-        </a>
     </div>
 </div>
