@@ -24,14 +24,15 @@
 
                                 <div class="sf-padding select-item-body custom-scroll">
                                     <ul class="unstyled project-list">
-                                        <li ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project)" ng-repeat="project in projectList | filter : projectsearch">
+                                        <li ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project);" ng-repeat="project in projectList | filter : projectsearch">
                                             <input class="styled-checkbox"
                                                    ng-click="addedProject(project)"
+                                                   ng-disabled="project.check"
                                                    type="checkbox"
                                                    name="{{project.key}}"
                                                    id="{{project.key}}"
                                                    ng-model="project.check"
-                                                   ng-checked="project.check" disabled>
+                                                   ng-checked="project.check">
                                             <label for="{{project.key}}">{{project.key}} - {{project.name}}</label>
                                             <span ng-if="project.check" class="aui-icon aui-icon-small aui-iconfont-edit-small edit-project-triggers-btn" ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project)"></span>
                                         </li>

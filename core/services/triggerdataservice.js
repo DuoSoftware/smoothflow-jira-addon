@@ -32,98 +32,192 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
         alltriggers = [];
         var tempData = [];
-        //var url = $v6urls.globalOS + "/jiraAddonTriggers";
-        var url = "https://devobj.plus.smoothflow.io/" + $rootScope.Domain + "/jiraAddonTriggers";
-        // get all trigger details from the global location
-        $http({
-            url: url,
-            method: "GET",
-            headers: {
-                'securityToken': "ignore"
-            }
-        }).
-            then(function (data, status, headers, config) {
-                if (data) {
-                    if (data.data.length == 0) {
-                        tempData = [
-                            { 'code': 'issue_created', 'projects': [] },
-                            { 'code': 'issue_updated', 'projects': [] },
-                            { 'code': 'issue_deleted', 'projects': [] },
-                            { 'code': 'issue_working_change', 'projects': [] },
-                            { 'code': 'comment_created', 'projects': [] },
-                            { 'code': 'comment_update', 'projects': [] },
-                            { 'code': 'comment_delete', 'projects': [] },
-                            { 'code': 'attachment_created', 'projects': [] },
-                            { 'code': 'attachment_delete', 'projects': [] },
-                            { 'code': 'issue link_created', 'projects': [] },
-                            { 'code': 'issue link_delete', 'projects': [] },
-                            { 'code': 'worklog_created', 'projects': [] },
-                            { 'code': 'worklog_updated', 'projects': [] },
-                            { 'code': 'worklog_deleted', 'projects': [] },
-                            { 'code': 'jira_voting', 'projects': [] },
-                            { 'code': 'jira_watching', 'projects': [] },
-                            { 'code': 'jira_unassigned issues', 'projects': [] },
-                            { 'code': 'jira_subtasks', 'projects': [] },
-                            { 'code': 'jira_attachments', 'projects': [] },
-                            { 'code': 'jira_issue_link', 'projects': [] },
-                            { 'code': 'jira_time tracking_provider', 'projects': [] },
-                            { 'code': 'board_created', 'projects': [] },
-                            { 'code': 'board_update', 'projects': [] },
-                            { 'code': 'board_delete', 'projects': [] },
-                            { 'code': 'board_configuration_changed', 'projects': [] },
-                            { 'code': 'sprint_created', 'projects': [] },
-                            { 'code': 'sprint_update', 'projects': [] },
-                            { 'code': 'sprint_delete', 'projects': [] },
-                            { 'code': 'sprint_started', 'projects': [] },
-                            { 'code': 'sprint_closed', 'projects': [] },
-                            { 'code': 'project_created', 'projects': [] },
-                            { 'code': 'project_update', 'projects': [] },
-                            { 'code': 'project_delete', 'projects': [] },
-                            { 'code': 'version_released', 'projects': [] },
-                            { 'code': 'version_unreleased', 'projects': [] },
-                            { 'code': 'version_created', 'projects': [] },
-                            { 'code': 'version_update', 'projects': [] },
-                            { 'code': 'version_delete', 'projects': [] },
-                            { 'code': 'version_merged', 'projects': [] },
-                            { 'code': 'version_moved', 'projects': [] },
-                            { 'code': 'user_created', 'projects': [] },
-                            { 'code': 'user_update', 'projects': [] },
-                            { 'code': 'user_delete', 'projects': [] }
-                        ]
-                    } else {
-                        tempData = data.data;
-                    }
 
-                    for (i = 0; i < tempData.length; i++) {
-                        alltriggers.push(tempData[i]);
-                    }
-                    selectedTriggersAndProjects = [];
+        var client = $objectstore.getClient("jiraAddonTriggers");
+        client.onGetMany(function (data) {
+            debugger
+            if (data.length == 0) {
+                tempData = [
+                    { 'code': 'issue_created', 'projects': [] },
+                    { 'code': 'issue_updated', 'projects': [] },
+                    { 'code': 'issue_deleted', 'projects': [] },
+                    { 'code': 'issue_working_change', 'projects': [] },
+                    { 'code': 'comment_created', 'projects': [] },
+                    { 'code': 'comment_updated', 'projects': [] },
+                    { 'code': 'comment_deleted', 'projects': [] },
+                    { 'code': 'attachment_created', 'projects': [] },
+                    { 'code': 'attachment_deleted', 'projects': [] },
+                    { 'code': 'issuelink_created', 'projects': [] },
+                    { 'code': 'issuelink_deleted', 'projects': [] },
+                    { 'code': 'worklog_created', 'projects': [] },
+                    { 'code': 'worklog_updated', 'projects': [] },
+                    { 'code': 'worklog_deleted', 'projects': [] },
+                    { 'code': 'jira_voting', 'projects': [] },
+                    { 'code': 'jira_watching', 'projects': [] },
+                    { 'code': 'jira_unassigned issues', 'projects': [] },
+                    { 'code': 'jira_subtasks', 'projects': [] },
+                    { 'code': 'jira_attachments', 'projects': [] },
+                    { 'code': 'jira_issue_link', 'projects': [] },
+                    { 'code': 'jira_time tracking_provider', 'projects': [] },
+                    { 'code': 'option_voting_changed', 'projects': [] },
+                    { 'code': 'option_watching_changed', 'projects': [] },
+                    { 'code': 'option_unassigned_issues_changed', 'projects': [] },
+                    { 'code': 'option_subtasks_changed', 'projects': [] },
+                    { 'code': 'option_attachments_changed', 'projects': [] },
+                    { 'code': 'option_issuelinks_changed', 'projects': [] },
+                    { 'code': 'board_created', 'projects': [] },
+                    { 'code': 'board_updated', 'projects': [] },
+                    { 'code': 'board_deleted', 'projects': [] },
+                    { 'code': 'board_configuration_changed', 'projects': [] },
+                    { 'code': 'sprint_created', 'projects': [] },
+                    { 'code': 'sprint_updated', 'projects': [] },
+                    { 'code': 'sprint_deleted', 'projects': [] },
+                    { 'code': 'sprint_started', 'projects': [] },
+                    { 'code': 'sprint_closed', 'projects': [] },
+                    { 'code': 'project_created', 'projects': [] },
+                    { 'code': 'project_updated', 'projects': [] },
+                    { 'code': 'project_deleted', 'projects': [] },
+                    { 'code': 'version_released', 'projects': [] },
+                    { 'code': 'version_unreleased', 'projects': [] },
+                    { 'code': 'version_created', 'projects': [] },
+                    { 'code': 'version_updated', 'projects': [] },
+                    { 'code': 'version_deleted', 'projects': [] },
+                    { 'code': 'version_merged', 'projects': [] },
+                    { 'code': 'version_moved', 'projects': [] },
+                    { 'code': 'user_created', 'projects': [] },
+                    { 'code': 'user_updated', 'projects': [] },
+                    { 'code': 'user_deleted', 'projects': [] }
+                ]
+            } else {
+                tempData = data;
+            }
+
+            for (i = 0; i < tempData.length; i++) {
+                alltriggers.push(tempData[i]);
+            }
+            selectedTriggersAndProjects = [];
+            //debugger
+            for (i = 0; i < alltriggers.length; i++) {
+                if (alltriggers[i].projects.length > 0) {
                     //debugger
-                    for (i = 0; i < alltriggers.length; i++) {
-                        if (alltriggers[i].projects.length > 0) {
-                            //debugger
-                            for (j = 0; j < alltriggers[i].projects.length; j++) {
-                                var temptriggers = alltriggers[i].projects.filter(function (project) {
-                                    if (project.WFID.indexOf(WorkFlowId) >= 0) {
-                                        return true
-                                    }
-                                });
-                                //   debugger
-                                angular.forEach(temptriggers, function (trig) {
-                                    //   debugger
-                                    trig.trigger = alltriggers[i].code;
-                                    selectedTriggersAndProjects.push(trig);
-                                });
+                    for (j = 0; j < alltriggers[i].projects.length; j++) {
+                        var temptriggers = alltriggers[i].projects.filter(function (project) {
+                            if (project.WFID.indexOf(WorkFlowId) >= 0) {
+                                return true
                             }
-                        }
+                        });
+                        //   debugger
+                        angular.forEach(temptriggers, function (trig) {
+                            //   debugger
+                            trig.trigger = alltriggers[i].code;
+                            selectedTriggersAndProjects.push(trig);
+                        });
                     }
-                    // debugger
-                    //$rootScope.$broadcast('selectedTriggers', selectedTriggersAndProjects);
-                    $rootScope.HideBusyContainer();
                 }
-            }, function (data, status, headers, config) {
-                alert("Oppss. There was an error when retriving data.");
-            });
+            }
+            // debugger
+            //$rootScope.$broadcast('selectedTriggers', selectedTriggersAndProjects);
+            $rootScope.HideBusyContainer();
+        }).v1getByFiltering("*");
+
+        //var url = $v6urls.globalOS + "/jiraAddonTriggers";
+        //var url = globalOS + $rootScope.Domain + "/jiraAddonTriggers";
+        // get all trigger details from the global location
+        // $http({
+        //     url: url,
+        //     method: "GET",
+        //     headers: {
+        //         'securityToken': "ignore"
+        //     }
+        // }).
+        //     then(function (data, status, headers, config) {
+        //         if (data) {
+        //             if (data.data.length == 0) {
+        //                 tempData = [
+        //                     { 'code': 'issue_created', 'projects': [] },
+        //                     { 'code': 'issue_updated', 'projects': [] },
+        //                     { 'code': 'issue_deleted', 'projects': [] },
+        //                     { 'code': 'issue_working_change', 'projects': [] },
+        //                     { 'code': 'comment_created', 'projects': [] },
+        //                     { 'code': 'comment_updated', 'projects': [] },
+        //                     { 'code': 'comment_deleted', 'projects': [] },
+        //                     { 'code': 'attachment_created', 'projects': [] },
+        //                     { 'code': 'attachment_deleted', 'projects': [] },
+        //                     { 'code': 'issuelink_created', 'projects': [] },
+        //                     { 'code': 'issuelink_deleted', 'projects': [] },
+        //                     { 'code': 'worklog_created', 'projects': [] },
+        //                     { 'code': 'worklog_updated', 'projects': [] },
+        //                     { 'code': 'worklog_deleted', 'projects': [] },
+        //                     { 'code': 'jira_voting', 'projects': [] },
+        //                     { 'code': 'jira_watching', 'projects': [] },
+        //                     { 'code': 'jira_unassigned issues', 'projects': [] },
+        //                     { 'code': 'jira_subtasks', 'projects': [] },
+        //                     { 'code': 'jira_attachments', 'projects': [] },
+        //                     { 'code': 'jira_issue_link', 'projects': [] },
+        //                     { 'code': 'jira_time tracking_provider', 'projects': [] },
+        //                     { 'code': 'option_voting_changed', 'projects': [] },
+        //                     { 'code': 'option_watching_changed', 'projects': [] },
+        //                     { 'code': 'option_unassigned_issues_changed', 'projects': [] },
+        //                     { 'code': 'option_subtasks_changed', 'projects': [] },
+        //                     { 'code': 'option_attachments_changed', 'projects': [] },
+        //                     { 'code': 'option_issuelinks_changed', 'projects': [] },
+        //                     { 'code': 'board_created', 'projects': [] },
+        //                     { 'code': 'board_updated', 'projects': [] },
+        //                     { 'code': 'board_deleted', 'projects': [] },
+        //                     { 'code': 'board_configuration_changed', 'projects': [] },
+        //                     { 'code': 'sprint_created', 'projects': [] },
+        //                     { 'code': 'sprint_updated', 'projects': [] },
+        //                     { 'code': 'sprint_deleted', 'projects': [] },
+        //                     { 'code': 'sprint_started', 'projects': [] },
+        //                     { 'code': 'sprint_closed', 'projects': [] },
+        //                     { 'code': 'project_created', 'projects': [] },
+        //                     { 'code': 'project_updated', 'projects': [] },
+        //                     { 'code': 'project_deleted', 'projects': [] },
+        //                     { 'code': 'version_released', 'projects': [] },
+        //                     { 'code': 'version_unreleased', 'projects': [] },
+        //                     { 'code': 'version_created', 'projects': [] },
+        //                     { 'code': 'version_updated', 'projects': [] },
+        //                     { 'code': 'version_deleted', 'projects': [] },
+        //                     { 'code': 'version_merged', 'projects': [] },
+        //                     { 'code': 'version_moved', 'projects': [] },
+        //                     { 'code': 'user_created', 'projects': [] },
+        //                     { 'code': 'user_updated', 'projects': [] },
+        //                     { 'code': 'user_deleted', 'projects': [] }
+        //                 ]
+        //             } else {
+        //                 tempData = data.data;
+        //             }
+
+        //             for (i = 0; i < tempData.length; i++) {
+        //                 alltriggers.push(tempData[i]);
+        //             }
+        //             selectedTriggersAndProjects = [];
+        //             //debugger
+        //             for (i = 0; i < alltriggers.length; i++) {
+        //                 if (alltriggers[i].projects.length > 0) {
+        //                     //debugger
+        //                     for (j = 0; j < alltriggers[i].projects.length; j++) {
+        //                         var temptriggers = alltriggers[i].projects.filter(function (project) {
+        //                             if (project.WFID.indexOf(WorkFlowId) >= 0) {
+        //                                 return true
+        //                             }
+        //                         });
+        //                         //   debugger
+        //                         angular.forEach(temptriggers, function (trig) {
+        //                             //   debugger
+        //                             trig.trigger = alltriggers[i].code;
+        //                             selectedTriggersAndProjects.push(trig);
+        //                         });
+        //                     }
+        //                 }
+        //             }
+        //             // debugger
+        //             //$rootScope.$broadcast('selectedTriggers', selectedTriggersAndProjects);
+        //             $rootScope.HideBusyContainer();
+        //         }
+        //     }, function (data, status, headers, config) {
+        //         alert("Oppss. There was an error when retriving data.");
+        //     });
     };
 
     this.setworkflowId = function (WorkFlowID) {
@@ -232,27 +326,41 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
     //tigger save
     this.SaveTriggers = function (WorkFlowID) {
-        //debugger
+        debugger
         var saveJson = alltriggers;
         var payload = { "Objects": saveJson, "Parameters": { "KeyProperty": "code" } };
-        var load = JSON.stringify(payload);
-        var payload = JSON.parse(load);
-        var url = "https://devobj.plus.smoothflow.io/" + $rootScope.Domain + "/jiraAddonTriggers";
-        console.log(load);
-        console.log(url);
-        $http.post(url, payload, {
-            headers: {
-                'Content-Type': "json/application",
-                'securityToken': "ignore"
-            }
-        })
-            .then(function (data, status, headers, config) {
-                $rootScope.DisplayMessage("Rule saved successfully.", "success", "You can access saved rules under 'My Rules' page.");
-                $rootScope.HideBusyContainer();
-            }, function (data, status, headers, config) {
-                $rootScope.DisplayMessage("Error occured when saving rule.", "error", "You can access saved rules under 'My Rules' page.");
-                $rootScope.HideBusyContainer();
-            });
+
+        var client = $objectstore.getClient("jiraAddonTriggers");
+        client.onComplete(function (data) {
+            $rootScope.DisplayMessage("Trigger details updated successfully.", "success");
+            $rootScope.HideBusyContainer();
+        });
+        client.onError(function (data) {
+            $rootScope.DisplayMessage("Error occured when saving trigger details.", "error", "Please contact an administrator.");
+            $rootScope.HideBusyContainer();
+        });
+        client.V1insert(saveJson, {
+            KeyProperty: "code"
+        });
+
+        // var load = JSON.stringify(payload);
+        // var payload = JSON.parse(load);
+        // var url = globalOS + $rootScope.Domain + "/jiraAddonTriggers";
+        // console.log(load);
+        // console.log(url);
+        // $http.post(url, payload, {
+        //     headers: {
+        //         'Content-Type': "json/application",
+        //         'securityToken': "ignore"
+        //     }
+        // })
+        //     .then(function (data, status, headers, config) {
+        //         $rootScope.DisplayMessage("Rule saved successfully.", "success", "You can access saved rules under 'My Rules' page.");
+        //         $rootScope.HideBusyContainer();
+        //     }, function (data, status, headers, config) {
+        //         $rootScope.DisplayMessage("Error occured when saving rule.", "error", "You can access saved rules under 'My Rules' page.");
+        //         $rootScope.HideBusyContainer();
+        //     });
 
     }
     //trigger Delete
@@ -307,13 +415,19 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
                 var projs = ee.findIndex(ee => ee.key === project.key);
                 if (projs != -1) {
                     alltriggers[code].projects[projs].WFID.push(WorkFlowId);
+                } else {
+                    var record = {
+                        "key": project.key,
+                        "WFID": [WorkFlowId]
+                    }
+                    alltriggers[code].projects.push(record);
                 }
             } else {
                 var record = {
                     "key": project.key,
                     "WFID": [WorkFlowId]
                 }
-                alltriggers[j].projects.push(record);
+                alltriggers[code].projects.push(record);
             }
         }
     };
@@ -325,13 +439,13 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             if (projs != -1) {
                 var tt = alltriggers[code].projects[projs];
                 for (var index = 0; index < tt.WFID.length; index++) {
-                    if(tt.WFID[index]==WorkFlowId){
+                    if (tt.WFID[index] == WorkFlowId) {
                         alltriggers[code].projects[projs].WFID.splice(index, 1);
                     }
-                } 
+                }
             }
         }
-        
+
     }
     return this;
 });

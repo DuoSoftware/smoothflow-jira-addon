@@ -1,18 +1,18 @@
 app.controller('MainController', [
-	'$scope',
-	'$rootScope',
-	'$state',
-	'$timeout',
-	'$http',
-	'dataHandler',
-	'$auth',
-	'$objectstore',
-	'$filter',
-	'TriggerDatafactory',
-	'$v6urls',
-	'$helpers',
-	'$location',
-	'$window', mainController])
+    '$scope',
+    '$rootScope',
+    '$state',
+    '$timeout',
+    '$http',
+    'dataHandler',
+    '$auth',
+    '$objectstore',
+    '$filter',
+    'TriggerDatafactory',
+    '$v6urls',
+    '$helpers',
+    '$location',
+    '$window', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -53,7 +53,30 @@ app.controller('MainController', [
         }
     }
     ])
-	.filter('filterComp', function () {
+    .directive('dropdown', function () {
+        // console.log(value);
+        return {
+            restrict: 'EA',
+            scope: {
+                args: '=',
+                message: '=',
+                all: '='
+            },
+
+            template: '<select style="width:100%" placeholder="Select" ng-model="message" style="font-size:smaller;margin-top:0px;"><option ng-repeat="type in all"    value="{{type}}" ng-click="switchValue(type)">{{type}}</option>   </select>',
+            link: function (scope, iElement, iAttrs) {
+                var mentions = scope.args;
+
+                console.log(scope.message);
+                scope.switchValue = function (item) {
+                    debugger;
+                    console.log(item);
+                }
+            }
+
+        }
+    })
+    .filter('filterComp', function () {
         return function (arr, compName) {
             if (!compName) {
                 return arr;
@@ -69,15 +92,15 @@ app.controller('MainController', [
         }
             ;
     })
-	.filter('bytes', function() {
-		return function(bytes, precision) {
-			if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
-			if (typeof precision === 'undefined') precision = 1;
-			var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
-				number = Math.floor(Math.log(bytes) / Math.log(1024));
-			return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
-		}
-	});
+    .filter('bytes', function () {
+        return function (bytes, precision) {
+            if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+            if (typeof precision === 'undefined') precision = 1;
+            var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
+                number = Math.floor(Math.log(bytes) / Math.log(1024));
+            return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) + ' ' + units[number];
+        }
+    });
 
 function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window) {
 
@@ -91,10 +114,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // Kasun_Wijeratne_27_JUNE_2017
     /*** JIRA component extraction*/
     AJS.$(".category-icon").tooltip();
-	AJS.$('.button-spinner').spin();
-	AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
-	AJS.$(".template").tooltip();
-	/*** JIRA component extraction - END*/
+    AJS.$('.button-spinner').spin();
+    AJS.tablessortable.setTableSortable(AJS.$("#currentRulesSortable"));
+    AJS.$(".template").tooltip();
+    /*** JIRA component extraction - END*/
 
     $scope.toggleCompGroup = function (group) {
         $scope.activeCompGroup = group;
@@ -107,7 +130,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);
-		$scope.tab = id;
+        $scope.tab = id;
     };
 
     // Kasun_Wijeratne_27_JUNE_2017
@@ -443,17 +466,21 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.pendingComponentType = "";
     $scope.currentRuleID = "";
     $scope.Variable = {};
-    $scope.listState = "home";
+    $rootScope.listState = "home";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
-	$scope.callFromSwitch = false;
+    $scope.successNotifications = [];
+    $scope.errorNotifications = [];
+    $scope.callFromSwitch = false;
 
     $scope.structuredComps = [{
         'Name': 'Actions',
-        'components': []
+        'components': [],
+        'classes': {}
     }, {
         'Name': 'Conditions',
-        'components': []
+        'components': [],
+		'classes': {}
     }];
 
     var collapsiblePanels = [];
@@ -466,176 +493,176 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     var workflowElem = null;
     var componentBlock = null;
     var directCondConnectors = null;
-	var workflowBlocks = null;
-	var shadowedGroupItems = null;
-	var selectItemBody = null;
-	var shadowedGroupItemsHeight = null;
-	var workflowComponentss = null;
-	var outerBlocks = null;
+    var workflowBlocks = null;
+    var shadowedGroupItems = null;
+    var selectItemBody = null;
+    var shadowedGroupItemsHeight = null;
+    var workflowComponentss = null;
+    var outerBlocks = null;
 
     /////////////////////////////// METHODS ////////////////////////////////////////////////////////////////////////
 
-	// Watchers
-	$scope.$watch(function () {
-		componentBlock = document.getElementsByClassName('condition-block');
-		directCondConnectors = document.getElementsByClassName("sub-cond-connector");
-		workflowBlocks = document.getElementsByClassName("workflow-block");
-		outerBlocks = document.getElementsByClassName("outer");
-
-		if (componentBlock.length != 0) {
-			angular.forEach(componentBlock, function (elem) {
-				angular.forEach(elem.childNodes, function (child) {
-					if (child.className != undefined) {
-						if (child.className == 'workflow-add-node-sub') {
-							var separated = child;
-							separated.setAttribute('style', 'margin-top:10px');
-							elem.append(separated);
-						}
-						// else if (child.parentElement.previousElementSibling != null) {
-						//     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
-						//         child.remove();
-						//     }
-						// }
-					}
-				});
-			});
-		}
-
-		if (workflowBlocks.length != 0) {
-			angular.forEach(workflowBlocks, function (block) {
-				var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
-				if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
-					angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-				}
-				var componentClass = block.className.split(' ')[2];
-				if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
-					var outers = angular.element(block).find('.outer');
-					angular.forEach(outers, function (outer) {
-						angular.forEach(outer.children, function (child) {
-							if (child.className.split(' ')[0] == 'workflow-block') {
-								angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-							} else {
-								angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-							}
-						});
-						var outerParent = outer.parentElement.className.split(' ')[2];
-						if(outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough'){
-							var elem = angular.element(outer);
-							var _elem = elem.find('.workflow-block').first();
-							if(_elem != undefined) {
-								if(!_elem.has('.sub-cond-connector').length){
-									_elem.prepend('<label class="sub-cond-connector"></label>');
-								}
-							}
-						}
-					});
-				}
-			});
-		}
-
-		/////// 10_24_2017_Separate_Loop_Outer_WORKING
-		// if(outerBlocks.length != 0){
-		// angular.forEach(outerBlocks, function (outer) {
-		// 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
-		// 			var elem = angular.element(outer);
-		// 			var _elem = elem.find('.workflow-block').first();
-		// 			if(_elem != undefined) {
-		// 				if(!_elem.has('.sub-cond-connector').length){
-		// 					_elem.prepend('<label class="sub-cond-connector"></label>');
-		// 				}
-		// 			}
-		// 		}
-		// 	});
-		// }
-		//10_24_2017_Separate_Loop_Outer_WORKING - END ///////
-
-		/////// 10_22_2017_Temp_Comment
-		// if (workflowBlocks.length != 0) {
-		// angular.forEach(workflowBlocks, function (block) {
-		// 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
-		// 		var item = angular.element(block).find('.sub-cond-connector')[0];
-		// 		if (item != undefined)
-		// 			item.remove();
-		// 	}
-		// 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
-		// 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
-		// 	}
-		// 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
-		// 		var outers = angular.element(block).find('.outer');
-		// 		angular.forEach(outers, function (outer) {
-		// 			angular.forEach(outer.children, function (child) {
-		// 				if (child.className.split(' ')[0] == 'workflow-block') {
-		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-		// 				} else {
-		// 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-		// 				}
-		// 			});
-		// 		});
-		// 	}
-		// });
-		// }
-		// 10_22_2017_Temp_Comment///////
-
-	});
+    // Watchers
     $scope.$watch(function () {
-		workflowHeight = (window.innerHeight) - 111;
-        workflowUI = document.getElementById('workflow-ui');
-		propertiesElem = document.getElementById('property-wrap');
-		workflowElem = document.getElementById('workflow-wrap');
-		shadowedGroupItems = document.getElementsByClassName('shadowed-item');
-		selectItemBody = document.getElementsByClassName('select-item-body');
-		workflowComponentss = $('#workflow-components');
-		$scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
-		workflowWidth = window.innerWidth - $scope.propertyPanelWidthGLOBAL;
+        componentBlock = document.getElementsByClassName('condition-block');
+        directCondConnectors = document.getElementsByClassName("sub-cond-connector");
+        workflowBlocks = document.getElementsByClassName("workflow-block");
+        outerBlocks = document.getElementsByClassName("outer");
 
-		if(workflowComponentss != undefined){
-			workflowComponentss.css('margin-right',$scope.propertyPanelWidthGLOBAL+'px');
-		}
-		if (workflowUI != undefined){
-			workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
-		}
-		if (shadowedGroupItems != undefined){
-			shadowedGroupItemsHeight = workflowHeight - 120;
-			angular.forEach(shadowedGroupItems, function (item) {
-				item.setAttribute("style", "height:" + shadowedGroupItemsHeight + "px");
-			});
-		}
-		if (selectItemBody != undefined){
-			var selectItemBodyHeight = shadowedGroupItemsHeight - 84;
-			angular.forEach(selectItemBody, function (item) {
-				item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
-			});
-		}
+        if (componentBlock.length != 0) {
+            angular.forEach(componentBlock, function (elem) {
+                angular.forEach(elem.childNodes, function (child) {
+                    if (child.className != undefined) {
+                        if (child.className == 'workflow-add-node-sub') {
+                            var separated = child;
+                            separated.setAttribute('style', 'margin-top:10px');
+                            elem.append(separated);
+                        }
+                        // else if (child.parentElement.previousElementSibling != null) {
+                        //     if (child.className == 'sub-cond-connector switch' || child.className == 'sub-cond-connector if' || child.className == 'sub-cond-connector case' || child.className == 'sub-cond-connector default' || child.className == 'sub-cond-connector fallthrough') {
+                        //         child.remove();
+                        //     }
+                        // }
+                    }
+                });
+            });
+        }
+
+        if (workflowBlocks.length != 0) {
+            angular.forEach(workflowBlocks, function (block) {
+                var blockNextSiblingClass = block.nextElementSibling != null ? block.nextElementSibling.className.split(' ')[0] : null;
+                if (blockNextSiblingClass == 'workflow-block' && blockNextSiblingClass != 'condition-block') {
+                    angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+                }
+                var componentClass = block.className.split(' ')[2];
+                if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+                    var outers = angular.element(block).find('.outer');
+                    angular.forEach(outers, function (outer) {
+                        angular.forEach(outer.children, function (child) {
+                            if (child.className.split(' ')[0] == 'workflow-block') {
+                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                            } else {
+                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                            }
+                        });
+                        var outerParent = outer.parentElement.className.split(' ')[2];
+                        if (outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough') {
+                            var elem = angular.element(outer);
+                            var _elem = elem.find('.workflow-block').first();
+                            if (_elem != undefined) {
+                                if (!_elem.has('.sub-cond-connector').length) {
+                                    _elem.prepend('<label class="sub-cond-connector"></label>');
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        /////// 10_24_2017_Separate_Loop_Outer_WORKING
+        // if(outerBlocks.length != 0){
+        // angular.forEach(outerBlocks, function (outer) {
+        // 		if(outer.parentElement.className.split(' ')[2] == 'component-true' || outer.parentElement.className.split(' ')[2] == 'component-false'){
+        // 			var elem = angular.element(outer);
+        // 			var _elem = elem.find('.workflow-block').first();
+        // 			if(_elem != undefined) {
+        // 				if(!_elem.has('.sub-cond-connector').length){
+        // 					_elem.prepend('<label class="sub-cond-connector"></label>');
+        // 				}
+        // 			}
+        // 		}
+        // 	});
+        // }
+        //10_24_2017_Separate_Loop_Outer_WORKING - END ///////
+
+        /////// 10_22_2017_Temp_Comment
+        // if (workflowBlocks.length != 0) {
+        // angular.forEach(workflowBlocks, function (block) {
+        // 	if (block.previousElementSibling != null && block.previousElementSibling.className.split(' ')[0] == 'workflow-block' && block.className.split(' ')[1] != 'condition-block') {
+        // 		var item = angular.element(block).find('.sub-cond-connector')[0];
+        // 		if (item != undefined)
+        // 			item.remove();
+        // 	}
+        // 	if (block.nextElementSibling != null && block.nextElementSibling.className.split(' ')[0] == 'workflow-block' && block.nextElementSibling.className.split(' ')[2] != 'condition-block') {
+        // 		angular.element(block).find('.body').css('border-left', 'solid 1px #bbb');
+        // 	}
+        // 	if (block.className.split(' ')[2] == 'component-true' || block.className.split(' ')[2] == 'component-false' || block.className.split(' ')[2] == 'component-case') {
+        // 		var outers = angular.element(block).find('.outer');
+        // 		angular.forEach(outers, function (outer) {
+        // 			angular.forEach(outer.children, function (child) {
+        // 				if (child.className.split(' ')[0] == 'workflow-block') {
+        // 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+        // 				} else {
+        // 					angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+        // 				}
+        // 			});
+        // 		});
+        // 	}
+        // });
+        // }
+        // 10_22_2017_Temp_Comment///////
+
+    });
+    $scope.$watch(function () {
+        workflowHeight = (window.innerHeight) - 111;
+        workflowUI = document.getElementById('workflow-ui');
+        propertiesElem = document.getElementById('property-wrap');
+        workflowElem = document.getElementById('workflow-wrap');
+        shadowedGroupItems = document.getElementsByClassName('shadowed-item');
+        selectItemBody = document.getElementsByClassName('select-item-body');
+        workflowComponentss = $('#workflow-components');
+        $scope.propertyPanelWidthGLOBAL = $('.properties-pane').width();
+        workflowWidth = window.innerWidth - $scope.propertyPanelWidthGLOBAL;
+
+        if (workflowComponentss != undefined) {
+            workflowComponentss.css('margin-right', $scope.propertyPanelWidthGLOBAL + 'px');
+        }
+        if (workflowUI != undefined) {
+            workflowUI.setAttribute("style", "height:" + workflowHeight + "px");
+        }
+        if (shadowedGroupItems != undefined) {
+            shadowedGroupItemsHeight = workflowHeight - 120;
+            angular.forEach(shadowedGroupItems, function (item) {
+                item.setAttribute("style", "height:" + shadowedGroupItemsHeight + "px");
+            });
+        }
+        if (selectItemBody != undefined) {
+            var selectItemBodyHeight = shadowedGroupItemsHeight - 84;
+            angular.forEach(selectItemBody, function (item) {
+                item.setAttribute("style", "height:" + selectItemBodyHeight + "px;overflow-y:scroll");
+            });
+        }
 
         if (propertiesElem != undefined && workflowHeight != undefined)
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
         if (workflowElem != undefined && workflowHeight != null)
-            workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
-	});
+            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+    });
 
-	angular.element($window).bind('resize', function(){
-		if(workflowComponentss != undefined){
-			workflowComponentss.css('margin-right',$('.properties-pane').width()+'px');
-		}
-		if (workflowElem != undefined && workflowHeight != null)
-			workflowElem.setAttribute("style", "height:" + workflowHeight +"px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
-	});
+    angular.element($window).bind('resize', function () {
+        if (workflowComponentss != undefined) {
+            workflowComponentss.css('margin-right', $('.properties-pane').width() + 'px');
+        }
+        if (workflowElem != undefined && workflowHeight != null)
+            workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+    });
 
     function setSectionHeight() {
-		mainContent = document.getElementById('content');
-		if (mainContent != null && mainContent != undefined){
-			if($scope.listState == 'home'){
-				mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) +"px");
-			}else{
-				mainContent.removeAttribute("style");
-			}
-		}
-	}
-	$(document).ready(function () {
-		$timeout(function(){
-			setSectionHeight();
-		}, 2000);
-	});
+        mainContent = document.getElementById('content');
+        if (mainContent != null && mainContent != undefined) {
+            if ($rootScope.listState == 'home') {
+                mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) + "px");
+            } else {
+                mainContent.removeAttribute("style");
+            }
+        }
+    }
+    $(document).ready(function () {
+        $timeout(function () {
+            setSectionHeight();
+        }, 2000);
+    });
 
     $scope.setInitialCollapse = function (index) {
         angular.forEach(compSearch, function (comp) {
@@ -674,7 +701,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         createdBy: rule.AuthorDetails.Name.replace("+", " "),
                         avatar: rule.AuthorDetails.Avatar,
                         status: '...',
-						executions: 0,
+                        executions: 0,
                         switchState: 'on',
                         workflow: [],
                         Variables: []
@@ -696,6 +723,19 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.$on('uiStateChanged', function (event, data) {
         alert("Statue changed");
     });
+    /** get API key */
+    $scope.GetAPIKey = function () {
+        $http({
+            method: "GET",
+            url: "https://nginxproxymaker.plus.smoothflow.io/getKeyFile/" + $scope.SessionDetails.Domain + "/ignore"
+        }).then(function Success(response) {
+
+            if (response.data.success == true) {
+                $rootScope.APIKey = response.data.apikey;
+            }
+        }, function Error(response) {
+        });
+    }
 
     $scope.setDockerInformation = function (name) {
         var selected = $scope.NGINXData.filter(function (container) {
@@ -711,11 +751,17 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.DockerDetails.total = $scope.DockerDetails.values.responses['total'];
         }
 
+        $scope.GeneratedURL = null;
+        $scope.containerBaseURL = "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow";
         $scope.GeneratedURL = [{
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke",
+            // URL: "/Invoke?apikey=" + $rootScope.APIKey,
+            URL: "/Invoke?apikey",
+            URLFULL: $scope.containerBaseURL + "/Invoke?apikey",
             METHOD: "POST"
         }, {
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello",
+            // URL: "/Hello?apikey=" + $rootScope.APIKey,
+            URL: "/Hello?apikey",
+            URLFULL: $scope.containerBaseURL + "/Hello?apikey",
             METHOD: "GET"
         }];
 
@@ -734,31 +780,44 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
 
-    $scope.callurl = function (url, body) {
-        var req = {
-            method: url.METHOD,
-            url: url.URL,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: { body }
-        }
-        $http(req).then(function (data) {
-            $scope.Iscall = true;
-            $scope.statuscode = data.status;
-            $scope.responseMsg = JSON.stringify(data.data);
-            $scope.getDockerDetails();
-            $timeout($scope.GaugeChart(), 10000);
+	$scope.apiKey = null;
+	$scope.candidateURL = null;
+	$scope.candidateBody = null;
+	$scope.apiUrlDialog = function (url, body) {
+		$scope.candidateURL = url;
+		$scope.candidateBody = body;
+		AJS.dialog2("#api-key-dialog").show();
+    };
 
-            // $scope.setDockerInformation($scope.selectedRule.name);
+    $scope.callurl = function (key) {
+    	$scope.pendingResponse = true;
+		AJS.dialog2("#api-key-dialog").hide();
+		var req = {
+		    method: $scope.candidateURL.METHOD,
+		    url: $scope.containerBaseURL + $scope.candidateURL.URL+"="+key,
+		    headers: {
+		        'Content-Type': 'application/json'
+		    },
+		    data: $scope.candidateBody
+		}
+		$http(req).then(function (data) {
+		    $scope.Iscall = true;
+			$scope.pendingResponse = false;
+			$scope.statuscode = data.status;
+		    $scope.responseMsg = JSON.stringify(data.data);
+		    $scope.getDockerDetails();
+		    $timeout($scope.GaugeChart(), 10000);
 
-        }, function (data) {
-            $scope.Iscall = true;
-            $scope.statuscode = data.status;
-            $scope.responseMsg = JSON.stringify(data.data);
+		    // $scope.setDockerInformation($scope.selectedRule.name);
 
-        });
-    }
+		}, function (data) {
+		    $scope.Iscall = true;
+			$scope.pendingResponse = false;
+			$scope.statuscode = data.status;
+		    $scope.responseMsg = JSON.stringify(data.data);
+
+		});
+	};
 
     /** Google Chart */
     //Line Chart
@@ -892,9 +951,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, 0).then(function () {
             //call trigger Service to set workflow ID
             // TriggerDataService.setWorkflowID($scope.currentRuleID);
-            $scope.listState = 'rule.details';
+            $rootScope.listState = 'rule.details';
             $state.go('rule.details');
-			setSectionHeight();
+            setSectionHeight();
         });
     };
 
@@ -914,14 +973,30 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.executable = {};
     $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
     $scope.getports = function () {
-        var client = $objectstore.getClient("occupiedPorts");
-        client.onGetMany(function (data) {
-            if (data) {
-                $scope.portlist = data;
-                $scope.setport();
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "GET",
+            headers: {
+                'securityToken': "ignore"
             }
-        });
-        client.v1getByFiltering("*");
+        }).
+            then(function (data, status, headers, config) {
+                if (data) {
+                    $scope.portlist = data;
+                    $scope.setport();
+                }
+            }, function (data, status, headers, config) {
+                $rootScope.DisplayMessage("Error when retriving port information", "error", "Please contact an administrator.");
+            });
+
+        // var client = $objectstore.getClient("occupiedPorts");
+        // client.onGetMany(function (data) {
+        //     if (data) {
+        //         $scope.portlist = data;
+        //         $scope.setport();
+        //     }
+        // });
+        // client.v1getByFiltering("*");
     };
 
     $scope.setport = function () {
@@ -941,6 +1016,24 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     $scope.getports();
+
+    $scope.saveports = function (portObj) {
+        debugger
+        var port = { "Object": portObj, "Parameters": { "KeyProperty": "id" } }
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "POST",
+            headers: {
+                'securityToken': "ignore"
+            },
+            data: port
+        }).then(function (data, status, headers, config) {
+            $rootScope.DisplayMessage("Port details saved successfully.", "success");
+            $scope.getports();
+        }, function (data, status, headers, config) {
+            $rootScope.DisplayMessage("Error when saving port information", "error", "Please contact an administrator.");
+        });
+    };
 
     $scope.stripConvertionDetails = function (flowData) {
         angular.forEach(flowData.arguments, function (argument) {
@@ -1018,7 +1111,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.publishWorkflow = function () {
         if ($scope.validateBeforeSave()) {
-            $rootScope.ShowBusyContainer("Building rule...");
+            // generate new port for the rule which is not currently in use.
+            $scope.setport();
+            $rootScope.ShowBusyContainer("Building your automation rule...");
             // building the workflow into an executable
 
             var flowChartJson = dataHandler.getSaveJson();
@@ -1060,14 +1155,20 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     'SecurityToken': $helpers.getCookie("securityToken")
                 }
             }).then(function OnSuccess(response) {
-                $rootScope.ShowBusyContainer("Publishing rule to a container...");
+                $rootScope.ShowBusyContainer("Publishing automation to a container...");
                 if (response.data.Status) {
                     var obj = {};
                     obj.wfname = $scope.getWFName($scope.selectedRule.ruleName);
-                    ; obj.port = $scope.executable.port.toString();
+                    obj.port = $scope.executable.port.toString();
                     obj.RAM = "300";
                     obj.CPU = "10";
                     $scope.PublishToDocker(obj);
+                    // save port information only if the build is successfull.
+                    var portObj = {
+                        id: $scope.getWFName($scope.selectedRule.ruleName),
+                        port: $scope.executable.port
+                    }
+                    $scope.saveports(portObj);
                 } else {
                     $rootScope.DisplayMessage("Error when building the rule.", "error", "Please contact an administrator.");
                     $rootScope.HideBusyContainer();
@@ -1080,6 +1181,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
         }
     };
+
+    $scope.setCurrentRuleStatus = function (status) {
+        $scope.selectedRule.status = status;
+    }
 
     $scope.PublishToDocker = function (publishObj) {
         var sessionId = dataHandler.createuuid();
@@ -1101,6 +1206,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function OnSuccess(response) {
             if (response.data.Status) {
                 $rootScope.DisplayMessage("Published to a container successfully.", "success");
+                $scope.GetAPIKey();
+                $scope.setCurrentRuleStatus("Published");
+                $rootScope.changeLocation("rule.container");
+                $timeout(function () {
+                    $scope.getDockerDetails();
+                    $scope.setDockerInformation($scope.getWFName($scope.selectedRule.ruleName));
+                });
             } else {
                 $rootScope.DisplayMessage("Error occured when publishing the rule to a container.", "error");
             }
@@ -1112,7 +1224,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
     };
-	///// Publishing mechanism - END
+    ///// Publishing mechanism - END
     /*/////////////////////////////////////////////////////////////////////////////////////////////*/
 
     $scope.getVersionForWF = function (ID) {
@@ -1144,9 +1256,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
     };
 
-    $scope.changeLocation = function (location) {
+    $rootScope.changeLocation = function (location) {
         $scope.componentsMenuState = 'closed';
-        $scope.listState = location;
+        $rootScope.listState = location;
         // update WF before leaving to another state
         $scope.updateWorkflowBeforeStateChange(location);
         $state.go(location);
@@ -1163,7 +1275,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $scope.checkScheduleStatus();
             });
         }
-		setSectionHeight();
+        setSectionHeight();
     };
 
     $scope.updateWorkflowBeforeStateChange = function (location) {
@@ -1235,8 +1347,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         $scope.structuredComps[1].components.push(item);
                     }
                 });
+
+				angular.forEach($scope.structuredComps, function (comp) {
+					var temp = $filter('groupBy')(comp.components, 'class');
+					comp.classes = $.map(temp, function(value, index) {
+						return {'title':index,'data':value};
+					});
+					delete comp.components;
+					angular.forEach(comp.classes, function (_comp) {
+						_comp.categories = {};
+						var temp2 = $filter('groupBy')(_comp.data, 'Category');
+						_comp.categories = $.map(temp2, function(value, index) {
+							return {'title':index,'data':value};
+						});
+						delete _comp.data;
+					});
+				});
+				// debugger;
             }
-            // console.log($scope.structuredComps);
+            console.log($scope.structuredComps);
         }, function errorCallback(response) {
             console.log(response);
         });
@@ -1270,8 +1399,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     // New rule
     $scope.newRule = function (template, isFromTemp) {
-    	$rootScope.isFromTemplate = isFromTemp;
-    	$rootScope.selectedTemplate = template;
+        $rootScope.isFromTemplate = isFromTemp;
+        $rootScope.selectedTemplate = template;
         $scope.isNewRuleFormValid = false;
         $scope.selectedRule = {};
         $scope.selectedRule.id = dataHandler.createuuid();
@@ -1282,14 +1411,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.status = "Unsaved";
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
-		AJS.dialog2("#new-rule-dialog").show();
+        AJS.dialog2("#new-rule-dialog").show();
         // $state.go('rule.new');
     };
 
     //Close rule dialog
-	$scope.closeDialog = function (dialog) {
-		AJS.dialog2('#'+dialog).hide();
-	};
+    $scope.closeDialog = function (dialog) {
+        AJS.dialog2('#' + dialog).hide();
+    };
 
     //Clear rule
     $scope.clearRule = function () {
@@ -1311,7 +1440,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         AJS.dialog2("#rule-delete-dialog").hide();
     };
 
-    $scope.deleteContainer = function (WFDetails) {
+    $scope.removeFromNGINX = function (name, username) {
+        var obj = {
+            "process": name,
+            "securityToken": "ignore",
+            "userName": username
+        }
+        var URL = $v6urls.nginxserver + "/removefromnginxplus/"
+        $http.post(URL, obj, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data) {
+            debugger
+            $rootScope.DisplayMessage("The container was removed successfully.", "success", "You may try again later.");
+        }, function (data) {
+            debugger
+            $rootScope.DisplayMessage("There was an error when removing the container.", "error", "You may try again later.");
+        });
+    }
+
+    $scope.deleteContainer = function () {
         $http({
             method: 'GET',
             url: $v6urls.nginxserver + '/removedocker/' + $rootScope.SessionDetails.Domain + '/' + $scope.selectedRule.id,
@@ -1320,8 +1469,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             },
         })
             .then(function (data) {
-                $rootScope.DisplayMessage("The container was removed successfully.", "success", "You may try again later.");
+                debugger
+                $scope.removeFromNGINX($scope.getWFName($scope.selectedRule.ruleName), $scope.SessionDetails.Domain);
             }, function (data) {
+                debugger
                 $rootScope.DisplayMessage("There was an error when removing the container.", "error", "You may try again later.");
             })
 
@@ -1334,7 +1485,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             angular.forEach($scope.currentRules, function (rule) {
                 if (rule.id == $scope.currentRuleID) {
                     $scope.currentRules.splice(index, 1);
-                    $scope.changeLocation("home");
+                    $rootScope.changeLocation("home");
                     dataHandler.resetFactory();
                 }
                 index++;
@@ -1373,8 +1524,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.deleteContainer();
         }
 
-        // deleting triggers
-        //TriggerDatafactory.DeleteTrigger();
+        //delete tigger
+        TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
     };
 
     $scope.removeRule = function () {
@@ -1384,9 +1535,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.hasContainer = true;
         }
         AJS.dialog2("#rule-delete-dialog").show();
-        //delete tigger
-        TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
-
     };
 
     //Edit rule
@@ -1422,13 +1570,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Open component info
     $scope.openComponentInfo = function (component) {
-		$scope.tab = false;
+        $scope.tab = false;
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
-		$timeout(function () {
-			$scope.activeModule = component.$$hashKey;
-		});
+        $timeout(function () {
+            $scope.activeModule = component.$$hashKey;
+        });
     };
 
     //New component
@@ -1600,14 +1748,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $rootScope.DisplayMessage("Key already exists.", "info", "The key you are trying to add is already added to the rule.");
         }
         else {
-			AJS.dialog2("#new-variable-dialog").hide()
-			angular.forEach($scope.allVariables, function (variable) {
-				angular.forEach($scope.AdditionalVariable, function (add) {
-					if(variable.Key == add.Key)
-						add.isSelected = true;
+            AJS.dialog2("#new-variable-dialog").hide()
+            angular.forEach($scope.allVariables, function (variable) {
+                angular.forEach($scope.AdditionalVariable, function (add) {
+                    if (variable.Key == add.Key)
+                        add.isSelected = true;
 
-				});
-			});
+                });
+            });
             $scope.getAllArguments();
         }
         $scope.Variable = {};
@@ -1627,14 +1775,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Delete variables
     $scope.deleteVariable = function (variable, index) {
-    	angular.forEach($scope.AdditionalVariable, function (_var) {
-			if(_var.Key == variable.Key){
-				_var.isSelected = false;
-			}
-		});
-    	$scope.showVariableConfirmation = true;
+        angular.forEach($scope.AdditionalVariable, function (_var) {
+            if (_var.Key == variable.Key) {
+                _var.isSelected = false;
+            }
+        });
+        $scope.showVariableConfirmation = true;
         $scope.variableEditOn = null;
-		$scope.allVariables.splice(index, 1);
+        $scope.allVariables.splice(index, 1);
     };
 
     //Cancel variable
@@ -1661,13 +1809,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.setInitialCollapse(1);
         }
 
-        if(component!=undefined && component.DisplayName == 'Case' && caseInjeciton ||
-			component!=undefined && component.DisplayName == 'Default' && caseInjeciton ||
-			component!=undefined && component.DisplayName == 'Fallthrough' && caseInjeciton ){
-        	$scope.callFromSwitch = true;
-		}else{
-			$scope.callFromSwitch = false;
-		}
+        if (component != undefined && component.DisplayName == 'Case' && caseInjeciton ||
+            component != undefined && component.DisplayName == 'Default' && caseInjeciton ||
+            component != undefined && component.DisplayName == 'Fallthrough' && caseInjeciton) {
+            $scope.callFromSwitch = true;
+        } else {
+            $scope.callFromSwitch = false;
+        }
 
         // $rootScope.comToBePushedIndex = parentIndex;
         $rootScope.candidateWorkflow = workflow;
@@ -1678,7 +1826,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.pendingComponentType = category;
         $scope.componentsMenuState == 'open' && !triggeredByComponent ? $scope.componentsMenuState = 'closed' : $scope.componentsMenuState = 'open';
         var componentsMenuElem = document.getElementById('workflow-components');
-        $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:'+$scope.propertyPanelWidthGLOBAL+'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight +'px;width:0px;margin-right:'+$scope.propertyPanelWidthGLOBAL+'px');
+        $scope.componentsMenuState == 'open' ? componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:365px;margin-right:' + $scope.propertyPanelWidthGLOBAL + 'px') : componentsMenuElem.setAttribute('style', 'height:' + workflowHeight + 'px;width:0px;margin-right:' + $scope.propertyPanelWidthGLOBAL + 'px');
         // $scope.componentsMenuState == 'open' ? $scope.compMenuState = "right" : $scope.compMenuState = "left";
     }
 
@@ -1709,29 +1857,29 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.newComponentInjection = function (component) {
         var newcompo = angular.copy(component);
-		newcompo.bodyExpanded = true;
+        newcompo.bodyExpanded = true;
 
-		if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
-			$rootScope.candidateComponent.workflow.push(newcompo);
-		}else if($rootScope.candidateComponent.DisplayName == "Case" || $rootScope.candidateComponent.DisplayName == "Default" || $rootScope.candidateComponent.DisplayName == "Fallthrough"){
-			if($rootScope.caseInjeciton){
-				$rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
-			}else{
-				$rootScope.candidateComponent.workflow.push(newcompo);
-			}
-		}else {
+        if ($rootScope.candidateComponent.DisplayName == "True" || $rootScope.candidateComponent.DisplayName == "False") {
+            $rootScope.candidateComponent.workflow.push(newcompo);
+        } else if ($rootScope.candidateComponent.DisplayName == "Case" || $rootScope.candidateComponent.DisplayName == "Default" || $rootScope.candidateComponent.DisplayName == "Fallthrough") {
+            if ($rootScope.caseInjeciton) {
+                $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
+            } else {
+                $rootScope.candidateComponent.workflow.push(newcompo);
+            }
+        } else {
             $rootScope.candidateWorkflow.splice($rootScope.candidateIndex + 1, 0, newcompo);
         }
-		$timeout(function () {
-			$scope.activeModule = component.$$hashKey;
-		});
-		// if($scope.pendingComponentType == 'condition'){
+        $timeout(function () {
+            $scope.activeModule = component.$$hashKey;
+        });
+        // if($scope.pendingComponentType == 'condition'){
         // 	$rootScope.candidateComponent.workflow.push(newcompo);
         // }else{
         // }
-		$scope.callFromSwitch = false;
+        $scope.callFromSwitch = false;
         $scope.toggleComponentsMenu(0);
-		$scope.openComponentInfo(newcompo);
+        $scope.openComponentInfo(newcompo);
     };
 
     $scope.addNode = function (component) {
@@ -1778,13 +1926,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     // Kasun_Wijeratne_2017_10_23
-	// This code gets a set of workflow and expands or collapses the block with given index accordingly
+    // This code gets a set of workflow and expands or collapses the block with given index accordingly
     $scope.expandComponentBody = function (workflow, position) {
-		workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+        workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
     }
-	// Kasun_Wijeratne_2017_10_23 - END
+    // Kasun_Wijeratne_2017_10_23 - END
 
-	$scope.addNodeToParent = function (component) {
+    $scope.addNodeToParent = function (component) {
         var parentSibling = {
             "library_id": "1",
             "schema_id": 3,
@@ -2071,8 +2219,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.getWFName = function (flowname) {
         var conc_username = $rootScope.SessionDetails.Domain;
-		var res = flowname.replace(/ /g, '');
-		var sourceString = conc_username + res.toLowerCase();
+        var res = flowname.replace(/ /g, '');
+        var sourceString = conc_username + res.toLowerCase();
         var outString = sourceString.replace(/[` ~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         return outString;
     }
@@ -2096,7 +2244,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.setScheduleforWorkflow = function (value) {
-    	$scope.savingSchedule = true;
+        $scope.savingSchedule = true;
         var URL = "https://" + $scope.selectedRule.name + ".plus.smoothflow.io/" + $scope.selectedRule.name + "/smoothflow/schedule/update/";
 
         var optionalJSON = {};
@@ -2124,17 +2272,17 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.DisplayMessage("Schedule added!", "success", response.data.Message);
                 $scope.scheduleActive = false;
                 $scope.scheduleEditOn = false;
-				$scope.savingSchedule = true;
-			} else {
+                $scope.savingSchedule = true;
+            } else {
                 $rootScope.DisplayMessage("Error occured!", "error", response.data.Message);
                 //$scope.scheduleActive = false;
-				$scope.savingSchedule = true;
-			}
+                $scope.savingSchedule = true;
+            }
         }, function OnError(response) {
             if (response) {
                 $rootScope.DisplayMessage("Error when retriving schedule information.", "error");
-				$scope.savingSchedule = true;
-			}
+                $scope.savingSchedule = true;
+            }
         });
     }
 
@@ -2204,11 +2352,30 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
-	$scope.scheduleEditOn = false;
+    $scope.scheduleEditOn = false;
     $scope.editSchedule = function () {
-		$scope.scheduleEditOn = !$scope.scheduleEditOn;
-	}
+        $scope.scheduleEditOn = !$scope.scheduleEditOn;
+    }
     /////// end of scheduling functions
+
+    $scope.addNotificationMethod = function (flag, value) {
+        if (flag == "success") {
+            $scope.successNotifications.push(value);
+            $scope.successemail = "";
+        } else if ("failed") {
+            $scope.errorNotifications.push(value);
+            $scope.failedemail = "";
+        }
+    };
+
+    $scope.deleteFromNotificationMethod = function (flag, emailAddress, index) {
+        debugger
+        if (flag == "success") {
+            $scope.successNotifications.splice(index, 1);
+        } else if ("failed") {
+            $scope.errorNotifications.splice(index, 1);
+        }
+    };
 
     $scope.sendProcessToObjectStore = function (saveObj, event, saveObjectParent) {
 
@@ -2285,6 +2452,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
+    $scope.uploadScreenshot = function(){
+        alert("hola");
+    }
+
     $scope.getDockerDetails = function () {
         $rootScope.ShowBusyContainer("Loading container details...");
         // getting published dockers dd
@@ -2303,7 +2474,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.processPublishedList();
             $scope.setDockerInformation($scope.selectedRule.name);
         }, function (e, a) {
-            console.log(e, a);
+            $rootScope.DisplayMessage("Error loading container details.", "error", "Please contact an administrator.");
+            $rootScope.HideBusyContainer();
         });
     };
 
@@ -2348,11 +2520,30 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.Domain = profile.domain;
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
+        $scope.GetAPIKey();
     };
 
     // retrive data from JIRA
     $scope.JiraSession = {};
     $scope.CurrentUserProfile = {};
+    /** Copy to Clipboard */
+    $scope.copyToClipboard = function (row, index) {
+		var copyElement = document.createElement("textarea");
+        copyElement.style.position = 'fixed';
+        copyElement.style.opacity = '0';
+        copyElement.textContent = row.URLFULL;
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(copyElement);
+        copyElement.select();
+        document.execCommand('copy');
+        body.removeChild(copyElement);
+        row.copied = true;
+        var urlheaders = document.getElementsByClassName('url-header');
+		$('<span class="dynamic-state-pill">Copied</span>').appendTo(urlheaders[index]);
+        setTimeout(function () {
+        	$('.dynamic-state-pill').remove();
+		}, 1000);
+    };
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";
@@ -2367,11 +2558,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 'Content-Type': 'application/json'
             }
         }).then(function OnSuccess(response) {
+            debugger
             if (response.data.response == "success") {
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');
                 tenant = tenant.replace(/(?:\.atlassian\.net)/g, '');
-                $scope.CurrentUserProfile.domain = tenant + "jira";
+                $scope.CurrentUserProfile.domain = tenant + "jiradevsmoothflowio";
                 $rootScope.Domain = $scope.CurrentUserProfile.domain;
                 console.log($scope.CurrentUserProfile);
                 $scope.loadJiraUser($scope.CurrentUserProfile);
@@ -2380,7 +2572,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.DisplayMessage("Error when retriving user profile.", "error");
             }
         }, function OnError(response) {
-            if (onError) {
+            if (response) {
                 $rootScope.DisplayMessage("Error when retriving user profile.", "error");
             }
         });
@@ -2412,7 +2604,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var temUser = {
             displayName: "Mr Shehan",
             emailAddress: "shehan@duosoftware.com",
-            domain: "duosoftwarejira"
+            domain: "duosoftwarejiradevsmoothflowio"
         }
         temUser.avatarUrls = {};
         temUser.avatarUrls["24x24"] = "https://avatar-cdn.atlassian.com/7272996f825bd268885d6b20484d325c?s=24&d=https%3A%2F%2Fduosoftware.atlassian.net%2Fsecure%2Fuseravatar%3Fsize%3Dsmall%26ownerId%3Dshehan%26avatarId%3D17100%26noRedirect%3Dtrue";
@@ -2451,8 +2643,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.listProjects();
     });
 
-	$scope.selectedExpanded = false;
-	$scope.expandSelected = function () {
-		$scope.selectedExpanded = !$scope.selectedExpanded;
-	}
+    $scope.selectedExpanded = false;
+    $scope.expandSelected = function () {
+        $scope.selectedExpanded = !$scope.selectedExpanded;
+    }
 }

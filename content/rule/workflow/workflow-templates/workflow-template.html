@@ -6,12 +6,12 @@
         <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
         <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 37px 37px;"></span>
         <span class="action">{{component.DisplayName}} </span> <span ng-if="component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Case'"><span class="separator"><i>in</i></span> <span class="cat-pill">{{component.Category}}</span></span>
-        <div class="delete-comp" title="Expand component" style="right: 30px">
+        <div class="delete-comp" title="Expand component" style="right: 20px">
             <button class="btn btn-default" type="button" ng-click="expandComponentBody(workflow, $index)">
                 <span class="aui-icon aui-icon-small aui-iconfont-{{component.bodyExpanded ? 'arrows-up' : 'arrows-down'}}">Delete component</span>
             </button>
         </div>
-        <div class="delete-comp" title="Deletecomponent">
+        <div class="delete-comp" title="Deletecomponent" style="margin-right: -10px">
             <button class="btn btn-default" type="button" ng-click="deleteNode(workflow, $index)">
                 <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete component</span>
             </button>

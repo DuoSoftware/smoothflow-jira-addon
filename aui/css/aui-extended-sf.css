@@ -227,6 +227,19 @@ h5 + h6 {
     -o-transition: width 0.5s ease;
     transition: width 0.5s ease;
 }
+#FeedbackSection{
+    position: relative;
+    width: 95%;
+    
+    -webkit-box-shadow: 0px 2px 5px #ddd;
+    -moz-box-shadow: 0px 2px 5px #ddd;
+    box-shadow: 0px 2px 5px #ddd;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
 
 .width-50{
     width: 70%!important;
@@ -327,6 +340,9 @@ h5 + h6 {
 }
 .aui-group>div.aui-item-container .shadowed-item button:hover{
     background: #4b984b;
+}
+.aui-group>div.aui-item-container .shadowed-item .styled-checkbox:disabled + label{
+    color: #888;
 }
 /*.aui-group>div.aui-item-container .shadowed-item .overhead-container{*/
     /*position: absolute;*/
@@ -1691,7 +1707,8 @@ aui-header {
 .aui-navgroup-horizontal .aui-nav > li a.active,
 .aui-navgroup-horizontal .aui-nav > li a:focus,
 .aui-navgroup-horizontal .aui-nav > li a:hover {
-    background: #e6e6e6;
+    /*background: #e6e6e6;*/
+    border-bottom: solid 3px #0052cc;
     text-decoration: none;
 }
 .aui-navgroup-horizontal .aui-nav > .aui-nav-selected a {
@@ -1769,8 +1786,22 @@ aui-header {
 }
 /* Bulletproofing - headings shouldn't be here but will at least not look heinously broken. */
 .aui-navgroup-horizontal .aui-nav-heading {
-    padding: 10px 10px 0 0px;
+    height: 41px;
+    padding: 10px;
+    background: #fafafa;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #aaa;
+    border: solid 1px #eee;
+    border-bottom: none;
+    margin-right: 10px;
+    /* box-shadow: inset 0px 4px 5px rgba(0, 0, 0, 0.05); */
     /* 0 bottom required to unfuck IE9 */
+}
+.aui-navgroup-horizontal .aui-nav-heading h4{
+    font-size: 14px;
+    color: #999;
+    font-weight: 500;
 }
 .aui-nav-actions-list {
     font-size: 0;
@@ -5059,7 +5090,7 @@ table.aui > tfoot > tr > td {
 }
 table.aui > thead {
     /*border-bottom: 1px solid #ccc;*/
-    background: #fafafa;
+    background: #f5f5f5;
 }
 table.aui > tbody > tr:first-child > td,
 table.aui > tbody > tr:first-child > th,
@@ -7229,3 +7260,7 @@ li {
     height: 40px!important;
     margin: auto!important;
 }
+.bug{background: #b72c2c;padding: 5px;border-radius: 5px;color: white;}
+.improvement{background: #0d87a8;padding: 5px;border-radius: 5px;color: white;}
+.complain{background: #FFB74D;padding: 5px;border-radius: 5px;color: white;}
+.suggestion{background: #18b36d;padding: 5px;border-radius: 5px;color: white;}

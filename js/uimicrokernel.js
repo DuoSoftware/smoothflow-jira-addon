@@ -497,6 +497,11 @@
                     send("GET");
                     return this;
                 },
+                V1getAll: function (parameters) {
+                    appendGet(undefined, undefined, "");
+                    V1send("GET");
+                    return this;
+                },
                 getByFiltering: function (filter, parameters) {
                     send("POST", {
                         "Query": {
@@ -685,7 +690,7 @@
                             } else {
                                 if (onComplete) onComplete(data.result);
                             }
-                        },function (data, status, headers, config) {
+                        }, function (data, status, headers, config) {
                             if (onError) {
                                 $backdoor.log("Error deleting object from objectstore");
                                 $backdoor.log(data);
@@ -2084,31 +2089,59 @@
                     $rootScope.$emit("uploader_fail", e);
                 });
         }
+        function V1upload(namespace, cls, file, customName, isMedia) {
+            if (!customName) customName = file.name;
+            var uUrl;
+            if (isMedia) uUrl = $v6urls.mediaLib + "/" + cls + "/" + customName;
+            else uUrl = $v6urls.objectStore + "/" + namespace + "/" + cls + "/" + customName + "/";
 
-        return {
-            upload: function (namespace, cls, file, customName, useGlobal) {
-                upload(useGlobal ? namespace : getHost(), cls, file, customName, false)
-            },
-            uploadMedia: function (cls, file, customName) {
-                upload(getHost(), "tenant/" + cls, file, customName, true)
-            },
-            uploadUserMedia: function (cls, file, customName) {
-                upload(getHost(), "user/" + cls, file, customName, true)
-            },
-            onSuccess: function (func) {
-                var of = $rootScope.$on("uploader_success", function (e, data) {
-                    func(e, data);
-                    of();
-                });
-            },
-            onError: function (func) {
-                var of = $rootScope.$on("uploader_fail", function (e, data) {
-                    func(e, data);
-                    of();
+            var fd;
+            if (isMedia) fd = file;
+            else {
+                fd = new FormData();
+                fd.append('file', file);
+            }
+
+            $http
+                .post(uUrl, fd, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': (isMedia ? "multipart/form-data" : undefined)
+                    }
+                }).then(function successCallback(response) {
+                    $rootScope.$emit("uploader_success", response.data);
+                }, function errorCallback(response) {
+                    $rootScope.$emit("uploader_fail", response.data);
                 });
             }
-        };
-    });
+
+            return {
+                upload: function (namespace, cls, file, customName, useGlobal) {
+                    upload(useGlobal ? namespace : getHost(), cls, file, customName, false)
+                },
+                uploadMedia: function (cls, file, customName) {
+                    upload(getHost(), "tenant/" + cls, file, customName, true)
+                },
+                V1uploadMedia: function (cls, file, customName) {
+                    V1upload(getHost(), "tenant/" + cls, file, customName, true)
+                },
+                uploadUserMedia: function (cls, file, customName) {
+                    upload(getHost(), "user/" + cls, file, customName, true)
+                },
+                onSuccess: function (func) {
+                    var of = $rootScope.$on("uploader_success", function (e, data) {
+                        func(e, data);
+                        of();
+                    });
+                },
+                onError: function (func) {
+                    var of = $rootScope.$on("uploader_fail", function (e, data) {
+                        func(e, data);
+                        of();
+                    });
+                }
+            };
+        });
 
     mkm.factory('$backdoor', function () {
 
@@ -2444,7 +2477,7 @@
             cebproxyservice: p + "//devcebrest.plus.smoothflow.io",//use for ceb service
             veery: ".app.facetone.com/DVP/API/1.0.0.0/",
             globalOS: "https://devobj.plus.smoothflow.io/com.duosoftware.com",
-            jiraAPI: p + "//jiraconnector.plus.smoothflow.io",
+            jiraAPI: p + "//devjiraconnector.plus.smoothflow.io",
             plan: "https://devpayment.plus.smoothflow.io"
         };
     });

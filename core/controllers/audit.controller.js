@@ -1,31 +1,54 @@
 app.controller('AuditController', ['$scope', '$rootScope', '$http', '$auth', function ($scope, $rootScope, $http, $auth) {
 
     $scope.selectedRuleName = $rootScope.selectedRuleName;
-    $scope.getAllLogs = function() {
+    $scope.getAllSuccessLogsLogs = function () {
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs",
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/success?apikey=" + $rootScope.APIKey,
 
         }).then(function Success(response) {
             var index = 0;
-            angular.forEach(response.data,function(log){
+            angular.forEach(response.data, function (log) {
                 debugger
-                response.data[index] = log.replace(/(?:Logs\/WF_)/g, '');
+                response.data[index] = log.replace("Logs/SuccessLogs/", '');
                 index++;
             });
-            $scope.AllLogs = response.data;
+            $scope.SuccessLogs = response.data;
         }, function Error(response) {
             console.log($scope.ErrorStatus);
         });
     };
-    $scope.getAllLogs();
+    $scope.getAllErrorLogsLogs = function () {
+        $http({
+            method: "GET",
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/error?apikey=" + $rootScope.APIKey,
+
+        }).then(function Success(response) {
+            var index = 0;
+            angular.forEach(response.data, function (log) {
+                debugger
+                response.data[index] = log.replace("Logs/ErrorLogs/", '');
+                index++;
+            });
+            if (response.data == null) { 
+                $scope.ErrorLogs=["No Errors"]
+            } else {
+                $scope.ErrorLogs = response.data;
+             }
+           // $scope.ErrorLogs = response.data;
+        }, function Error(response) {
+            console.log($scope.ErrorStatus);
+        });
+    };
+    $scope.getAllSuccessLogsLogs();
+    $scope.getAllErrorLogsLogs();
 
     $scope.selectedLogDetails = "";
-    $scope.getLogDetails = function(logname) {
+    $scope.getLogDetails = function (logname) {
         $scope.selectedLogDetails = "";
         $http({
             method: "GET",
-            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/Logs/WF_"+logname,
+            url: "https://" + $scope.selectedRuleName + ".plus.smoothflow.io/" + $scope.selectedRuleName + "/smoothflow/logs/success/" + logname + "?apikey=" + $rootScope.APIKey,
             transformResponse: [function (data) {
                 return data;
             }]

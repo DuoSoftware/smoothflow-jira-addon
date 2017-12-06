@@ -451,6 +451,9 @@ app.factory('dataHandler', function () {
             }
             ; if (arguments[i].DisplayName == undefined) {
                 arguments[i].DisplayName = arguments[i].Key;
+            } 
+            if (arguments[i].APIMethod == undefined) {
+                arguments[i].APIMethod = "";
             }
         }
         ;//console.log(arguments);
