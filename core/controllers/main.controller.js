@@ -475,10 +475,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $scope.structuredComps = [{
         'Name': 'Actions',
-        'components': []
+        'components': [],
+        'classes': {}
     }, {
         'Name': 'Conditions',
-        'components': []
+        'components': [],
+		'classes': {}
     }];
 
     var collapsiblePanels = [];
@@ -1327,8 +1329,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         $scope.structuredComps[1].components.push(item);
                     }
                 });
+
+				angular.forEach($scope.structuredComps, function (comp) {
+					var temp = $filter('groupBy')(comp.components, 'class');
+					comp.classes = $.map(temp, function(value, index) {
+						return {'title':index,'data':value};
+					});
+					delete comp.components;
+					angular.forEach(comp.classes, function (_comp) {
+						_comp.categories = {};
+						var temp2 = $filter('groupBy')(_comp.data, 'Category');
+						_comp.categories = $.map(temp2, function(value, index) {
+							return {'title':index,'data':value};
+						});
+						delete _comp.data;
+					});
+				});
+				// debugger;
             }
-            // console.log($scope.structuredComps);
+            console.log($scope.structuredComps);
         }, function errorCallback(response) {
             console.log(response);
         });
