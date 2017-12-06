@@ -783,6 +783,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 	$scope.apiKey = null;
 	$scope.candidateURL = null;
 	$scope.candidateBody = null;
+	$scope.responseMsg = "";
+
 	$scope.apiUrlDialog = function (url, body) {
 		$scope.candidateURL = url;
 		$scope.candidateBody = body;
@@ -804,7 +806,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		    $scope.Iscall = true;
 			$scope.pendingResponse = false;
 			$scope.statuscode = data.status;
-		    $scope.responseMsg = JSON.stringify(data.data);
+		    $scope.responseMsg = JSON.stringify(data.data, null, "\t");
 		    $scope.getDockerDetails();
 		    $timeout($scope.GaugeChart(), 10000);
 
@@ -814,7 +816,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		    $scope.Iscall = true;
 			$scope.pendingResponse = false;
 			$scope.statuscode = data.status;
-		    $scope.responseMsg = JSON.stringify(data.data);
+		    $scope.responseMsg = JSON.stringify(data.data, null, "\t");
 
 		});
 	};
