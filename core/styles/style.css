@@ -304,7 +304,7 @@ button.button-primary{
     display: none;
 }
 #workflow-wrap::-webkit-scrollbar-thumb {
-    background-color: #ddd;
+    background-color: #bbb;
 }
 #workflow-properties{
     /*position: relative;*/
@@ -691,6 +691,9 @@ button.button-primary{
     /*font-weight: 500;*/
     display: inline-block;
     margin: 3px 10px 3px 0;
+    color: #666;
+}
+.workflow-block.selected-bg .body span.component-pro-key{
     color: #777;
 }
 .workflow-block .body span.component-pro-value{
@@ -1546,7 +1549,7 @@ button.button-primary{
 /*---Lakmini 02_Oct_2017 ---*/
 .postdiv{
     background: #70ce60;
-    border-right: solid 1px #0c9611;
+    border-right: solid 1px #bbb;
     font-size: 17px;
     /* text-shadow: 0 1px 0 rgba(0,0,0,.1); */
     /* font-family: Titillium Web,sans-serif; */
@@ -1559,10 +1562,11 @@ button.button-primary{
     top: 0;
     left: 0;
     height: 100%;
+    width: 75px;
 }
 .getdiv{
     background: #61affe;
-    border-right: solid 1px #0872a2;
+    border-right: solid 1px #bbb;
     font-size: 17px;
     /* text-shadow: 0 1px 0 rgba(0,0,0,.1); */
     /* font-family: Titillium Web,sans-serif; */
@@ -1575,6 +1579,7 @@ button.button-primary{
     top: 0;
     left: 0;
     height: 100%;
+    width: 75px;
 }
 .posturldiv{
     background: #f5f5f5;
@@ -1636,8 +1641,13 @@ button.button-primary{
 
 /*Kasun_Wijeratne_27_10_2017*/
 .container-urls .url-header{
-    padding: 10px 10px 10px 80px;
+    padding: 10px 10px 10px 90px;
     position: relative;
+}
+.container-urls .url-header span.aui-icon{
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
 }
 .container-urls .url-header .aui-button{
     float: right;
@@ -1661,6 +1671,42 @@ button.button-primary{
 }
 .container-urls .response>div>span{
     font-weight: 500;
+}
+.container-urls .response .status-code{
+    font-size: 17px;
+    display: inline-block;
+    padding: 0px 10px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    background: #f7cbcb;
+    color: #ad3128;
+}
+.container-urls .response .status-code.stat-2{
+    background: #bbf7bb!important;
+    color: #1bab1b!important;
+}
+.container-urls .response .status-code.stat-3{
+    background: #ffeeba!important;
+    color: #f18400!important;
+}
+.container-urls .response .status-code>b{
+    /*color: #3572b0;*/
+}
+.container-urls .response textarea{
+    margin: 0px;
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    border: solid 1px #ad3128;
+    padding: 10px;
+    color: #3572b0;
+    outline: none!important;
+}
+.container-urls .response .status-code.stat-2 textarea{
+    border-color: #1bab1b;
+}
+.container-urls .response .status-code.stat-3 textarea{
+    border-color: #f18400;
 }
 /*Kasun_Wijeratne_27_10_2017 - END*/
 
@@ -2407,3 +2453,39 @@ button.button-primary{
 /*Templates - END */
 
 /*Usage - END*/
+.response-preloader{
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    color: #aaaaaa;
+    -webkit-animation: fadeInOut 2s infinite;
+    -o-animation: fadeInOut 2s infinite;
+    animation: fadeInOut 2s infinite;
+}
+.dynamic-state-pill{
+    float: right;
+    position: absolute;
+    right: 110px;
+    opacity: 0;
+    padding: 2px 10px;
+    display: inline-block;
+    border-radius: 20px;
+    background: #ccc;
+    color: #fff;
+    -webkit-animation: fadeNmove 0.75s linear;
+    -o-animation: fadeNmove 0.75s linear;
+    animation: fadeNmove 0.75s linear;
+}
+
+@keyframes fadeNmove {
+    0% { opacity: 0; }
+    50% { opacity: 1 }
+    100% { opacity: 0;right: 120px; }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0 }
+    50% { opacity: 1 }
+    100% { opacity: 0 }
+}

@@ -752,11 +752,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
 
         $scope.GeneratedURL = null;
+        $scope.containerBaseURL = "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow";
         $scope.GeneratedURL = [{
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Invoke?apikey=" + $rootScope.APIKey,
+            // URL: "/Invoke?apikey=" + $rootScope.APIKey,
+            URL: "/Invoke?apikey",
+            URLFULL: $scope.containerBaseURL + "/Invoke?apikey",
             METHOD: "POST"
         }, {
-            URL: "https://" + name + ".plus.smoothflow.io/" + name + "/smoothflow/Hello?apikey=" + $rootScope.APIKey,
+            // URL: "/Hello?apikey=" + $rootScope.APIKey,
+            URL: "/Hello?apikey",
+            URLFULL: $scope.containerBaseURL + "/Hello?apikey",
             METHOD: "GET"
         }];
 
@@ -775,31 +780,44 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
 
-    $scope.callurl = function (url, body) {
-        var req = {
-            method: url.METHOD,
-            url: url.URL,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: { body }
-        }
-        $http(req).then(function (data) {
-            $scope.Iscall = true;
-            $scope.statuscode = data.status;
-            $scope.responseMsg = JSON.stringify(data.data);
-            $scope.getDockerDetails();
-            $timeout($scope.GaugeChart(), 10000);
+	$scope.apiKey = null;
+	$scope.candidateURL = null;
+	$scope.candidateBody = null;
+	$scope.apiUrlDialog = function (url, body) {
+		$scope.candidateURL = url;
+		$scope.candidateBody = body;
+		AJS.dialog2("#api-key-dialog").show();
+    };
 
-            // $scope.setDockerInformation($scope.selectedRule.name);
+    $scope.callurl = function (key) {
+    	$scope.pendingResponse = true;
+		AJS.dialog2("#api-key-dialog").hide();
+		var req = {
+		    method: $scope.candidateURL.METHOD,
+		    url: $scope.containerBaseURL + $scope.candidateURL.URL+"="+key,
+		    headers: {
+		        'Content-Type': 'application/json'
+		    },
+		    data: $scope.candidateBody
+		}
+		$http(req).then(function (data) {
+		    $scope.Iscall = true;
+			$scope.pendingResponse = false;
+			$scope.statuscode = data.status;
+		    $scope.responseMsg = JSON.stringify(data.data);
+		    $scope.getDockerDetails();
+		    $timeout($scope.GaugeChart(), 10000);
 
-        }, function (data) {
-            $scope.Iscall = true;
-            $scope.statuscode = data.status;
-            $scope.responseMsg = JSON.stringify(data.data);
+		    // $scope.setDockerInformation($scope.selectedRule.name);
 
-        });
-    }
+		}, function (data) {
+		    $scope.Iscall = true;
+			$scope.pendingResponse = false;
+			$scope.statuscode = data.status;
+		    $scope.responseMsg = JSON.stringify(data.data);
+
+		});
+	};
 
     /** Google Chart */
     //Line Chart
@@ -2509,18 +2527,23 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.JiraSession = {};
     $scope.CurrentUserProfile = {};
     /** Copy to Clipboard */
-    $scope.copyToClipboard = function (row) {
-        debugger;
-        var copyElement = document.createElement("textarea");
+    $scope.copyToClipboard = function (row, index) {
+		var copyElement = document.createElement("textarea");
         copyElement.style.position = 'fixed';
         copyElement.style.opacity = '0';
-        copyElement.textContent = row.URL;
+        copyElement.textContent = row.URLFULL;
         var body = document.getElementsByTagName('body')[0];
         body.appendChild(copyElement);
         copyElement.select();
         document.execCommand('copy');
         body.removeChild(copyElement);
-    }
+        row.copied = true;
+        var urlheaders = document.getElementsByClassName('url-header');
+		$('<span class="dynamic-state-pill">Copied</span>').appendTo(urlheaders[index]);
+        setTimeout(function () {
+        	$('.dynamic-state-pill').remove();
+		}, 1000);
+    };
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";

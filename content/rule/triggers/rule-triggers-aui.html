@@ -27,6 +27,7 @@
                                         <li ng-click="SetProjectTrigger(project,$event);toggleTriggersPanel(true,project);" ng-repeat="project in projectList | filter : projectsearch">
                                             <input class="styled-checkbox"
                                                    ng-click="addedProject(project)"
+                                                   ng-disabled="project.check"
                                                    type="checkbox"
                                                    name="{{project.key}}"
                                                    id="{{project.key}}"
