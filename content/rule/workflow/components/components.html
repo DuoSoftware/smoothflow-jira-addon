@@ -4,7 +4,7 @@
         <!--<span class="glyphicon glyphicon-menu-{{componentsMenuState == 'open' ? 'right' : 'left'}}"></span>-->
     </div>
     <div id="components-wrap" ng-class="{'fade-in':componentsMenuState == 'open', 'fade-out':componentsMenuState == 'closed'}">
-        <div class="comp-panel" ng-repeat="component in structuredComps | filter : toolboxsearch">
+        <div class="comp-panel" ng-repeat="component in structuredComps">
              <!--ng-if="component.Name.toLowerCase() != 'triggers'">-->
             <div class="comp-panel-heading" ng-click="setInitialCollapse($index)">
                 <!--<div class="b-shadow"></div>-->
@@ -23,32 +23,44 @@
             <!--<input type="text" class="form-control" >-->
             </div>
             <div class="comp-panel-collapse custom-scroll">
-                <div ng-repeat="(key, value) in component.components | filterComp:compToFilter | groupBy: 'class'">
-                    <div class="clearfix comp-toggle-header" ng-click="toggleCompGroup(key)">
-                        <span>{{key}}</span>
-                        <span class="aui-icon aui-icon-small aui-iconfont-{{activeCompGroup == key && isGroupOpen ? 'expanded' : 'collapsed'}}"></span>
+                <div ng-repeat="cls in component.classes | filter:compToFilter">
+                    <div class="clearfix comp-toggle-header" ng-click="toggleCompGroup(cls.title)">
+                        <span>{{cls.title}}</span>
+                        <span class="aui-icon aui-icon-small aui-iconfont-{{activeCompGroup == cls.title && isGroupOpen ? 'expanded' : 'collapsed'}}"></span>
                     </div>
-                    <div ng-show="activeCompGroup == key && isGroupOpen" ng-hide="activeCompGroup != key" class="inner-comp-panel">
-                        <div ng-repeat="(key2, value2) in component.components | filter : { class :key} | filterComp:compToFilter | groupBy: 'Category'">
-                            <div class="clearfix comp-toggle-header inner-header" ng-click="toggleInnerCompGroup(key2)">
-                                <span>{{key2}}</span>
-                                <span class="aui-icon aui-icon-small aui-iconfont-{{activeInnerCompGroup == key2 && isInnerGroupOpen ? 'expanded' : 'collapsed'}}"></span>
+                    <div ng-show="activeCompGroup == cls.title && isGroupOpen" ng-hide="activeCompGroup != cls.title" class="inner-comp-panel">
+                        <div ng-repeat="cat in cls.categories | filter:compToFilter">
+                            <div class="clearfix comp-toggle-header inner-header" ng-click="toggleInnerCompGroup(cat.title)">
+                                <span>{{cat.title}}</span>
+                                <span class="aui-icon aui-icon-small aui-iconfont-{{activeInnerCompGroup == cat.title && isInnerGroupOpen ? 'expanded' : 'collapsed'}}"></span>
                             </div>
-                            <div ng-show="activeInnerCompGroup == key2 && isInnerGroupOpen" ng-hide="activeInnerCompGroup != key2">
-                                <button ng-repeat="comp in value2" class="template-block" ng-disabled="callFromSwitch && comp.ControlType == 'action' || !callFromSwitch && comp.DisplayName == 'Case' || !callFromSwitch && comp.DisplayName == 'Default' || !callFromSwitch && comp.DisplayName == 'Fallthrough' || callFromSwitch && comp.DisplayName == 'If' || callFromSwitch && comp.DisplayName == 'Switch'" ng-click="newComponentInjection(comp)" ng-class="{'disabled-com':callFromSwitch && comp.ControlType == 'action' || !callFromSwitch && comp.DisplayName == 'Case' || !callFromSwitch && comp.DisplayName == 'Default' || !callFromSwitch && comp.DisplayName == 'Fallthrough' || callFromSwitch && comp.DisplayName == 'If' || callFromSwitch && comp.DisplayName == 'Switch'}">
-                            <div class="template-left">
-                                <div class="template-icon" ng-class="comp.ControlType">{{comp.ControlType | limitTo:1 | uppercase}}</div>
-                            </div>
-                            <div class="template-right">
-                                <div class="template-heading">{{comp.DisplayName}}</div>
-                                <div class="template-body">{{comp.Description}}</div>
-                            </div>
-                        </button>
+                            <div ng-show="activeInnerCompGroup == cat.title && isInnerGroupOpen" ng-hide="activeInnerCompGroup != cat.title">
+                                <button ng-repeat="comp in cat.data | filter:compToFilter" class="template-block" ng-disabled="callFromSwitch && comp.ControlType == 'action' || !callFromSwitch && comp.DisplayName == 'Case' || !callFromSwitch && comp.DisplayName == 'Default' || !callFromSwitch && comp.DisplayName == 'Fallthrough' || callFromSwitch && comp.DisplayName == 'If' || callFromSwitch && comp.DisplayName == 'Switch'" ng-click="newComponentInjection(comp)" ng-class="{'disabled-com':callFromSwitch && comp.ControlType == 'action' || !callFromSwitch && comp.DisplayName == 'Case' || !callFromSwitch && comp.DisplayName == 'Default' || !callFromSwitch && comp.DisplayName == 'Fallthrough' || callFromSwitch && comp.DisplayName == 'If' || callFromSwitch && comp.DisplayName == 'Switch'}">
+                                    <div class="template-left">
+                                        <div class="template-icon" ng-class="comp.ControlType">{{comp.ControlType | limitTo:1 | uppercase}}</div>
+                                    </div>
+                                    <div class="template-right">
+                                        <div class="template-heading">{{comp.DisplayName}}</div>
+                                        <div class="template-body">{{comp.Description}}</div>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--<div ng-repeat="component in structuredComps">-->
+            <!--<h3>{{component.Name}}</h3>-->
+            <!--<div ng-repeat="cls in component.classes | filter:compToFilter ">-->
+                <!--<h4>{{cls.title}}</h4>-->
+                <!--<div ng-repeat="cat in cls.categories | filter:compToFilter ">-->
+                    <!--<h5>{{cat.title}}</h5>-->
+                    <!--<div ng-repeat="comp in cat.data | filter:compToFilter ">-->
+                        <!--{{comp.DisplayName}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>

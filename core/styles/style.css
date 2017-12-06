@@ -802,7 +802,17 @@ button.button-primary{
 .workflow-add-node-sub.offset{
     left: 40px;
 }
-.workflow-block:hover, .workflow-block.selected-bg{
+.workflow-block:hover{
+    background: #ddd;
+    /* padding: 1px 2px; */
+    /*border-top: solid 1px #ffffff;*/
+    /*border-left: solid 5px #ffffff;*/
+    /*box-shadow: 0 0 5px #aaa;*/
+    border-radius: 15px;
+    border-top-left-radius: 25px;
+    padding-right: 10px;
+}
+.workflow-block.selected-bg{
     background: #fff;
     /* padding: 1px 2px; */
     /*border-top: solid 1px #ffffff;*/
@@ -810,6 +820,15 @@ button.button-primary{
     /*box-shadow: 0 0 5px #aaa;*/
     border-radius: 15px;
     border-top-left-radius: 25px;
+}
+.workflow-block.selected-bg .workflow-block:hover{
+    background: #f5f5f5;
+}
+.workflow-block.selected-bg .workflow-block:hover .component-capsule{
+    background: #f5f5f5;
+}
+.workflow-block.selected-bg>.workflow-add-node-sub .component-capsule{
+    background: #fff;
 }
 .workflow-block:hover>.header-bar span.category-icon{
     /*border: solid 2px #34495e;*/
@@ -885,10 +904,12 @@ button.button-primary{
     height: 30px;
     /*border: none;*/
     border-radius: 50%;
-    padding: 4px;
+    padding: 4px 6px;
+    margin: 2px;
     /*margin-right: -1px;*/
     /*margin-top: -1px;*/
-    border: solid 2px #fff;
+    /*border: solid 2px transparent;*/
+    border: none!important;
     text-align: center;
     background: none;
     /*background: #eeeeee;*/
@@ -902,7 +923,7 @@ button.button-primary{
 }
 .delete-comp>button:focus, .delete-comp button:hover{
     outline: none!important;
-    border:solid 2px #fff!important;
+    /*border:solid 2px transparent;*/
     background: #e9e9e9;
 }
 .confirmation-box{
@@ -938,8 +959,8 @@ button.button-primary{
     width: 40px;
     padding: 4px 4px;
     height: 40px;
-    background: #fff;
-    border: solid 1px #fff;
+    background: #ddd;
+    border: solid 1px transparent;
     border-radius: 25px;
     z-index: 2;
 }
@@ -962,8 +983,13 @@ button.button-primary{
 .component-capsule:hover{
     width: 140px;
     box-shadow: 0px 0px 10px #ddd;
-    transition: width 0.2s;
     z-index:10;
+    background: #ffffff!important;
+    -webkit-transition: width 0.2s, background 0.2s;
+    -moz-transition:  width 0.2s, background 0.2s;
+    -ms-transition:  width 0.2s, background 0.2s;
+    -o-transition:  width 0.2s, background 0.2s;
+    transition:  width 0.2s, background 0.2s;
 }
 .component-capsule:hover + span{
     display: none;
@@ -1376,10 +1402,34 @@ button.button-primary{
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
     animation: loadingappear 0.5s forwards;
 }
+.page-notif-content{
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.page-notif-content #busycontent {
+    margin-top: 15px;
+}
+.page-notif-content h2{
+    font-size: 14px;
+    /*font-weight: 500;*/
+    color: #ffffff;
+}
+.page-notif-content .button-spinner .spinner{
+    position: absolute!important;
+    right:0;
+    left:0;
+    margin: auto;
+}
+
 
 /*Kasun_Wijeratne_28_JUL_2017*/
 .custom-button-icon{
@@ -1401,6 +1451,10 @@ button.button-primary{
     top: 0;
     bottom: 0;
     margin: auto;
+}
+.bar-buttons button{
+    text-transform: uppercase;
+    font-weight: 700;
 }
 .aui-avatar span.avatar-text{
     margin-left: 5px;
