@@ -466,7 +466,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.pendingComponentType = "";
     $scope.currentRuleID = "";
     $scope.Variable = {};
-    $scope.listState = "home";
+    $rootScope.listState = "home";
     $scope.variableEditOn = null;
     $scope.allVariables = [];
     $scope.successNotifications = [];
@@ -651,7 +651,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     function setSectionHeight() {
         mainContent = document.getElementById('content');
         if (mainContent != null && mainContent != undefined) {
-            if ($scope.listState == 'home') {
+            if ($rootScope.listState == 'home') {
                 mainContent.setAttribute("style", "overflow-y:scroll;height:" + (window.innerHeight - 50) + "px");
             } else {
                 mainContent.removeAttribute("style");
@@ -933,7 +933,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, 0).then(function () {
             //call trigger Service to set workflow ID
             // TriggerDataService.setWorkflowID($scope.currentRuleID);
-            $scope.listState = 'rule.details';
+            $rootScope.listState = 'rule.details';
             $state.go('rule.details');
             setSectionHeight();
         });
@@ -1240,7 +1240,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     $rootScope.changeLocation = function (location) {
         $scope.componentsMenuState = 'closed';
-        $scope.listState = location;
+        $rootScope.listState = location;
         // update WF before leaving to another state
         $scope.updateWorkflowBeforeStateChange(location);
         $state.go(location);

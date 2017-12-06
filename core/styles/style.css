@@ -691,7 +691,7 @@ button.button-primary{
     /*font-weight: 500;*/
     display: inline-block;
     margin: 3px 10px 3px 0;
-    color: #666;
+    color: #777;
 }
 .workflow-block .body span.component-pro-value{
     font-weight: 500;
@@ -827,6 +827,9 @@ button.button-primary{
 .workflow-block.selected-bg .workflow-block:hover .component-capsule{
     background: #f5f5f5;
 }
+.workflow-block.selected-bg>.workflow-add-node-sub .component-capsule{
+    background: #fff;
+}
 .workflow-block:hover>.header-bar span.category-icon{
     /*border: solid 2px #34495e;*/
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.7);
@@ -902,7 +905,7 @@ button.button-primary{
     /*border: none;*/
     border-radius: 50%;
     padding: 4px 6px;
-    margin: 3px;
+    margin: 2px;
     /*margin-right: -1px;*/
     /*margin-top: -1px;*/
     /*border: solid 2px transparent;*/
@@ -1399,10 +1402,31 @@ button.button-primary{
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
     animation: loadingappear 0.5s forwards;
 }
+.page-notif-content{
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.page-notif-content #busycontent {
+    margin-top: 15px;
+}
+.page-notif-content h2{
+    font-size: 14px;
+    /*font-weight: 500;*/
+    color: #ffffff;
+}
+.page-notif-content .button-spinner .spinner{
+    position: absolute!important;
+}
+
 
 /*Kasun_Wijeratne_28_JUL_2017*/
 .custom-button-icon{
