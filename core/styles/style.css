@@ -1425,6 +1425,9 @@ button.button-primary{
 }
 .page-notif-content .button-spinner .spinner{
     position: absolute!important;
+    right:0;
+    left:0;
+    margin: auto;
 }
 
 
