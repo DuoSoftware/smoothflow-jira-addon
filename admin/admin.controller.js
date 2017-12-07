@@ -130,6 +130,8 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
         var domain = "";
         if($rootScope.isNullOrEmptyOrUndefined($scope.CurrentUserProfile)){
             domain = $rootScope.SessionDetails.Domain;
+        }else{
+            domain = $scope.CurrentUserProfile.domain;
         }
         var URL = $v6urls.smoothflowIP + "/auth/tenants/" + domain;
         $http.get(URL, {
