@@ -98,7 +98,8 @@ section.content>h2{
     border: none;
     background: transparent;
     outline: none;
-    color: #ffffff;
+    padding-left: 5px;
+    color: #888;
 }
 .user-details>div.pass .passwordcopybtn{
     margin-left: 10px;
@@ -115,6 +116,7 @@ section.content>h2{
 }
 .user-details>div.pass .passwordcopybtn:hover{
     background: #3572b0;
+    color: #ffffff;
 }
 .user-details>div>span:first-child{
     width: 80px;
