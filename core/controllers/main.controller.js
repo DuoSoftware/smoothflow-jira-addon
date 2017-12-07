@@ -536,6 +536,18 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 }
                 var componentClass = block.className.split(' ')[2];
                 if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+
+					var o = angular.element(block).find('>.outer');
+					if(o.children().length > 0){
+						if(componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+							angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
+						}else{
+							angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+						}
+					}else{
+						angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+					}
+
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
                         angular.forEach(outer.children, function (child) {
