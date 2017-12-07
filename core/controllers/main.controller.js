@@ -550,13 +550,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
-                        // angular.forEach(outer.children, function (child) {
-                        //     if (child.className.split(' ')[0] == 'workflow-block') {
-                        //         angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-                        //     } else {
-                        //         angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-                        //     }
-                        // });
+                        //angular.forEach(outer.children, function (child) {
+                            // if (child.className.split(' ')[0] == 'workflow-block') {
+                            // 	var o = angular.element(child).find('>.outer');
+                            // 	if(o.children().length > 0){
+								// 	angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+								// }
+                            // } else {
+                            //     angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                            // }
+                        //});
                         var outerParent = outer.parentElement.className.split(' ')[2];
                         if (outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough') {
                             var elem = angular.element(outer);
@@ -1332,7 +1335,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     //     item.workflow = [];
                     //     $scope.structuredComps[0].components.push(item);
                     // }
-                    if (item.ControlType == 'action') {
+					item.outerExpanded = true;
+					if (item.ControlType == 'action') {
                         item.workflow = [];
                         $scope.structuredComps[0].components.push(item);
                     }
@@ -1935,14 +1939,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
-    $scope.deleteNode = function (workflow, position) {
-        workflow.splice(position, 1);
+    $scope.deleteNode = function (workflow, position, elem) {
+		workflow.splice(position, 1);
+		// if(workflow[0].parent.ControlType == 'condition'){
+		// 	if(workflow[0].parent.DisplayName == 'True' || workflow[0].parent.DisplayName == 'False'){
+		// 		var el = $(elem.target).parent().parent().parent().parent().parent();
+		// 		el.append('<div class="workflow-add-node-sub"> <div class="header-bar"> <div class="component-capsule"> <span title="Add to '+workflow[0].parent.DisplayName+'}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span><span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, '+'condition'+',component, false)">C</span> <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, '+'action'+',component, false)">A</span> </div> <script> AJS.$(".category-icon").tooltip(); AJS.$(".delete-comp").tooltip(); </script> <span>..</span> </div> </div>');
+		// 		workflow.splice(position, 1);
+		// 	}
+		// }else{
+		// 	workflow.splice(position, 1);
+		// }
     }
 
     // Kasun_Wijeratne_2017_10_23
     // This code gets a set of workflow and expands or collapses the block with given index accordingly
     $scope.expandComponentBody = function (workflow, position) {
-        workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+    	if(workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'false'){
+			workflow[position].outerExpanded ? workflow[position].outerExpanded = false : workflow[position].outerExpanded = true;
+		}else{
+			workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+		}
     }
     // Kasun_Wijeratne_2017_10_23 - END
 
