@@ -550,13 +550,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
-                        angular.forEach(outer.children, function (child) {
-                            if (child.className.split(' ')[0] == 'workflow-block') {
-                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-                            } else {
-                                angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-                            }
-                        });
+                        // angular.forEach(outer.children, function (child) {
+                        //     if (child.className.split(' ')[0] == 'workflow-block') {
+                        //         angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                        //     } else {
+                        //         angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                        //     }
+                        // });
                         var outerParent = outer.parentElement.className.split(' ')[2];
                         if (outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough') {
                             var elem = angular.element(outer);
