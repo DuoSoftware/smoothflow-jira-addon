@@ -1695,11 +1695,11 @@ button.button-primary{
 .container-urls .response textarea{
     margin: 0px;
     width: 100%;
-    height: 100px;
+    height: 200px;
     border-radius: 5px;
     border: solid 1px #ad3128;
     padding: 10px;
-    color: #3572b0;
+    color: #777;
     outline: none!important;
 }
 .container-urls .response .status-code.stat-2 textarea{

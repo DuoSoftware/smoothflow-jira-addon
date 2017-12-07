@@ -1788,11 +1788,11 @@ aui-header {
 .aui-navgroup-horizontal .aui-nav-heading {
     height: 41px;
     padding: 10px;
-    background: #fafafa;
+    background: #f5f5f5;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     color: #aaa;
-    border: solid 1px #eee;
+    border: solid 1px #ddd;
     border-bottom: none;
     margin-right: 10px;
     /* box-shadow: inset 0px 4px 5px rgba(0, 0, 0, 0.05); */
