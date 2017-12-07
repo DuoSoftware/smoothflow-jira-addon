@@ -8,14 +8,37 @@ body{
     /*color: #ffffff;*/
 }
 #loading {
-    /* display: flex; */
-    opacity: 1;
+    /*    display: flex;*/
+    opacity: 0;
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
     animation: loadingappear 0.5s forwards;
+}
+.page-notif-content{
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.page-notif-content #busycontent {
+    margin-top: 15px;
+}
+.page-notif-content h2{
+    font-size: 14px;
+    /*font-weight: 500;*/
+    color: #ffffff;
+}
+.page-notif-content .button-spinner .spinner{
+    position: absolute!important;
+    right:0;
+    left:0;
+    margin: auto;
 }
 section.content{
     display: block;
