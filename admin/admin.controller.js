@@ -126,7 +126,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
 
     $scope.checkIfUserAlreadyExists = function () {
         // var URL = $v6urls.smoothflowIP + "/auth/users/"+$scope.SessionDetails.email;
-        debugger//
+        //debugger//
         var domain = "";
         if($rootScope.isNullOrEmptyOrUndefined($scope.CurrentUserProfile)){
             domain = $rootScope.SessionDetails.Domain;
