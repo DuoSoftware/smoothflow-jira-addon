@@ -129,13 +129,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     //Kasun_Wijeratne_12_DEC_2017
-	$scope.toggleAllComps = function (text) {
-		if(text.length > 0){
-			$scope.expandAll = true;
-		}else{
-			$scope.expandAll = false;
-		}
-	};
+    $scope.toggleAllComps = function (text) {
+        if (text.length > 0) {
+            $scope.expandAll = true;
+        } else {
+            $scope.expandAll = false;
+        }
+    };
     //Kasun_Wijeratne_12_DEC_2017 - END
 
     $scope.tab = false;
@@ -548,31 +548,31 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 var componentClass = block.className.split(' ')[2];
                 if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
 
-					//Kasun_Wijeratne_11_DEC_2017
-					var o = angular.element(block).find('>.outer');
-					if(o.children().length > 0){
-						if(componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
-							angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
-							angular.element(block).find('>.offset').css('display', 'none');
-						}else{
-							angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-						}
-					}else{
-						angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-					}
-					//Kasun_Wijeratne_11_DEC_2017 - END
+                    //Kasun_Wijeratne_11_DEC_2017
+                    var o = angular.element(block).find('>.outer');
+                    if (o.children().length > 0) {
+                        if (componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+                            angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
+                            angular.element(block).find('>.offset').css('display', 'none');
+                        } else {
+                            angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                        }
+                    } else {
+                        angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                    }
+                    //Kasun_Wijeratne_11_DEC_2017 - END
 
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
                         //angular.forEach(outer.children, function (child) {
-                            // if (child.className.split(' ')[0] == 'workflow-block') {
-                            // 	var o = angular.element(child).find('>.outer');
-                            // 	if(o.children().length > 0){
-								// 	angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-								// }
-                            // } else {
-                            //     angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-                            // }
+                        // if (child.className.split(' ')[0] == 'workflow-block') {
+                        // 	var o = angular.element(child).find('>.outer');
+                        // 	if(o.children().length > 0){
+                        // 	angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                        // }
+                        // } else {
+                        //     angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                        // }
                         //});
                         var outerParent = outer.parentElement.className.split(' ')[2];
                         if (outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough') {
@@ -809,46 +809,46 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
 
-	$scope.apiKey = null;
-	$scope.candidateURL = null;
-	$scope.candidateBody = null;
-	$scope.responseMsg = "";
+    $scope.apiKey = null;
+    $scope.candidateURL = null;
+    $scope.candidateBody = null;
+    $scope.responseMsg = "";
 
-	$scope.apiUrlDialog = function (url, body) {
-		$scope.candidateURL = url;
-		$scope.candidateBody = body;
-		AJS.dialog2("#api-key-dialog").show();
+    $scope.apiUrlDialog = function (url, body) {
+        $scope.candidateURL = url;
+        $scope.candidateBody = body;
+        AJS.dialog2("#api-key-dialog").show();
     };
 
     $scope.callurl = function (key) {
-    	$scope.pendingResponse = true;
-		AJS.dialog2("#api-key-dialog").hide();
-		var req = {
-		    method: $scope.candidateURL.METHOD,
-		    url: $scope.containerBaseURL + $scope.candidateURL.URL+"="+key,
-		    headers: {
-		        'Content-Type': 'application/json'
-		    },
-		    data: $scope.candidateBody
-		}
-		$http(req).then(function (data) {
-		    $scope.Iscall = true;
-			$scope.pendingResponse = false;
-			$scope.statuscode = data.status;
-		    $scope.responseMsg = JSON.stringify(data.data, null, "\t");
-		    $scope.getDockerDetails();
-		    $timeout($scope.GaugeChart(), 10000);
+        $scope.pendingResponse = true;
+        AJS.dialog2("#api-key-dialog").hide();
+        var req = {
+            method: $scope.candidateURL.METHOD,
+            url: $scope.containerBaseURL + $scope.candidateURL.URL + "=" + key,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: $scope.candidateBody
+        }
+        $http(req).then(function (data) {
+            $scope.Iscall = true;
+            $scope.pendingResponse = false;
+            $scope.statuscode = data.status;
+            $scope.responseMsg = JSON.stringify(data.data, null, "\t");
+            $scope.getDockerDetails();
+            $timeout($scope.GaugeChart(), 10000);
 
-		    // $scope.setDockerInformation($scope.selectedRule.name);
+            // $scope.setDockerInformation($scope.selectedRule.name);
 
-		}, function (data) {
-		    $scope.Iscall = true;
-			$scope.pendingResponse = false;
-			$scope.statuscode = data.status;
-		    $scope.responseMsg = JSON.stringify(data.data, null, "\t");
+        }, function (data) {
+            $scope.Iscall = true;
+            $scope.pendingResponse = false;
+            $scope.statuscode = data.status;
+            $scope.responseMsg = JSON.stringify(data.data, null, "\t");
 
-		});
-	};
+        });
+    };
 
     /** Google Chart */
     //Line Chart
@@ -1005,7 +1005,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
     $scope.getports = function () {
         $http({
-            url: $v6urls.globalOS + "/occupiedPorts",
+            url: $v6urls.globalOS + "/occupiedPorts?take=70000",
             method: "GET",
             headers: {
                 'securityToken': "ignore"
@@ -1038,7 +1038,25 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     //Delate Prot
-   // $scope.DeletePort = function () { };
+    $scope.DeletePort = function (workflowId) {
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "DELETE",
+            headers: {
+                'securityToken': "ignore"
+            },
+            data: workflowId
+        }).
+            then(function (data, status, headers, config) {
+                if (data) {
+                  //  $scope.portlist = data;
+                  console.log(data);
+
+                }
+            }, function (data, status, headers, config) {
+                $rootScope.DisplayMessage("Error when deleting port information", "error", "Please contact an administrator.");
+            });
+    };
     $scope.checkport = function (port) {
         for (x = 0; x < $scope.portlist.length; x++) {
             if ($scope.portlist[x].port == port) {
@@ -1351,8 +1369,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     //     item.workflow = [];
                     //     $scope.structuredComps[0].components.push(item);
                     // }
-					// item.outerExpanded = true;
-					if (item.ControlType == 'action') {
+                    // item.outerExpanded = true;
+                    if (item.ControlType == 'action') {
                         item.workflow = [];
                         $scope.structuredComps[0].components.push(item);
                     }
@@ -1560,6 +1578,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         //delete tigger
         TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
+        $scope.DeletePort($scope.selectedRule.name);
     };
 
     $scope.removeRule = function () {
@@ -1956,26 +1975,26 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.deleteNode = function (workflow, position, elem) {
-		workflow.splice(position, 1);
-		// if(workflow[0].parent.ControlType == 'condition'){
-		// 	if(workflow[0].parent.DisplayName == 'True' || workflow[0].parent.DisplayName == 'False'){
-		// 		var el = $(elem.target).parent().parent().parent().parent().parent();
-		// 		el.append('<div class="workflow-add-node-sub"> <div class="header-bar"> <div class="component-capsule"> <span title="Add to '+workflow[0].parent.DisplayName+'}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span><span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, '+'condition'+',component, false)">C</span> <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, '+'action'+',component, false)">A</span> </div> <script> AJS.$(".category-icon").tooltip(); AJS.$(".delete-comp").tooltip(); </script> <span>..</span> </div> </div>');
-		// 		workflow.splice(position, 1);
-		// 	}
-		// }else{
-		// 	workflow.splice(position, 1);
-		// }
+        workflow.splice(position, 1);
+        // if(workflow[0].parent.ControlType == 'condition'){
+        // 	if(workflow[0].parent.DisplayName == 'True' || workflow[0].parent.DisplayName == 'False'){
+        // 		var el = $(elem.target).parent().parent().parent().parent().parent();
+        // 		el.append('<div class="workflow-add-node-sub"> <div class="header-bar"> <div class="component-capsule"> <span title="Add to '+workflow[0].parent.DisplayName+'}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span><span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, '+'condition'+',component, false)">C</span> <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, '+'action'+',component, false)">A</span> </div> <script> AJS.$(".category-icon").tooltip(); AJS.$(".delete-comp").tooltip(); </script> <span>..</span> </div> </div>');
+        // 		workflow.splice(position, 1);
+        // 	}
+        // }else{
+        // 	workflow.splice(position, 1);
+        // }
     }
 
     // Kasun_Wijeratne_2017_10_23
     // This code gets a set of workflow and expands or collapses the block with given index accordingly
     $scope.expandComponentBody = function (workflow, position) {
-    	if(workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'False' || workflow[position].DisplayName == 'Case'){
-			workflow[position].outerExpanded ? workflow[position].outerExpanded = false : workflow[position].outerExpanded = true;
-		}else{
-			workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
-		}
+        if (workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'False' || workflow[position].DisplayName == 'Case') {
+            workflow[position].outerExpanded ? workflow[position].outerExpanded = false : workflow[position].outerExpanded = true;
+        } else {
+            workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+        }
     }
     // Kasun_Wijeratne_2017_10_23 - END
 
@@ -2575,7 +2594,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.CurrentUserProfile = {};
     /** Copy to Clipboard */
     $scope.copyToClipboard = function (row, index) {
-		var copyElement = document.createElement("textarea");
+        var copyElement = document.createElement("textarea");
         copyElement.style.position = 'fixed';
         copyElement.style.opacity = '0';
         copyElement.textContent = row.URLFULL;
@@ -2586,10 +2605,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         body.removeChild(copyElement);
         row.copied = true;
         var urlheaders = document.getElementsByClassName('url-header');
-		$('<span class="dynamic-state-pill">Copied</span>').appendTo(urlheaders[index]);
+        $('<span class="dynamic-state-pill">Copied</span>').appendTo(urlheaders[index]);
         setTimeout(function () {
-        	$('.dynamic-state-pill').remove();
-		}, 1000);
+            $('.dynamic-state-pill').remove();
+        }, 1000);
     };
 
     $scope.getCurrentUserProfile = function () {
