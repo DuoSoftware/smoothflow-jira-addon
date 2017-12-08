@@ -1,5 +1,8 @@
-<div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName | lowercase}}" ng-repeat="component in workflow = (parent = component).workflow"
-    ng-init="component.parent = parent; component.level = parent.level + 1" ng-style="component.ControlType == 'condition' ? 'margin-top:20px' : ''" ng-class="{'selected-bg':activeModule == component.$$hashKey}">
+<div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName | lowercase}}"
+     ng-repeat="component in workflow = (parent = component).workflow"
+     ng-init="component.parent = parent; component.level = parent.level + 1"
+     ng-style="component.ControlType == 'condition' ? 'margin-top:20px' : ''"
+     ng-class="{'selected-bg':activeModule == component.$$hashKey}">
     <div ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'" class="h-line"></div>
     <label class="sub-cond-connector {{component.DisplayName | lowercase}}" ng-if="component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'"></label>
     <div class="header-bar" ng-click="openComponentInfo(component)">
@@ -12,7 +15,7 @@
             </button>
         </div>
         <div class="delete-comp" title="Deletecomponent" style="margin-right: -10px">
-            <button class="btn btn-default" type="button" ng-click="deleteNode(workflow, $index)">
+            <button class="btn btn-default" type="button" ng-click="deleteNode(workflow, $index, $event)">
                 <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete component</span>
             </button>
             <!--<button class="btn btn-default" type="button" ng-click="deleteComponentConfirmation($index, false)" confirm="Are you sure ?"><label class="glyphicon glyphicon-trash"></label></button>-->
@@ -31,6 +34,7 @@
     <div class="body">
         <!--div>{{component.Description}}</div-->
         <span ng-if="!component.bodyExpanded && component.DisplayName != 'True' && component.DisplayName != 'False'" class="collapsed-content">...</span>
+        <span ng-if="component.outerExpanded && component.DisplayName == 'True' || component.outerExpanded && component.DisplayName == 'False'" class="collapsed-content">...</span>
         <div ng-if="component.bodyExpanded">
             <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.DisplayName}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
         </div>
@@ -65,5 +69,5 @@
         </div>
     </div>
     <div class="loader-default"></div>
-    <div class="outer" ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'"></div>
+    <div class="outer" ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'" ng-if="!component.outerExpanded"></div>
 </div>

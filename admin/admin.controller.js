@@ -124,8 +124,9 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
         });
     }
 
-    $scope.checkIfUserAlreadyExists = function(){
-        var URL = $v6urls.smoothflowIP + "/auth/users/"+$scope.SessionDetails.email;
+    $scope.checkIfUserAlreadyExists = function () {
+        // var URL = $v6urls.smoothflowIP + "/auth/users/"+$scope.SessionDetails.email;
+        var URL = $v6urls.smoothflowIP + "/auth/tenants/" + $scope.CurrentUserProfile.domain + "jira";
         $http.get(URL, {
             headers: {
                 'securityToken': 'ignore'

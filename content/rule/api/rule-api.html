@@ -34,7 +34,7 @@
                 <div class="response-preloader" ng-if="pendingResponse">
                     <span>Pending response..</span>
                 </div>
-                <div class="response" ng-if="Iscall">
+                <div class="response" ng-show="Iscall">
                     <div class="status-code stat-{{statuscode | limitTo:1}}">Status : <b>{{statuscode}}</b></div>
                     <div>Body</div>
                     <textarea class="textarea long-field" name="responseMsg" ng-model="responseMsg" id="responseMsg"></textarea>

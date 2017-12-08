@@ -659,6 +659,7 @@ button.button-primary{
 .workflow-block{
     position: relative;
     min-width: 400px;
+    padding-right: 10px;
 }
 .workflow-block .header-bar{
     height: 40px;
@@ -757,7 +758,6 @@ button.button-primary{
     text-align: center;
     padding: 13px;
     font-size: 15px;
-
 }
 .workflow-block .header-bar span:nth-child(2){
     margin-top: 7px;
@@ -813,7 +813,6 @@ button.button-primary{
     /*box-shadow: 0 0 5px #aaa;*/
     border-radius: 15px;
     border-top-left-radius: 25px;
-    padding-right: 10px;
 }
 .workflow-block.selected-bg{
     background: #fff;
@@ -2488,4 +2487,22 @@ button.button-primary{
     0% { opacity: 0 }
     50% { opacity: 1 }
     100% { opacity: 0 }
+}
+
+dropdown{
+    display: block;
+    padding: 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: solid 1px #ddd;
+}
+dropdown select{
+    border:none;
+    padding: 5px;
+    outline: none;
+}
+dropdown select:hover{
+    /*background: #eeeeee;*/
+    border-bottom:solid 1px;
+    cursor: pointer;
 }

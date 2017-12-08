@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="aa83ffe5-a933-47b5-8390-7c68ec2d5ab9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/admin.controller.js" afterPath="$PROJECT_DIR$/admin/admin.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/style.css" afterPath="$PROJECT_DIR$/admin/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aui/css/aui-extended-sf.css" afterPath="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/api/rule-api.html" afterPath="$PROJECT_DIR$/content/rule/api/rule-api.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/rule.html" afterPath="$PROJECT_DIR$/content/rule/rule.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html" afterPath="$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/controllers/main.controller.js" afterPath="$PROJECT_DIR$/core/controllers/main.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/services/triggerdataservice.js" afterPath="$PROJECT_DIR$/core/services/triggerdataservice.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/styles/style.css" afterPath="$PROJECT_DIR$/core/styles/style.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,28 +29,75 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16796">
+              <caret line="1338" column="55" lean-forward="false" selection-start-line="1338" selection-start-column="55" selection-end-line="1338" selection-end-column="55" />
+              <folding>
+                <element signature="e#6606#6633#0" expanded="false" />
+                <element signature="e#18532#18597#0" expanded="false" />
+                <element signature="e#20509#20561#0" expanded="false" />
+                <element signature="e#21953#21999#0" expanded="false" />
+                <element signature="e#22688#22719#0" expanded="false" />
+                <element signature="e#24294#26198#0" expanded="false" />
+                <element signature="e#52127#52166#0" expanded="false" />
+                <marker date="1512639456178" expanded="true" signature="2219:2229" ph="..." />
+                <marker date="1512639456178" expanded="true" signature="2278:2311" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rule-workflow.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/rule/workflow/rule-workflow.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="148" lean-forward="false" selection-start-line="9" selection-start-column="148" selection-end-line="9" selection-end-column="148" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/styles/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42585">
+              <caret line="2505" column="27" lean-forward="false" selection-start-line="2505" selection-start-column="27" selection-end-line="2505" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aui-extended-sf.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="43010">
+              <caret line="2530" column="28" lean-forward="false" selection-start-line="2530" selection-start-column="20" selection-end-line="2530" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workflow-template.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="36" column="106" lean-forward="false" selection-start-line="36" selection-start-column="106" selection-end-line="36" selection-end-column="106" />
+              <folding>
+                <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
+                <marker date="1512639790670" expanded="false" signature="2222:3031" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>toolboxsearch</find>
-      <find>value2</find>
-      <find>structuredComps</find>
-      <find>.component-capsule</find>
-      <find>.workflow-block:hover</find>
-      <find>component-capsule:hov</find>
-      <find>selec</find>
-      <find>.rule-nav-group</find>
-      <find>dark-shadow</find>
-      <find>rule-nav-group</find>
-      <find>$scope.listState</find>
-      <find>listState</find>
-      <find>.delete-comp&gt;button</find>
-      <find>#loading</find>
-      <find>#workflow-wrap::-webkit-scrollbar</find>
-      <find>shadowed-item</find>
-      <find>.aui-navgroup-horizontal .aui-nav &gt; li a.active,</find>
-      <find>table.aui &gt; thead</find>
       <find>.workflow-block .body span.component-pro-key</find>
       <find>.postdiv</find>
       <find>.container-urls .url-header</find>
@@ -55,8 +108,26 @@
       <find>dialog</find>
       <find>$scope.apiKey</find>
       <find>response</find>
-      <find>.aui-navgroup-horizontal .aui-nav-heading</find>
       <find>$scope.responseMsg</find>
+      <find>load</find>
+      <find>loading</find>
+      <find>.user-details&gt;div.pass .passwordcopybtn</find>
+      <find>.user-details&gt;div.pass .passwordcopy</find>
+      <find>SessionDetails.password</find>
+      <find>.aui-navgroup-horizontal .aui-nav-heading</find>
+      <find>deleteNode</find>
+      <find>display:none</find>
+      <find>margin-top:10px</find>
+      <find>display:</find>
+      <find>this.GetAllTriggers</find>
+      <find>debugger</find>
+      <find>workflow-block</find>
+      <find>watch</find>
+      <find>structuredComps</find>
+      <find>bodyExpanded</find>
+      <find>display</find>
+      <find>$scope.structuredComps</find>
+      <find>dropdown</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -69,15 +140,20 @@
         <option value="$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/index.html" />
         <option value="D:/CloudCharge_misc/DEV/Subscription Shell/Shell restructure_3-23-2017/LIVE/customer_portal/public/css/portal.css" />
         <option value="$PROJECT_DIR$/content/rule/workflow/components/components.html" />
-        <option value="$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/content/rule/triggers/rule-triggers-aui.html" />
         <option value="$PROJECT_DIR$/content/rule/rule.html" />
         <option value="$PROJECT_DIR$/content/rule/api/api-key-view.html" />
-        <option value="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
-        <option value="$PROJECT_DIR$/core/controllers/main.controller.js" />
-        <option value="$PROJECT_DIR$/core/styles/style.css" />
         <option value="$PROJECT_DIR$/content/rule/api/rule-api.html" />
+        <option value="$PROJECT_DIR$/admin/admin.controller.js" />
+        <option value="$PROJECT_DIR$/admin/style.css" />
+        <option value="$PROJECT_DIR$/aui/css/aui-extended-sf.css" />
+        <option value="$PROJECT_DIR$/core/services/triggerdataservice.js" />
+        <option value="$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/core/controllers/main.controller.js" />
+        <option value="$PROJECT_DIR$/core/styles/style.css" />
+        <option value="$PROJECT_DIR$/admin/index.html" />
+        <option value="$PROJECT_DIR$/core/controllers/main.controller.js" />
+        <option value="$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html" />
       </list>
     </option>
   </component>
@@ -117,6 +193,168 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="styles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="workflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rule" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="workflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="workflow-templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smoothflow-jira-addon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -214,23 +452,25 @@
       <workItem from="1512392016922" duration="228000" />
       <workItem from="1512446372707" duration="28761000" />
       <workItem from="1512532974724" duration="28038000" />
-      <workItem from="1512620125505" duration="1025000" />
+      <workItem from="1512620125505" duration="1725000" />
+      <workItem from="1512622104232" duration="14945000" />
+      <workItem from="1512707102476" duration="401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58052000" />
+    <option name="totallyTimeSpent" value="74098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22544643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22544643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -256,16 +496,93 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16796">
+          <caret line="1338" column="55" lean-forward="false" selection-start-line="1338" selection-start-column="55" selection-end-line="1338" selection-end-column="55" />
+          <folding>
+            <element signature="e#6606#6633#0" expanded="false" />
+            <element signature="e#18532#18597#0" expanded="false" />
+            <element signature="e#20509#20561#0" expanded="false" />
+            <element signature="e#21953#21999#0" expanded="false" />
+            <element signature="e#22688#22719#0" expanded="false" />
+            <element signature="e#24294#26198#0" expanded="false" />
+            <element signature="e#52127#52166#0" expanded="false" />
+            <marker date="1512639456178" expanded="true" signature="2219:2229" ph="..." />
+            <marker date="1512639456178" expanded="true" signature="2278:2311" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/rule/workflow/rule-workflow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="148" lean-forward="true" selection-start-line="9" selection-start-column="148" selection-end-line="9" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42585">
+          <caret line="2505" column="27" lean-forward="false" selection-start-line="2505" selection-start-column="27" selection-end-line="2505" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43010">
+          <caret line="2530" column="28" lean-forward="false" selection-start-line="2530" selection-start-column="20" selection-end-line="2530" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
+            <marker date="1512639790670" expanded="false" signature="2222:3031" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="14" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24361">
+          <caret line="1433" column="1" lean-forward="true" selection-start-line="1401" selection-start-column="0" selection-end-line="1433" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
           <caret line="50" column="50" lean-forward="false" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1512542125689" expanded="false" signature="1033:2633" ph="..." />
-            <marker date="1512542125689" expanded="false" signature="2791:3173" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -274,12 +591,15 @@
         <state relative-caret-position="13906">
           <caret line="818" column="69" lean-forward="false" selection-start-line="818" selection-start-column="69" selection-end-line="818" selection-end-column="69" />
           <folding>
-            <element signature="e#355#1937#0" expanded="false" />
-            <element signature="e#51446#51485#0" expanded="false" />
-            <element signature="e#51688#51828#0" expanded="false" />
-            <element signature="e#51886#53008#0" expanded="false" />
-            <marker date="1512565228754" expanded="true" signature="2219:2229" ph="..." />
-            <marker date="1512565228754" expanded="true" signature="2278:2311" ph="..." />
+            <element signature="e#6606#6633#0" expanded="false" />
+            <element signature="e#18532#18597#0" expanded="false" />
+            <element signature="e#20509#20561#0" expanded="false" />
+            <element signature="e#21953#21999#0" expanded="false" />
+            <element signature="e#22688#22719#0" expanded="false" />
+            <element signature="e#24294#26198#0" expanded="false" />
+            <element signature="e#52127#52166#0" expanded="false" />
+            <marker date="1512639456178" expanded="true" signature="2219:2229" ph="..." />
+            <marker date="1512639456178" expanded="true" signature="2278:2311" ph="..." />
           </folding>
         </state>
       </provider>
@@ -288,12 +608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="47" column="22" lean-forward="true" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1512542125689" expanded="false" signature="1033:2633" ph="..." />
-            <marker date="1512542125689" expanded="false" signature="2791:3173" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -302,12 +616,15 @@
         <state relative-caret-position="22848">
           <caret line="1344" column="41" lean-forward="false" selection-start-line="1344" selection-start-column="41" selection-end-line="1344" selection-end-column="41" />
           <folding>
-            <element signature="e#355#1937#0" expanded="false" />
-            <element signature="e#51446#51485#0" expanded="false" />
-            <element signature="e#51688#51828#0" expanded="false" />
-            <element signature="e#51886#53008#0" expanded="false" />
-            <marker date="1512565228754" expanded="true" signature="2219:2229" ph="..." />
-            <marker date="1512565228754" expanded="true" signature="2278:2311" ph="..." />
+            <element signature="e#6606#6633#0" expanded="false" />
+            <element signature="e#18532#18597#0" expanded="false" />
+            <element signature="e#20509#20561#0" expanded="false" />
+            <element signature="e#21953#21999#0" expanded="false" />
+            <element signature="e#22688#22719#0" expanded="false" />
+            <element signature="e#24294#26198#0" expanded="false" />
+            <element signature="e#52127#52166#0" expanded="false" />
+            <marker date="1512639456178" expanded="true" signature="2219:2229" ph="..." />
+            <marker date="1512639456178" expanded="true" signature="2278:2311" ph="..." />
           </folding>
         </state>
       </provider>
@@ -345,12 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2295">
           <caret line="125" column="12" lean-forward="false" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="12" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1512542125689" expanded="false" signature="1033:2633" ph="..." />
-            <marker date="1512542125689" expanded="false" signature="2791:3173" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -358,7 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-17">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -373,13 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14">
           <caret line="24" column="148" lean-forward="true" selection-start-line="24" selection-start-column="148" selection-end-line="24" selection-end-column="148" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/rule/workflow/rule-workflow.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="9" column="148" lean-forward="true" selection-start-line="9" selection-start-column="148" selection-end-line="9" selection-end-column="148" />
         </state>
       </provider>
     </entry>
@@ -401,14 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="8" column="77" lean-forward="false" selection-start-line="8" selection-start-column="77" selection-end-line="8" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -430,13 +725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="96" lean-forward="false" selection-start-line="16" selection-start-column="96" selection-end-line="16" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="54" column="48" lean-forward="true" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -475,56 +763,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
+    <entry file="file://$PROJECT_DIR$/content/rule/api/rule-api.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="1794" column="27" lean-forward="true" selection-start-line="1794" selection-start-column="27" selection-end-line="1794" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="98">
+          <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="14" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="93" column="21" lean-forward="true" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/admin.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="45" column="71" lean-forward="true" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/services/triggerdataservice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="369" column="35" lean-forward="false" selection-start-line="369" selection-start-column="27" selection-end-line="369" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/controllers/trigger.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Addon_DEV/smoothflow-jira-addon/core/controllers/main.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="551" column="29" lean-forward="true" selection-start-line="551" selection-start-column="29" selection-end-line="551" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1697" column="18" lean-forward="false" selection-start-line="1697" selection-start-column="18" selection-end-line="1697" selection-end-column="18" />
+        <state relative-caret-position="42585">
+          <caret line="2505" column="27" lean-forward="false" selection-start-line="2505" selection-start-column="27" selection-end-line="2505" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="58" column="88" lean-forward="true" selection-start-line="58" selection-start-column="88" selection-end-line="58" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/rule/workflow/rule-workflow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="148" lean-forward="false" selection-start-line="9" selection-start-column="148" selection-end-line="9" selection-end-column="148" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/controllers/main.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="815" column="25" lean-forward="false" selection-start-line="815" selection-start-column="19" selection-end-line="815" selection-end-column="25" />
+        <state relative-caret-position="16796">
+          <caret line="1338" column="55" lean-forward="false" selection-start-line="1338" selection-start-column="55" selection-end-line="1338" selection-end-column="55" />
           <folding>
-            <element signature="e#355#1937#0" expanded="false" />
-            <element signature="e#51446#51485#0" expanded="false" />
-            <element signature="e#51688#51828#0" expanded="false" />
-            <element signature="e#51886#53008#0" expanded="false" />
-            <marker date="1512565228754" expanded="true" signature="2219:2229" ph="..." />
-            <marker date="1512565228754" expanded="true" signature="2278:2311" ph="..." />
+            <element signature="e#6606#6633#0" expanded="false" />
+            <element signature="e#18532#18597#0" expanded="false" />
+            <element signature="e#20509#20561#0" expanded="false" />
+            <element signature="e#21953#21999#0" expanded="false" />
+            <element signature="e#22688#22719#0" expanded="false" />
+            <element signature="e#24294#26198#0" expanded="false" />
+            <element signature="e#52127#52166#0" expanded="false" />
+            <marker date="1512639456178" expanded="true" signature="2219:2229" ph="..." />
+            <marker date="1512639456178" expanded="true" signature="2278:2311" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/aui/css/aui-extended-sf.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="50" column="50" lean-forward="false" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1512542125689" expanded="false" signature="1033:2633" ph="..." />
-            <marker date="1512542125689" expanded="false" signature="2791:3173" ph="..." />
-          </folding>
+        <state relative-caret-position="43010">
+          <caret line="2530" column="28" lean-forward="false" selection-start-line="2530" selection-start-column="20" selection-end-line="2530" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content/rule/api/rule-api.html">
+    <entry file="file://$PROJECT_DIR$/content/rule/workflow/workflow-templates/workflow-template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+        <state relative-caret-position="411">
+          <caret line="36" column="106" lean-forward="false" selection-start-line="36" selection-start-column="106" selection-end-line="36" selection-end-column="106" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#0;n#!!top" expanded="false" />
+            <marker date="1512639790670" expanded="false" signature="2222:3031" ph="..." />
           </folding>
         </state>
       </provider>
