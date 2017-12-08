@@ -1,0 +1,27 @@
+<!-- Render the dialog -->
+<section role="dialog" id="api-key-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true">
+    <!-- Dialog header -->
+    <header class="aui-dialog2-header">
+        <!-- The dialog's title -->
+        <h2 class="aui-dialog2-header-main">API key</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+        </a>
+    </header>
+    <!-- Main dialog content -->
+    <div class="aui-dialog2-content" style="position:relative">
+        <form name="apiKeyForm" id="apiKeyForm" class="aui" novalidate ng-submit="callurl(apiKey)" style="text-align: center">
+            <div style="margin-bottom: 20px">Enter the API key and proceed with the testing.</div>
+            <input class="text long-field" type="text" id="apiKey" ng-model="apiKey" placeholder="Key" required style="text-align: center">
+        </form>
+        <div class="aui-toolbar2-secondary user-alerts" style="position:absolute;bottom: 0;left: 0;right: 0;margin: auto;text-align: center">
+            <span class="aui-primary-color"><b>Important:</b> You may have received an email with a valid API key. Please check your inbox.</span>
+        </div>
+    </div>
+    <!-- Dialog footer -->
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button type="submit" id="dialog-create-template" form="apiKeyForm" class="aui-button">Invoke</button>
+        </div>
+    </footer>
+</section>

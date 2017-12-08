@@ -3,19 +3,25 @@
 
 <head>
     <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.9.12/css/aui.min.css" media="all">
+    <link rel="stylesheet" href="../aui/css/aui-extended-sf.css">
+    <link rel="stylesheet" href="../aui/css/aui-experimental.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body ng-controller="adminController">
 
     <div id="loading" class="aui-page-notification aui-page-focused-medium">
-        <div class="aui-page-panel">
-            <div class="aui-page-panel-inner">
-                <section class="aui-page-panel-content">
-                    <div class="button-spinner"></div>
-                    <h3 id="busycontent">Loading your information...</h3>
-                </section>
-            </div>
+        <!--<div class="aui-page-panel">-->
+            <!--<div class="aui-page-panel-inner">-->
+                <!--<section class="aui-page-panel-content">-->
+                    <!--<div class="button-spinner"></div>-->
+                    <!--<h3 id="busycontent">Loading your information...</h3>-->
+                <!--</section>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="page-notif-content">
+            <div class="button-spinner"></div>
+            <div id="busycontent"><h2>Loading content...</h2></div>
         </div>
     </div>
     <div class="ac-content aui-page-fixed">
@@ -52,7 +58,7 @@
 
         <div ng-if="pagestatus=='alreadyinuse'" style="margin: 60px;text-align: center">
             <img width="100px" src="connection.png" />
-            <h2 style="color: #ffffff;">You are connected</h2>
+            <h2 style="color: #ffffff;">You are already connected with Smoothflow</h2>
         </div>
         <div ng-if="pagestatus=='loading'">
             <h3>Loading...</h3>
@@ -91,12 +97,9 @@
     <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-datepicker.min.js"></script>
     <script src="//aui-cdn.atlassian.com/aui-adg/6.0.6/js/aui-soy.min.js"></script>
 
-
-
     <script type="text/javascript" src="adminapp.js"></script>
     <script type="text/javascript" src="admin.controller.js"></script>
     <script type="text/javascript" src="../js/uimicrokernel.js"></script>
-
 
 
 </body>

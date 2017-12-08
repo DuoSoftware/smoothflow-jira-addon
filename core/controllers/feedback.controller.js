@@ -1,6 +1,6 @@
 app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope', 'dataHandler', '$uploader', '$storage', function ($scope, $http, $v6urls, $rootScope, dataHandler, uploader, storage) {
     $scope.IsNew = false;
-    $scope.Tasktypes = ['Complain', 'Bug', 'Improvement'];
+    $scope.Tasktypes = ['Bug', 'Improvement','New Feature','Support'];
     $scope.IsImageShow = false;
     $scope.IsFirst = true;
     $scope.IsSatus = false;
