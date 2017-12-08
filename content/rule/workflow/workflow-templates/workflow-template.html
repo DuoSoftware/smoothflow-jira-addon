@@ -31,10 +31,10 @@
             <!--</div>-->
         </div>
     </div>
-    <div class="body">
+    <div class="body" ng-if="component.DisplayName != 'End'">
         <!--div>{{component.Description}}</div-->
         <span ng-if="!component.bodyExpanded && component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Start' && component.DisplayName != 'End'" class="collapsed-content">...</span>
-        <span ng-if="component.outerExpanded && component.DisplayName == 'True' || component.outerExpanded && component.DisplayName == 'False'" class="collapsed-content">...</span>
+        <span ng-if="component.outerExpanded && component.Variables.length > 0" class="collapsed-content">...</span>
         <div ng-if="component.bodyExpanded">
             <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.DisplayName}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
         </div>
@@ -53,7 +53,9 @@
             <span>..</span>
         </div>
     </div>
-    <div class="workflow-add-node-sub" ng-class="{'offset':component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'}">
+    <div class="workflow-add-node-sub"
+         ng-class="{'offset':component.DisplayName == 'True' || component.DisplayName == 'False' || component.DisplayName == 'Case' || component.DisplayName == 'Default' || component.DisplayName == 'Fallthrough'}"
+         ng-if="component.DisplayName != 'End'">
         <div class="header-bar">
             <div class="component-capsule">
                 <span title="Add to {{component.DisplayName}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span>
@@ -69,5 +71,7 @@
         </div>
     </div>
     <div class="loader-default"></div>
-    <div class="outer" ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'" ng-if="!component.outerExpanded"></div>
+    <div class="outer"
+         ng-include="'content/rule/workflow/workflow-templates/workflow-template.html'"
+         ng-if="!component.outerExpanded && component.DisplayName != 'End'"></div>
 </div>
