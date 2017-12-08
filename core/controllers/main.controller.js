@@ -127,6 +127,17 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.activeInnerCompGroup = group;
         $scope.isInnerGroupOpen = !$scope.isInnerGroupOpen;
     };
+
+    //Kasun_Wijeratne_12_DEC_2017
+	$scope.toggleAllComps = function (text) {
+		if(text.length > 0){
+			$scope.expandAll = true;
+		}else{
+			$scope.expandAll = false;
+		}
+	};
+    //Kasun_Wijeratne_12_DEC_2017 - END
+
     $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);
@@ -537,6 +548,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 var componentClass = block.className.split(' ')[2];
                 if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
 
+					//Kasun_Wijeratne_11_DEC_2017
 					var o = angular.element(block).find('>.outer');
 					if(o.children().length > 0){
 						if(componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
@@ -547,6 +559,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 					}else{
 						angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
 					}
+					//Kasun_Wijeratne_11_DEC_2017 - END
 
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
