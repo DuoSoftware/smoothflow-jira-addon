@@ -553,6 +553,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 					if(o.children().length > 0){
 						if(componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
 							angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
+							angular.element(block).find('>.offset').css('display', 'none');
 						}else{
 							angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
 						}
