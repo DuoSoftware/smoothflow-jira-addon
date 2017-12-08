@@ -37,7 +37,8 @@
                             <div ng-show="activeInnerCompGroup == cat.title && isInnerGroupOpen" ng-hide="activeInnerCompGroup != cat.title">
                                 <button ng-repeat="comp in cat.data | filter:compToFilter" class="template-block" ng-disabled="callFromSwitch && comp.ControlType == 'action' || !callFromSwitch && comp.DisplayName == 'Case' || !callFromSwitch && comp.DisplayName == 'Default' || !callFromSwitch && comp.DisplayName == 'Fallthrough' || callFromSwitch && comp.DisplayName == 'If' || callFromSwitch && comp.DisplayName == 'Switch'" ng-click="newComponentInjection(comp)" ng-class="{'disabled-com':callFromSwitch && comp.ControlType == 'action' || !callFromSwitch && comp.DisplayName == 'Case' || !callFromSwitch && comp.DisplayName == 'Default' || !callFromSwitch && comp.DisplayName == 'Fallthrough' || callFromSwitch && comp.DisplayName == 'If' || callFromSwitch && comp.DisplayName == 'Switch'}">
                                     <div class="template-left">
-                                        <div class="template-icon" ng-class="comp.ControlType">{{comp.ControlType | limitTo:1 | uppercase}}</div>
+                                        <!--<div class="template-icon" ng-class="comp.ControlType">{{comp.ControlType | limitTo:1 | uppercase}}</div>-->
+                                        <div class="template-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{comp.webicon}}')"></div>
                                     </div>
                                     <div class="template-right">
                                         <div class="template-heading">{{comp.DisplayName}}</div>

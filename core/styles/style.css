@@ -1078,8 +1078,8 @@ button.button-primary{
     cursor: pointer;
 }
 .template-block .template-icon{
-    width: 30px;
-    height: 30px;
+    width: 37px;
+    height: 37px;
     /*background: #ccc;*/
     display: inline-block;
     float: left;
@@ -1088,7 +1088,9 @@ button.button-primary{
     color: #fff;
     /*padding-top: 10px;*/
     line-height: 30px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
+    border-radius: 50%;
+    background-size: 37px 37px;
 }
 .template-block .template-heading{
     font-size: 14px;
