@@ -480,7 +480,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }, {
         'Name': 'Conditions',
         'components': [],
-		'classes': {}
+        'classes': {}
     }];
 
     var collapsiblePanels = [];
@@ -988,6 +988,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
     };
 
+    //Delate Prot
+   // $scope.DeletePort = function () { };
     $scope.checkport = function (port) {
         for (x = 0; x < $scope.portlist.length; x++) {
             if ($scope.portlist[x].port == port) {
@@ -1330,22 +1332,22 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     }
                 });
 
-				angular.forEach($scope.structuredComps, function (comp) {
-					var temp = $filter('groupBy')(comp.components, 'class');
-					comp.classes = $.map(temp, function(value, index) {
-						return {'title':index,'data':value};
-					});
-					delete comp.components;
-					angular.forEach(comp.classes, function (_comp) {
-						_comp.categories = {};
-						var temp2 = $filter('groupBy')(_comp.data, 'Category');
-						_comp.categories = $.map(temp2, function(value, index) {
-							return {'title':index,'data':value};
-						});
-						delete _comp.data;
-					});
-				});
-				// debugger;
+                angular.forEach($scope.structuredComps, function (comp) {
+                    var temp = $filter('groupBy')(comp.components, 'class');
+                    comp.classes = $.map(temp, function (value, index) {
+                        return { 'title': index, 'data': value };
+                    });
+                    delete comp.components;
+                    angular.forEach(comp.classes, function (_comp) {
+                        _comp.categories = {};
+                        var temp2 = $filter('groupBy')(_comp.data, 'Category');
+                        _comp.categories = $.map(temp2, function (value, index) {
+                            return { 'title': index, 'data': value };
+                        });
+                        delete _comp.data;
+                    });
+                });
+                // debugger;
             }
             console.log($scope.structuredComps);
         }, function errorCallback(response) {
@@ -2434,7 +2436,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
-    $scope.uploadScreenshot = function(){
+    $scope.uploadScreenshot = function () {
         alert("hola");
     }
 
