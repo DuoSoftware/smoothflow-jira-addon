@@ -765,7 +765,7 @@ button.button-primary{
     text-transform: capitalize;
 }
 .workflow-block .header-bar span:nth-child(2).condition:after{
-    content: ':';
+    /*content: ':';*/
 }
 .workflow-block .header-bar span:first-child.trigger{
     background-image: url('');
