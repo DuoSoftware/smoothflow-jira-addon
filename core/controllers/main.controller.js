@@ -1335,7 +1335,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     //     item.workflow = [];
                     //     $scope.structuredComps[0].components.push(item);
                     // }
-					item.outerExpanded = true;
+					// item.outerExpanded = true;
 					if (item.ControlType == 'action') {
                         item.workflow = [];
                         $scope.structuredComps[0].components.push(item);

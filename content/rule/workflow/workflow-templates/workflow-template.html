@@ -9,7 +9,7 @@
         <!-- <span class="category-icon" ng-class="component.ControlType"></span> -->
         <span class="category-icon" style="background-image: url('http://www.smoothflow.io/wp-content/themes/smoothflow/images/{{component.webicon}}');background-size: 37px 37px;"></span>
         <span class="action">{{component.DisplayName}} </span> <span ng-if="component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Case'"><span class="separator"><i>in</i></span> <span class="cat-pill">{{component.Category}}</span></span>
-        <div class="delete-comp" title="Expand component" style="right: 20px">
+        <div class="delete-comp" title="Expand component" ng-if="component.DisplayName != 'Start' && component.DisplayName != 'End'" style="right: 20px">
             <button class="btn btn-default" type="button" ng-click="expandComponentBody(workflow, $index)">
                 <span class="aui-icon aui-icon-small aui-iconfont-{{component.bodyExpanded ? 'arrows-up' : 'arrows-down'}}">Delete component</span>
             </button>
@@ -33,7 +33,7 @@
     </div>
     <div class="body">
         <!--div>{{component.Description}}</div-->
-        <span ng-if="!component.bodyExpanded && component.DisplayName != 'True' && component.DisplayName != 'False'" class="collapsed-content">...</span>
+        <span ng-if="!component.bodyExpanded && component.DisplayName != 'True' && component.DisplayName != 'False' && component.DisplayName != 'Start' && component.DisplayName != 'End'" class="collapsed-content">...</span>
         <span ng-if="component.outerExpanded && component.DisplayName == 'True' || component.outerExpanded && component.DisplayName == 'False'" class="collapsed-content">...</span>
         <div ng-if="component.bodyExpanded">
             <div ng-repeat="variable in component.Variables"><span class="component-pro-key">{{variable.DisplayName}}:</span> <span class="component-pro-value">{{variable.Value}}</span></div>
