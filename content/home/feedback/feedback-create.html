@@ -38,11 +38,13 @@
             </legend> -->
                 <div class="field-group">
                     <label for="file">Upload file</label>
-                    <input class="upfile long-field" type="file" id="file" ng-click="uploadImage();" name="file-upload-image">
+                    <input class="upfile" type="file" id="file" ng-click="uploadImage();" name="file-upload-image">
                     <!-- <input type="file" ng-file-select="uploadImage($files)" ng-model="imageSrc"> -->
                 </div>
 
-                <img ng-src="{{$root.imageUrl}}" ng-show="IsImageShow" id="image" style="border: 1px lightgrey solid;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;width: 200px;padding: 10px;background: #fff;">
+                <div class="field-group long-field">
+                    <img ng-src="{{$root.imageUrl}}" ng-show="IsImageShow" id="image" style="border: 1px lightgrey solid;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;width: 200px;padding: 10px;background: #fff;">
+                </div>
 
             </fieldset>
         </form>
