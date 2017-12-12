@@ -31,7 +31,7 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
         // });
     };
     $scope.CreateNewTicket = function (IsNew) {
-        debugger;
+		AJS.dialog2("#new-feedback-dialog").show();
         if (IsNew) {
             $scope.IsNew = false;
             $scope.IsFirst = true;
@@ -105,9 +105,9 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 $scope.IsNew = false;
                 $scope.IsFirst = false;
                 $scope.IsSatus = true;
-                $rootScope.DisplayMessage("feedback successfully created", 'success');
+$rootScope.DisplayMessage("feedback successfully created", 'success');
+AJS.dialog2("#new-feedback-dialog").hide();
             }
-
         }, function errorCallback(response) {
             $rootScope.HideBusyContainer();
             $rootScope.DisplayMessage(response.Message, 'error', "Please Contact Administrator");
@@ -115,7 +115,8 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
             $scope.IsFirst = true;
             $scope.IsSatus = false;
             console.log(response.data);
-        });
+			AJS.dialog2("#new-feedback-dialog").hide();
+		});
     }
 
     $scope.getAllTicket = function () {

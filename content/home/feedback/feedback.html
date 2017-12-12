@@ -1,0 +1,217 @@
+<!--<div class="container">-->
+
+    <!--<header class="aui-page-header p-15 ph-0">-->
+        <!--<div class="aui-page-header-inner">-->
+            <!--<div class="aui-page-header-main">-->
+                <!--<h4>Feedback</h4>-->
+            <!--</div>-->
+            <!--<button id="NewFeedback" style="float: right;" ng-click="CreateNewTicket(IsNew)" class="aui-button">{{name}}</button>-->
+            <!--&lt;!&ndash; <button id="NewFeedback" style="float: right;" ng-click="CreateNewTicket(IsNew)" class="aui-button">Details</button> &ndash;&gt;-->
+        <!--</div>-->
+    <!--</header>-->
+    <!--<div class="clearfix">-->
+        <!--<div ng-if="IsFirst">-->
+            <!--<div class="aui-group" id="FeedbackCreate">-->
+                <!--<div class="aui-item-container projects">-->
+                    <!--<div class="shadowed-item">-->
+
+                        <!--<h5 class="project-header">Feedback</h5>-->
+                        <!--&lt;!&ndash; <div ng-hide="IsNew"> &ndash;&gt;-->
+                        <!--<form class="aui m-0">-->
+                            <!--<fieldset class="group">-->
+                                <!--<input placeholder="Search Feedback" class="text long-field selected-search" type="text" id="searchFeedback" name="searchFeedback"-->
+                                       <!--ng-model="Feedbacksearch" style="margin-top: 10px;">-->
+                                <!--<span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>-->
+                                <!--<div class="sf-padding select-item-body custom-scroll" style="height: unset">-->
+                                    <!--<ul class="unstyled project-list">-->
+                                        <!--<li ng-repeat="task in tasklist| filter : Feedbacksearch" style="border-bottom: 1px solid #d0d0d0;overflow: auto" ng-click="IsCommentShow=!IsCommentShow">-->
+                                            <!--<h5>-->
+                                                <!--<b>{{task.key}}</b>-->
+                                            <!--</h5>-->
+                                            <!--<span>{{task.fields.summary}}</span>-->
+                                            <!--<div style="float: right;">-->
+                                                <!--<p style="color: #757575;;font-size: 12px;padding-top: 22px;">-->
+                                                    <!--<span style="padding: 5px;border-radius: 5px;">{{task.fields.created| date:'medium'}}</span>-->
+                                                    <!--<span style="background: #d8d8d8;padding: 5px;border-radius: 5px;"> Status: {{task.fields.status.name}}</span>-->
+                                                    <!--<span style="background: #ffffff;padding: 5px;border-radius: 5px;"> Type </span> :-->
+                                                    <!--<span ng-class="{'bug': task.fields.issuetype.name == 'Bug','improvement': task.fields.issuetype.name == 'Improvement','complain': task.fields.issuetype.name == 'Complain','suggestion': task.fields.issuetype.name == 'Suggestion'}">{{task.fields.issuetype.name}} </span>-->
+                                                    <!--<span style="background: #ffffff;padding: 5px;border-radius: 5px;"> Priority</span> :-->
+                                                    <!--<span style="background: #ffffff;padding: 5px;border-radius: 5px;">{{task.fields.priority.name}} </span>-->
+                                                <!--</p>-->
+                                            <!--</div>-->
+
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</fieldset>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div ng-if="IsSatus">-->
+            <!--<div style="padding: 10px;background-color: #daffcb;">-->
+                <!--<span>{{ticketDetails.Message}}</span>-->
+            <!--</div>-->
+
+            <!--<hr/>-->
+            <!--<div style="padding: 5px;background-color: #efefef">-->
+                <!--<h5>-->
+                    <!--<b>{{ticketDetails.Data.IssueKey}}</b>-->
+                <!--</h5>-->
+                <!--<span>{{ticketDetails.Data.IssueUrl}}</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div ng-if="IsNew">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="aui-group" id="FeedbackCreate">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<div class="aui-item-container projects">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="shadowed-item">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<h5 class="project-header">New Feedback</h5>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash; <div ng-hide="IsNew"> &ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<form class="aui m-0">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="field-group">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label for="TicketName">Ticket Name&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span class="aui-icon icon-required">(required)</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input class="text long-field" type="text" id="TicketName" name="TicketName" ng-model="ticket.taskcode">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="field-group">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label for="description">Description</label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<textarea class="textarea" name="description-input" id="description-input" ng-model="ticket.description" placeholder="Description"></textarea>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="field-group">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label for="tag">Tag</label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input class="text long-field" disabled="true" type="text" id="tagname" name="tagname" value="SmoothFlow , SmoothFlow_Jira, HelpDesk">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="field-group">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label for="select-type">Select Type</label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<select class="select" ng-model="ticket.typeaa" id="select-type" name="select-type">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<option ng-repeat="typeaa in Tasktypes" value="{{typeaa}}">{{typeaa}}</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash; <div class="field-group">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<label for="Image">Attached Image</label> &ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash; <input class="text long-field" disabled="true" type="text" id="url" name="url" ng-model="$root.imageUrl"> &ndash;&gt;&ndash;&gt;-->
+
+
+
+                            <!--&lt;!&ndash;&lt;!&ndash; </div> &ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="field-group">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<button class="aui-button" ng-click="CreateTicket(ticket)">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span class="aui-icon aui-icon-small aui-iconfont-add">Add</span> Create</button>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+                            <!--&lt;!&ndash;<fieldset>&ndash;&gt;-->
+                                <!--&lt;!&ndash;&lt;!&ndash; <legend>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span>Attached Image</span>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</legend> &ndash;&gt;&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="field-group">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label for="file-upload-image">Upload file</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input class="upfile" type="file" id="file" ng-click="uploadImage();" name="file-upload-image">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash; <input type="file" ng-file-select="uploadImage($files)" ng-model="imageSrc"> &ndash;&gt;&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<img ng-src="{{$root.imageUrl}}" ng-show="IsImageShow" id="image" style="border: 1px lightgrey solid;">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</fieldset>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+
+<!--</div>-->
+
+<div class="clearfix rule-container">
+    <div class="row">
+        <nav class="aui-navgroup aui-navgroup-horizontal rule-nav-group dark-shadow" ng-class="{'dark-shadow':$root.listState == 'rule.workflow'}">
+            <div class="aui-navgroup-inner pos-rel">
+                <div class="aui-navgroup-primary">
+                    <div class="aui-nav-heading" style="background: none;border: none;padding-top: 7px">
+                        <h5>Feedback</h5>
+                    </div>
+                </div>
+                <div class="header-bar-search left">
+                    <input placeholder="Search Feedback" class="text long-field selected-search" type="text" id="searchFeedback" name="searchFeedback" ng-model="Feedbacksearch" style="margin-top: 10px;">
+                    <span class="aui-icon aui-icon-small aui-iconfont-search-small search-input-icon">Search projects</span>
+                </div>
+                <div class="aui-navgroup-secondary nav-button-right m-0">
+                    <ul class="aui-nav">
+                        <li>
+                            <button id="validationErrors" class="aui-button aui-button-primary" ng-click="CreateNewTicket(IsNew)">New ticket</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--Error page INJECTION-->
+        <div ng-include="'content/rule/validation-errors.html'"></div>
+        <!-- / Error page INJECTION-->
+
+        <!--New feedback page INJECTION-->
+        <div ng-include="'content/home/feedback/feedback-create.html'"></div>
+        <!-- / New feedback page INJECTION-->
+
+        <div class="clearfix custom-scroll feedback-body" id="workflow-ui">
+            <div class="container">
+                <form>
+                    <ul class="status-block-container bordered">
+                        <li class="status-block"
+                            ng-repeat="task in tasklist| filter : Feedbacksearch"
+                            ng-click="IsCommentShow=!IsCommentShow">
+                            <div class="header">
+                                <span class="title">{{task.key}}</span>
+                                <div class="status">
+                                    <span>
+                                        Status:
+                                        <!--<span>{{task.fields.status.name}}</span>-->
+                                        <!--<span class="aui-lozenge" ng-class="{-->
+                                        <!--'aui-lozenge-default': task.fields.status.name == 'Open',-->
+                                        <!--'aui-lozenge-current': task.fields.status.name == 'Improvement',-->
+                                        <!--'aui-lozenge-moved': task.fields.status.name == 'Complain',-->
+                                        <!--'aui-lozenge-complete': task.fields.status.name == 'Suggestion'}">{{task.fields.status.name}}</span>-->
+                                        <span class="stat">{{task.fields.status.name}}</span>
+                                    </span>
+                                    <span>
+                                        Type:
+                                        <span class="icon-stat {{task.fields.issuetype.name.split(' ')[0] | lowercase}}"></span><span>{{task.fields.issuetype.name}}</span>
+                                    </span>
+                                    <span>
+                                        Priority:
+                                        <span class="aui-lozenge" ng-class="{
+                                        'aui-lozenge-error': task.fields.priority.name == 'Blocker' || task.fields.priority.name == 'Critical' || task.fields.priority.name == 'Major',
+                                        'aui-lozenge-success': task.fields.priority.name == 'Minor',
+                                        'aui-lozenge-default': task.fields.priority.name == 'Trivial'}">{{task.fields.priority.name}}</span>
+                                    </span>
+                                </div>
+                                <div class="date"><span>{{task.fields.created| date:'mediumDate'}}</span><span>{{task.fields.created| date:'shortTime'}}</span></div>
+                            </div>
+                            <div class="body">{{task.fields.summary}}</div>
+                        </li>
+                    </ul>
+                </form>
+                <!--<div ng-if="IsSatus">-->
+                    <!--<div style="padding: 10px;background-color: #daffcb;">-->
+                        <!--<span>{{ticketDetails.Message}}</span>-->
+                    <!--</div>-->
+
+                    <!--<hr/>-->
+                    <!--<div style="padding: 5px;background-color: #efefef">-->
+                        <!--<h5>-->
+                            <!--<b>{{ticketDetails.Data.IssueKey}}</b>-->
+                        <!--</h5>-->
+                        <!--<span>{{ticketDetails.Data.IssueUrl}}</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>

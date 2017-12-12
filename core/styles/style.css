@@ -359,7 +359,7 @@ button.button-primary{
     /*margin: 0;*/
 /*}*/
 #workflow-components.border-temp{
-    border-right: solid 1px #eeeeee;
+    border-right: solid 1px #ddd;
 }
 
 #workflow-properties .property-heading,#workflow-components .property-heading{
@@ -1277,6 +1277,14 @@ button.button-primary{
 .p-15{
     padding: 15px!important;
 }
+.pv-20{
+    padding-top: 20px!important;
+    padding-bottom: 20px!important;
+}
+.ph-10{
+    padding-right: 10px!important;
+    padding-left: 10px!important;
+}
 .p-0{
     padding: 0!important;
 }
@@ -1292,6 +1300,9 @@ button.button-primary{
 }
 .bg-none{
     background: #ffffff!important;
+}
+.bg-gray{
+    background: #eee!important;
 }
 .ml-10{
     margin-left: 10px!important;
@@ -1515,7 +1526,7 @@ button.button-primary{
     /*border-bottom: solid 1px #eee;*/
     margin: 0 1px;
     cursor: pointer;
-    padding: 10px 12px;
+    padding: 10px 12px 10px 20px;
 }
 .comp-toggle-header>span:first-child{
     font-size: 14px;
@@ -2508,3 +2519,123 @@ dropdown select:hover{
     border-bottom:solid 1px;
     cursor: pointer;
 }
+
+
+/*Feedback view*/
+.feedback-body{
+    padding: 20px 10px 10px 10px;
+    background: #eeeeee;
+}
+.feedback-body.custom-scroll::-webkit-scrollbar{
+    background: #eeeeee;
+}
+.feedback-body.custom-scroll::-webkit-scrollbar-thumb{
+    background: #bbb;
+}
+.status-block-container{
+    padding: 0;
+}
+.status-block-container .status-block{
+    display: block;
+    margin: 0;
+    /* border: solid 1px #eee; */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+     background: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.status-block-container .status-block .header{
+    padding: 10px;
+    border-bottom: solid 1px #eee;
+}
+.status-block-container .status-block .body{
+    padding: 20px;
+}
+.status-block-container .status-block .header .title{
+    font-weight: 700;
+    margin-right: 30px;
+    display: inline-block;
+}
+.status-block-container .status-block .header .status{
+    display: inline-block;
+    font-size: 13px;
+    color: #777;
+}
+.status-block-container .status-block .header .status>span{
+    display: inline-block;
+}
+.status-block-container .status-block .header .status>span:not(:last-child){
+    margin-right: 10px;
+    padding-right: 15px;
+    border-right: solid 1px #ddd;
+}
+.status-block-container .status-block .header .status span span{
+    display: inline-block;
+    border-radius: 3px;
+    vertical-align: middle;
+    font-weight: 500;
+}
+.status-block-container .status-block .header .status span span.stat{
+    background: #fff;
+    color: #0052cc;
+    padding: 1px 7px 0px 7px;
+    border-radius: 3px;
+    /*border: solid 2px #b3d4ff;*/
+    border: solid 1px #4998ff;
+    display: inline-block;
+    text-transform: uppercase;
+    height: 19px;
+    font-size: 12px;
+}
+.status-block-container .status-block .header .status span span.stat + span{
+    color: #555;
+}
+.status-block-container .status-block .header .status span span.icon-stat{
+    display: inline-block;
+    width: 17px;
+    height: 16px;
+    margin-right: 5px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.access{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png');
+}
+.status-block-container .status-block .header .status span span.icon-stat.improvement{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -146px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.bug{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -81px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.epic{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -101px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.fault{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -61px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.help{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -41px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.meeting{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -123px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.new{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -170px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.story{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -192px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.support{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -20px 0px;
+}
+.status-block-container .status-block .header .status span span.icon-stat.task{
+    background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png') -214px 0px;
+}
+.status-block-container .status-block .header .date{
+    float: right;
+    font-size: 12px;
+    color: #888;
+}
+.status-block-container .status-block .header .date>span:first-child{
+    font-weight: 700;
+    margin-right: 10px;
+}
+
