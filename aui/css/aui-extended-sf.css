@@ -1576,6 +1576,7 @@ aui-header {
     margin-top: 0;
     padding-top: 0;
 }
+
 /*  tree indication for nested aui-nav's */
 .aui-navgroup-vertical .aui-nav .aui-nav {
     border-top: none;
@@ -1788,7 +1789,7 @@ aui-header {
 .aui-navgroup-horizontal .aui-nav-heading {
     height: 41px;
     padding: 10px;
-    background: #f8f8f8;
+    background: #fafafa;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     color: #aaa;
@@ -1802,6 +1803,29 @@ aui-header {
     font-size: 14px;
     color: #999;
     font-weight: 500;
+}
+.aui-navgroup-horizontal .aui-navgroup-inner .header-bar-search{
+    position: relative;
+    width: 50%;
+}
+.aui-navgroup-horizontal .aui-navgroup-inner .header-bar-search.left{
+    float: left;
+}
+.aui-navgroup-horizontal .aui-navgroup-inner .header-bar-search input{
+    width: 100%;
+    display: block;
+    margin: 0!important;
+    max-width: none;
+    padding: 6px 6px 5px 32px;
+    height: auto;
+    background: #fafafa;
+    border: solid 1px #eee;
+    /* border-top: solid 1px #eee; */
+    border-radius: 5px;
+    outline: none!important;
+}
+.aui-navgroup-horizontal .aui-navgroup-inner .header-bar-search span.aui-icon{
+    top: 9px;
 }
 .aui-nav-actions-list {
     font-size: 0;
@@ -7260,7 +7284,3 @@ li {
     height: 40px!important;
     margin: auto!important;
 }
-.bug{background: #b72c2c;padding: 5px;border-radius: 5px;color: white;}
-.improvement{background: #0d87a8;padding: 5px;border-radius: 5px;color: white;}
-.complain{background: #FFB74D;padding: 5px;border-radius: 5px;color: white;}
-.suggestion{background: #18b36d;padding: 5px;border-radius: 5px;color: white;}

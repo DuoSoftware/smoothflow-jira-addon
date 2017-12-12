@@ -51,8 +51,7 @@ app.controller('MainController', [
                 });
             }
         }
-    }
-    ])
+    }])
     .directive('dropdown', function () {
         // console.log(value);
         return {
@@ -77,20 +76,24 @@ app.controller('MainController', [
         }
     })
     .filter('filterComp', function () {
-        return function (arr, compName) {
-            if (!compName) {
+        return function (arr, scope) {
+            if (!scope.compToFilter) {
                 return arr;
             }
             var result = [];
-            compName = compName.toLowerCase();
+			scope.compToFilter = scope.compToFilter.toLowerCase();
             angular.forEach(arr, function (comp) {
-                if (comp.DisplayName.toLowerCase().indexOf(compName) !== -1) {
+                if (comp.DisplayName.toLowerCase().indexOf(scope.compToFilter) !== -1) {
                     result.push(comp);
                 }
             });
+			// if(result.length > 0){
+            	// scope.expandAll = true;
+			// }else{
+			// 	scope.expandAll = false;
+			// }
             return result;
-        }
-            ;
+        };
     })
     .filter('bytes', function () {
         return function (bytes, precision) {
@@ -126,6 +129,13 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.toggleInnerCompGroup = function (group) {
         $scope.activeInnerCompGroup = group;
         $scope.isInnerGroupOpen = !$scope.isInnerGroupOpen;
+    };
+    $scope.toggleAllComps = function (text) {
+    	if(text.length > 0){
+			$scope.expandAll = true;
+		}else{
+			$scope.expandAll = false;
+		}
     };
     $scope.tab = false;
     $scope.scrollTo = function (id) {
@@ -541,6 +551,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 					if(o.children().length > 0){
 						if(componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
 							angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
+							angular.element(block).find('>.offset').css('display', 'none');
 						}else{
 							angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
 						}
@@ -1335,7 +1346,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     //     item.workflow = [];
                     //     $scope.structuredComps[0].components.push(item);
                     // }
-					item.outerExpanded = true;
+					// item.outerExpanded = true;
 					if (item.ControlType == 'action') {
                         item.workflow = [];
                         $scope.structuredComps[0].components.push(item);
@@ -1955,7 +1966,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     // Kasun_Wijeratne_2017_10_23
     // This code gets a set of workflow and expands or collapses the block with given index accordingly
     $scope.expandComponentBody = function (workflow, position) {
-    	if(workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'false'){
+    	if(workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'False' || workflow[position].DisplayName == 'Case'){
 			workflow[position].outerExpanded ? workflow[position].outerExpanded = false : workflow[position].outerExpanded = true;
 		}else{
 			workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;

@@ -126,7 +126,14 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
 
     $scope.checkIfUserAlreadyExists = function () {
         // var URL = $v6urls.smoothflowIP + "/auth/users/"+$scope.SessionDetails.email;
-        var URL = $v6urls.smoothflowIP + "/auth/tenants/" + $scope.CurrentUserProfile.domain + "jira";
+        //debugger//
+        var domain = "";
+        if($rootScope.isNullOrEmptyOrUndefined($scope.CurrentUserProfile)){
+            domain = $rootScope.SessionDetails.Domain;
+        }else{
+            domain = $scope.CurrentUserProfile.domain;
+        }
+        var URL = $v6urls.smoothflowIP + "/auth/tenants/" + domain;
         $http.get(URL, {
             headers: {
                 'securityToken': 'ignore'
@@ -164,7 +171,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
                 $scope.CurrentUserProfile = response.data.jiraResponse;
                 var tenant = $rootScope.baseUrl.replace(/(?:https:\/\/)/g, '');
                 tenant = tenant.replace(/(?:\.atlassian\.net)/g, '');
-                $scope.CurrentUserProfile.domain = tenant;
+                $scope.CurrentUserProfile.domain = tenant + "jira";
                 $scope.CurrentUserProfile.avatar = $scope.CurrentUserProfile.avatarUrls["48x48"];
                 console.log($scope.CurrentUserProfile);
                 $scope.loadJiraUser($scope.CurrentUserProfile);
@@ -195,7 +202,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
                 var temUser = {
                     displayName: "Mr loba",
                     emailAddress: "shehan@duosoftware.com",
-                    domain: "tistus",
+                    domain: "duosoftwarejira",
                     avatar: "https://www.gravatar.com/avatar/7272996f825bd268885d6b20484d325c",
                     timeZone: "Sri Lanka"
                 }
@@ -209,7 +216,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
             var temUser = {
                 displayName: "Mr loba",
                 emailAddress: "shehan@duosoftware.com",
-                domain: "tistus",
+                domain: "duosoftwarejira",
                 avatar: "https://www.gravatar.com/avatar/7272996f825bd268885d6b20484d325c",
                 timeZone: "Sri Lanka"
             }

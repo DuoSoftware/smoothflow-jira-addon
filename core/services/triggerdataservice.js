@@ -35,6 +35,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
         var client = $objectstore.getClient("jiraAddonTriggers");
         client.onGetMany(function (data) {
+            debugger
             if (data.length == 0) {
                 tempData = [
                     { 'code': 'issue_created', 'projects': [] },
@@ -325,6 +326,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
     //tigger save
     this.SaveTriggers = function (WorkFlowID) {
+        debugger
         var saveJson = alltriggers;
         var payload = { "Objects": saveJson, "Parameters": { "KeyProperty": "code" } };
 

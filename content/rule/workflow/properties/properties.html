@@ -8,7 +8,7 @@
                 <textarea name="module_description" id="" ng-model="selectedModule.Description" class="form-control"></textarea>
             </div>-->
 
-            <div class="aui-tabs horizontal-tabs">
+            <div class="aui-tabs horizontal-tabs" ng-if="selectedModule.Variables.length > 0">
                 <ul class="tabs-menu">
                     <li class="menu-item" ng-class="{'active-tab': tab==true}">
                         <a ng-click="scrollTo(true)" class="linkcolor">Advance</a>
@@ -68,9 +68,10 @@
                 <!--</div>-->
 
                 <script>
-                    AJS.$(".arg-ico").tooltip();
+					AJS.$(".arg-ico").tooltip();
                 </script>
             </div>
+        </div>
     </form>
     <!--<div class="property-footer">-->
     <!--<div class="form-group">-->
@@ -78,4 +79,4 @@
     <!--<button class="btn btn-link">Cancel</button>-->
     <!--</div>-->
     <!--</div>-->
-    </div>
+</div>
