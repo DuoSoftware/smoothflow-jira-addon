@@ -260,6 +260,39 @@ button.button-primary{
     max-width: 120px;
     width: 120px;
 }
+.clikbl-list-item aui-toggle {
+    width: 45px;
+    height: 20px;
+    border-radius: 20px;
+}
+.clikbl-list-item aui-toggle::after {
+    background: transparent;
+    border-radius: 20px;
+}
+.clikbl-list-item aui-toggle input,.clikbl-list-item aui-toggle .aui-toggle-view,.clikbl-list-item aui-toggle .aui-toggle-view::after {
+    border-radius: 20px;
+    outline:none!important;
+}
+.clikbl-list-item aui-toggle .aui-toggle-view::after {
+    width: 18px;
+    height: 18px;
+}
+.clikbl-list-item aui-toggle .aui-toggle-tick, .clikbl-list-item aui-toggle .aui-toggle-cross {
+    top: 2px;
+}
+.clikbl-list-item aui-toggle .aui-toggle-tick {
+    left: 3px;
+}
+.clikbl-list-item aui-toggle .aui-toggle-cross {
+    right: 5px;
+}
+.clikbl-list-item .aui-toggle-input:checked + .aui-toggle-view::after, .aui-toggle-input.indeterminate-checked + .aui-toggle-view::after {
+    -webkit-transform: translateX(25px);
+    -moz-transform: translateX(25px);
+    -ms-transform: translateX(25px);
+    -o-transform: translateX(25px);
+    transform: translateX(25px);
+}
 .action-list-item .action-td{
     width: 50px;
 }
