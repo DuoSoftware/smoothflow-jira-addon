@@ -2591,7 +2591,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
     $scope.checkIfUserAlreadyExists = function (domain) {
         $http({
-            method: 'POST',
+            method: 'GET',
             url: $v6urls.smoothflowIP + "/auth/tenants/" + domain,
             headers: {
                 'securityToken': 'ignore'
