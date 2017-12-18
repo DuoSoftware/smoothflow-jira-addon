@@ -1,0 +1,39 @@
+.sf-listsort-wrap {
+    display: inline-block;
+}
+.sf-listsort-wrap button{
+    background: transparent;
+    border: none;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+    bottom:0;
+    margin: auto;
+    outline: none!important;
+}
+.sf-listsort-wrap button:hover{
+    background: #fff;
+    cursor: pointer;
+}
+.sf-listsort-wrap button>span{
+    display: block;
+    width: 10px;
+    height: 10px;
+    left: -3px;
+    top: -3px;
+}
+.sf-listsort-wrap button>span.inset{
+    top: 0px;
+}
+.sf-listsort-wrap button>span.aui-icon:before{
+    font-size: 10px;
+    height: 10px;
+    width: 10px;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0;
+    top: 0px;
+    left: 0px;
+}

@@ -1,17 +1,35 @@
 <div class="container mt-20">
     <table class="aui aui-table-sortable" id="currentRulesSortable">
         <thead>
-            <div style="overflow: auto;background: #ddd;margin-bottom: 5px">
+            <div class="clikbl-list-header">
                 <div style="float: left;width: 90%">
-                    <div class="aui-table-column-issue-key" id="name" style="float: left;padding: 7px 5px;width: 20%">Automation name</div>
-                    <div id="description" style="float: left;padding: 7px 5px;width: 20%">Description</div>
-                    <div id="createddate" style="float: left;padding: 7px 5px;width: 15%">Last updated on</div>
-                    <div id="createdby" style="float: left;padding: 7px 5px;width: 20%">Last updated by</div>
-                    <div id="executions" style="float: left;padding: 7px 5px;width: 15%">Execution count</div>
-                    <div id="status" style="float: left;padding: 7px 5px;width: 10%">Status</div>
+                    <div class="header-block" id="name" style="width: 20%">
+                        Automation name
+                        <sf-sort item-list="currentRules" header-list="headerListArray" prop-name="'ruleName'"></sf-sort>
+                    </div>
+                    <div class="header-block" id="description" style="width: 20%">
+                        Description
+                        <sf-sort item-list="currentRules" header-list="headerListArray" prop-name="'description'"></sf-sort>
+                    </div>
+                    <div class="header-block" id="createddate" style="width: 15%">
+                        Last updated
+                        <sf-sort item-list="currentRules" header-list="headerListArray" prop-name="'createdDate'"></sf-sort>
+                    </div>
+                    <div class="header-block" id="createdby" style="width: 20%">
+                        Last updated by
+                        <sf-sort item-list="currentRules" header-list="headerListArray" prop-name="'createdBy'"></sf-sort>
+                    </div>
+                    <div class="header-block" id="executions" style="width: 15%">
+                        Execution count
+                        <sf-sort item-list="currentRules" header-list="headerListArray" prop-name="'executions'"></sf-sort>
+                    </div>
+                    <div class="header-block" id="status" style="width: 10%">
+                        Status
+                        <sf-sort item-list="currentRules" header-list="headerListArray" prop-name="'status'"></sf-sort>
+                    </div>
                 </div>
                 <div style="float: left;width: 10%">
-                    <div id="action" style="float: left;padding: 7px 5px;width: 10%">Action</div>
+                    <div class="header-block" id="action" style="width: 10%">Action</div>
                     <!--<th class="aui-table-column-issue-key">Issue key</th>-->
                     <!--<th>Name</th>-->
                     <!--<th>Age</th>-->
@@ -95,7 +113,7 @@
                     </div>
                 </div>
                 <div headers="actions" style="width: 10%;float: left;padding: 5px">
-                    <aui-toggle id="automationStatus" class="list-toggle" label="Schedules Active" ng-disabled="rule.status == 'Draft'" ng-checked="rule.action" ng-click="updateRuleAction(rule)"></aui-toggle> <span style="position:relative;top: -3px">{{rule.action ? 'Active' : 'Inactive'}}</span>
+                    <aui-toggle id="automationStatus" class="list-toggle" label="Schedules Active" ng-disabled="rule.status == 'Draft'" ng-checked="rule.action" ng-click="updateRuleAction(rule)"></aui-toggle> <span style="position:relative;top: -5px">{{rule.action ? 'Active' : 'Inactive'}}</span>
                 </div>
             </div>
         </tbody>

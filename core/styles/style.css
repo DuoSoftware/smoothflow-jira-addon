@@ -293,6 +293,13 @@ button.button-primary{
     -o-transform: translateX(25px);
     transform: translateX(25px);
 }
+.clikbl-list-header {
+    overflow: auto;background: #ddd;margin-bottom: 5px;
+}
+.clikbl-list-header .header-block{
+    position: relative;
+    float: left;padding: 7px 5px;
+}
 .action-list-item .action-td{
     width: 50px;
 }
