@@ -1049,8 +1049,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).
             then(function (data, status, headers, config) {
                 if (data) {
-                  //  $scope.portlist = data;
-                  console.log(data);
+                    //  $scope.portlist = data;
+                    console.log(data);
 
                 }
             }, function (data, status, headers, config) {
@@ -2397,7 +2397,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function OnSuccess(response) {
             $scope.getScheduleDetails();
         }, function OnError(response) {
-            if (response) {            
+            if (response) {
                 $rootScope.DisplayMessage("Error when retriving schedule information.", "error");
             }
         });
@@ -2587,7 +2587,74 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
         $scope.GetAPIKey();
+        checkIfUserAlreadyExists($rootScope.SessionDetails.Domain);
     };
+    $scope.checkIfUserAlreadyExists = function (domain) {
+        $http({
+            method: 'POST',
+            url: $v6urls.smoothflowIP + "/auth/tenants/" + domain,
+            headers: {
+                'securityToken': 'ignore'
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+            if (response.data.Status) {
+                $scope.IsUser = true;
+            } else {
+
+                $scope.IsUser = false;
+                createtenant();
+            }
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    }
+
+
+
+    function createtenant() {
+        $http({
+            method: 'POST',
+            url: $v6urls.smoothflowIP + "/auth/tenants",
+            headers: {
+                'securityToken': 'ignore',
+                'studio.crowd.tokenkey': 'ignore',
+                'JSESSIONID': 'ignore',
+                'atlassian.xsrf.token. cloud.session.token': 'ignore'
+            },
+            data: {
+                'Admin': $scope.SessionDetails.email,
+                'Country': $scope.SessionDetails.country,
+                'TenantID': $scope.SessionDetails.Domain + "jira",
+                'Type': 'Generic'
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+            Addtotenant();
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
+    function Addtotenant() {
+        $http({
+            method: 'GET',
+            url: $v6urls.smoothflowIP + "/auth/tenants/" + $scope.SessionDetails.Domain + "jira" + "/adduser/" + $scope.SessionDetails.email,
+            headers: {
+                'securityToken': 'ignore',
+                'studio.crowd.tokenkey': 'ignore',
+                'JSESSIONID': 'ignore',
+                'atlassian.xsrf.token. cloud.session.token': 'ignore'
+            },
+
+        }).then(function successCallback(response) {
+            console.log(response);
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
 
     // retrive data from JIRA
     $scope.JiraSession = {};
