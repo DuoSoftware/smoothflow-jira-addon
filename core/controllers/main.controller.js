@@ -2715,4 +2715,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.expandSelected = function () {
         $scope.selectedExpanded = !$scope.selectedExpanded;
     }
+
+	// Kasun_Wijeratne_12_NOV_2017
+	$scope.headerListArray = [
+		'Name',
+		'Disc',
+		'Updatedon',
+		'Updatedby',
+		'Executions',
+		'Status'
+	]
+	// Kasun_Wijeratne_12_NOV_2017 - END
 }
