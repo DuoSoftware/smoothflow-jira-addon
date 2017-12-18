@@ -2397,7 +2397,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function OnSuccess(response) {
             $scope.getScheduleDetails();
         }, function OnError(response) {
-            if (response) {
+            if (response) {            
                 $rootScope.DisplayMessage("Error when retriving schedule information.", "error");
             }
         });

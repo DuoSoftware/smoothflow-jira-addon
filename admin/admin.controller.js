@@ -126,11 +126,11 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
 
     $scope.checkIfUserAlreadyExists = function () {
         // var URL = $v6urls.smoothflowIP + "/auth/users/"+$scope.SessionDetails.email;
-        //debugger//
+        debugger;
         var domain = "";
-        if($rootScope.isNullOrEmptyOrUndefined($scope.CurrentUserProfile)){
+        if ($rootScope.isNullOrEmptyOrUndefined($scope.CurrentUserProfile)) {
             domain = $rootScope.SessionDetails.Domain;
-        }else{
+        } else {
             domain = $scope.CurrentUserProfile.domain;
         }
         var URL = $v6urls.smoothflowIP + "/auth/tenants/" + domain;
@@ -142,6 +142,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
             if (response.data.Status) {
                 $scope.pagestatus = "alreadyinuse";
             } else {
+                createtenant();
                 $scope.pagestatus = "newuser";
             }
             $rootScope.HideBusyContainer();
@@ -153,6 +154,52 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
             }
         });
     };
+
+    function createtenant() {
+        $http({
+            method: 'POST',
+            url: $v6urls.smoothflowIP + "/auth/tenants",
+            headers: {
+                'securityToken': 'ignore',
+                'studio.crowd.tokenkey': 'ignore',
+                'JSESSIONID': 'ignore',
+                'atlassian.xsrf.token. cloud.session.token': 'ignore'
+            },
+            data: {
+                'Admin': $scope.SessionDetails.email,
+                'Country': $scope.SessionDetails.country,
+                'TenantID': $scope.SessionDetails.Domain + "jira",
+                'Type': 'Generic'
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+            Addtotenant(); 
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
+    function Addtotenant() {
+        $http({
+            method: 'GET',
+            url: $v6urls.smoothflowIP + "/auth/tenants/" + $scope.SessionDetails.Domain + "jira" + "/adduser/" + $scope.SessionDetails.email,
+            headers: {
+                'securityToken': 'ignore',
+                'studio.crowd.tokenkey': 'ignore',
+                'JSESSIONID': 'ignore',
+                'atlassian.xsrf.token. cloud.session.token': 'ignore'
+            },
+
+        }).then(function successCallback(response) {
+            console.log(response);
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
+
+
 
     $scope.getCurrentUserProfile = function () {
         var URL = $v6urls.jiraAPI + "/broker";
