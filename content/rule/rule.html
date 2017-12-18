@@ -13,14 +13,15 @@
                         <li ng-class="{'aui-nav-selected':$root.listState == 'rule.triggers'}">
                             <a href="" ng-click="$root.changeLocation('rule.triggers')">Triggers</a>
                         </li>
-                        <li ng-class="{'aui-nav-selected':$root.listState == 'rule.workflow'}">
-                            <a href="" ng-click="$root.changeLocation('rule.workflow')">Flows & Rules</a>
-                        </li>
                         <li ng-class="{'aui-nav-selected':$root.listState == 'rule.variables'}">
                             <a href="" ng-click="$root.changeLocation('rule.variables')">Fields
                                 <aui-badge>{{allVariables.length}}</aui-badge>
                             </a>
                         </li>
+                        <li ng-class="{'aui-nav-selected':$root.listState == 'rule.workflow'}">
+                            <a href="" ng-click="$root.changeLocation('rule.workflow')">Flows & Rules</a>
+                        </li>
+                      
                         <li ng-class="{'aui-nav-selected':$root.listState == 'rule.schedule'}">
                             <a href="" ng-click="$root.changeLocation('rule.schedule')">Schedule</a>
                         </li>
