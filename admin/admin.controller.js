@@ -142,7 +142,7 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
             if (response.data.Status) {
                 $scope.pagestatus = "alreadyinuse";
             } else {
-
+                createtenant();
                 $scope.pagestatus = "newuser";
             }
             $rootScope.HideBusyContainer();
@@ -155,6 +155,43 @@ adminapp.controller('adminController', ['$scope', '$rootScope', '$http', '$helpe
         });
     };
 
+
+    function createtenant() {
+        $http({
+            method: 'POST',
+            url: $v6urls.smoothflowIP + "/auth/tenants",
+            headers: {
+                'securityToken': 'ignore'               
+            },
+            data: {
+                'Admin': $scope.SessionDetails.email,
+                'Country': $scope.SessionDetails.country,
+                'TenantID': $scope.SessionDetails.Domain + "jira",
+                'Type': 'Generic'
+            }
+        }).then(function successCallback(response) {
+            console.log(response);
+            Addtotenant();
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
+    function Addtotenant() {
+        $http({
+            method: 'GET',
+            url: $v6urls.smoothflowIP + "/auth/tenants/" + $scope.SessionDetails.Domain + "jira" + "/adduser/" + $scope.SessionDetails.email,
+            headers: {
+                'securityToken': 'ignore'               
+            },
+
+        }).then(function successCallback(response) {
+            console.log(response);
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
 
 
 

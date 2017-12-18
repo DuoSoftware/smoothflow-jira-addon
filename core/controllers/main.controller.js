@@ -2587,66 +2587,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
         $scope.GetAPIKey();
-        $scope.checkIfUserAlreadyExists($rootScope.SessionDetails.Domain);
-    };
-    $scope.checkIfUserAlreadyExists = function (domain) {
-        $http({
-            method: 'GET',
-            url: $v6urls.smoothflowIP + "/auth/tenants/" + domain,
-            headers: {
-                'securityToken': 'ignore'
-            }
-        }).then(function successCallback(response) {
-            console.log(response);
-            if (response.data.Status) {
-                $scope.IsUser = true;
-            } else {
-
-                $scope.IsUser = false;
-                createtenant();
-            }
-        }, function errorCallback(response) {
-            console.log(response);
-        });
-    }
-
-
-
-    function createtenant() {
-        $http({
-            method: 'POST',
-            url: $v6urls.smoothflowIP + "/auth/tenants",
-            headers: {
-                'securityToken': 'ignore'               
-            },
-            data: {
-                'Admin': $scope.SessionDetails.email,
-                'Country': $scope.SessionDetails.country,
-                'TenantID': $scope.SessionDetails.Domain + "jira",
-                'Type': 'Generic'
-            }
-        }).then(function successCallback(response) {
-            console.log(response);
-            Addtotenant();
-        }, function errorCallback(response) {
-            console.log(response);
-        });
-    };
-
-    function Addtotenant() {
-        $http({
-            method: 'GET',
-            url: $v6urls.smoothflowIP + "/auth/tenants/" + $scope.SessionDetails.Domain + "jira" + "/adduser/" + $scope.SessionDetails.email,
-            headers: {
-                'securityToken': 'ignore'               
-            },
-
-        }).then(function successCallback(response) {
-            console.log(response);
-
-        }, function errorCallback(response) {
-            console.log(response);
-        });
+       
     };
 
 
