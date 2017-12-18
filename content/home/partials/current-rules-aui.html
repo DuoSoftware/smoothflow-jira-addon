@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div headers="actions" style="width: 10%;float: left;padding: 5px">
-                    <aui-toggle id="automationStatus" class="list-toggle" label="Schedules Active" ng-disabled="rule.status == 'Draft'" ng-checked="rule.action" ng-click="updateRuleAction(rule)"></aui-toggle> <span style="position:relative;top: -5px">{{rule.action ? 'Active' : 'Inactive'}}</span>
+                    <aui-toggle id="automationStatus" class="list-toggle" label="Schedules Active" ng-disabled="rule.status != 'Published'" ng-checked="rule.action" ng-click="updateRuleAction(rule)"></aui-toggle> <span style="position:relative;top: -5px">{{rule.action ? 'Active' : 'Inactive'}}</span>
                 </div>
             </div>
         </tbody>

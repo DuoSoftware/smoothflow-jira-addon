@@ -2725,5 +2725,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		'Executions',
 		'Status'
 	]
+	$scope.updateRuleAction = function (rule) {
+		rule.action = !rule.action;
+	}
 	// Kasun_Wijeratne_12_NOV_2017 - END
 }
