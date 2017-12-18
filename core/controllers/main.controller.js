@@ -2587,7 +2587,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
         $scope.GetAPIKey();
-        checkIfUserAlreadyExists($rootScope.SessionDetails.Domain);
+        $scope.checkIfUserAlreadyExists($rootScope.SessionDetails.Domain);
     };
     $scope.checkIfUserAlreadyExists = function (domain) {
         $http({
