@@ -2617,10 +2617,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             method: 'POST',
             url: $v6urls.smoothflowIP + "/auth/tenants",
             headers: {
-                'securityToken': 'ignore',
-                'studio.crowd.tokenkey': 'ignore',
-                'JSESSIONID': 'ignore',
-                'atlassian.xsrf.token. cloud.session.token': 'ignore'
+                'securityToken': 'ignore'               
             },
             data: {
                 'Admin': $scope.SessionDetails.email,
