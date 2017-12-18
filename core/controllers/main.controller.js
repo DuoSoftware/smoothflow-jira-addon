@@ -2638,10 +2638,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             method: 'GET',
             url: $v6urls.smoothflowIP + "/auth/tenants/" + $scope.SessionDetails.Domain + "jira" + "/adduser/" + $scope.SessionDetails.email,
             headers: {
-                'securityToken': 'ignore',
-                'studio.crowd.tokenkey': 'ignore',
-                'JSESSIONID': 'ignore',
-                'atlassian.xsrf.token. cloud.session.token': 'ignore'
+                'securityToken': 'ignore'               
             },
 
         }).then(function successCallback(response) {
