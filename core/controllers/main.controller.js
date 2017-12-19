@@ -1361,6 +1361,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             console.log("");
             console.log("Control JSON Received : ");
             console.log(response);
+           // addnewitemstoJson(response.data.Controls);
             $scope.allcomponents = response.data.Controls;
 
             if ($scope.allcomponents.length != 0) {
@@ -1423,6 +1424,24 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     };
 
+    //add new element in JSON
+    function addnewitemstoJson(controlJSON) {
+        controlJSON.forEach(function (element) {
+            element.help = "";
+            element.url = [{"name":"","url":""}];
+            
+            if (element.Variables.length > 0) {
+                element.Variables.forEach(function (elements) {
+                    elements.placeholder = "@"+elements.Key;
+                }, this);
+            }
+
+        }, this);
+
+        console.log(JSON.stringify(controlJSON))
+
+        debugger;
+    };
     $scope.getControlData();
 
     $scope.getTemplateData = function () {
@@ -2587,7 +2606,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $rootScope.SessionDetails.avatar = profile.avatarUrls["24x24"];
         $scope.SessionDetails = $rootScope.SessionDetails;
         $scope.GetAPIKey();
-       
+
     };
 
 
@@ -2716,14 +2735,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedExpanded = !$scope.selectedExpanded;
     }
 
-	// Kasun_Wijeratne_12_NOV_2017
-	$scope.headerListArray = [
-		'Name',
-		'Disc',
-		'Updatedon',
-		'Updatedby',
-		'Executions',
-		'Status'
-	]
-	// Kasun_Wijeratne_12_NOV_2017 - END
+    // Kasun_Wijeratne_12_NOV_2017
+    $scope.headerListArray = [
+        'Name',
+        'Disc',
+        'Updatedon',
+        'Updatedby',
+        'Executions',
+        'Status'
+    ]
+    // Kasun_Wijeratne_12_NOV_2017 - END
 }
