@@ -91,10 +91,22 @@
 			  "DisplayName": "Condition",
 			  "Value": "",
 			  "ValueList": [
-				"==",
-				"!=",
-				">",
-				"<"
+				{
+				  "key": "Equal",
+				  "value": "=="
+				},
+				{
+				  "key": "Not Equal",
+				  "value": "!="
+				},
+				{
+				  "key": "Greater Than",
+				  "value": ">"
+				},
+				{
+				  "key": "Less Than",
+				  "value": "<"
+				}
 			  ],
 			  "Type": "Dropdown",
 			  "Category": "",
