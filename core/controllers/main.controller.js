@@ -18,9 +18,10 @@ app.controller('MainController', [
             restrict: 'EA',
             scope: {
                 args: '=',
-                message: '='
+                message: '=',
+                placeholders:'='
             },
-            template: '<textarea class="form-control" type="text" ng-click="hello()" ng-model=\'message\'></textarea>',
+            template: '<textarea class="form-control" type="text" ng-click="hello()" placeholder={{placeholders}} ng-model=\'message\'></textarea>',
             link: function (scope, iElement, iAttrs) {
                 var mentions = scope.args;
                 var ta = iElement.find('textarea');
@@ -1646,6 +1647,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
+       
         $timeout(function () {
             $scope.activeModule = component.$$hashKey;
         });

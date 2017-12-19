@@ -4,6 +4,15 @@
     <form>
         <div id="property-wrap" class="custom-scroll dark">
             <div class="description">{{selectedModule.Description}}</div>
+
+
+            <ul ng-if="selectedModule.url.length > 0">
+                <span>Resource </span>
+                <li ng-repeat="urls in selectedModule.url" style="margin-top: 5px;">
+                    <a href="{{urls.url}}">{{urls.name}}</a>
+                </li>
+            </ul>
+
             <!--div class="property-field-wrap form-group">
                 <textarea name="module_description" id="" ng-model="selectedModule.Description" class="form-control"></textarea>
             </div>-->
@@ -29,7 +38,7 @@
                         <!-- <textcomplete args='args' message='var.Value'></textcomplete> -->
 
                         <div flex ng-if="var.control=='Textbox'">
-                            <textcomplete args='args' message='var.Value'></textcomplete>
+                            <textcomplete args='args' message='var.Value' placeholders='var.placeholder'></textcomplete>
                         </div>
                         <div flex ng-if="var.control=='Dropdown'">
                             <dropdown args='args' message='var.Value' all='var.ValueList'></dropdown>
@@ -68,7 +77,7 @@
                 <!--</div>-->
 
                 <script>
-					AJS.$(".arg-ico").tooltip();
+                    AJS.$(".arg-ico").tooltip();
                 </script>
             </div>
         </div>

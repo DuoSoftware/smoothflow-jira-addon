@@ -29,7 +29,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -61,7 +61,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -172,7 +172,7 @@
 			}
 		  ],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -222,7 +222,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -286,7 +286,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "archives.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -360,7 +360,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -410,7 +410,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -472,7 +472,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -536,7 +536,7 @@
 		  "ControlType": "condition",
 		  "workflow": [],
 		  "webicon": "hierarchy-structure.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -588,7 +588,7 @@
 		  "ControlType": "condition",
 		  "workflow": [],
 		  "webicon": "hierarchy-structure.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -627,7 +627,7 @@
 		  "ControlType": "condition",
 		  "workflow": [],
 		  "webicon": "hierarchy-structure.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -664,7 +664,7 @@
 		  "ControlType": "condition",
 		  "workflow": [],
 		  "webicon": "hierarchy-structure.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -809,7 +809,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mail.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -941,7 +941,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "smartphone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1075,7 +1075,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "twilio.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1221,7 +1221,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "satelite.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1355,7 +1355,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "satelite.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1489,7 +1489,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "satelite.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1637,7 +1637,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mail.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1745,7 +1745,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mail.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1867,7 +1867,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "satelite.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -1989,7 +1989,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "satelite.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2123,7 +2123,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "satelite.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2221,7 +2221,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "browser.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2319,7 +2319,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "browser (1).png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2417,7 +2417,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "browser (1).png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2503,7 +2503,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "browser (1).png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2661,7 +2661,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2819,7 +2819,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -2977,7 +2977,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3135,7 +3135,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3293,7 +3293,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3439,7 +3439,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3597,7 +3597,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3755,7 +3755,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3913,7 +3913,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "elastic.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -3970,7 +3970,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -4140,7 +4140,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -4310,7 +4310,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -4480,7 +4480,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -4662,7 +4662,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -4832,7 +4832,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -5002,7 +5002,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -5160,7 +5160,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -5330,7 +5330,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -5500,7 +5500,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "googlecloudsql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -5670,7 +5670,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -5840,7 +5840,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -6010,7 +6010,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -6180,7 +6180,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -6350,7 +6350,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -6520,7 +6520,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -6678,7 +6678,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -6848,7 +6848,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7018,7 +7018,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mssql.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7094,7 +7094,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7144,7 +7144,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "archives.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7206,7 +7206,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "archives.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7268,7 +7268,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "archives.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7318,7 +7318,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "archives.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7416,7 +7416,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "twitter.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7478,7 +7478,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cogwheel.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7552,7 +7552,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cogwheel.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7698,7 +7698,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mail.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -7868,7 +7868,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -8038,7 +8038,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -8196,7 +8196,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -8366,7 +8366,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -8536,7 +8536,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -8706,7 +8706,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -8876,7 +8876,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -9046,7 +9046,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "redis.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -9288,7 +9288,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -9530,7 +9530,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -9760,7 +9760,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -10002,7 +10002,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -10244,7 +10244,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -10486,7 +10486,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -10728,7 +10728,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -10970,7 +10970,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "clouddatastore.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -11128,7 +11128,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -11286,7 +11286,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -11432,7 +11432,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -11590,7 +11590,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -11748,7 +11748,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -11906,7 +11906,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -12064,7 +12064,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -12222,7 +12222,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -12380,7 +12380,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "hive.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -12562,7 +12562,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -12744,7 +12744,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -12914,7 +12914,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -13096,7 +13096,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -13278,7 +13278,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -13460,7 +13460,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -13642,7 +13642,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -13824,7 +13824,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14006,7 +14006,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "postgres.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14152,7 +14152,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14298,7 +14298,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14432,7 +14432,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14578,7 +14578,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14724,7 +14724,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -14870,7 +14870,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -15016,7 +15016,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -15162,7 +15162,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cassandra.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -15404,7 +15404,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -15646,7 +15646,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -15876,7 +15876,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -16118,7 +16118,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -16360,7 +16360,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -16602,7 +16602,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -16844,7 +16844,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -17086,7 +17086,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "bigtable.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -17256,7 +17256,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -17426,7 +17426,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -17584,7 +17584,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -17754,7 +17754,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -17924,7 +17924,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -18094,7 +18094,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -18264,7 +18264,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -18434,7 +18434,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "mongo.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -18580,7 +18580,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		   "url":[{"name":"Search Profile","url":"https://duosoftware.atlassian.net/wiki/spaces/DSF/pages/231047415/Search+Profile"}],
 		  "help": ""
 		},
 		{
@@ -18678,7 +18678,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -18728,7 +18728,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cogwheel.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -18802,8 +18802,8 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "calculator (1).png",
-		   "url":[{"name":"","url":""}],
-		  "help": ""
+		    "url":[],
+		  "help": "Enter two number you need to multiply "
 		},
 		{
 		  "library_id": "7875736359363356377",
@@ -18960,7 +18960,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "browser (1).png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19070,7 +19070,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19180,7 +19180,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cogwheel.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19254,7 +19254,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19340,7 +19340,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19414,7 +19414,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19488,7 +19488,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19562,7 +19562,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19636,7 +19636,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19710,7 +19710,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19784,7 +19784,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19858,7 +19858,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "raspberrypi.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -19992,7 +19992,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facebook.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20126,7 +20126,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20272,7 +20272,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20370,7 +20370,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20480,7 +20480,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20614,7 +20614,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20760,7 +20760,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20858,7 +20858,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -20968,7 +20968,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "cloudcharge.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -21090,7 +21090,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "paypal.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -21272,7 +21272,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "paypal.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -21375,7 +21375,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -21465,7 +21465,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -21763,7 +21763,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22009,7 +22009,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22099,7 +22099,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22202,7 +22202,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22305,7 +22305,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22408,7 +22408,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22511,7 +22511,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22614,7 +22614,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22717,7 +22717,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22820,7 +22820,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -22949,7 +22949,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "jira_main.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -23191,7 +23191,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -23397,7 +23397,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -23639,7 +23639,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -23797,7 +23797,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24003,7 +24003,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24149,7 +24149,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24343,7 +24343,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24417,7 +24417,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24623,7 +24623,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24769,7 +24769,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -24879,7 +24879,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -25109,7 +25109,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -25339,7 +25339,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -25509,7 +25509,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -25799,7 +25799,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -26041,7 +26041,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -26175,7 +26175,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -26297,7 +26297,7 @@
 		  "ControlType": "action",
 		  "workflow": [],
 		  "webicon": "facetone.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		},
 		{
@@ -26407,7 +26407,7 @@
 			}
 		  ],
 		  "webicon": "protractor.png",
-		   "url":[{"name":"","url":""}],
+		    "url":[],
 		  "help": ""
 		}
 	  ]
