@@ -63,7 +63,7 @@ app.controller('MainController', [
                 all: '='
             },
 
-            template: '<select style="width:100%" placeholder="Select" ng-model="message" style="font-size:smaller;margin-top:0px;"><option ng-repeat="type in all"    value="{{type}}" ng-click="switchValue(type)">{{type}}</option>   </select>',
+            template: '<select style="width:100%" placeholder="Select" ng-model="message" style="font-size:smaller;margin-top:0px;"><option ng-repeat="type in all"    value="{{type.key}}" ng-click="switchValue(type)">{{type.key}}</option>   </select>',
             link: function (scope, iElement, iAttrs) {
                 var mentions = scope.args;
 
