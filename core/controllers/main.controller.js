@@ -2877,7 +2877,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "avatar": $scope.selectedRule.avatar,
             "status": "Draft"
         };
-
+        AJS.dialog2("#rule-export-dialog").hide();
         $scope.data.push(saveObject);
         console.log($scope.data);
         $scope.data = Base64.encode(JSON.stringify($scope.data));
