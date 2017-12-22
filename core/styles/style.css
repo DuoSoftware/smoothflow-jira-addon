@@ -261,7 +261,7 @@ button.button-primary{
     width: 120px;
 }
 .clikbl-list-item aui-toggle {
-    width: 45px;
+    width: 59px;
     height: 20px;
     border-radius: 20px;
 }
@@ -274,7 +274,7 @@ button.button-primary{
     outline:none!important;
 }
 .clikbl-list-item aui-toggle .aui-toggle-view::after {
-    width: 18px;
+    width: 27px;
     height: 18px;
 }
 .clikbl-list-item aui-toggle .aui-toggle-tick, .clikbl-list-item aui-toggle .aui-toggle-cross {
@@ -287,11 +287,30 @@ button.button-primary{
     right: 5px;
 }
 .clikbl-list-item .aui-toggle-input:checked + .aui-toggle-view::after, .aui-toggle-input.indeterminate-checked + .aui-toggle-view::after {
-    -webkit-transform: translateX(25px);
-    -moz-transform: translateX(25px);
-    -ms-transform: translateX(25px);
-    -o-transform: translateX(25px);
-    transform: translateX(25px);
+
+    -webkit-transform: translateX(30px);
+    -moz-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    -o-transform: translateX(30px);
+    transform: translateX(30px);
+}
+.clikbl-list-item .aui-iconfont-success:before {
+    content: 'Yes'!important;
+    font-size: 12px;
+    margin-top: -5px;
+    left: 13px;
+    text-transform: uppercase;
+    font-family: 'Roboto','Open sans', Arial, sans-serif;
+
+}
+.clikbl-list-item .aui-iconfont-close-dialog:before {
+    content: 'No'!important;
+    font-size: 12px;
+    margin-top: -5px;
+    right: -13px;
+    text-transform: uppercase;
+    font-family: 'Roboto','Open sans', Arial, sans-serif;
+
 }
 .clikbl-list-header {
     overflow: auto;background: #ddd;margin-bottom: 5px;
@@ -300,6 +319,8 @@ button.button-primary{
     position: relative;
     float: left;padding: 7px 5px;
 }
+
+
 .action-list-item .action-td{
     width: 50px;
 }
@@ -314,6 +335,28 @@ button.button-primary{
 }
 .action-list-item .action-btn:hover{
     background: #ddd;
+}
+
+.ul-headed{
+    margin-bottom: 10px;
+    display: block;
+}
+.ul-headed h4,
+.ul-headed h5{
+    margin-bottom: 10px;
+}
+.ul-headed ul{
+    line-height: 22px;
+    list-style: none;
+    padding: 0 0 0 20px;
+    margin: 0 0 10px 0;
+}
+.ul-headed ul li{
+    margin: 0;
+}
+.ul-headed ul li:before{
+    content: '▬';
+    margin-right: 10px;
 }
 .list-state{
     font-weight: bold;
@@ -406,7 +449,7 @@ button.button-primary{
     display: inline-block;
     height: 43px;
     width: 100%;
-    padding: 11px;
+    padding: 7px 10px;
     background: #fff;
     /*color: #4d6f8e;*/
     /*border-bottom: solid 1px #ccc;*/
@@ -427,7 +470,7 @@ button.button-primary{
     bottom:0;
 }
 #property-wrap{
-    padding: 50px 10px 10px 10px;
+    padding: 45px 10px 10px 10px;
     /*padding-bottom: 50px;*/
 }
 .property-footer .form-group{
@@ -441,12 +484,12 @@ button.button-primary{
     overflow: hidden;
 }
 #workflow-properties #property-wrap .description{
-    padding: 0px 0px 15px 0px;
+    padding: 0px 0px 30px 0px;
 }
 #workflow-properties #property-wrap .property-field-wrap,
 #workflow-components #components-wrap .components-field-wrap{
     /*padding: 5px 10px;*/
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 #workflow-properties #property-wrap .property-field-wrap .property-field-head{
     overflow: auto;
@@ -511,6 +554,7 @@ button.button-primary{
     box-shadow: none!important;
     border-color: #dddddd!important;
     padding: 10px!important;
+    resize: none;
 }
 #workflow-properties #property-wrap .property-field-wrap .form-group, #workflow-components #components-wrap .components-field-wrap .form-group{
     margin:0;
@@ -1347,6 +1391,21 @@ button.button-primary{
 .ml-10{
     margin-left: 10px!important;
 }
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5
+{
+    color: #ffffff;
+}
+
+.dark ul,
+.dark p,
+.dark span
+{
+    color: #aaaaaa;
+}
 /*Helpers*/
 
 /*Icons*/
@@ -1601,7 +1660,7 @@ button.button-primary{
 /*---Lakmini 02_Oct_2017 ---*/
 .postdiv{
     background: #70ce60;
-    border-right: solid 1px #bbb;
+    /*border-right: solid 1px #bbb;*/
     font-size: 17px;
     /* text-shadow: 0 1px 0 rgba(0,0,0,.1); */
     /* font-family: Titillium Web,sans-serif; */
@@ -1618,7 +1677,7 @@ button.button-primary{
 }
 .getdiv{
     background: #61affe;
-    border-right: solid 1px #bbb;
+    /*border-right: solid 1px #bbb;*/
     font-size: 17px;
     /* text-shadow: 0 1px 0 rgba(0,0,0,.1); */
     /* font-family: Titillium Web,sans-serif; */
@@ -1639,13 +1698,13 @@ button.button-primary{
     /* padding-bottom: 18px; */
     /* padding-right: 10px; */
     /* padding-left: 5px; */
-    border-color: #ddd;
+    /*border-color: #ddd;*/
     border-radius: 3px;
-    border-style: solid;
+    /*border-style: solid;*/
     margin-bottom: 17px;
-    border-width: thin;
+    /*border-width: thin;*/
     list-style-type: none;
-    /* box-shadow: 0 1px 3px #ccc; */
+     box-shadow: 0 1px 3px #ccc;
 }
 /*.posturldiv{*/
     /*background: #e9fcf3;*/
@@ -1665,13 +1724,13 @@ button.button-primary{
     /* padding-bottom: 18px; */
     /* padding-right: 10px; */
     /* padding-left: 5px; */
-    border-color: #ddd;
+    /*border-color: #ddd;*/
     border-radius: 3px;
-    border-style: solid;
+    /*border-style: solid;*/
     margin-bottom: 17px;
-    border-width: thin;
+    /*border-width: thin;*/
     list-style-type: none;
-    /* box-shadow: 0 1px 3px #ccc; */
+     box-shadow: 0 1px 3px #ccc;
 }
 /*.geturldiv{*/
     /*background: rgba(97,175,254,.1);*/
@@ -1909,6 +1968,23 @@ button.button-primary{
     }
 }
 
+@keyframes fadeNmove {
+    0% { opacity: 0; }
+    50% { opacity: 1 }
+    100% { opacity: 0;right: 120px; }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0 }
+    50% { opacity: 1 }
+    100% { opacity: 0 }
+}
+
 /*Landing content*/
 .landing-container .landing-content{
     /*width: 350px;*/
@@ -2043,23 +2119,36 @@ button.button-primary{
 
 /*Check-block*/
 .check-block{
-    background: #eee;
+    /*background: #eee;*/
     padding: 8px 10px;
     margin: 5px 0;
     display: inline-block;
     border-radius: 5px;
     color: #555;
+    font-weight: 500;
     cursor: pointer;
     width: 100%;
+}
+.check-block:hover{
+    background: #eee;
 }
 .check-block.selected{
     background: #bbb;
     /*background: #3572b0;*/
     color: #fff;
 }
-.check-block .aui-icon{
+.check-block .aui-icon.right,
+.check-block.selected .aui-icon.right{
     float: right;
     color: #eee;
+}
+.check-block .aui-icon.left{
+    float: left;
+    color: #555;
+    margin-right: 10px;
+}
+.check-block.selected .aui-icon.left{
+    color: #fff;
 }
 /*Check-block - END*/
 
@@ -2530,18 +2619,6 @@ button.button-primary{
     animation: fadeNmove 0.75s linear;
 }
 
-@keyframes fadeNmove {
-    0% { opacity: 0; }
-    50% { opacity: 1 }
-    100% { opacity: 0;right: 120px; }
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0 }
-    50% { opacity: 1 }
-    100% { opacity: 0 }
-}
-
 dropdown{
     display: block;
     padding: 10px;
@@ -2636,6 +2713,7 @@ dropdown select:hover{
     height: 16px;
     margin-right: 5px;
 }
+
 .status-block-container .status-block .header .status span span.icon-stat.access{
     background: url('http://localhost/duo/Smoothflow/ADDON/Addon_KASUN/smoothflow-jira-addon/core/images/jira-status-stripe.png');
 }
@@ -2678,4 +2756,18 @@ dropdown select:hover{
     font-weight: 700;
     margin-right: 10px;
 }
+
+
+/*INTROJS EXTENDED*/
+.introjs-skipbutton{
+    background: blue!important;
+    border-radius: 3px!important;
+    border: none!important;
+    color: #fff!important;
+    text-shadow: none!important;
+}
+.introjs-helperNumberLayer{
+    display: none;
+}
+/*INTROJS EXTENDED - END */
 
