@@ -88,4 +88,29 @@
     <!--<button class="btn btn-link">Cancel</button>-->
     <!--</div>-->
     <!--</div>-->
+
+    <div class="overhead-container hidden-width right">
+        <div class="overhead-container-header-small">
+            <span class="aui-icon aui-icon-small aui-iconfont-help"></span>
+            <h5>Tips on what to do here</h5>
+            <!--<button class="aui-button" type="button">-->
+            <!--<span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>-->
+            <!--</button>-->
+        </div>
+        <div class="overhead-container-body">
+            <div class="ul-headed dark">
+                <h5>You may input</h5>
+                <ul>
+                    <li ng-repeat="input in selectedModule.Variables">Something as <i>*{{input.DisplayName}}*</i></li>
+                </ul>
+            </div>
+
+            <div class="dark">
+                <h5>Output</h5>
+                <div>
+                    <p>Automation output goes here</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
