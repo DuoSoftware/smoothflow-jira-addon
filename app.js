@@ -70,10 +70,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/feedback',
             templateUrl: 'content/home/feedback/feedback.html',
             controller: 'FeedbackController'
-        }).state('rule.importexport', {
+        }).state('Import', {
             url: '/importexport',
-            templateUrl: 'content/rule/importexport/rule-importexport.html',
-            controller: 'ImportExportController'
+            templateUrl: 'content/home/importexport/rule-importexport.html',
+            
         });
 
 }
