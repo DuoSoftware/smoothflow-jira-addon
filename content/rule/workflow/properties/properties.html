@@ -4,7 +4,7 @@
     <form>
         <div id="property-wrap" class="custom-scroll dark">
             <div class="description">{{selectedModule.Description}}</div>
-
+            <p ng-bind-html="{{selectedModule.help}}"></p>
 
             <ul ng-if="selectedModule.url.length > 0">
                 <span>Resource </span>
