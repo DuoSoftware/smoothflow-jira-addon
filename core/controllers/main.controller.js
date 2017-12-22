@@ -19,7 +19,7 @@ app.controller('MainController', [
             scope: {
                 args: '=',
                 message: '=',
-                placeholders:'='
+                placeholders: '='
             },
             template: '<textarea class="form-control" type="text" ng-click="hello()" placeholder={{placeholders}} ng-model=\'message\'></textarea>',
             link: function (scope, iElement, iAttrs) {
@@ -1362,7 +1362,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             console.log("");
             console.log("Control JSON Received : ");
             console.log(response);
-           // addnewitemstoJson(response.data.Controls);
+            // addnewitemstoJson(response.data.Controls);
             $scope.allcomponents = response.data.Controls;
 
             if ($scope.allcomponents.length != 0) {
@@ -1429,11 +1429,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     function addnewitemstoJson(controlJSON) {
         controlJSON.forEach(function (element) {
             element.help = "";
-            element.url = [{"name":"","url":""}];
-            
+            element.url = [{ "name": "", "url": "" }];
+
             if (element.Variables.length > 0) {
                 element.Variables.forEach(function (elements) {
-                    elements.placeholder = "@"+elements.Key;
+                    elements.placeholder = "@" + elements.Key;
                 }, this);
             }
 
@@ -1510,6 +1510,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.closeRemoveDialog = function (e) {
         e.preventDefault();
         AJS.dialog2("#rule-delete-dialog").hide();
+    };
+    $scope.closeExportDialog = function (e) {
+        e.preventDefault();
+        AJS.dialog2("#rule-export-dialog").hide();
     };
 
     $scope.removeFromNGINX = function (name, username) {
@@ -1647,7 +1651,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
-       
+
         $timeout(function () {
             $scope.activeModule = component.$$hashKey;
         });
@@ -2736,23 +2740,23 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.expandSelected = function () {
         $scope.selectedExpanded = !$scope.selectedExpanded;
     }
-	// Kasun_Wijeratne_12_NOV_2017
-	$scope.headerListArray = [
-		'Name',
-		'Disc',
-		'Updatedon',
-		'Updatedby',
-		'Executions',
-		'Status'
-	]
-	$scope.updateRuleAction = function (rule) {
-		rule.action = !rule.action;
-	}
+    // Kasun_Wijeratne_12_NOV_2017
+    $scope.headerListArray = [
+        'Name',
+        'Disc',
+        'Updatedon',
+        'Updatedby',
+        'Executions',
+        'Status'
+    ]
+    $scope.updateRuleAction = function (rule) {
+        rule.action = !rule.action;
+    }
     // Kasun_Wijeratne_12_NOV_2017 - END
-     /** Export and Import added by Lakmini */
+    /** Export and Import added by Lakmini */
 
 
-     var Base64 = {
+    var Base64 = {
         _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
         encode: function (e) {
             var t = "";
@@ -2858,7 +2862,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "id": dataHandler.createuuid(),
             "wfid": dataHandler.createuuid(),
             "name": "import" + $scope.getWFName($scope.selectedRule.ruleName),
-            "displayname": "import " + $scope.selectedRule.ruleName,
+            "displayname": "import_" + $scope.selectedRule.ruleName,
             "comment": "",
             "description": $scope.selectedRule.description,
             "version": "",
@@ -2869,7 +2873,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             "workflow": $scope.selectedRule.workflow,
             "createdBy": $scope.selectedRule.createdBy,
             "createdDate": $scope.selectedRule.createdDate,
-            "ruleName": "import " +$scope.selectedRule.ruleName,
+            "ruleName": "import_" + $scope.selectedRule.ruleName,
             "avatar": $scope.selectedRule.avatar,
             "status": "Draft"
         };
@@ -2888,7 +2892,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         element.click();
 
     }
-
+    $scope.confirmExport = function () {
+        AJS.dialog2("#rule-export-dialog").show();
+    }
+    $scope.movetoImport = function () {
+        AJS.dialog2("#rule-import-dialog").show();
+     };
+     $scope.closeImport = function () {
+        AJS.dialog2("#rule-import-dialog").hide();
+     };
     $scope.$on('importBroadcast', function (event, open) {
         $scope.selectedRule = open.data;
         $scope.openSelectedRule(open.data, event);
@@ -2899,6 +2911,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.SetFile = function () {
         debugger;
         angular.element(document.querySelector('#importfile')).on('change', function () {
+            AJS.dialog2("#rule-import-dialog").hide();
             $scope.pdFile = this.files[0];
 
             $scope.importFile($scope.pdFile);

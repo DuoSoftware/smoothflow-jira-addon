@@ -54,7 +54,7 @@
                         <button class="aui-button" ng-click="refresh()">
                             <span class="aui-icon aui-icon-small aui-iconfont-build">Refresh</span>
                         </button>
-                        <button class="aui-button" ng-click="$root.changeLocation('Import')">
+                        <button class="aui-button" ng-click="movetoImport()">
                             <span class="aui-icon aui-icon-small aui-iconfont-deploy">Import</span>
                         </button>
                     </div>
@@ -66,5 +66,8 @@
     <!--CREATED RULES INJECTION-->
     <div ng-include="'content/home/partials/current-rules-aui.html'"></div>
     <!-- / CREATED RULES INJECTION-->
+    <!--IMPORT INJECTION-->
+    <div ng-include="'content/home/importexport/rule-import-dialog.html'"></div>
+    <!-- / IMPORT INJECTION-->
 
 </div>

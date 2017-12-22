@@ -12,7 +12,7 @@
                     <button class="aui-button" ng-click="removeRule()">
                         <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete</span>
                     </button>
-                    <button class="aui-button" ng-click="exportFile()">
+                    <button class="aui-button" ng-click="confirmExport()">
                         <span class="aui-icon aui-icon-small aui-iconfont-export">Export</span>
                     </button>
                 </div>
@@ -162,4 +162,8 @@
     <!--RULE DELETE INJECTION-->
     <div ng-include="'content/rule/details/rule-delete-dialog.html'"></div>
     <!-- / RULE DELETE INJECTION-->
+
+    <!-- RULE EXPORT INJECTION -->
+    <div ng-include="'content/home/importexport/rule-export-dialog.html'"></div>
+     <!-- /RULE EXPORT INJECTION -->
 </div>
