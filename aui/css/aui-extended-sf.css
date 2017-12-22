@@ -539,7 +539,8 @@ h5 + h6 {
 }
 .overhead-container.left:hover, .overhead-container.right:hover{
     width: 98%;
-    height: 500px;
+    /*height: 500px;*/
+    height: calc(100% - 50px);
     -webkit-transition: width 0.3s, height 0.3s;
     -moz-transition: width 0.3s, height 0.3s;
     -ms-transition: width 0.3s, height 0.3s;
