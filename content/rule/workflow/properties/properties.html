@@ -44,22 +44,25 @@
                         <div flex ng-if="var.control=='Dropdown'">
                             <dropdown args='args' message='var.Value' all='var.ValueList'></dropdown>
                         </div>
+                        <div flex ng-if="var.control=='APIControl'">
+                            <sf-api-dd funcstring="var.APIMethod+'()'" res="var.Value" sf-dd-selected="var.Value"></sf-api-dd>
+                        </div>
                     </div>
 
 
                     <!--Dropdonw from API directive - TEST CODE-->
-                    <div class="property-field-wrap">
-                        <div class="property-field-head">
-                            <div class="heading">##### Array dropdown #####</div>
+                    <!--<div class="property-field-wrap">-->
+                        <!--<div class="property-field-head">-->
+                            <!--<div class="heading">##### Array dropdown #####</div>-->
 
-                            <div class="type string">STRING</div>
-                        </div>
-                        <div flex>
-                            <div style="padding: 10px;border: solid 1px;border-color: #dddddd!important;border-bottom-right-radius:  5px;border-bottom-left-radius: 5px;">
-                                <sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>
-                            </div>
-                        </div>
-                    </div>
+                            <!--<div class="type string">STRING</div>-->
+                        <!--</div>-->
+                        <!--<div flex>-->
+                            <!--<div style="padding: 10px;border: solid 1px;border-color: #dddddd!important;border-bottom-right-radius:  5px;border-bottom-left-radius: 5px;">-->
+                                <!--<sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <!--Dropdonw from API directive - TEST CODE-->
                 </div>
 
