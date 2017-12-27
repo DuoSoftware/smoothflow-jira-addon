@@ -76,6 +76,10 @@
                 <div ui-view id="main-view"></div>
             </section>
         </div>
+
+        <!--Intro view injection for fresh users-->
+        <div ng-include="'sf-intro.html'"></div>
+        <!--Intro view injection for fresh users - END -->
     </div>
 
     <script id="connect-loader" data-options="sizeToParent:true;hideFooter:true;">

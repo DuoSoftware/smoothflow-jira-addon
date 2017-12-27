@@ -29,30 +29,27 @@
                         <!-- <textcomplete args='args' message='var.Value'></textcomplete> -->
 
                         <div flex ng-if="var.control=='Textbox'">
-                            <textcomplete args='args' message='var.Value'></textcomplete>
+                            <textcomplete args='args' message='var.Value' placeholders='var.placeholder'></textcomplete>
                         </div>
                         <div flex ng-if="var.control=='Dropdown'">
                             <dropdown args='args' message='var.Value' all='var.ValueList'></dropdown>
                         </div>
-                    </div>
-                    <div class="property-field-wrap">
-                        <div class="property-field-head">
-                            <div class="heading">Array dropdown</div>
-
-                            <div class="type string">STRING</div>
-                            <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
+                        <div flex ng-if="var.control == 'APIControl'">
+                            <sf-api-dd funcstring="var.APIMethod+'()'" res="var.ValueList" sf-dd-selected="var.Value"></sf-api-dd>
                         </div>
+                    </div>
+                    <!--<div class="property-field-wrap">-->
+                        <!--<div class="property-field-head">-->
+                            <!--<div class="heading">##### Array dropdown #####</div>-->
 
-                        <!-- <textcomplete args='args' message='var.Value'></textcomplete> -->
-
-                        <!--<div flex>-->
-                            <!--<sf-array-dd arraylist="testStringArray" selecteditem="selectedarritem" apiready="apiloading"></sf-array-dd>-->
+                            <!--<div class="type string">STRING</div>-->
                         <!--</div>-->
-                        <div flex>
-                            <sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>
-                        </div>
-
-                    </div>
+                        <!--<div flex>-->
+                            <!--<div style="padding: 10px;border: solid 1px;border-color: #dddddd!important;border-bottom-right-radius:  5px;border-bottom-left-radius: 5px;">-->
+                                <!--<sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                 </div>
 
@@ -107,20 +104,25 @@
                 <!--<span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>-->
             <!--</button>-->
         </div>
-        <div class="overhead-container-body">
+        <div class="overhead-container-body" style="height: calc(100% - 30px)">
             <div class="ul-headed dark">
                 <h5>You may input</h5>
                 <ul>
-                    <li ng-repeat="input in selectedModule.Variables">
-                        <div>Something as <i>*{{input.DisplayName}}*</i></div>
+                    <li ng-repeat="inp in selectedModule.Variables">
+                        <div>Something as <i>*{{inp.DisplayName}}*</i></div>
 
                         <div>
-                            <div id="copy-{{input.DisplayName.replace(' ', '') | lowercase}}">*Sample data for <b>{{input.DisplayName}}</b> goes here</div>
-                            <div class="copy-sample-controls" style="width: 100%;text-align: right">
-                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+input.DisplayName.replace(' ', '') | lowercase)" style="color: #80DEEA">COPY</button>
+                            <div id="copy-{{inp.DisplayName.replace(' ', '') | lowercase}}" style="width: 80%;float: left">
+                                {{inp.placeholder}}
+                            </div>
+                            <div class="copy-sample-controls" style="width: 20%;float: right">
+                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+inp.DisplayName.replace(' ', '') | lowercase)"><span class="aui-icon aui-icon-small aui-iconfont-pages"></span></button>
                             </div>
                         </div>
                     </li>
+                    <script>
+						AJS.$(".aui-button").tooltip();
+                    </script>
                 </ul>
             </div>
 
