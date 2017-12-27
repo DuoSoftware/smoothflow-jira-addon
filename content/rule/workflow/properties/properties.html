@@ -45,6 +45,22 @@
                             <dropdown args='args' message='var.Value' all='var.ValueList'></dropdown>
                         </div>
                     </div>
+
+
+                    <!--Dropdonw from API directive - TEST CODE-->
+                    <div class="property-field-wrap">
+                        <div class="property-field-head">
+                            <div class="heading">##### Array dropdown #####</div>
+
+                            <div class="type string">STRING</div>
+                        </div>
+                        <div flex>
+                            <div style="padding: 10px;border: solid 1px;border-color: #dddddd!important;border-bottom-right-radius:  5px;border-bottom-left-radius: 5px;">
+                                <sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Dropdonw from API directive - TEST CODE-->
                 </div>
 
                 <!--<div class="aui-tabs horizontal-tabs">-->
@@ -102,7 +118,16 @@
             <div class="ul-headed dark">
                 <h5>You may input</h5>
                 <ul>
-                    <li ng-repeat="input in selectedModule.Variables">Something as <i>*{{input.DisplayName}}*</i></li>
+                    <li ng-repeat="input in selectedModule.Variables">
+                        <div>Something as <i>*{{input.DisplayName}}*</i></div>
+
+                        <div>
+                            <div id="copy-{{input.DisplayName.replace(' ', '') | lowercase}}">*Sample data for <b>{{input.DisplayName}}</b> goes here</div>
+                            <div class="copy-sample-controls" style="width: 100%;text-align: right">
+                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+input.DisplayName.replace(' ', '') | lowercase)" style="color: #80DEEA">COPY</button>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
