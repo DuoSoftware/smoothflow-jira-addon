@@ -47,8 +47,17 @@
 
 
                     <!--Dropdonw from API directive - TEST CODE-->
-                    <div flex>
-                        <sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>
+                    <div class="property-field-wrap">
+                        <div class="property-field-head">
+                            <div class="heading">##### Array dropdown #####</div>
+
+                            <div class="type string">STRING</div>
+                        </div>
+                        <div flex>
+                            <div style="padding: 10px;border: solid 1px;border-color: #dddddd!important;border-bottom-right-radius:  5px;border-bottom-left-radius: 5px;">
+                                <sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>
+                            </div>
+                        </div>
                     </div>
                     <!--Dropdonw from API directive - TEST CODE-->
                 </div>
