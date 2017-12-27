@@ -709,6 +709,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 collapsiblePanels[i].setAttribute("style", "display:none");
             }
         }
+
+		$timeout(function () {
+			index == 0 ? $rootScope.initialGuideProvider(null, '#comp-panel-actions', 'Click on any groups to open or collapse a panel and click on a component to add') : $rootScope.initialGuideProvider(null, '#comp-panel-conditions', 'Click on any groups to open or collapse a panel and click on a component to add');
+		}, 500);
     };
 
     $scope.getRuleDetails = function () {
@@ -968,6 +972,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     } else {
                         $rootScope.HideBusyContainer();
                         $rootScope.DisplayMessage("Unable to load workflow", "error");
+						$timeout(function(){
+							$rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
+						}, 2000);
                     }
 
                 }).V1getByKey(flowVersion[0]);
@@ -978,6 +985,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.selectedRuleName = $scope.selectedRule.name;
                 $scope.setDockerInformation($scope.selectedRule.name);
                 $rootScope.HideBusyContainer();
+				$timeout(function(){
+					$rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
+				}, 2000);
             }
 
         }, 0).then(function () {
@@ -1484,7 +1494,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
         AJS.dialog2("#new-rule-dialog").show();
-        // $state.go('rule.new');
+		$rootScope.initialGuideProvider(null, '.sf-intro-name', 'Name your Automation here. This name will be the identifier of your automation hereon');
+		// $state.go('rule.new');
     };
 
     //Close rule dialog
@@ -2598,7 +2609,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.TotalNumberOfContainers = $scope.NGINXData.length;
 
         $rootScope.HideBusyContainer();
-    }
+		$rootScope.initialGuideProvider(null, '#dialog-show-button', "You can create a new automation here");
+
+	}
 
     $scope.loadJiraUser = function (profile) {
         //debugger
@@ -2753,8 +2766,86 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         rule.action = !rule.action;
     }
     // Kasun_Wijeratne_12_NOV_2017 - END
-    /** Export and Import added by Lakmini */
 
+	/** Initial guide **/
+	$rootScope.initialGuideProvider = function (loc, elem, msg) {
+
+		if(!$rootScope.isIntroHold){
+			ngIntroService.clear();
+
+			var options = {
+				steps: [
+					{
+						element: elem,
+						intro: msg
+					}
+				]
+			};
+
+			ngIntroService.setOptions(options);
+			ngIntroService.start();
+
+			$timeout(function () {
+				$('.introjs-tooltipbuttons').append('<a class="introjs-button" role="button" tabindex="1" id="teminateIntro">Do not show again</a>')
+			}, 100);
+		}
+
+		// $scope.IntroOptions = {
+		// 	steps: [
+		// 		{
+		// 			element: '#dialog-show-button',
+		// 			intro: "You can create a new automation here"
+		// 		}
+		// 	]
+		// };
+		// $scope.IntroNewName = {
+		// 	steps: [
+		// 		{
+		// 			element: '.sf-intro-name',
+		// 			intro: "Name your Automation here. This name will be the identifier of your automation hereon"
+		// 		}
+		// 	]
+		// };
+		// $rootScope.IntroEditProfile = {
+		// 	steps: [
+		// 		{
+		// 			element: '.workflow-add-node-sub',
+		// 			intro: "Hover over here and click on a (C)ondition or an (A)ction to add to your workflow"
+		// 		}
+		// 	]
+		// }
+		// $rootScope.IntroCompPanelA = {
+		// 	steps: [
+		// 		{
+		// 			element: '#comp-panel-actions',
+		// 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
+		// 		}
+		// 	]
+		// }
+		// $rootScope.IntroCompPanelC = {
+		// 	steps: [
+		// 		{
+		// 			element: '#comp-panel-conditions',
+		// 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
+		// 		}
+		// 	]
+		// }
+	}
+
+	$rootScope.isIntroHold = false;
+	// $rootScope.holdIntro = function () {
+	// 	$rootScope.isIntroHold = true;
+	// 	ngIntroService.clear();
+	// }
+
+	$(document).on('click', '#teminateIntro', function (e) {
+		$rootScope.isIntroHold = true;
+		ngIntroService.clear();
+	});
+	/** Initial guide **/
+
+
+    /** Export and Import added by Lakmini */
 
     var Base64 = {
         _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

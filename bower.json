@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.7",
     "ng-textcomplete": "^0.6.0",
     "angular-ui-switch": "^0.1.1",
-    "angular-screenshot": "^0.4.0"
+    "angular-screenshot": "^0.4.0",
+    "intro.js": "^2.7.0"
   }
 }
