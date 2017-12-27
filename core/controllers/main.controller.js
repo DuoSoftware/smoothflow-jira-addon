@@ -2941,4 +2941,21 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     }
     /** End - Export and Import*/
+
+	// Dropdown from API test code
+	$scope.testObj = {
+		title:'testAPIStringFunction'
+	}
+	$scope.selectedDDItem = null;
+
+	$scope.testAPIStringFunction = function() {
+		$timeout(function(){
+			$scope.testStringArray = [
+				'First string',
+				'Second string',
+				'Third string'
+			];
+		}, 3000);
+	}
+	// Dropdown from API test code - END
 }
