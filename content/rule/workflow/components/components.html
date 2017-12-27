@@ -22,7 +22,7 @@
                 <input id="quicksearchcomp" class="search" type="text" placeholder="Search.." name="quicksearchcomp" ng-model="compToFilter" ng-change="toggleAllComps(compToFilter)">
             <!--<input type="text" class="form-control" >-->
             </div>
-            <div class="comp-panel-collapse custom-scroll">
+            <div id="comp-panel-{{component.Name.toLowerCase()}}" class="comp-panel-collapse custom-scroll">
                 <div ng-repeat="cls in component.classes | filter:compToFilter">
                     <div class="clearfix comp-toggle-header" ng-click="toggleCompGroup(cls.title)">
                         <span>{{cls.title}}</span>
