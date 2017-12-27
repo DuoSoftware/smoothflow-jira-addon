@@ -1649,14 +1649,28 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.openComponentInfo = function (component) {
         $scope.tab = false;
         $scope.args = dataHandler.retrieveArgumentsKeys();
-        component.Variables = dataHandler.checkFormat(component.Variables);
+        component.Variables = dataHandler.checkFormat(component.Variables);        
         $scope.selectedModule = component;
-
+        checkArguments(component.Variables)
         $timeout(function () {
             $scope.activeModule = component.$$hashKey;
         });
     };
-
+    function checkArguments(Variableslist) {       
+        Variableslist.forEach(function (element) {
+            if (element.Key == "InSessionID") {
+                // set value @InSessionID
+                element.Value = "@InSessionID"               
+            }
+        }, this);       
+        $scope.allVariables.forEach(function (element) {    
+            if (element.Key == "InSessionID") {
+                // set value @InSessionID
+                element.Value = "@InSessionID"                
+            }
+        }, this);
+        console.log(component);
+    }
     //New component
     $scope.newComponent = function (index) {
         $scope.componentLevel = 0;
@@ -2897,10 +2911,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
     $scope.movetoImport = function () {
         AJS.dialog2("#rule-import-dialog").show();
-     };
-     $scope.closeImport = function () {
+    };
+    $scope.closeImport = function () {
         AJS.dialog2("#rule-import-dialog").hide();
-     };
+    };
     $scope.$on('importBroadcast', function (event, open) {
         $scope.selectedRule = open.data;
         $scope.openSelectedRule(open.data, event);
