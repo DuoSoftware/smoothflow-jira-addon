@@ -3058,7 +3058,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 		range.selectNode(copyField);
 		window.getSelection().addRange(range);
 		document.execCommand('copy');
-		$('#'+id).siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
+		$('#'+id).parent().siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
 	};
     //Copy sample code in Hins panel for workflow Properties - END
 

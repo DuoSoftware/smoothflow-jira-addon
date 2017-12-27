@@ -119,12 +119,14 @@
                 <h5>You may input</h5>
                 <ul>
                     <li ng-repeat="input in selectedModule.Variables">
-                        <div>Something as <i>*{{input.DisplayName}}*</i></div>
-
                         <div>
-                            <div id="copy-{{input.DisplayName.replace(' ', '') | lowercase}}">*Sample data for <b>{{input.DisplayName}}</b> goes here</div>
-                            <div class="copy-sample-controls" style="width: 100%;text-align: right">
-                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+input.DisplayName.replace(' ', '') | lowercase)" style="color: #80DEEA">COPY</button>
+                            <div>
+                                <span id="copy-{{input.DisplayName.replace(' ', '') | lowercase}}">
+                            {{input.placeholder}}</span> as <b>*{{input.DisplayName}}*</b>
+                            </div>
+                            <div class="copy-sample-controls">
+                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+input.DisplayName.replace(' ', '') | lowercase)"><span title="Copy full URL" class="aui-icon aui-icon-small aui-iconfont-copy-clipboard"></span>
+                                </button>
                             </div>
                         </div>
                     </li>
