@@ -12,7 +12,8 @@ app.controller('MainController', [
     '$v6urls',
     '$helpers',
     '$location',
-    '$window', mainController])
+    '$window',
+	'ngIntroService', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -103,7 +104,7 @@ app.controller('MainController', [
         }
     });
 
-function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window) {
+function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window, ngIntroService) {
 
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
