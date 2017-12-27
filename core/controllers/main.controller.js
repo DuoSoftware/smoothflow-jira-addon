@@ -941,6 +941,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.openSelectedRule = function (selectedRule, entry) {
         $timeout(function () {
             //debugger
+            $scope.selectedModule=[];
             $rootScope.ShowBusyContainer("Loading rule details...");
             $scope.currentRuleID = selectedRule.id;
             $scope.selectedRule = selectedRule;
