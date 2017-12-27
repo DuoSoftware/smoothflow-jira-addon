@@ -1681,7 +1681,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 element.Value = "@InSessionID"                
             }
         }, this);
-        console.log(component);
+      
     }
     //New component
     $scope.newComponent = function (index) {
