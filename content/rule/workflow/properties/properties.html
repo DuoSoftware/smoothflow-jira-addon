@@ -108,7 +108,16 @@
             <div class="ul-headed dark">
                 <h5>You may input</h5>
                 <ul>
-                    <li ng-repeat="input in selectedModule.Variables">Something as <i>*{{input.DisplayName}}*</i></li>
+                    <li ng-repeat="input in selectedModule.Variables">
+                        <div>Something as <i>*{{input.DisplayName}}*</i></div>
+
+                        <div>
+                            <div id="copy-{{input.DisplayName.replace(' ', '') | lowercase}}">*Sample data for <b>{{input.DisplayName}}</b> goes here</div>
+                            <div class="copy-sample-controls" style="width: 100%;text-align: right">
+                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+input.DisplayName.replace(' ', '') | lowercase)" style="color: #80DEEA">COPY</button>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 

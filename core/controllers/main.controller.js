@@ -2942,6 +2942,19 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
     /** End - Export and Import*/
 
+    //Copy sample code in Hins panel for workflow Properties
+	$scope.copySampleToClipboard = function (idPart1) {
+		var id = idPart1;
+		window.getSelection().empty();
+		var copyField = document.getElementById(id);
+		var range = document.createRange();
+		range.selectNode(copyField);
+		window.getSelection().addRange(range);
+		document.execCommand('copy');
+		$('#'+id).siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
+	};
+    //Copy sample code in Hins panel for workflow Properties - END
+
 	// Dropdown from API test code
 	$scope.testObj = {
 		title:'testAPIStringFunction'
