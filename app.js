@@ -5,8 +5,7 @@ var app = angular.module('sfJira', [
     'angular.filter',
     'angular-cron-generator',
     'angular-screenshot',
-    'ngSanitize',
-	'angular-intro'
+    'ngSanitize'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
