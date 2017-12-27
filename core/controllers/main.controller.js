@@ -12,7 +12,7 @@ app.controller('MainController', [
     '$v6urls',
     '$helpers',
     '$location',
-    '$window', mainController])
+    '$window', 'ngIntroService', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -51,7 +51,8 @@ app.controller('MainController', [
                 });
             }
         }
-    }])
+    }
+    ])
     .directive('dropdown', function () {
         // console.log(value);
         return {
@@ -76,24 +77,20 @@ app.controller('MainController', [
         }
     })
     .filter('filterComp', function () {
-        return function (arr, scope) {
-            if (!scope.compToFilter) {
+        return function (arr, compName) {
+            if (!compName) {
                 return arr;
             }
             var result = [];
-			scope.compToFilter = scope.compToFilter.toLowerCase();
+            compName = compName.toLowerCase();
             angular.forEach(arr, function (comp) {
-                if (comp.DisplayName.toLowerCase().indexOf(scope.compToFilter) !== -1) {
+                if (comp.DisplayName.toLowerCase().indexOf(compName) !== -1) {
                     result.push(comp);
                 }
             });
-			// if(result.length > 0){
-            	// scope.expandAll = true;
-			// }else{
-			// 	scope.expandAll = false;
-			// }
             return result;
-        };
+        }
+            ;
     })
     .filter('bytes', function () {
         return function (bytes, precision) {
@@ -105,7 +102,7 @@ app.controller('MainController', [
         }
     });
 
-function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window) {
+function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler, $auth, $objectstore, $filter, TriggerDatafactory, $v6urls, $helpers, $location, $window, ngIntroService) {
 
     // if there is no selected rule it will navigate it to the home screen
     if ($scope.currentRuleID == undefined) {
@@ -130,13 +127,17 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.activeInnerCompGroup = group;
         $scope.isInnerGroupOpen = !$scope.isInnerGroupOpen;
     };
+
+    //Kasun_Wijeratne_12_DEC_2017
     $scope.toggleAllComps = function (text) {
-    	if(text.length > 0){
-			$scope.expandAll = true;
-		}else{
-			$scope.expandAll = false;
-		}
+        if (text.length > 0) {
+            $scope.expandAll = true;
+        } else {
+            $scope.expandAll = false;
+        }
     };
+    //Kasun_Wijeratne_12_DEC_2017 - END
+
     $scope.tab = false;
     $scope.scrollTo = function (id) {
         $location.hash(id);
@@ -151,7 +152,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var element = document.getElementById("busycontent");
         element.innerHTML = "<h2>" + message + "</h2>";
     }
-    $rootScope.HideBusyContainer = function () {
+    $rootScope.HideBusyContainer = function (loc) {
         document.getElementById("loading").style.animation = "loadingdisappear 0.2s backwards";
         $timeout(function () {
             document.getElementById("loading").style.display = "none";
@@ -490,7 +491,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }, {
         'Name': 'Conditions',
         'components': [],
-		'classes': {}
+        'classes': {}
     }];
 
     var collapsiblePanels = [];
@@ -547,29 +548,31 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 var componentClass = block.className.split(' ')[2];
                 if (componentClass == 'component-true' || componentClass == 'component-false' || componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
 
-					var o = angular.element(block).find('>.outer');
-					if(o.children().length > 0){
-						if(componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
-							angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
-							angular.element(block).find('>.offset').css('display', 'none');
-						}else{
-							angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-						}
-					}else{
-						angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-					}
+                    //Kasun_Wijeratne_11_DEC_2017
+                    var o = angular.element(block).find('>.outer');
+                    if (o.children().length > 0) {
+                        if (componentClass == 'component-case' || componentClass == 'component-default' || componentClass == 'component-fallthrough') {
+                            angular.element(block).find('>.workflow-add-node-sub:last-child').css('display', 'none');
+                            angular.element(block).find('>.offset').css('display', 'none');
+                        } else {
+                            angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                        }
+                    } else {
+                        angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                    }
+                    //Kasun_Wijeratne_11_DEC_2017 - END
 
                     var outers = angular.element(block).find('.outer');
                     angular.forEach(outers, function (outer) {
                         //angular.forEach(outer.children, function (child) {
-                            // if (child.className.split(' ')[0] == 'workflow-block') {
-                            // 	var o = angular.element(child).find('>.outer');
-                            // 	if(o.children().length > 0){
-								// 	angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
-								// }
-                            // } else {
-                            //     angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
-                            // }
+                        // if (child.className.split(' ')[0] == 'workflow-block') {
+                        // 	var o = angular.element(child).find('>.outer');
+                        // 	if(o.children().length > 0){
+                        // 	angular.element(block).find('>.workflow-add-node-sub').css('display', 'none');
+                        // }
+                        // } else {
+                        //     angular.element(block).find('>.workflow-add-node-sub').css('display', 'block');
+                        // }
                         //});
                         var outerParent = outer.parentElement.className.split(' ')[2];
                         if (outerParent == 'component-true' || outerParent == 'component-false' || outerParent == 'component-case' || outerParent == 'component-default' || outerParent == 'component-fallthrough') {
@@ -664,6 +667,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             propertiesElem.setAttribute("style", "height:" + workflowHeight + "px;overflow-y:scroll;overflow-x:hidden");
         if (workflowElem != undefined && workflowHeight != null)
             workflowElem.setAttribute("style", "height:" + workflowHeight + "px;max-width:" + workflowWidth + "px;overflow-y:scroll;overflow-x:scroll");
+
+		$('textcomplete').find('textarea').keyup(function (e) {
+			e.target.style.height = "1px";
+			e.target.style.height = (25+o.scrollHeight)+"px";
+		});
     });
 
     angular.element($window).bind('resize', function () {
@@ -705,6 +713,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 collapsiblePanels[i].setAttribute("style", "display:none");
             }
         }
+
+		$timeout(function () {
+			index == 0 ? $rootScope.initialGuideProvider(null, '#comp-panel-actions', 'Click on any groups to open or collapse a panel and click on a component to add') : $rootScope.initialGuideProvider(null, '#comp-panel-conditions', 'Click on any groups to open or collapse a panel and click on a component to add');
+		}, 500);
     };
 
     $scope.getRuleDetails = function () {
@@ -729,6 +741,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         status: '...',
                         executions: 0,
                         switchState: 'on',
+                        action: false,
                         workflow: [],
                         Variables: []
                     }
@@ -745,6 +758,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         client.v1getByFiltering("*");
 
     };
+
+    $scope.updateRuleAction = function (rule) {
+		rule.action = !rule.action;
+	}
 
     $scope.$on('uiStateChanged', function (event, data) {
         alert("Statue changed");
@@ -806,46 +823,46 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         // $scope.optionalJSON = JSON.stringify(optionalJSON);
     };
 
-	$scope.apiKey = null;
-	$scope.candidateURL = null;
-	$scope.candidateBody = null;
-	$scope.responseMsg = "";
+    $scope.apiKey = null;
+    $scope.candidateURL = null;
+    $scope.candidateBody = null;
+    $scope.responseMsg = "";
 
-	$scope.apiUrlDialog = function (url, body) {
-		$scope.candidateURL = url;
-		$scope.candidateBody = body;
-		AJS.dialog2("#api-key-dialog").show();
+    $scope.apiUrlDialog = function (url, body) {
+        $scope.candidateURL = url;
+        $scope.candidateBody = body;
+        AJS.dialog2("#api-key-dialog").show();
     };
 
     $scope.callurl = function (key) {
-    	$scope.pendingResponse = true;
-		AJS.dialog2("#api-key-dialog").hide();
-		var req = {
-		    method: $scope.candidateURL.METHOD,
-		    url: $scope.containerBaseURL + $scope.candidateURL.URL+"="+key,
-		    headers: {
-		        'Content-Type': 'application/json'
-		    },
-		    data: $scope.candidateBody
-		}
-		$http(req).then(function (data) {
-		    $scope.Iscall = true;
-			$scope.pendingResponse = false;
-			$scope.statuscode = data.status;
-		    $scope.responseMsg = JSON.stringify(data.data, null, "\t");
-		    $scope.getDockerDetails();
-		    $timeout($scope.GaugeChart(), 10000);
+        $scope.pendingResponse = true;
+        AJS.dialog2("#api-key-dialog").hide();
+        var req = {
+            method: $scope.candidateURL.METHOD,
+            url: $scope.containerBaseURL + $scope.candidateURL.URL + "=" + key,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: $scope.candidateBody
+        }
+        $http(req).then(function (data) {
+            $scope.Iscall = true;
+            $scope.pendingResponse = false;
+            $scope.statuscode = data.status;
+            $scope.responseMsg = JSON.stringify(data.data, null, "\t");
+            $scope.getDockerDetails();
+            $timeout($scope.GaugeChart(), 10000);
 
-		    // $scope.setDockerInformation($scope.selectedRule.name);
+            // $scope.setDockerInformation($scope.selectedRule.name);
 
-		}, function (data) {
-		    $scope.Iscall = true;
-			$scope.pendingResponse = false;
-			$scope.statuscode = data.status;
-		    $scope.responseMsg = JSON.stringify(data.data, null, "\t");
+        }, function (data) {
+            $scope.Iscall = true;
+            $scope.pendingResponse = false;
+            $scope.statuscode = data.status;
+            $scope.responseMsg = JSON.stringify(data.data, null, "\t");
 
-		});
-	};
+        });
+    };
 
     /** Google Chart */
     //Line Chart
@@ -964,6 +981,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     } else {
                         $rootScope.HideBusyContainer();
                         $rootScope.DisplayMessage("Unable to load workflow", "error");
+						$timeout(function(){
+							$rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
+						}, 2000);
                     }
 
                 }).V1getByKey(flowVersion[0]);
@@ -974,6 +994,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.selectedRuleName = $scope.selectedRule.name;
                 $scope.setDockerInformation($scope.selectedRule.name);
                 $rootScope.HideBusyContainer();
+				$timeout(function(){
+					$rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
+				}, 2000);
             }
 
         }, 0).then(function () {
@@ -1002,7 +1025,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.executable.port = Math.floor(Math.random() * (65535 - 49152) + 49152);
     $scope.getports = function () {
         $http({
-            url: $v6urls.globalOS + "/occupiedPorts",
+            url: $v6urls.globalOS + "/occupiedPorts?take=70000",
             method: "GET",
             headers: {
                 'securityToken': "ignore"
@@ -1034,6 +1057,26 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
     };
 
+    //Delate Prot
+    $scope.DeletePort = function (workflowId) {
+        $http({
+            url: $v6urls.globalOS + "/occupiedPorts",
+            method: "DELETE",
+            headers: {
+                'securityToken': "ignore"
+            },
+            data: workflowId
+        }).
+            then(function (data, status, headers, config) {
+                if (data) {
+                  //  $scope.portlist = data;
+                  console.log(data);
+
+                }
+            }, function (data, status, headers, config) {
+                $rootScope.DisplayMessage("Error when deleting port information", "error", "Please contact an administrator.");
+            });
+    };
     $scope.checkport = function (port) {
         for (x = 0; x < $scope.portlist.length; x++) {
             if ($scope.portlist[x].port == port) {
@@ -1285,26 +1328,26 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
 
     $rootScope.changeLocation = function (location) {
-        $scope.componentsMenuState = 'closed';
-        $rootScope.listState = location;
-        // update WF before leaving to another state
-        $scope.updateWorkflowBeforeStateChange(location);
-        $state.go(location);
-        console.log("Navigating to State:", $state);
+		$scope.componentsMenuState = 'closed';
+		$rootScope.listState = location;
+		// update WF before leaving to another state
+		$scope.updateWorkflowBeforeStateChange(location);
+		$state.go(location);
+		console.log("Navigating to State:", $state);
 
-        if (location == "rule.container") {
-            $timeout(function () {
-                $scope.CallInvoke();
-                $scope.RealTimeLineChart();
-                $scope.GaugeChart();
-            });
-        } else if (location == "rule.schedule") {
-            $timeout(function () {
-                $scope.checkScheduleStatus();
-            });
-        }
-        setSectionHeight();
-    };
+		if (location == "rule.container") {
+			$timeout(function () {
+				$scope.CallInvoke();
+				$scope.RealTimeLineChart();
+				$scope.GaugeChart();
+			});
+		} else if (location == "rule.schedule") {
+			$timeout(function () {
+				$scope.checkScheduleStatus();
+			});
+		}
+		setSectionHeight();
+	}
 
     $scope.updateWorkflowBeforeStateChange = function (location) {
         var index = 0;
@@ -1346,8 +1389,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     //     item.workflow = [];
                     //     $scope.structuredComps[0].components.push(item);
                     // }
-					// item.outerExpanded = true;
-					if (item.ControlType == 'action') {
+                    // item.outerExpanded = true;
+                    if (item.ControlType == 'action') {
                         item.workflow = [];
                         $scope.structuredComps[0].components.push(item);
                     }
@@ -1377,22 +1420,22 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     }
                 });
 
-				angular.forEach($scope.structuredComps, function (comp) {
-					var temp = $filter('groupBy')(comp.components, 'class');
-					comp.classes = $.map(temp, function(value, index) {
-						return {'title':index,'data':value};
-					});
-					delete comp.components;
-					angular.forEach(comp.classes, function (_comp) {
-						_comp.categories = {};
-						var temp2 = $filter('groupBy')(_comp.data, 'Category');
-						_comp.categories = $.map(temp2, function(value, index) {
-							return {'title':index,'data':value};
-						});
-						delete _comp.data;
-					});
-				});
-				// debugger;
+                angular.forEach($scope.structuredComps, function (comp) {
+                    var temp = $filter('groupBy')(comp.components, 'class');
+                    comp.classes = $.map(temp, function (value, index) {
+                        return { 'title': index, 'data': value };
+                    });
+                    delete comp.components;
+                    angular.forEach(comp.classes, function (_comp) {
+                        _comp.categories = {};
+                        var temp2 = $filter('groupBy')(_comp.data, 'Category');
+                        _comp.categories = $.map(temp2, function (value, index) {
+                            return { 'title': index, 'data': value };
+                        });
+                        delete _comp.data;
+                    });
+                });
+                // debugger;
             }
             console.log($scope.structuredComps);
         }, function errorCallback(response) {
@@ -1441,6 +1484,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
         AJS.dialog2("#new-rule-dialog").show();
+
+		$rootScope.initialGuideProvider(null, '.sf-intro-name', 'Name your Automation here. This name will be the identifier of your automation hereon');
         // $state.go('rule.new');
     };
 
@@ -1555,6 +1600,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
         //delete tigger
         TriggerDatafactory.DeleteTriggers($scope.getWFName($scope.selectedRule.ruleName));
+        $scope.DeletePort($scope.selectedRule.name);
     };
 
     $scope.removeRule = function () {
@@ -1694,6 +1740,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         };
         //debugger
         TriggerDatafactory.setworkflowId($scope.getWFName($scope.selectedRule.ruleName));
+		$rootScope.listState = 'rule.workflow';
         $state.go('rule.workflow');
     };
 
@@ -1951,26 +1998,26 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.deleteNode = function (workflow, position, elem) {
-		workflow.splice(position, 1);
-		// if(workflow[0].parent.ControlType == 'condition'){
-		// 	if(workflow[0].parent.DisplayName == 'True' || workflow[0].parent.DisplayName == 'False'){
-		// 		var el = $(elem.target).parent().parent().parent().parent().parent();
-		// 		el.append('<div class="workflow-add-node-sub"> <div class="header-bar"> <div class="component-capsule"> <span title="Add to '+workflow[0].parent.DisplayName+'}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span><span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, '+'condition'+',component, false)">C</span> <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, '+'action'+',component, false)">A</span> </div> <script> AJS.$(".category-icon").tooltip(); AJS.$(".delete-comp").tooltip(); </script> <span>..</span> </div> </div>');
-		// 		workflow.splice(position, 1);
-		// 	}
-		// }else{
-		// 	workflow.splice(position, 1);
-		// }
+        workflow.splice(position, 1);
+        // if(workflow[0].parent.ControlType == 'condition'){
+        // 	if(workflow[0].parent.DisplayName == 'True' || workflow[0].parent.DisplayName == 'False'){
+        // 		var el = $(elem.target).parent().parent().parent().parent().parent();
+        // 		el.append('<div class="workflow-add-node-sub"> <div class="header-bar"> <div class="component-capsule"> <span title="Add to '+workflow[0].parent.DisplayName+'}}" class="category-icon add-component-sub glyphicon glyphicon-plus"></span><span title="Condition" class="category-icon condition" ng-click="toggleComponentsMenu(workflow, $index, true, '+'condition'+',component, false)">C</span> <span title="Action" class="category-icon action" ng-click="toggleComponentsMenu(workflow, $index, true, '+'action'+',component, false)">A</span> </div> <script> AJS.$(".category-icon").tooltip(); AJS.$(".delete-comp").tooltip(); </script> <span>..</span> </div> </div>');
+        // 		workflow.splice(position, 1);
+        // 	}
+        // }else{
+        // 	workflow.splice(position, 1);
+        // }
     }
 
     // Kasun_Wijeratne_2017_10_23
     // This code gets a set of workflow and expands or collapses the block with given index accordingly
     $scope.expandComponentBody = function (workflow, position) {
-    	if(workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'False' || workflow[position].DisplayName == 'Case'){
-			workflow[position].outerExpanded ? workflow[position].outerExpanded = false : workflow[position].outerExpanded = true;
-		}else{
-			workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
-		}
+        if (workflow[position].DisplayName == 'True' || workflow[position].DisplayName == 'False' || workflow[position].DisplayName == 'Case') {
+            workflow[position].outerExpanded ? workflow[position].outerExpanded = false : workflow[position].outerExpanded = true;
+        } else {
+            workflow[position].bodyExpanded ? workflow[position].bodyExpanded = false : workflow[position].bodyExpanded = true;
+        }
     }
     // Kasun_Wijeratne_2017_10_23 - END
 
@@ -2494,7 +2541,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         });
     }
 
-    $scope.uploadScreenshot = function(){
+    $scope.uploadScreenshot = function () {
         alert("hola");
     }
 
@@ -2549,7 +2596,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.TotalNumberOfContainers = $scope.NGINXData.length;
 
         $rootScope.HideBusyContainer();
-    }
+		$rootScope.initialGuideProvider(null, '#dialog-show-button', "You can create a new automation here");
+	}
 
     $scope.loadJiraUser = function (profile) {
         //debugger
@@ -2570,7 +2618,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.CurrentUserProfile = {};
     /** Copy to Clipboard */
     $scope.copyToClipboard = function (row, index) {
-		var copyElement = document.createElement("textarea");
+        var copyElement = document.createElement("textarea");
         copyElement.style.position = 'fixed';
         copyElement.style.opacity = '0';
         copyElement.textContent = row.URLFULL;
@@ -2581,10 +2629,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         body.removeChild(copyElement);
         row.copied = true;
         var urlheaders = document.getElementsByClassName('url-header');
-		$('<span class="dynamic-state-pill">Copied</span>').appendTo(urlheaders[index]);
+        $('<span class="dynamic-state-pill">Copied</span>').appendTo(urlheaders[index]);
         setTimeout(function () {
-        	$('.dynamic-state-pill').remove();
-		}, 1000);
+            $('.dynamic-state-pill').remove();
+        }, 1000);
     };
 
     $scope.getCurrentUserProfile = function () {
@@ -2689,4 +2737,121 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.expandSelected = function () {
         $scope.selectedExpanded = !$scope.selectedExpanded;
     }
+
+    // Kasun_Wijeratne_12_NOV_2017
+	$scope.headerListArray = [
+		'Name',
+		'Disc',
+		'Updatedon',
+		'Updatedby',
+		'Executions',
+		'Status'
+	]
+    // Kasun_Wijeratne_12_NOV_2017 - END
+
+
+	$rootScope.initialGuideProvider = function (loc, elem, msg) {
+
+		if(!$rootScope.isIntroHold){
+			ngIntroService.clear();
+
+			var options = {
+				steps: [
+					{
+						element: elem,
+						intro: msg
+					}
+				]
+			};
+
+			ngIntroService.setOptions(options);
+			ngIntroService.start();
+
+			$timeout(function () {
+				$('.introjs-tooltipbuttons').append('<a class="introjs-button" role="button" tabindex="1" id="teminateIntro">Do not show again</a>')
+			}, 100);
+		}
+
+		// $scope.IntroOptions = {
+		// 	steps: [
+		// 		{
+		// 			element: '#dialog-show-button',
+		// 			intro: "You can create a new automation here"
+		// 		}
+		// 	]
+		// };
+		// $scope.IntroNewName = {
+		// 	steps: [
+		// 		{
+		// 			element: '.sf-intro-name',
+		// 			intro: "Name your Automation here. This name will be the identifier of your automation hereon"
+		// 		}
+		// 	]
+		// };
+		// $rootScope.IntroEditProfile = {
+		// 	steps: [
+		// 		{
+		// 			element: '.workflow-add-node-sub',
+		// 			intro: "Hover over here and click on a (C)ondition or an (A)ction to add to your workflow"
+		// 		}
+		// 	]
+		// }
+		// $rootScope.IntroCompPanelA = {
+		// 	steps: [
+		// 		{
+		// 			element: '#comp-panel-actions',
+		// 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
+		// 		}
+		// 	]
+		// }
+		// $rootScope.IntroCompPanelC = {
+		// 	steps: [
+		// 		{
+		// 			element: '#comp-panel-conditions',
+		// 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
+		// 		}
+		// 	]
+		// }
+	}
+
+	$rootScope.isIntroHold = false;
+	// $rootScope.holdIntro = function () {
+	// 	$rootScope.isIntroHold = true;
+	// 	ngIntroService.clear();
+	// }
+
+	$(document).on('click', '#teminateIntro', function (e) {
+		$rootScope.isIntroHold = true;
+		ngIntroService.clear();
+	});
+
+	$scope.testObj = {
+		title:'testAPIStringFunction'
+	}
+	$scope.selectedDDItem = null;
+
+	$scope.testAPIStringFunction = function() {
+		$timeout(function(){
+			$scope.testStringArray = [
+				'First string',
+				'Second string',
+				'Third string'
+			];
+		}, 3000);
+	}
+
+
+
+
+	$scope.copySampleToClipboard = function (idPart1) {
+		var id = idPart1;
+		window.getSelection().empty();
+		var copyField = document.getElementById(id);
+		var range = document.createRange();
+		range.selectNode(copyField);
+		window.getSelection().addRange(range);
+		document.execCommand('copy');
+		$('#'+id).siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
+	};
+
 }

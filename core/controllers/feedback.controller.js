@@ -1,6 +1,6 @@
 app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope', 'dataHandler', '$uploader', '$storage', function ($scope, $http, $v6urls, $rootScope, dataHandler, uploader, storage) {
     $scope.IsNew = false;
-    $scope.Tasktypes = ['Bug', 'Improvement','New Feature','Support'];
+    $scope.Tasktypes = ['Bug', 'Improvement', 'New Feature', 'Support'];
     $scope.IsImageShow = false;
     $scope.IsFirst = true;
     $scope.IsSatus = false;
@@ -12,21 +12,36 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
     // $scope.Status = response.Status;
     var res = "";
     $scope.tasklist = "";
-    $scope.name="New";
+    $scope.name = "New";
 
+    //Issue attachments
+    function Addattachment() {
+        // $http({
+        //     method: 'POST',
+        //     url: $v6urls.processManager + '/processengine/jira/helpdesk/createissue',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     data: ticket
+        // }).then(function successCallback(response) {
+        //     console.log(response.data);
+        // }, function errorCallback(response) {
 
+        //     console.log(response.data);
+        // });
+    };
     $scope.CreateNewTicket = function (IsNew) {
-		AJS.dialog2("#new-feedback-dialog").show();
+        AJS.dialog2("#new-feedback-dialog").show();
         if (IsNew) {
             $scope.IsNew = false;
             $scope.IsFirst = true;
             $scope.IsSatus = false;
-            $scope.name="New";
+            $scope.name = "New";
         } else {
             $scope.IsNew = true;
             $scope.IsFirst = false;
             $scope.IsSatus = false;
-            $scope.name="Details";
+            $scope.name = "Details";
         }
 
         $scope.ticket = [];
@@ -90,9 +105,9 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
                 $scope.IsNew = false;
                 $scope.IsFirst = false;
                 $scope.IsSatus = true;
-				AJS.dialog2("#new-feedback-dialog").hide();
-			}
-
+                $rootScope.DisplayMessage("feedback successfully created", 'success');
+                AJS.dialog2("#new-feedback-dialog").hide();
+            }
         }, function errorCallback(response) {
             $rootScope.HideBusyContainer();
             $rootScope.DisplayMessage(response.Message, 'error', "Please Contact Administrator");
@@ -100,8 +115,8 @@ app.controller('FeedbackController', ['$scope', '$http', '$v6urls', '$rootScope'
             $scope.IsFirst = true;
             $scope.IsSatus = false;
             console.log(response.data);
-			AJS.dialog2("#new-feedback-dialog").hide();
-		});
+            AJS.dialog2("#new-feedback-dialog").hide();
+        });
     }
 
     $scope.getAllTicket = function () {

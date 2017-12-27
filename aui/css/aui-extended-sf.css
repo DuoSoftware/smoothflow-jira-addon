@@ -359,7 +359,7 @@ h5 + h6 {
     bottom: 0;
     width: 100%;
     left: 0;
-    padding: 10px;
+    /*padding: 10px;*/
     background: #34495e;
     -webkit-transition: height 0.5s;
     -moz-transition: height 0.5s;
@@ -368,13 +368,82 @@ h5 + h6 {
     transition: height 0.5s;
 }
 .overhead-container .overhead-container-header{
+    padding: 10px;
+}
+.overhead-container .overhead-container-header>h4{
+    display: inline-block;
+    float: left;
+    color: #fff;
+    font-weight: 500;
+}
+.overhead-container .overhead-container-header, .overhead-container .overhead-container-header-small{
+    display: inline-block;
+    float: left;
     overflow: auto;
+}
+.overhead-container .overhead-container-header-small{
+    padding: 5px;
+}
+.overhead-container .overhead-container-header-small>h5{
+    opacity: 0;
+
+    font-size: 13px;
+    font-weight: normal;
+    color: #fff;
+    display: inline;
+}
+.overhead-container .overhead-container-header-small>span.aui-icon{
+    height: 12px;
+    width: 12px;
+    margin: 3px;
+    position: relative;
+    top: 1px;
+    left: -3px;
+}
+.overhead-container .overhead-container-header-small>span.aui-icon-small:before{
+    font-size: 12px;
+    margin-top: -6px;
+    color: #fff;
+}
+.overhead-container .overhead-container-header-small>button.aui-button{
+    opacity: 0;
+
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+    display: inline-block;
+    float: right;
+    color: #fff;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.overhead-container .overhead-container-header-small>button.aui-button:hover{
+    background: #aaaaaa;
+}
+.overhead-container .overhead-container-header-small>button.aui-button span.aui-icon{
+    color: #ccc;
+}
+.overhead-container .overhead-container-header>button.aui-button{
+    display: inline-block;
+    float: right;
+    color: #fff;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.overhead-container .overhead-container-header>button.aui-button>span.aui-icon, .overhead-container .overhead-container-header-small>button.aui-button>span.aui-icon{
+    color: #fff;
+}
+.overhead-container .overhead-container-header>button.aui-button:hover>span.aui-icon, .overhead-container .overhead-container-header>button.aui-button:active>span.aui-icon{
+    color: #aaa;
 }
 .overhead-container .overhead-container-body{
     overflow-y: scroll;
     margin-top: 10px;
     width: 100%;
     max-height: 480px;
+    padding: 10px;
 }
 .overhead-container .overhead-container-body .head{
     color: #aaa;
@@ -402,28 +471,6 @@ h5 + h6 {
 }
 .overhead-container .overhead-container-body::-webkit-scrollbar-thumb {
     background-color: #777;
-}
-.overhead-container .overhead-container-header>h4{
-    display: inline-block;
-    float: left;
-}
-.overhead-container .overhead-container-header>button.aui-button{
-    display: inline-block;
-    float: right;
-    color: #fff;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-}
-.overhead-container .overhead-container-header>button.aui-button>span.aui-icon{
-    color: #fff;
-}
-.overhead-container .overhead-container-header>button.aui-button:hover>span.aui-icon, .overhead-container .overhead-container-header>button.aui-button:active>span.aui-icon{
-    color: #aaa;
-}
-.overhead-container h4{
-    color: #fff;
-    font-weight: 500;
 }
 .overhead-container .overhead-section{
     display: inline-block;
@@ -466,6 +513,59 @@ h5 + h6 {
     right: 0;
     position:absolute
 }
+
+/*Overhead container with HIDDEN attributes*/
+.overhead-container.hidden-width{
+    width: 20px;
+    height: 30px;
+    overflow: hidden;
+    -webkit-transition: width 0.3s, height 0.3s;
+    -moz-transition: width 0.3s, height 0.3s;
+    -ms-transition: width 0.3s, height 0.3s;
+    -o-transition: width 0.3s, height 0.3s;
+    transition: width 0.3s, height 0.3s;
+}
+.overhead-container.hidden-width.right{
+    /*border-bottom-left-radius: 5px;*/
+    border-top-left-radius: 5px;
+    right: 0;
+    left: auto;
+}
+.overhead-container.hidden-width.left{
+    /*border-bottom-right-radius: 5px;*/
+    border-top-right-radius: 5px;
+    left: 0;
+    right: auto;
+}
+.overhead-container.left:hover, .overhead-container.right:hover{
+    width: 98%;
+    /*height: 500px;*/
+    height: calc(100% - 50px);
+    -webkit-transition: width 0.3s, height 0.3s;
+    -moz-transition: width 0.3s, height 0.3s;
+    -ms-transition: width 0.3s, height 0.3s;
+    -o-transition: width 0.3s, height 0.3s;
+    transition: width 0.3s, height 0.3s;
+}
+
+.overhead-container.left:hover h4,
+.overhead-container.left:hover h5,
+.overhead-container.left:hover button,
+.overhead-container.right:hover h4,
+.overhead-container.right:hover h5,
+.overhead-container.right:hover button{
+    -webkit-animation: fadeIn 0.5s linear;
+    -o-animation: fadeIn 0.5s linear;
+    animation: fadeIn 0.5s linear;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+/*Overhead container with HIDDEN attributes - END */
+
 .aui-group>div.aui-item-container .shadowed-item .group{
     padding: 0px;
 }
@@ -5278,6 +5378,9 @@ aui-tabs {
     /*border-top: 1px solid #ccc;*/
     /*padding: 10px;*/
     margin-top: 20px;
+}
+#property-wrap .aui-tabs.horizontal-tabs > .tabs-menu ~ .tabs-pane {
+    margin-top: 10px;
 }
 .aui-tabs.horizontal-tabs > .tabs-menu {
     display: inline-block;

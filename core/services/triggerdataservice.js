@@ -1,4 +1,4 @@
-app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $http, $rootScope) {
+app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $http, $rootScope, ngIntroService) {
 
     //variables
     var alltriggers = [];
@@ -35,7 +35,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
         var client = $objectstore.getClient("jiraAddonTriggers");
         client.onGetMany(function (data) {
-            debugger
+            // debugger
             if (data.length == 0) {
                 tempData = [
                     { 'code': 'issue_created', 'projects': [] },
@@ -118,7 +118,12 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
             // debugger
             //$rootScope.$broadcast('selectedTriggers', selectedTriggersAndProjects);
             $rootScope.HideBusyContainer();
-        }).v1getByFiltering("*");
+			ngIntroService.clear();
+			ngIntroService.setOptions($rootScope.IntroEditProfile);
+			ngIntroService.start();
+			$rootScope.initialGuideProvider(null, '.workflow-add-node-sub', 'Hover over here and click on a (C)ondition or an (A)ction to add to your workflow');
+
+		}).v1getByFiltering("*");
 
         //var url = $v6urls.globalOS + "/jiraAddonTriggers";
         //var url = globalOS + $rootScope.Domain + "/jiraAddonTriggers";
@@ -326,7 +331,7 @@ app.factory('TriggerDatafactory', function ($objectstore, $filter, $v6urls, $htt
 
     //tigger save
     this.SaveTriggers = function (WorkFlowID) {
-        debugger
+        // debugger
         var saveJson = alltriggers;
         var payload = { "Objects": saveJson, "Parameters": { "KeyProperty": "code" } };
 

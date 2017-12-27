@@ -10,12 +10,12 @@
     </header>
     <!-- Main dialog content -->
     <div class="aui-dialog2-content">
-        <div class="rule-portion" ng-if="!isNewRuleFormValid">
+        <div class="rule-portion" ng-if="!isNewRuleFormValid" ng-intro-options="IntroNewName">
             <form class="aui" name="vm.newRuleForm">
                 <div class="field-group">
                     <label for="name">Name
                         <span class="aui-icon icon-required">(required)</span></label>
-                    <input class="text long-field" type="text" id="name" name="name" required ng-model="selectedRule.ruleName">
+                    <input class="text long-field sf-intro-name" type="text" id="name" name="name" required ng-model="selectedRule.ruleName">
                 </div>
                 <div class="field-group">
                     <label for="description">Description</label>

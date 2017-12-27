@@ -4,7 +4,8 @@ var app = angular.module('sfJira', [
     'uiMicrokernel',
     'angular.filter',
     'angular-cron-generator',
-    'angular-screenshot'
+    'angular-screenshot',
+	'angular-intro'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -71,9 +72,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller:'FeedbackController'
         });
 
-}
-
-
-
-
-);
+});

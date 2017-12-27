@@ -8,13 +8,13 @@
     </header>
 
     <div ng-if="selectedRule.status == 'Published'">
-        <div class="clearfix">
+        <div class="clearfix mb-10">
             <p>Container APIs let you invoke your automation & test for its functionality.</p>
         </div>
 
         <div class="clearfix">
-            <div style="margin-top: 50px;-ms-word-wrap: break-word;word-wrap: break-word">
-                <div>Base URL : </div><b>{{containerBaseURL}}</b>
+            <div class="aui-toolbar2-secondary user-alerts" style="float: none">
+                <span class="aui-primary-color"><b>Base URL :</b> </br> {{containerBaseURL}}</span>
             </div>
             <ul class="p-0 container-urls">
                 <li class="url" ng-repeat="row in GeneratedURL" ng-class="row.METHOD=='POST'?'posturldiv':'geturldiv'">

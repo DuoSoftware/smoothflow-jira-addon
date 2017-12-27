@@ -35,6 +35,25 @@
                             <dropdown args='args' message='var.Value' all='var.ValueList'></dropdown>
                         </div>
                     </div>
+                    <div class="property-field-wrap">
+                        <div class="property-field-head">
+                            <div class="heading">Array dropdown</div>
+
+                            <div class="type string">STRING</div>
+                            <span title="{{var.Category}}" ng-if="var.Category != ''" class="arg-ico glyphicon {{var.Category.replace('Argument','')}} {{var.Category.replace('Argument','') == 'In' ? 'glyphicon-log-in' : 'glyphicon-log-out'}}"></span>
+                        </div>
+
+                        <!-- <textcomplete args='args' message='var.Value'></textcomplete> -->
+
+                        <!--<div flex>-->
+                            <!--<sf-array-dd arraylist="testStringArray" selecteditem="selectedarritem" apiready="apiloading"></sf-array-dd>-->
+                        <!--</div>-->
+                        <div flex>
+                            <sf-api-dd funcstring="testObj.title+'()'" res="testStringArray" sf-dd-selected="selectedDDItem"></sf-api-dd>
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <!--<div class="aui-tabs horizontal-tabs">-->
@@ -79,4 +98,38 @@
     <!--<button class="btn btn-link">Cancel</button>-->
     <!--</div>-->
     <!--</div>-->
+
+    <div class="overhead-container hidden-width right">
+        <div class="overhead-container-header-small">
+            <span class="aui-icon aui-icon-small aui-iconfont-help"></span>
+            <h5>Tips on what to do here</h5>
+            <!--<button class="aui-button" type="button">-->
+                <!--<span class="aui-icon aui-icon-small aui-iconfont-{{selectedExpanded ? 'arrow-down' : 'arrow-up'}}">Show selected</span>-->
+            <!--</button>-->
+        </div>
+        <div class="overhead-container-body">
+            <div class="ul-headed dark">
+                <h5>You may input</h5>
+                <ul>
+                    <li ng-repeat="input in selectedModule.Variables">
+                        <div>Something as <i>*{{input.DisplayName}}*</i></div>
+
+                        <div>
+                            <div id="copy-{{input.DisplayName.replace(' ', '') | lowercase}}">*Sample data for <b>{{input.DisplayName}}</b> goes here</div>
+                            <div class="copy-sample-controls" style="width: 100%;text-align: right">
+                                <button class="aui-button" ng-click="copySampleToClipboard('copy-'+input.DisplayName.replace(' ', '') | lowercase)" style="color: #80DEEA">COPY</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dark">
+                <h5>Output</h5>
+                <div>
+                    <p>Automation output goes here</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

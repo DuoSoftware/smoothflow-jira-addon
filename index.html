@@ -6,6 +6,7 @@
     <title>SmoothFlow Automation for JIRA</title>
     <link rel="stylesheet" href="core/styles/style.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/intro.js/minified/introjs.min.css">
     <!--<link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.css">-->
 
     <!--<link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/6.0.8/css/aui.min.css" media="all">-->
@@ -13,6 +14,7 @@
 
     <link rel="stylesheet" href="aui/css/aui-extended-sf.css">
     <link rel="stylesheet" href="aui/css/aui-experimental.css">
+    <link rel="stylesheet" href="core/directives/sf-listsort/sf-listsort.directive.styles.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Open+Sans:400,700|Source+Code+Pro:300,600" rel="stylesheet">
     <link href="bower_components/angular-screenshot/build/angular-screenshot.min.css" rel="stylesheet" />
@@ -38,7 +40,7 @@
         <!--</screenshot>-->
     <!--</div>-->
     <div ng-controller="MainController" class="ac-content">
-        <div id="loading" class="aui-page-notification aui-page-focused-medium">
+        <div id="loading" class="aui-page-notification aui-page-focused-medium" style="z-index: 5000;">
             <!--<div class="aui-page-panel">-->
                 <!--<div class="aui-page-panel-inner">-->
                     <!--<section class="aui-page-panel-content">-->
@@ -98,8 +100,9 @@
         })();
     </script>
 
-    <div class="main-container" ng-controller="MainController"></div>
+    <!-- <div class="main-container" ng-controller="MainController"></div> -->
 
+    <!--Third party components injection-->
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
@@ -108,16 +111,34 @@
     <script type="text/javascript" src="bower_components/ng-textcomplete/ng-textcomplete.js"></script>
     <!--<script type="text/javascript" src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>-->
     <script type="text/javascript" src="bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script type="text/javascript" src="bower_components/intro.js/minified/intro.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-intro.js/build/angular-intro.min.js"></script>
+    <!--Third party components injection - END -->
+
     <!-- <script type="text/javascript" src="//dev.smoothflow.io/app/js/uimicrokernel.js"></script> -->
     <script type="text/javascript" src="js/uimicrokernel.js"></script>
+
+    <!--MAIN MODULE INJECTION-->
     <script type="text/javascript" src="app.js"></script>
+    <!--MAIN MODULE INJECTION - END -->
+
     <!-- <script type="text/javascript" src="//dev.smoothflow.io/app/js/runtimedatastore.js"></script> -->
     <script type="text/javascript" src="js/runtimedatastore.js"></script>
+
+    <!--Controllers injection-->
     <script type="text/javascript" src="core/controllers/main.controller.js"></script>
     <script type="text/javascript" src="core/controllers/audit.controller.js"></script>
     <script type="text/javascript" src="core/controllers/screenshot.controller.js"></script>
     <script type="text/javascript" src="core/controllers/feedback.controller.js"></script>
     <script type="text/javascript" src="core/controllers/trigger.controller.js"></script>
+    <!--Controllers injection - END -->
+
+    <!--Directives-->
+    <script src="core/directives/sf-listsort/sf-listsort.directive.js"></script>
+    <script src="core/directives/sf-array-dropdown/sf-array-dd.directive.js"></script>
+    <script src="core/directives/sf-api-ddlist/sf-api-ddlist.directive.js"></script>
+    <!--Directives - END-->
+
     <script type="text/javascript" src="core/services/triggerdataservice.js"></script>
     <script type="text/javascript" src="core/js/angular-cron-generator.min.js"></script>
 
@@ -127,6 +148,7 @@
     <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-datepicker.min.js"></script>
     <script src="//aui-cdn.atlassian.com/aui-adg/6.0.8/js/aui-soy.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script>
         AJS.$('#captureButton').tooltip({'gravity':'se'});
     </script>

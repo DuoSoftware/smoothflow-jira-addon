@@ -1,4 +1,4 @@
-<div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName | lowercase}}"
+<div class="workflow-block {{component.ControlType}}-block component-{{component.DisplayName.replace(' ', '') | lowercase}}"
      ng-repeat="component in workflow = (parent = component).workflow"
      ng-init="component.parent = parent; component.level = parent.level + 1"
      ng-style="component.ControlType == 'condition' ? 'margin-top:20px' : ''"

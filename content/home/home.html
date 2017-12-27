@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="home-templates-wrap">
-            <div class="new-rule-section">
+            <div class="new-rule-section" ng-intro-options="IntroOptions" ng-intro-method="CallMe">
                 <div class="template new-rule" id="dialog-show-button" ng-click="newRule(null, false)">
                     <div>+</div>
                     <span style="height: 50px;max-height: 50px">New Automation</span>
@@ -63,5 +63,4 @@
     <!--CREATED RULES INJECTION-->
     <div ng-include="'content/home/partials/current-rules-aui.html'"></div>
     <!-- / CREATED RULES INJECTION-->
-
 </div>

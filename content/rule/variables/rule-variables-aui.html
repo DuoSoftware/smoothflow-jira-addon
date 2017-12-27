@@ -3,7 +3,7 @@
     <header class="aui-page-header p-15 ph-0">
         <div class="aui-page-header-inner">
             <div class="aui-page-header-main">
-                <h4>{{selectedRule.ruleName}} fields</h4>
+                <h4>Automation fields</h4>
             </div>
             <div class="aui-toolbar2-secondary">
                 <div id="button-set2" class="aui-buttons">
@@ -28,7 +28,7 @@
                 <!--</ul>-->
                 <h5 class="content-sub-heading">Pre-defined variables</h5>
                 <span ng-repeat="var in AdditionalVariable" class="check-block" ng-click="addtoMainList(var,$event)" ng-class="{'selected':var.isSelected}">
-                    <span>{{var.Key}}</span> <span class="aui-icon aui-icon-small aui-iconfont-success" ng-if="var.isSelected">Active variable</span>
+                    <span class="aui-icon aui-icon-small aui-iconfont-devtools-side-diff left"></span> <span>{{var.Key}}</span> <span class="aui-icon aui-icon-small aui-iconfont-success right" ng-if="var.isSelected">Active variable</span>
                 </span>
             </div>
             <form class="aui col-md-9 col-sm-9 col-xs-6" style="margin: 5px 0 0 0">
