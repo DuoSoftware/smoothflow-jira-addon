@@ -77,7 +77,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 // Kasun_Wijeratne_27_DEC_2017
 /** User validation before loading the Add-on **/
 $.get( "json/config.json", function( data ) {
-	debugger;
 	var domain = null;
 	var url = data.checkUserValidity.URL;
 	var xdm = window.location.href.split('&');
@@ -85,7 +84,6 @@ $.get( "json/config.json", function( data ) {
 	for(var i=0;i<xdm.length;i++){
 		if(xdm[i].split('=')[0] == 'xdm_e'){
 			domain = xdm[i].split('=')[1].split('.')[0].replace('https%3A%2F%2F','') + 'jira';
-			debugger;
 		}
 	}
 
