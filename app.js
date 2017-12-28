@@ -85,7 +85,7 @@ $.get( "json/config.json", function( data ) {
 
 	for(var i=0;i<xdm.length;i++){
 		if(xdm[i].split('=')[0] == 'xdm_e'){
-			domain = xdm[i].split('=')[1].split('.')[0].replace('https%3A%2F%2F','') + 'jira';
+			domain = xdm[i].split('=')[1].split('.')[0].replace('https%3A%2F%2F','') + 'jira123';
 		}
 	}
 
