@@ -73,7 +73,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'FeedbackController'
         });
 
-}
+});
 
 // Kasun_Wijeratne_27_DEC_2017
 /** User validation before loading the Add-on **/
@@ -111,6 +111,3 @@ $.get( "json/config.json", function( data ) {
 });
 /** ----------------------------------------------- **/
 // Kasun_Wijeratne_27_DEC_2017 - END
-
-
-);
