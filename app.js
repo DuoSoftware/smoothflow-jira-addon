@@ -73,9 +73,41 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'FeedbackController'
         });
 
-}
+});
 
+// Kasun_Wijeratne_27_DEC_2017
+/** User validation before loading the Add-on **/
+$.get( "json/config.json", function( data ) {
+	debugger;
+	var domain = null;
+	var url = data.checkUserValidity.URL;
+	var xdm = window.location.href.split('&');
 
+	for(var i=0;i<xdm.length;i++){
+		if(xdm[i].split('=')[0] == 'xdm_e'){
+			domain = xdm[i].split('=')[1].split('.')[0].replace('https%3A%2F%2F','') + 'jira';
+		}
+	}
 
-
-);
+	$.ajax({
+		url			: url + domain,
+		type		: 'GET',
+		beforeSend	: function(xhr){
+			xhr.setRequestHeader('securityToken', 'ignore');
+		},
+		success		: function (sucres) {
+			if (sucres.Status) {
+				angular.element(document).ready(function(){
+					angular.bootstrap(document, ["sfJira"]);
+				});
+			} else {
+				window.location = window.location.href.split('?')[0] + 'access-denied.html';
+			}
+		},
+		error		: function (errres) {
+			window.location = window.location.href.split('?')[0] + 'access-denied.html';
+		}
+	});
+});
+/** ----------------------------------------------- **/
+// Kasun_Wijeratne_27_DEC_2017 - END
