@@ -13,7 +13,7 @@ app.controller('MainController', [
     '$helpers',
     '$location',
     '$window',
-	'ngIntroService', mainController])
+    'ngIntroService', mainController])
     .directive('textcomplete', ['Textcomplete', function (Textcomplete) {
         return {
             restrict: 'EA',
@@ -711,9 +711,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         }
 
-		$timeout(function () {
-			index == 0 ? $rootScope.initialGuideProvider(null, '#comp-panel-actions', 'Click on any groups to open or collapse a panel and click on a component to add') : $rootScope.initialGuideProvider(null, '#comp-panel-conditions', 'Click on any groups to open or collapse a panel and click on a component to add');
-		}, 500);
+        $timeout(function () {
+            index == 0 ? $rootScope.initialGuideProvider(null, '#comp-panel-actions', 'Click on any groups to open or collapse a panel and click on a component to add') : $rootScope.initialGuideProvider(null, '#comp-panel-conditions', 'Click on any groups to open or collapse a panel and click on a component to add');
+        }, 500);
     };
 
     $scope.getRuleDetails = function () {
@@ -941,11 +941,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.openSelectedRule = function (selectedRule, entry) {
         $timeout(function () {
             //debugger
-            $scope.selectedModule=[];
+            $scope.selectedModule = [];
             $rootScope.ShowBusyContainer("Loading rule details...");
             $scope.currentRuleID = selectedRule.id;
             $scope.selectedRule = selectedRule;
             var flowVersion = $scope.getVersionForWF($scope.currentRuleID);
+            $scope.getSchedule(selectedRule.name);
             if ($scope.selectedRule.workflow.length == 0) {
                 var client = $objectstore.getClient("process_flows");
                 client.onGetOne(function (data) {
@@ -974,9 +975,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     } else {
                         $rootScope.HideBusyContainer();
                         $rootScope.DisplayMessage("Unable to load workflow", "error");
-						$timeout(function(){
-							$rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
-						}, 2000);
+                        $timeout(function () {
+                            $rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
+                        }, 2000);
                     }
 
                 }).V1getByKey(flowVersion[0]);
@@ -987,9 +988,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 $rootScope.selectedRuleName = $scope.selectedRule.name;
                 $scope.setDockerInformation($scope.selectedRule.name);
                 $rootScope.HideBusyContainer();
-				$timeout(function(){
-					$rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
-				}, 2000);
+                $timeout(function () {
+                    $rootScope.initialGuideProvider(null, '#auto-details-controls', 'You can make changed to your automation here. You can Edit details or Delete this automation');
+                }, 2000);
             }
 
         }, 0).then(function () {
@@ -1221,6 +1222,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }).then(function OnSuccess(response) {
                 $rootScope.ShowBusyContainer("Publishing automation to a container...");
                 if (response.data.Status) {
+                    $scope.setScheduleforWorkflow($scope.currentScheduleRule);
                     var obj = {};
                     obj.wfname = $scope.getWFName($scope.selectedRule.ruleName);
                     obj.port = $scope.executable.port.toString();
@@ -1496,8 +1498,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.selectedRule.workflow = [];
         $scope.selectedRule.Variables = [];
         AJS.dialog2("#new-rule-dialog").show();
-		$rootScope.initialGuideProvider(null, '.sf-intro-name', 'Name your Automation here. This name will be the identifier of your automation hereon');
-		// $state.go('rule.new');
+        $rootScope.initialGuideProvider(null, '.sf-intro-name', 'Name your Automation here. This name will be the identifier of your automation hereon');
+        // $state.go('rule.new');
     };
 
     //Close rule dialog
@@ -1662,27 +1664,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.openComponentInfo = function (component) {
         $scope.tab = false;
         $scope.args = dataHandler.retrieveArgumentsKeys();
-        component.Variables = dataHandler.checkFormat(component.Variables);        
+        component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
         checkArguments(component.Variables)
         $timeout(function () {
             $scope.activeModule = component.$$hashKey;
         });
     };
-    function checkArguments(Variableslist) {       
+    function checkArguments(Variableslist) {
         Variableslist.forEach(function (element) {
             if (element.Key == "InSessionID") {
                 // set value @InSessionID
-                element.Value = "@InSessionID"               
-            }
-        }, this);       
-        $scope.allVariables.forEach(function (element) {    
-            if (element.Key == "InSessionID") {
-                // set value @InSessionID
-                element.Value = "@InSessionID"                
+                element.Value = "@InSessionID"
             }
         }, this);
-      
+        $scope.allVariables.forEach(function (element) {
+            if (element.Key == "InSessionID") {
+                // set value @InSessionID
+                element.Value = "@InSessionID"
+            }
+        }, this);
+
     }
     //New component
     $scope.newComponent = function (index) {
@@ -2469,7 +2471,48 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             }
         });
     }
+    /** Save Schedule - Added By Lakmini 28th Dec 2017 */
+    $scope.saveSchedule = function (Schedule) {
+        var payload = {
+            "FlowName": $scope.selectedRule.name,
+            "Rules": [
+                {
+                    "OptionalHeaders": {},
+                    "OptionalJson": {},
+                    "Rate": Schedule
+                }
+            ]
+        }
+        var client = $objectstore.getClient("Schedule");
+        client.onComplete(function (data) {
+            $rootScope.DisplayMessage("Schedule details saved successfully.", "success");
+            $rootScope.HideBusyContainer();
+        });
+        client.onError(function (data) {
+            $rootScope.DisplayMessage("Error occured when saving schedule details.", "error", "Please contact an administrator.");
+            $rootScope.HideBusyContainer();
+        });
+        client.V1insert(payload, {
+            KeyProperty: "FlowName"
+        });
+    };
+    //** End  Save Schedule*/
+    /** Get Schedule */
+    $scope.getSchedule = function (name) {
+        var client = $objectstore.getClient("Schedule");
+        client.onGetOne(function (data) {
+            // $rootScope.ShowBusyContainer("Almost done...");
+            if (data.length !== 0) {
+                if(data.Rules[0].Rate != null){
+                    $scope.currentScheduleRule =data.Rules[0].Rate;
+                    $scope.cronExpression = $scope.currentScheduleRule;
+                }                
+                $scope.selectedRule.schedule = data;
+             }
 
+
+        }).V1getByKey(name);
+    };
     $scope.scheduleEditOn = false;
     $scope.editSchedule = function () {
         $scope.scheduleEditOn = !$scope.scheduleEditOn;
@@ -2625,9 +2668,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.TotalNumberOfContainers = $scope.NGINXData.length;
 
         $rootScope.HideBusyContainer();
-		$rootScope.initialGuideProvider(null, '#dialog-show-button', "You can create a new automation here");
+        $rootScope.initialGuideProvider(null, '#dialog-show-button', "You can create a new automation here");
 
-	}
+    }
 
     $scope.loadJiraUser = function (profile) {
         //debugger
@@ -2783,82 +2826,82 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
     // Kasun_Wijeratne_12_NOV_2017 - END
 
-	/** Initial guide **/
-	$rootScope.initialGuideProvider = function (loc, elem, msg) {
+    /** Initial guide **/
+    $rootScope.initialGuideProvider = function (loc, elem, msg) {
 
-		if(!$rootScope.isIntroHold){
-			ngIntroService.clear();
+        if (!$rootScope.isIntroHold) {
+            ngIntroService.clear();
 
-			var options = {
-				steps: [
-					{
-						element: elem,
-						intro: msg
-					}
-				]
-			};
+            var options = {
+                steps: [
+                    {
+                        element: elem,
+                        intro: msg
+                    }
+                ]
+            };
 
-			ngIntroService.setOptions(options);
-			ngIntroService.start();
+            ngIntroService.setOptions(options);
+            ngIntroService.start();
 
-			$timeout(function () {
-				$('.introjs-tooltipbuttons').append('<a class="introjs-button" role="button" tabindex="1" id="teminateIntro">Do not show again</a>')
-			}, 100);
-		}
+            $timeout(function () {
+                $('.introjs-tooltipbuttons').append('<a class="introjs-button" role="button" tabindex="1" id="teminateIntro">Do not show again</a>')
+            }, 100);
+        }
 
-		// $scope.IntroOptions = {
-		// 	steps: [
-		// 		{
-		// 			element: '#dialog-show-button',
-		// 			intro: "You can create a new automation here"
-		// 		}
-		// 	]
-		// };
-		// $scope.IntroNewName = {
-		// 	steps: [
-		// 		{
-		// 			element: '.sf-intro-name',
-		// 			intro: "Name your Automation here. This name will be the identifier of your automation hereon"
-		// 		}
-		// 	]
-		// };
-		// $rootScope.IntroEditProfile = {
-		// 	steps: [
-		// 		{
-		// 			element: '.workflow-add-node-sub',
-		// 			intro: "Hover over here and click on a (C)ondition or an (A)ction to add to your workflow"
-		// 		}
-		// 	]
-		// }
-		// $rootScope.IntroCompPanelA = {
-		// 	steps: [
-		// 		{
-		// 			element: '#comp-panel-actions',
-		// 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
-		// 		}
-		// 	]
-		// }
-		// $rootScope.IntroCompPanelC = {
-		// 	steps: [
-		// 		{
-		// 			element: '#comp-panel-conditions',
-		// 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
-		// 		}
-		// 	]
-		// }
-	}
+        // $scope.IntroOptions = {
+        // 	steps: [
+        // 		{
+        // 			element: '#dialog-show-button',
+        // 			intro: "You can create a new automation here"
+        // 		}
+        // 	]
+        // };
+        // $scope.IntroNewName = {
+        // 	steps: [
+        // 		{
+        // 			element: '.sf-intro-name',
+        // 			intro: "Name your Automation here. This name will be the identifier of your automation hereon"
+        // 		}
+        // 	]
+        // };
+        // $rootScope.IntroEditProfile = {
+        // 	steps: [
+        // 		{
+        // 			element: '.workflow-add-node-sub',
+        // 			intro: "Hover over here and click on a (C)ondition or an (A)ction to add to your workflow"
+        // 		}
+        // 	]
+        // }
+        // $rootScope.IntroCompPanelA = {
+        // 	steps: [
+        // 		{
+        // 			element: '#comp-panel-actions',
+        // 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
+        // 		}
+        // 	]
+        // }
+        // $rootScope.IntroCompPanelC = {
+        // 	steps: [
+        // 		{
+        // 			element: '#comp-panel-conditions',
+        // 			intro: "Click on any groups to open or collapse a panel and click on a component to add"
+        // 		}
+        // 	]
+        // }
+    }
 
-	$rootScope.isIntroHold = false;
-	// $rootScope.holdIntro = function () {
-	// 	$rootScope.isIntroHold = true;
-	// 	ngIntroService.clear();
-	// }
+    $rootScope.isIntroHold = false;
+    // $rootScope.holdIntro = function () {
+    // 	$rootScope.isIntroHold = true;
+    // 	ngIntroService.clear();
+    // }
 
-	$(document).on('click', '#teminateIntro', function (e) {
-		$rootScope.isIntroHold = true;
-		ngIntroService.clear();
-	});
-	/** Initial guide **/
+    $(document).on('click', '#teminateIntro', function (e) {
+        $rootScope.isIntroHold = true;
+        ngIntroService.clear();
+    });
+    /** Initial guide **/
 
 
     /** Export and Import added by Lakmini */
@@ -3050,32 +3093,32 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     /** End - Export and Import*/
 
     //Copy sample code in Hins panel for workflow Properties
-	$scope.copySampleToClipboard = function (idPart1) {
-		var id = idPart1;
-		window.getSelection().empty();
-		var copyField = document.getElementById(id);
-		var range = document.createRange();
-		range.selectNode(copyField);
-		window.getSelection().addRange(range);
-		document.execCommand('copy');
-		$('#'+id).siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
-	};
+    $scope.copySampleToClipboard = function (idPart1) {
+        var id = idPart1;
+        window.getSelection().empty();
+        var copyField = document.getElementById(id);
+        var range = document.createRange();
+        range.selectNode(copyField);
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        $('#' + id).siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
+    };
     //Copy sample code in Hins panel for workflow Properties - END
 
-	// Dropdown from API test code
-	$scope.testObj = {
-		title:'testAPIStringFunction'
-	}
-	$scope.selectedDDItem = null;
+    // Dropdown from API test code
+    $scope.testObj = {
+        title: 'testAPIStringFunction'
+    }
+    $scope.selectedDDItem = null;
 
-	$scope.testAPIStringFunction = function() {
-		$timeout(function(){
-			$scope.testStringArray = [
-				'First string',
-				'Second string',
-				'Third string'
-			];
-		}, 3000);
-	}
-	// Dropdown from API test code - END
+    $scope.testAPIStringFunction = function () {
+        $timeout(function () {
+            $scope.testStringArray = [
+                'First string',
+                'Second string',
+                'Third string'
+            ];
+        }, 3000);
+    }
+    // Dropdown from API test code - END
 }
