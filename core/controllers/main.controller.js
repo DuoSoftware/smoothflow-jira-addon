@@ -2060,10 +2060,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             component.push(parentSibling);
     }
 
+    $scope.buildWorkFlow = function () {
+        console.log("Begin build workflow");
+        $scope.generateSaveWorkflowObject("build");
+    }
+
     //call Workflow save method
     $scope.saveWorkFlow = function () {
         console.log("Begin Workflow save.");
-        $scope.generateSaveWorkflowObject();
+        $scope.generateSaveWorkflowObject("save");
         //debugger;
         TriggerDatafactory.SaveTriggers($scope.getWFName($scope.selectedRule.ruleName));
         //TriggerDatafactory.filtertiggerbyId($scope.currentRuleID);
@@ -2239,8 +2244,43 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         console.log("Completed processing connections.");
     }
 
-    $scope.generateSaveWorkflowObject = function () {
-        $rootScope.ShowBusyContainer("Saving rule details...");
+    $scope.buildFlow = function (saveObject, event) {
+        /* stiipConvertion is done to remove .(string) like parts from the value fields of all variables since, if there is any convertions required it will be already available inside Convert field */
+        var newJSON = $scope.stripConvertionDetails(angular.copy(saveObject.JSONData));
+        // console.log("Publish Data:")
+        // console.log(newJSON)
+        var sessionId = dataHandler.createuuid();
+        var flowChartJson = JSON.stringify(newJSON);
+
+        var flowname = saveObject.Name;
+        flowname = flowname.replace(' ', '');
+        var URL = $v6urls.processManager + "/processengine/BuildFlow/";
+        var actualURL = URL + flowname + "/" + sessionId;
+        $http.post(actualURL, newJSON, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'SecurityToken': "ignore"
+            }
+        }).then(function (data, status, headers, config) {
+            console.log(data);
+            if (data.data.Status) {
+                $rootScope.DisplayMessage("The rule was successfully build.", "success", "Please check your rule configurations.");    
+            } else {
+                $rootScope.DisplayMessage("There was an error when building the rule.", "error", "Please check your rule configurations.");    
+            }
+            $rootScope.HideBusyContainer();
+        }, function (data, status, headers, config) {
+            $rootScope.DisplayMessage("There was an error when trying to communicate to the server.", "error", "You may try again.");
+            $rootScope.HideBusyContainer();
+        });
+    }
+
+    $scope.generateSaveWorkflowObject = function (task) {
+        if(task == "save"){
+            $rootScope.ShowBusyContainer("Saving rule details...");
+        }else if(task == "build"){
+            $rootScope.ShowBusyContainer("Processing rule details...");
+        }
 
         // reset the datahander data to re generate it again except the variable / argument data
         dataHandler.resetAddonDesign();
@@ -2294,7 +2334,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
         var version = [saveObject.ID];
         saveObjectParent.version = version;
-        $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
+        if (task == "save") {
+            $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
+        } else if (task == "build") {
+            $scope.buildFlow(saveObject, event);
+        }
     };
 
     $scope.getControlObjectFromLibrary = function (library_id) {
@@ -2897,10 +2941,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
     $scope.movetoImport = function () {
         AJS.dialog2("#rule-import-dialog").show();
-     };
-     $scope.closeImport = function () {
+    };
+    $scope.closeImport = function () {
         AJS.dialog2("#rule-import-dialog").hide();
-     };
+    };
     $scope.$on('importBroadcast', function (event, open) {
         $scope.selectedRule = open.data;
         $scope.openSelectedRule(open.data, event);
@@ -2942,20 +2986,20 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
     /** End - Export and Import*/
 
-	// Dropdown from API test code
-	$scope.testObj = {
-		title:'testAPIStringFunction'
-	}
-	$scope.selectedDDItem = null;
+    // Dropdown from API test code
+    $scope.testObj = {
+        title: 'testAPIStringFunction'
+    }
+    $scope.selectedDDItem = null;
 
-	$scope.testAPIStringFunction = function() {
-		$timeout(function(){
-			$scope.testStringArray = [
-				'First string',
-				'Second string',
-				'Third string'
-			];
-		}, 3000);
-	}
-	// Dropdown from API test code - END
+    $scope.testAPIStringFunction = function () {
+        $timeout(function () {
+            $scope.testStringArray = [
+                'First string',
+                'Second string',
+                'Third string'
+            ];
+        }, 3000);
+    }
+    // Dropdown from API test code - END
 }
