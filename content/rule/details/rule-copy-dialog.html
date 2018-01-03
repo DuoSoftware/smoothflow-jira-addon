@@ -1,0 +1,20 @@
+<section role="dialog" id="rule-Copy-dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" aria-hidden="true" data-aui-remove-on-hide="true">
+    
+        <!-- Dialog header -->
+        <header class="aui-dialog2-header">
+            <!-- The dialog's title -->
+            <h2 class="aui-dialog2-header-main">Are you sure?</h2>
+            <!-- Close icon -->
+            <a class="aui-dialog2-header-close">
+                <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+            </a>
+        </header>
+    
+        <div class="aui-dialog2-content">
+            <p>Do you want to copy this automation?</p>
+        </div>
+        <footer class="aui-dialog2-footer">
+            <button  ng-click="RuleCopy()" id="dialog-export-button" class="aui-button aui-button-primary">Yes</button>
+            <button ng-click="closeCopyDialog($event)" id="dialog-close-button" class="aui-button aui-button-link">Close</button>
+        </footer>
+    </section>

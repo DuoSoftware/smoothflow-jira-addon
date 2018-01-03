@@ -9,23 +9,33 @@
                     <button class="aui-button" ng-click="editRule()">
                         <span class="aui-icon aui-icon-small {{ruleEdit ? 'aui-iconfont-success' : 'aui-iconfont-edit'}}">Edit rule</span>
                     </button>
-                    
-                    
-                    <a href="#dwarfers" aria-owns="dwarfers" class="aui-dropdown2-trigger" aria-haspopup="true"><button class="aui-button aui-button-subtle"><span class="aui-icon aui-icon-small aui-iconfont-more">more </span></button></a>
-                    
-                    
+
+
+                    <a href="#dwarfers" aria-owns="dwarfers" class="aui-dropdown2-trigger" aria-haspopup="true">
+                        <button class="aui-button aui-button-subtle">
+                            <span class="aui-icon aui-icon-small aui-iconfont-more">more </span>
+                        </button>
+                    </a>
+
+
                     <div id="dwarfers" class="aui-dropdown2" style="background-color: #e9e9e9;">
                         <ul class="aui-list-truncate" style="list-style-type: none;padding-left: 6px;">
-                            <li><button class="aui-button" ng-click="removeRule()" style="width: 96%; padding-right: 62px;">
-                                <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete</span>
-                                Delete </button></li>
-                            <li><button class="aui-button" ng-click="confirmExport()" style="width: 96%; padding-right: 62px;">
-                                <span class="aui-icon aui-icon-small aui-iconfont-export">Export</span>
-                                Export</button></li>
-                            <li><button class="aui-button" ng-click="" style="width: 96%; padding-right: 62px;">
-                                <span class="aui-icon aui-icon-small aui-iconfont-devtools-file">Copy</span>
-                                Copy</button></li>
-                            
+                            <li>
+                                <button class="aui-button" ng-click="removeRule()" style="width: 96%; padding-right: 62px;">
+                                    <span class="aui-icon aui-icon-small aui-iconfont-delete">Delete</span>
+                                    Delete </button>
+                            </li>
+                            <li>
+                                <button class="aui-button" ng-click="confirmExport()" style="width: 96%; padding-right: 62px;">
+                                    <span class="aui-icon aui-icon-small aui-iconfont-export">Export</span>
+                                    Export</button>
+                            </li>
+                            <li>
+                                <button class="aui-button" ng-click="showCopyConfirm()" style="width: 96%; padding-right: 62px;">
+                                    <span class="aui-icon aui-icon-small aui-iconfont-devtools-file">Copy</span>
+                                    Copy</button>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -70,8 +80,8 @@
                             <span class="aui-avatar-inner">
                                 <img ng-src="{{selectedRule.avatar}}">
                             </span>
-                    </span>
-                    <span class="avatar-text">{{selectedRule.createdBy}}</span>
+                        </span>
+                        <span class="avatar-text">{{selectedRule.createdBy}}</span>
                     </span>
                 </div>
             </li>
@@ -94,7 +104,7 @@
                     <div class="wrap field-group">
                         <strong class="name">Status:</strong>
                         <span class="value">
-                        <span class="aui-lozenge aui-lozenge{{selectedRule.status == 'Published' ? '-success' : ''}}">{{selectedRule.status}}</span>
+                            <span class="aui-lozenge aui-lozenge{{selectedRule.status == 'Published' ? '-success' : ''}}">{{selectedRule.status}}</span>
                         </span>
                     </div>
                 </li>
@@ -102,8 +112,7 @@
                     <div class="wrap field-group">
                         <strong class="name">Name:</strong>
                         <span class="value">
-                            <input class="text long-field" type="text"
-                                   id="name" name="name" ng-model="selectedRule.ruleName">
+                            <input class="text long-field" type="text" id="name" name="name" ng-model="selectedRule.ruleName">
                         </span>
                     </div>
                 </li>
@@ -111,9 +120,8 @@
                     <div class="wrap field-group">
                         <strong class="name">Description:</strong>
                         <span class="value">
-                        <textarea class="textarea long-field" name="description" ng-model="selectedRule.description"
-                                  id="description"></textarea>
-                    </span>
+                            <textarea class="textarea long-field" name="description" ng-model="selectedRule.description" id="description"></textarea>
+                        </span>
                     </div>
                 </li>
                 <!-- <li class="item item-right">
@@ -151,10 +159,10 @@
                         <span class="value">
                             <span class="aui-avatar aui-avatar-xsmall">
                                 <span class="aui-avatar-inner">
-                                        <img ng-src="{{selectedRule.avatar}}">
+                                    <img ng-src="{{selectedRule.avatar}}">
                                 </span>
-                        </span>
-                        <span class="avatar-text">{{selectedRule.createdBy}}</span>
+                            </span>
+                            <span class="avatar-text">{{selectedRule.createdBy}}</span>
                         </span>
                     </div>
                 </li>
@@ -178,5 +186,9 @@
 
     <!-- RULE EXPORT INJECTION -->
     <div ng-include="'content/home/importexport/rule-export-dialog.html'"></div>
-     <!-- /RULE EXPORT INJECTION -->
+    <!-- /RULE EXPORT INJECTION -->
+    
+    <!--RULE COPY INJECTION-->
+    <div ng-include="'content/rule/details/rule-copy-dialog.html'"></div>
+    <!-- / RULE COPY INJECTION-->
 </div>

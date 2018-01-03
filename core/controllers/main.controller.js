@@ -2503,12 +2503,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         client.onGetOne(function (data) {
             // $rootScope.ShowBusyContainer("Almost done...");
             if (data.length !== 0) {
-                if(data.Rules[0].Rate != null){
-                    $scope.currentScheduleRule =data.Rules[0].Rate;
+                if (data.Rules[0].Rate != null) {
+                    $scope.currentScheduleRule = data.Rules[0].Rate;
                     $scope.cronExpression = $scope.currentScheduleRule;
-                }                
+                }
                 $scope.selectedRule.schedule = data;
-             }
+            }
 
 
         }).V1getByKey(name);
@@ -2602,10 +2602,22 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             if ($scope.selectedRule.status == "Unsaved") {
                 $scope.selectedRule.status = "Draft";
             }
+            if ($scope.Iscopy) {
+                $rootScope.HideBusyContainer();
+                $rootScope.DisplayMessage("Rule successfully Copied.", "success");
+                $scope.Iscopy = false;
+
+            }
         });
         client.onError(function (data) {//$scope.showToast("Oppss. There was an error storing in objectstore.");
-            $rootScope.DisplayMessage("There was an error when saving the rule.", "error", "You may try again.");
+            if ($scope.Iscopy) {
+                $rootScope.DisplayMessage("There was an error when copying the rule.", "error", "You may try again.");
+                $scope.Iscopy = false;
+            } else {
+                $rootScope.DisplayMessage("There was an error when saving the rule.", "error", "You may try again.");
+            }
             $rootScope.HideBusyContainer();
+
             $scope.SaveFailed = true;
         });
         client.V1insert([saveObj], {
@@ -3094,16 +3106,16 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Copy sample code in Hins panel for workflow Properties
 
-	$scope.copySampleToClipboard = function (idPart1) {
-		var id = idPart1;
-		window.getSelection().empty();
-		var copyField = document.getElementById(id);
-		var range = document.createRange();
-		range.selectNode(copyField);
-		window.getSelection().addRange(range);
-		document.execCommand('copy');
-		$('#'+id).parent().siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
-	};
+    $scope.copySampleToClipboard = function (idPart1) {
+        var id = idPart1;
+        window.getSelection().empty();
+        var copyField = document.getElementById(id);
+        var range = document.createRange();
+        range.selectNode(copyField);
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        $('#' + id).parent().siblings('.copy-sample-controls').append('<span class="dynamic-state-pill">Copied</span>');
+    };
 
     //Copy sample code in Hins panel for workflow Properties - END
 
@@ -3123,4 +3135,58 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }, 3000);
     }
     // Dropdown from API test code - END
+
+    /** Rule - Copy added by lakmini 02-01-2018 */
+    $scope.showCopyConfirm = function () {
+        AJS.dialog2("#rule-Copy-dialog").show();
+    }
+    $scope.closeCopyConfirm = function () {
+        AJS.dialog2("#rule-Copy-dialog").hide();
+    }
+    $scope.Iscopy = false;
+    $scope.RuleCopy = function () {
+        $scope.Iscopy = true;
+        AJS.dialog2("#rule-Copy-dialog").hide();
+        $rootScope.ShowBusyContainer("Copying Rule");
+        debugger;
+        var flowChartJson = dataHandler.getSaveJson();
+        var flowID = dataHandler.createuuid();
+        var tag = "Jira Addon Rule".split(" ");
+
+        var authorDetails = {
+            "Name": $rootScope.SessionDetails.name,
+            "Email": $rootScope.SessionDetails.emails[0],
+            "Domain": "JIRA",
+            "Avatar": $scope.SessionDetails.avatar
+        }
+        var saveObject = {
+            "ID": flowID,
+            "WFID": flowID,
+            "Name": "copy" + $scope.getWFName($scope.selectedRule.ruleName),
+            "DisplayName": "copy_" + $scope.selectedRule.ruleName,
+            "comment": "",
+            "Description": $scope.selectedRule.discription,
+            "version": "V1",
+            "DateTime": new Date(),
+            "UserName": $scope.SessionDetails.emails[0],
+            "JSONData": flowChartJson,
+            "AuthorDetails": authorDetails
+        }
+        var saveObjectParent = {
+            "ID": flowID,
+            "Name": "copy" + $scope.getWFName($scope.selectedRule.ruleName),
+            "DisplayName": "copy_" + $scope.selectedRule.ruleName,
+            "Description": $scope.selectedRule.discription,
+            "version": [flowID],
+            "DateTime": new Date(),
+            "UserName": $scope.SessionDetails.emails[0],
+            "AuthorDetails": authorDetails,
+            "Tags": tag
+        }
+        $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
+        $rootScope.changeLocation('home');
+      
+
+    }
+    /** Rule - Copy End */
 }
