@@ -3933,7 +3933,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@Reason"
 				},
@@ -3945,7 +3945,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@Status"
 				}
