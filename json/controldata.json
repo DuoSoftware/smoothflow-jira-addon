@@ -26494,6 +26494,111 @@
 			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
+		},
+		{
+			"library_id": "1000",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "Branch rule",
+			"Icon": "ion-shuffle",
+			"Description": "this is a test description",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "ValueOne",
+					"DisplayName": "First Value",
+					"Value": "",
+					"Type": "Textbox",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@ValueOne"
+				},
+				{
+					"Key": "Condition",
+					"DisplayName": "Condition",
+					"Value": "",
+					"ValueList": [
+						{
+							"key": "Equal",
+							"value": "=="
+						},
+						{
+							"key": "Not Equal",
+							"value": "!="
+						},
+						{
+							"key": "Greater Than",
+							"value": ">"
+						},
+						{
+							"key": "Less Than",
+							"value": "<"
+						}
+					],
+					"Type": "Dropdown",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Dropdown",
+					"placeholder": "@Condition"
+				},
+				{
+					"Key": "ValueTwo",
+					"DisplayName": "Second Value",
+					"Value": "",
+					"Type": "Textbox",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@ValueTwo"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": 0,
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": 0,
+					"location": "TopCenter"
+				}
+			],
+			"Type": "if",
+			"Category": "Flow Controls",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {
+				"TrueStateUUID": "",
+				"FalseStateUUID": ""
+			},
+			"Annotation": "",
+			"DisplayName": "Branch rule",
+			"class": "Tools",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "condition",
+			"workflow": [
+				{
+					"DisplayName": "Related issues",
+					"ControlType": "condition",
+					"workflow": [],
+					"webicon": "true.png"
+				}
+			],
+			"webicon": "protractor.png",
+			"url": [],
+			"help": ""
 		}
 	]
 }
