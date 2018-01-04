@@ -26496,70 +26496,27 @@
 			"help": ""
 		},
 		{
-			"library_id": "1000",
+			"library_id": "438294839343_endsession",
 			"schema_id": 0,
 			"parentView": "",
-			"Name": "Branch rule",
+			"Name": "Bot_Smoothflow_EndSession",
 			"Icon": "ion-shuffle",
-			"Description": "this is a test description",
+			"Description": "You could use this activity to end a conversation session and remove the session object from the dispatcher.",
 			"ControlEditDisabled": true,
 			"Variables": [
-				{
-					"Key": "ValueOne",
-					"DisplayName": "First Value",
+                {
+					"Key": "InSessionID",
 					"Value": "",
-					"Type": "Textbox",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
 					"Category": "",
 					"DataType": "string",
 					"Group": "Default",
 					"Priority": "Mandatory",
-					"advance": false,
+					"advance": true,
 					"control": "Textbox",
-					"placeholder": "@ValueOne"
-				},
-				{
-					"Key": "Condition",
-					"DisplayName": "Condition",
-					"Value": "",
-					"ValueList": [
-						{
-							"key": "Equal",
-							"value": "=="
-						},
-						{
-							"key": "Not Equal",
-							"value": "!="
-						},
-						{
-							"key": "Greater Than",
-							"value": ">"
-						},
-						{
-							"key": "Less Than",
-							"value": "<"
-						}
-					],
-					"Type": "Dropdown",
-					"Category": "",
-					"DataType": "string",
-					"Group": "Default",
-					"Priority": "Mandatory",
-					"advance": false,
-					"control": "Dropdown",
-					"placeholder": "@Condition"
-				},
-				{
-					"Key": "ValueTwo",
-					"DisplayName": "Second Value",
-					"Value": "",
-					"Type": "Textbox",
-					"Category": "",
-					"DataType": "string",
-					"Group": "Default",
-					"Priority": "Mandatory",
-					"advance": false,
-					"control": "Textbox",
-					"placeholder": "@ValueTwo"
+					"placeholder": "@InSessionID"
 				}
 			],
 			"SourceEndpoints": [
@@ -26574,29 +26531,84 @@
 					"location": "TopCenter"
 				}
 			],
-			"Type": "if",
-			"Category": "Flow Controls",
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
 			"X": 0,
 			"Y": 0,
-			"OtherData": {
-				"TrueStateUUID": "",
-				"FalseStateUUID": ""
-			},
+			"OtherData": {},
 			"Annotation": "",
-			"DisplayName": "Branch rule",
-			"class": "Tools",
+			"DisplayName": "End Session",
+			"class": "Bots",
 			"Categoryicon": "ion-ios-gear",
 			"classicon": "ion-ios-gear",
-			"ControlType": "condition",
-			"workflow": [
-				{
-					"DisplayName": "Related issues",
-					"ControlType": "condition",
-					"workflow": [],
-					"webicon": "true.png"
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "438294333_set_chaninmethod",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "Bot_Smoothflow_SetChainMethod",
+			"Icon": "ion-shuffle",
+			"Description": "You can use this activity change the path of the config.",
+			"ControlEditDisabled": true,
+			"Variables": [
+                {
+					"Key": "Method",
+					"Value": "",
+					"ValueList": [
+						{
+							"key": "API.ai",
+							"value": "api.ai"
+						},
+						{
+							"key": "ARDS",
+							"value": "ARDS"
+						},
+						{
+							"key": "WIT.ai",
+							"value": "wit.ai"
+						}
+					],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Dropdown",
+					"placeholder": "Select the Method"
 				}
 			],
-			"webicon": "protractor.png",
+			"SourceEndpoints": [
+				{
+					"id": 0,
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": 0,
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Set Chain Method",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
 		}
