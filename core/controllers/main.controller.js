@@ -1767,6 +1767,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var comp = $scope.getNodeforLibraryID(node.id);
         comp.schema_id = dataHandler.createuuid();
         comp = $scope.fillPredefinedValues(comp, node.sampleData)
+        comp.workflow= [];
 
         // the node has a child
         if (!$rootScope.isNullOrEmptyOrUndefined(node.childNodes)){

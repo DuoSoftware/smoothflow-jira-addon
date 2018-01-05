@@ -156,6 +156,15 @@
                     "childNodes": []
                 },
                 {
+                    "id": "4",
+                    "sampleData": [
+                        {
+                            "Key": "MessageBody",
+                            "Value": "The fruit variable is passed into the automation rule as an InArgument and its accessed in the switch case."
+                        }
+                    ]
+                },
+                {
                     "id": "8",
                     "sampleData": [
                         {
@@ -222,6 +231,15 @@
                                     ]
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "sampleData": [
+                        {
+                            "Key": "MessageBody",
+                            "Value": "The switch state has been completed."
                         }
                     ]
                 },
