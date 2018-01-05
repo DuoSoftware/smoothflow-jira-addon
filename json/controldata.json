@@ -508,7 +508,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@Variable"
 				},
@@ -520,7 +520,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@DataType"
 				}
@@ -572,7 +572,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@CaseValue"
 				}
@@ -3935,7 +3935,7 @@
 					"Value": "",
 					"advance": false,
 					"control": "Textbox",
-					"placeholder": "@Reason"
+					"placeholder": "The reason for terminating the flow"
 				},
 				{
 					"Category": "InArgument",
@@ -3947,7 +3947,7 @@
 					"Value": "",
 					"advance": false,
 					"control": "Textbox",
-					"placeholder": "@Status"
+					"placeholder": "Status if true or false"
 				}
 			],
 			"SourceEndpoints": [],

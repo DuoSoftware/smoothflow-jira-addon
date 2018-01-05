@@ -1395,21 +1395,31 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                             item.workflow = [{
                                 DisplayName: 'True',
                                 ControlType: 'condition',
-                                workflow: []
+                                workflow: [],
+                                webicon: "true.png"
                             }, {
                                 DisplayName: 'False',
                                 ControlType: 'condition',
-                                workflow: []
+                                workflow: [],
+                                webicon: "false.png"
                             }];
                         } else if (item.DisplayName.toLowerCase() == 'switch') {
                             item.workflow = [{
                                 DisplayName: 'Case',
                                 ControlType: 'condition',
-                                workflow: []
+                                workflow: [],
+                                webicon: "hierarchy-structure.png"
+                                
                             }, {
                                 DisplayName: 'Case',
                                 ControlType: 'condition',
-                                workflow: []
+                                workflow: [],
+                                webicon: "hierarchy-structure.png"
+                            },{
+                                DisplayName: 'Default',
+                                ControlType: 'condition',
+                                workflow: [],
+                                webicon: "hierarchy-structure.png"
                             }];
                         }
                         $scope.structuredComps[1].components.push(item);
@@ -1855,7 +1865,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $rootScope.DisplayMessage("Key already exists.", "info", "The key you are trying to add is already added to the rule.");
         }
         else {
-            AJS.dialog2("#new-variable-dialog").hide()
+            AJS.dialog2("#new-rule-dialog").hide()
             angular.forEach($scope.allVariables, function (variable) {
                 angular.forEach($scope.AdditionalVariable, function (add) {
                     if (variable.Key == add.Key)
@@ -2156,6 +2166,21 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 dataHandler.addtoIfConnections(ifconnectionObj);
             }
 
+            // if the current node is an Switch condition the following will work
+            var SwitchUUID = "";
+            if (nodemodule.library_id == "8") {
+                SwitchUUID = dataHandler.createuuid();
+
+                nodemodule.OtherData.SwitchUUID = SwitchUUID;
+                dataHandler.addToViews(SwitchUUID);
+
+                var switchObj = {
+                    id: nodemodule.schema_id,
+                    "switchState": SwitchUUID,
+                };
+                dataHandler.addtoSwitch(switchObj);
+            }
+
             // if the parent node is having any child nodes, that will be added to a temparary array
             if (nodemodule.workflow.length > 0) {
                 var childnodes = [];
@@ -2195,6 +2220,23 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                             childnodes.push(stopNode);
                             //debugger
                             $scope.processNodeData(falsesideUUID, 400, 100, childnodes);
+                        } else if (childnode.DisplayName == "Case") {
+                            // adding start node before other nodes
+                            var startNode = $scope.getDummyNode("0", SwitchUUID, 400, 100);
+                            childnodes.push(startNode);
+                            // add the case node to the list as well
+                            // adding child nodes to the same array
+                            angular.forEach(childnode.workflow, function (node) {
+                                node.schema_id = dataHandler.createuuid();
+                                node.parentView = SwitchUUID;
+                                delete node.parent;
+                                childnodes.push(node);
+                            });
+                            // adding stop node when the child nodes are ended
+                            var stopNode = $scope.getDummyNode("1", SwitchUUID, 400, 100);
+                            childnodes.push(stopNode);
+                            //debugger
+                            $scope.processNodeData(SwitchUUID, 400, 100, childnodes);
                         }
                         childnodes = [];
                     }
@@ -2363,11 +2405,15 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
         var version = [saveObject.ID];
         saveObjectParent.version = version;
+        
         if (task == "save") {
             $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
         } else if (task == "build") {
             $scope.buildFlow(saveObject, event);
         }
+
+        console.log(saveObject);
+        // JSON.stringify(data.JSONData)
     };
 
     $scope.getControlObjectFromLibrary = function (library_id) {

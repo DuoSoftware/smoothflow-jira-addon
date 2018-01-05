@@ -131,6 +131,46 @@
                     "DataType": "string"
                 }
             ]
+        },
+        {
+            "Name": "FlowWithMultipleLevelsSwitch",
+            "DisplayName": "Automation with Switch conditions",
+            "Description": "You can use a 'Switch' condition inside your rule.",
+            "ControlType": "template",
+            "modules": [
+                {
+                    "id": "0",
+                    "sampleData": []
+                },
+                {
+                    "id": "8",
+                    "sampleData": [
+                        {
+                            "Key": "Variable",
+                            "Value": "@fruit"
+                        },
+                        {
+                            "Key": "DataType",
+                            "Value": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "1",
+                    "sampleData": []
+                }
+            ],
+            "variables": [
+                {
+                    "Key": "fruit",
+                    "Value": "",
+                    "Category": "InArgument",
+                    "Type": "dynamic",
+                    "Priority": "Mandatory",
+                    "Group": "default",
+                    "DataType": "string"
+                }
+            ]
         }
     ]
 }

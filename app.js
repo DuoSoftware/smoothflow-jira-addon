@@ -78,7 +78,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 // Kasun_Wijeratne_27_DEC_2017
 /** User validation before loading the Add-on **/
 $.get( "json/config.json", function( data ) {
-	debugger;
+	//debugger;
 	var domain = null;
 	var url = data.checkUserValidity.URL;
 	var xdm = window.location.href.split('&');
