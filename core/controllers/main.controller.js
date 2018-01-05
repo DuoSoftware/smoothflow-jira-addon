@@ -1752,29 +1752,48 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.searchFish = '';
     // set the default search/filter term
 
+    $scope.getNodeforLibraryID = function(library_id){
+        var returnObj = {};
+        for (j = 0; j < $scope.allcomponents.length; j++) {
+            if ($scope.allcomponents[j].library_id == library_id) {
+                returnObj = angular.copy($scope.allcomponents[j]);
+                break;
+            }
+        }
+        return returnObj;
+    }
+
+    $scope.getNodeWithData = function(node){
+        var comp = $scope.getNodeforLibraryID(node.id);
+        comp.schema_id = dataHandler.createuuid();
+        comp = $scope.fillPredefinedValues(comp, node.sampleData)
+
+        // the node has a child
+        if (!$rootScope.isNullOrEmptyOrUndefined(node.childNodes)){
+            angular.forEach(node.childNodes, function (variable) {
+                ///debugger
+                var filledObj = $scope.getNodeWithData(variable);
+                comp.workflow.push(filledObj);
+            });
+        }
+        return comp;
+    }
+
     //Open template
-    $scope.openTemplateFlow = function (templateType, e) {
+    $scope.openTemplateFlow = function (template, e) {
         var templateToLoad = [];
         var dummyWF = [];
+        
         // get the list of nodes to fill from the template
-        angular.forEach($scope.templates, function (template) {
-            if (template.Name == templateType) {
-                templateToLoad = template.modules;
-                angular.forEach(template.variables, function (variable) {
-                    $scope.AddNewVariable(variable, e);
-                });
-            }
+        templateToLoad = template.modules;
+        angular.forEach(template.variables, function (variable) {
+            $scope.AddNewVariable(variable, e);
         });
+
         // copy each node with the corresoponding library_id and add its sample data into it
         for (inc = 0; inc < templateToLoad.length; inc++) {
-            for (j = 0; j < $scope.allcomponents.length; j++) {
-                if ($scope.allcomponents[j].library_id == templateToLoad[inc].id) {
-                    var comp = angular.copy($scope.allcomponents[j]);
-                    comp.schema_id = dataHandler.createuuid();
-                    dummyWF.push($scope.fillPredefinedValues(comp, templateToLoad[inc].sampleData));
-                    break;
-                }
-            }
+            var filledObj = $scope.getNodeWithData(templateToLoad[inc]);
+            dummyWF.push(filledObj);
         }
         $scope.selectedRule.workflow = dummyWF;
         $scope.component = {
@@ -1958,8 +1977,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             });
             $scope.componentsToDisplay = newArray;
         } else if (component.ControlType == "template") {
+            //debugger
             $scope.saveRule();
-            $scope.openTemplateFlow(component.Name, e);
+            $scope.openTemplateFlow(component, e);
             $scope.isNewRuleFormValid = false;
         }
         // var backdrop = document.getElementsByClassName('modal-backdrop')[0];

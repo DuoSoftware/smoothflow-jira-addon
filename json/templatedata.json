@@ -8,11 +8,13 @@
             "modules": [
                 {
                     "id": "0",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 },
                 {
                     "id": "1",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 }
             ],
             "variables": []
@@ -25,7 +27,8 @@
             "modules": [
                 {
                     "id": "0",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 },
                 {
                     "id": "4",
@@ -34,11 +37,13 @@
                             "Key": "MessageBody",
                             "Value": "This is were your message is going to be. You can change it the way you want"
                         }
-                    ]
+                    ],
+                    "childNodes": []
                 },
                 {
                     "id": "1",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 }
             ],
             "variables": []
@@ -51,7 +56,8 @@
             "modules": [
                 {
                     "id": "0",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 },
                 {
                     "id": "882115",
@@ -60,11 +66,13 @@
                             "Key": "InSessionID",
                             "Value": "@InSessionID"
                         }
-                    ]
+                    ],
+                    "childNodes": []
                 },
                 {
                     "id": "1",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 }
             ],
             "variables": [
@@ -87,7 +95,8 @@
             "modules": [
                 {
                     "id": "0",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 },
                 {
                     "id": "4",
@@ -96,7 +105,8 @@
                             "Key": "MessageBody",
                             "Value": "The flow is about to start."
                         }
-                    ]
+                    ],
+                    "childNodes": []
                 },
                 {
                     "id": "2",
@@ -113,11 +123,13 @@
                             "Key": "ValueTwo",
                             "Value": "10"
                         }
-                    ]
+                    ],
+                    "childNodes": []
                 },
                 {
                     "id": "1",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 }
             ],
             "variables": [
@@ -140,7 +152,8 @@
             "modules": [
                 {
                     "id": "0",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 },
                 {
                     "id": "8",
@@ -153,11 +166,69 @@
                             "Key": "DataType",
                             "Value": "string"
                         }
+                    ],
+                    "childNodes": [
+                        {
+                            "id": "9",
+                            "sampleData": [
+                                {
+                                    "Key": "CaseValue",
+                                    "Value": "apple"
+                                }
+                            ],
+                            "childNodes": [
+                                {
+                                    "id": "4",
+                                    "sampleData": [
+                                        {
+                                            "Key": "MessageBody",
+                                            "Value": "This is an apple"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "9",
+                            "sampleData": [
+                                {
+                                    "Key": "CaseValue",
+                                    "Value": "banana"
+                                }
+                            ],
+                            "childNodes": [
+                                {
+                                    "id": "4",
+                                    "sampleData": [
+                                        {
+                                            "Key": "MessageBody",
+                                            "Value": "This is a banana"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "10",
+                            "sampleData": [],
+                            "childNodes": [
+                                {
+                                    "id": "4",
+                                    "sampleData": [
+                                        {
+                                            "Key": "MessageBody",
+                                            "Value": "There were no matching cases."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     ]
                 },
                 {
                     "id": "1",
-                    "sampleData": []
+                    "sampleData": [],
+                    "childNodes": []
                 }
             ],
             "variables": [
