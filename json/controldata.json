@@ -26506,6 +26506,7 @@
 			"Variables": [
 				{
 					"Key": "InSessionID",
+					"DisplayName": "Session ID",
 					"Value": "",
 					"ValueList": [],
 					"APIMethod": "",
@@ -26538,6 +26539,74 @@
 			"OtherData": {},
 			"Annotation": "",
 			"DisplayName": "End Session",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "438294839343_typing",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "Bot_Smoothflow_Typing",
+			"Icon": "ion-shuffle",
+			"Description": "You could use this activity to set the bot as Typing.",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "Session ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "duration",
+					"DisplayName": "Duration",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "Give the duration in seconds"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": 0,
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": 0,
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Typing",
 			"class": "Bots",
 			"Categoryicon": "ion-ios-gear",
 			"classicon": "ion-ios-gear",
