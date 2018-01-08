@@ -1408,12 +1408,40 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                                 DisplayName: 'Case',
                                 ControlType: 'condition',
                                 workflow: [],
+                                Variables: [
+                                    {
+                                        "Category": "InArgument",
+                                        "DataType": "string",
+                                        "Group": "Default",
+                                        "Key": "CaseValue",
+                                        "Priority": "Mandatory",
+                                        "Type": "dynamic",
+                                        "Value": "",
+                                        "advance": false,
+                                        "control": "Textbox",
+                                        "placeholder": "@CaseValue"
+                                    }
+                                ],
                                 webicon: "hierarchy-structure.png"
                                 
                             }, {
                                 DisplayName: 'Case',
                                 ControlType: 'condition',
                                 workflow: [],
+                                Variables: [
+                                    {
+                                        "Category": "InArgument",
+                                        "DataType": "string",
+                                        "Group": "Default",
+                                        "Key": "CaseValue",
+                                        "Priority": "Mandatory",
+                                        "Type": "dynamic",
+                                        "Value": "",
+                                        "advance": false,
+                                        "control": "Textbox",
+                                        "placeholder": "@CaseValue"
+                                    }
+                                ],
                                 webicon: "hierarchy-structure.png"
                             },{
                                 DisplayName: 'Default',
@@ -2187,7 +2215,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 dataHandler.addtoIfConnections(ifconnectionObj);
             }
 
-            // if the current node is an Switch condition the following will work
+            // if the current node is a Switch condition the following will work
             var SwitchUUID = "";
             if (nodemodule.library_id == "8") {
                 SwitchUUID = dataHandler.createuuid();
@@ -2200,13 +2228,29 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     "switchState": SwitchUUID,
                 };
                 dataHandler.addtoSwitch(switchObj);
+                $scope.processNodeData(SwitchUUID, 400, 100, nodemodule.workflow);
+            }
+
+            // if the current node is a Switch Case the following will work
+            var CaseUUID = "";
+            if (nodemodule.library_id == "9") {
+                CaseUUID = dataHandler.createuuid();
+
+                nodemodule.OtherData.CaseUUID = CaseUUID;
+                dataHandler.addToViews(CaseUUID);
+
+                var caseObj = {
+                    id: nodemodule.schema_id,
+                    "caseState": CaseUUID,
+                };
+                dataHandler.addtoCases(caseObj);
             }
 
             // if the parent node is having any child nodes, that will be added to a temparary array
             if (nodemodule.workflow.length > 0) {
                 var childnodes = [];
                 angular.forEach(nodemodule.workflow, function (childnode) {
-                    //debugger
+                    debugger
                     delete childnode.parent;
                     if (childnode.workflow.length > 0) {
                         if (childnode.DisplayName == "True") {
@@ -2241,25 +2285,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                             childnodes.push(stopNode);
                             //debugger
                             $scope.processNodeData(falsesideUUID, 400, 100, childnodes);
-                        } else if (childnode.DisplayName == "Case") {
-                            // adding start node before other nodes
-                            var startNode = $scope.getDummyNode("0", SwitchUUID, 400, 100);
-                            childnodes.push(startNode);
-                            // add the case node to the list as well
-                            // adding child nodes to the same array
-                            angular.forEach(childnode.workflow, function (node) {
-                                node.schema_id = dataHandler.createuuid();
-                                node.parentView = SwitchUUID;
-                                delete node.parent;
-                                childnodes.push(node);
-                            });
-                            // adding stop node when the child nodes are ended
-                            var stopNode = $scope.getDummyNode("1", SwitchUUID, 400, 100);
-                            childnodes.push(stopNode);
-                            //debugger
-                            $scope.processNodeData(SwitchUUID, 400, 100, childnodes);
-                        }
+                        } 
                         childnodes = [];
+                    }else {
+                        debugger
+                        // this will execute only for child functions of switch and case related nodes.
+                        // adding start node before other nodes
+                        var startNode = $scope.getDummyNode("0", CaseUUID, 400, 100);
+                        childnodes.push(startNode);
+                        // add the case node to the list as well
+                        // adding child nodes to the same array
+                        angular.forEach(childnode.workflow, function (node) {
+                            node.schema_id = dataHandler.createuuid();
+                            node.parentView = CaseUUID;
+                            delete node.parent;
+                            childnodes.push(node);
+                        });
+                        // adding stop node when the child nodes are ended
+                        var stopNode = $scope.getDummyNode("1", CaseUUID, 400, 100);
+                        childnodes.push(stopNode);
+                        //debugger
+                        $scope.processNodeData(CaseUUID, 400, 100, childnodes);
                     }
                 });
             }
