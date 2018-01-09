@@ -26687,7 +26687,7 @@
 			"parentView": "",
 			"Name": "Branch rule",
 			"Icon": "ion-shuffle",
-			"Description": "this is a test description",
+			"Description": "This is a test description",
 			"ControlEditDisabled": true,
 			"Variables": [
 				{
@@ -26761,7 +26761,7 @@
 				}
 			],
 			"Type": "if",
-			"Category": "Flow Controls",
+			"Category": "Misc",
 			"X": 0,
 			"Y": 0,
 			"OtherData": {
@@ -26770,10 +26770,10 @@
 			},
 			"Annotation": "",
 			"DisplayName": "Branch rule",
-			"class": "Tools",
+			"class": "JIRA",
 			"Categoryicon": "ion-ios-gear",
 			"classicon": "ion-ios-gear",
-			"ControlType": "condition",
+			"ControlType": "action",
 			"workflow": [
 				{
 					"DisplayName": "Related issues",
