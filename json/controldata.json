@@ -26773,7 +26773,7 @@
 			"class": "JIRA",
 			"Categoryicon": "ion-ios-gear",
 			"classicon": "ion-ios-gear",
-			"ControlType": "action",
+			"ControlType": "condition",
 			"workflow": [
 				{
 					"DisplayName": "Related issues",
@@ -26782,7 +26782,7 @@
 					"webicon": "true.png"
 				}
 			],
-			"webicon": "protractor.png",
+			"webicon": "jira_main.png",
 			"url": [],
 			"help": ""
 		}
