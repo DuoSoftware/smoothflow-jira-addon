@@ -26575,17 +26575,17 @@
 				{
 					"Key": "SMOOTHFLOW_FLOWNAME",
 					"DisplayName": "SMOOTHFLOW_FLOWNAME",
-					"Value": "SMOOTHFLOW_FLOWNAME",
+					"Value": "@SMOOTHFLOW_FLOWNAME",
 					"ValueList": [],
 					"APIMethod": "",
-					"Type": "hardcorded",
+					"Type": "dynamic",
 					"Category": "InArgument",
 					"DataType": "string",
 					"Group": "Default",
 					"Priority": "Mandatory",
 					"advance": true,
 					"control": "Textbox",
-					"placeholder": "SMOOTHFLOW_FLOWNAME"
+					"placeholder": "@SMOOTHFLOW_FLOWNAME"
 				},
 				{
 					"Key": "duration",
