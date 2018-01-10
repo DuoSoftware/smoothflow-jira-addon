@@ -26573,6 +26573,21 @@
 					"placeholder": "@InSessionID"
 				},
 				{
+					"Key": "SMOOTHFLOW_FLOWNAME",
+					"DisplayName": "SMOOTHFLOW_FLOWNAME",
+					"Value": "SMOOTHFLOW_FLOWNAME",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "hardcorded",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "SMOOTHFLOW_FLOWNAME"
+				},
+				{
 					"Key": "duration",
 					"DisplayName": "Duration",
 					"Value": "",
