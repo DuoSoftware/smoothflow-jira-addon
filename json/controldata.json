@@ -26605,7 +26605,7 @@
 				{
 					"Key": "sessionData",
 					"DisplayName": "Session Data",
-					"Value": "",
+					"Value": "@SessionData",
 					"ValueList": [],
 					"APIMethod": "",
 					"Type": "dynamic",
