@@ -31,13 +31,13 @@
                     </select>
                 </div>
                 <div class="field-group">
-                    <label for="value">Category</label>
+                    <label for="value">Data Type</label>
                     <select class="select" name="projects" ng-model="Variable.DataType">
-                        <option value="string">string</option>
-                        <option value="int">int</option>
+                        <option ng-repeat="DataType in Variable.DataType" value="DataType">{{DataType}}</option>
+                        <!-- <option value="int">int</option>
                         <option value="float">float</option>
                         <option value="boolean">boolean</option>
-                        <option value="array(string)">array(string)</option>
+                        <option value="array(string)">array(string)</option> -->
                     </select>
                 </div>
             </form>

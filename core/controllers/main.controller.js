@@ -947,6 +947,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.selectedRule = selectedRule;
             var flowVersion = $scope.getVersionForWF($scope.currentRuleID);
             $scope.getSchedule(selectedRule.name);
+            $scope.Variable.DataType=dataHandler.getSupportedDataTypes();
             if ($scope.selectedRule.workflow.length == 0) {
                 var client = $objectstore.getClient("process_flows");
                 client.onGetOne(function (data) {
@@ -1423,7 +1424,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                                     }
                                 ],
                                 webicon: "hierarchy-structure.png"
-                                
+
                             }, {
                                 DisplayName: 'Case',
                                 ControlType: 'condition',
@@ -1443,7 +1444,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                                     }
                                 ],
                                 webicon: "hierarchy-structure.png"
-                            },{
+                            }, {
                                 DisplayName: 'Default',
                                 ControlType: 'condition',
                                 workflow: [],
@@ -1669,7 +1670,10 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     //Edit rule
     $scope.editRule = function () {
+
+       
         $timeout(function () {
+        
             $scope.ruleEdit = !$scope.ruleEdit;
         });
     };
@@ -1780,7 +1784,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.searchFish = '';
     // set the default search/filter term
 
-    $scope.getNodeforLibraryID = function(library_id){
+    $scope.getNodeforLibraryID = function (library_id) {
         var returnObj = {};
         for (j = 0; j < $scope.allcomponents.length; j++) {
             if ($scope.allcomponents[j].library_id == library_id) {
@@ -1791,14 +1795,14 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         return returnObj;
     }
 
-    $scope.getNodeWithData = function(node){
+    $scope.getNodeWithData = function (node) {
         var comp = $scope.getNodeforLibraryID(node.id);
         comp.schema_id = dataHandler.createuuid();
         comp = $scope.fillPredefinedValues(comp, node.sampleData)
-        comp.workflow= [];
+        comp.workflow = [];
 
         // the node has a child
-        if (!$rootScope.isNullOrEmptyOrUndefined(node.childNodes)){
+        if (!$rootScope.isNullOrEmptyOrUndefined(node.childNodes)) {
             angular.forEach(node.childNodes, function (variable) {
                 ///debugger
                 var filledObj = $scope.getNodeWithData(variable);
@@ -1812,7 +1816,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     $scope.openTemplateFlow = function (template, e) {
         var templateToLoad = [];
         var dummyWF = [];
-        
+
         // get the list of nodes to fill from the template
         templateToLoad = template.modules;
         angular.forEach(template.variables, function (variable) {
@@ -2230,7 +2234,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                 dataHandler.addtoSwitch(switchObj);
 
                 // add start if there are child items for the switch statement
-                if(nodemodule.workflow.length > 0){
+                if (nodemodule.workflow.length > 0) {
                     var switchChildNodes = [];
                     var startNode = $scope.getDummyNode("0", SwitchUUID, 400, 100);
                     switchChildNodes.push(startNode);
@@ -2244,48 +2248,48 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                     // adding stop node when the child nodes are ended
                     var stopNode = $scope.getDummyNode("1", SwitchUUID, 400, 100);
                     switchChildNodes.push(stopNode);
-                    
+
                     angular.forEach(switchChildNodes, function (node) {
                         dataHandler.addtoNodes(node);
                     });
                     switchChildNodes = [];
                 }
-                
+
             }
 
             // if the current node is a Switch Case the following will work
-//             var CaseUUID, DefaultUUID = "";
-//             if (nodemodule.library_id == "9" || nodemodule.library_id == "10") {
-//                 var uniqID = dataHandler.createuuid();;
-//                 if(nodemodule.library_id == "9"){
-//                     CaseUUID = uniqID;
-//                     nodemodule.OtherData.CaseUUID = CaseUUID;
-//                     dataHandler.addToViews(CaseUUID);
-//                     var caseObj = {
-//                         id: nodemodule.schema_id,
-//                         "caseState": CaseUUID,
-//                     };
-//                     dataHandler.addtoCases(caseObj);
-//                 }else if(nodemodule.library_id == "10"){
-//                     DefaultUUID = uniqID;
-//                     nodemodule.OtherData.DefaultUUID = DefaultUUID;
-//                     dataHandler.addToViews(DefaultUUID);
-//                     var defaultObj = {
-//                         id: nodemodule.schema_id,
-//                         "caseState": DefaultUUID,
-//                     };
-//                     dataHandler.addtoCases(defaultObj);
-//                 }
-//             }
+            //             var CaseUUID, DefaultUUID = "";
+            //             if (nodemodule.library_id == "9" || nodemodule.library_id == "10") {
+            //                 var uniqID = dataHandler.createuuid();;
+            //                 if(nodemodule.library_id == "9"){
+            //                     CaseUUID = uniqID;
+            //                     nodemodule.OtherData.CaseUUID = CaseUUID;
+            //                     dataHandler.addToViews(CaseUUID);
+            //                     var caseObj = {
+            //                         id: nodemodule.schema_id,
+            //                         "caseState": CaseUUID,
+            //                     };
+            //                     dataHandler.addtoCases(caseObj);
+            //                 }else if(nodemodule.library_id == "10"){
+            //                     DefaultUUID = uniqID;
+            //                     nodemodule.OtherData.DefaultUUID = DefaultUUID;
+            //                     dataHandler.addToViews(DefaultUUID);
+            //                     var defaultObj = {
+            //                         id: nodemodule.schema_id,
+            //                         "caseState": DefaultUUID,
+            //                     };
+            //                     dataHandler.addtoCases(defaultObj);
+            //                 }
+            //             }
 
             // if the parent node is having any child nodes, that will be added to a temparary array
             if (nodemodule.workflow.length > 0) {
-                
+
                 angular.forEach(nodemodule.workflow, function (childnode) {
                     //debugger
                     var childnodes = [];
                     delete childnode.parent;
-                    
+
                     if (childnode.DisplayName == "True") {
                         // adding start node before other nodes
                         var startNode = $scope.getDummyNode("0", truesideUUID, 400, 100);
@@ -2318,30 +2322,30 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         childnodes.push(stopNode);
                         //debugger
                         $scope.processNodeData(falsesideUUID, 400, 100, childnodes);
-                    } else if (childnode.library_id == "9" || childnode.library_id == "10"){
-                        
-                         var CaseUUID = "";
-                         var DefaultUUID = "";
-                         var uniqID = dataHandler.createuuid();;
-                            if(childnode.library_id == "9"){
-                                CaseUUID = uniqID;
-                                childnode.OtherData.CaseUUID = CaseUUID;
-                                dataHandler.addToViews(CaseUUID);
-                                var caseObj = {
-                                    id: nodemodule.schema_id,
-                                    "caseState": CaseUUID,
-                                };
-                                dataHandler.addtoCases(caseObj);
-                            }else if(childnode.library_id == "10"){
-                                DefaultUUID = uniqID;
-                                childnode.OtherData.DefaultUUID = DefaultUUID;
-                                dataHandler.addToViews(DefaultUUID);
-                                var defaultObj = {
-                                    id: nodemodule.schema_id,
-                                    "caseState": DefaultUUID,
-                                };
-                                dataHandler.addtoCases(defaultObj);
-                            }
+                    } else if (childnode.library_id == "9" || childnode.library_id == "10") {
+
+                        var CaseUUID = "";
+                        var DefaultUUID = "";
+                        var uniqID = dataHandler.createuuid();;
+                        if (childnode.library_id == "9") {
+                            CaseUUID = uniqID;
+                            childnode.OtherData.CaseUUID = CaseUUID;
+                            dataHandler.addToViews(CaseUUID);
+                            var caseObj = {
+                                id: nodemodule.schema_id,
+                                "caseState": CaseUUID,
+                            };
+                            dataHandler.addtoCases(caseObj);
+                        } else if (childnode.library_id == "10") {
+                            DefaultUUID = uniqID;
+                            childnode.OtherData.DefaultUUID = DefaultUUID;
+                            dataHandler.addToViews(DefaultUUID);
+                            var defaultObj = {
+                                id: nodemodule.schema_id,
+                                "caseState": DefaultUUID,
+                            };
+                            dataHandler.addtoCases(defaultObj);
+                        }
 
                         // adding start node before other nodes
                         var startNode = $scope.getDummyNode("0", uniqID, 400, 100);
@@ -2360,27 +2364,27 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
                         $scope.processNodeData(uniqID, 400, 100, childnodes);
                     }
                     // empty childnodes array if not a switch statement
-                    childnodes = []; 
-//                     if(nodemodule.library_id != "8"){
-//                         childnodes = [];   
-//                     }else {
-//                         //switchChildNodes.push(childnode);
-//                     }
+                    childnodes = [];
+                    //                     if(nodemodule.library_id != "8"){
+                    //                         childnodes = [];   
+                    //                     }else {
+                    //                         //switchChildNodes.push(childnode);
+                    //                     }
                 });
             }
 
             // add the stop for switch statement
-//             if (nodemodule.library_id == "8") {
-//                 // add start if there are child items for the switch statement
-//                 if(nodemodule.workflow.length > 0){
-//                     var stopNode = $scope.getDummyNode("1", SwitchUUID, 400, 100);
-//                     switchChildNodes.push(stopNode);
+            //             if (nodemodule.library_id == "8") {
+            //                 // add start if there are child items for the switch statement
+            //                 if(nodemodule.workflow.length > 0){
+            //                     var stopNode = $scope.getDummyNode("1", SwitchUUID, 400, 100);
+            //                     switchChildNodes.push(stopNode);
 
-//                     $scope.processNodeData(SwitchUUID, 400, 100, switchChildNodes);
-//                 }
-//             }
+            //                     $scope.processNodeData(SwitchUUID, 400, 100, switchChildNodes);
+            //                 }
+            //             }
 
-//            switchChildNodes = [];
+            //            switchChildNodes = [];
 
             // add the object to runtimedatastore
             //debugger
@@ -2474,9 +2478,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }).then(function (data, status, headers, config) {
             console.log(data);
             if (data.data.Status) {
-                $rootScope.DisplayMessage("The rule was successfully build.", "success", "Please check your rule configurations.");    
+                $rootScope.DisplayMessage("The rule was successfully build.", "success", "Please check your rule configurations.");
             } else {
-                $rootScope.DisplayMessage("There was an error when building the rule.", "error", "Please check your rule configurations.");    
+                $rootScope.DisplayMessage("There was an error when building the rule.", "error", "Please check your rule configurations.");
             }
             $rootScope.HideBusyContainer();
         }, function (data, status, headers, config) {
@@ -2486,9 +2490,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     }
 
     $scope.generateSaveWorkflowObject = function (task) {
-        if(task == "save"){
+        if (task == "save") {
             $rootScope.ShowBusyContainer("Saving rule details...");
-        }else if(task == "build"){
+        } else if (task == "build") {
             $rootScope.ShowBusyContainer("Processing rule details...");
         }
 
@@ -2544,7 +2548,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
         var version = [saveObject.ID];
         saveObjectParent.version = version;
-        
+
         if (task == "save") {
             $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
         } else if (task == "build") {
@@ -3414,8 +3418,11 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         }
         $scope.sendProcessToObjectStore(saveObject, event, saveObjectParent);
         $rootScope.changeLocation('home');
-      
+
 
     }
     /** Rule - Copy End */
+    
+
+
 }
