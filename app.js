@@ -71,6 +71,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/feedback',
             templateUrl: 'content/home/feedback/feedback.html',
             controller: 'FeedbackController'
+        }).state('chatbots', {
+            url: '/chatbots',
+            templateUrl: 'content/chatbot/home.html',
+            controller: 'ChatbotController'
         });
 
 });
