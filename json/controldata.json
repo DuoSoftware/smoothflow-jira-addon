@@ -444,7 +444,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@Capture"
 				},
@@ -456,7 +456,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@AssignTo"
 				}
