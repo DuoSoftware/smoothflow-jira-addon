@@ -27674,6 +27674,59 @@
 			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
+		},
+		{
+			"library_id": "438294839343_savesession",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "Bot_Smoothflow_SaveSession",
+			"Icon": "ion-shuffle",
+			"Description": "You could use this activity to store session details on redis from the dispatcher",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "Session ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Save Session",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
 		}
 	]
 }
