@@ -394,7 +394,7 @@
 					"Priority": "Mandatory",
 					"Type": "dynamic",
 					"Value": "",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@Level"
 				}
@@ -26603,7 +26603,7 @@
 					"placeholder": "Give the duration in seconds"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Session Data",
 					"Value": "@SessionData",
 					"ValueList": [],
@@ -26871,7 +26871,7 @@
 					"placeholder": "@DBF_BUTTONLIST_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -26886,7 +26886,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -26969,7 +26969,7 @@
 					"placeholder": "@DBF_ATTACHMENT_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -26984,7 +26984,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27067,7 +27067,7 @@
 					"placeholder": "@DBF_MEDIACARD_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27082,7 +27082,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27165,7 +27165,7 @@
 					"placeholder": "@DBF_ListTemplate_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27180,7 +27180,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27263,7 +27263,7 @@
 					"placeholder": "@DBF_ListTemplate_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27278,7 +27278,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27361,7 +27361,7 @@
 					"placeholder": "@DBF_RECEIPT_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27376,7 +27376,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27459,7 +27459,7 @@
 					"placeholder": "@DBF_CARDTEMPLATE_ID"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27474,7 +27474,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27617,7 +27617,7 @@
 					"placeholder": "@OutApiAiIntentName"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "In Session Data",
 					"Value": "",
 					"ValueList": [],
@@ -27632,7 +27632,7 @@
 					"placeholder": "{}"
 				},
 				{
-					"Key": "sessionData",
+					"Key": "SessionData",
 					"DisplayName": "Out Session Data",
 					"Value": "",
 					"ValueList": [],
