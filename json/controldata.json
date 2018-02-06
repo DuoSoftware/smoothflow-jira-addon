@@ -27710,7 +27710,7 @@
 					"DataType": "string",
 					"Group": "Default",
 					"Priority": "Mandatory",
-					"advance": true,
+					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@NextLevel"
 				}
