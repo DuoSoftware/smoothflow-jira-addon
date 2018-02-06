@@ -27698,6 +27698,21 @@
 					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@NextLevel"
+				},
+				{
+					"Key": "Response",
+					"DisplayName": "Response",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@Response"
 				}
 			],
 			"SourceEndpoints": [
@@ -27847,6 +27862,104 @@
 			"OtherData": {},
 			"Annotation": "",
 			"DisplayName": "API Integration",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "438294839343_setcontext",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_SetContext",
+			"Icon": "ion-shuffle",
+			"Description": "You could use this activity to store context variables which are entered by the User.",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "Session ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "Key",
+					"DisplayName": "Key",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@key"
+				},
+				{
+					"Key": "Value",
+					"DisplayName": "Value",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@value"
+				},
+				{
+					"Key": "Response",
+					"DisplayName": "Response",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@Response"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Set Context Variable",
 			"class": "Bots",
 			"Categoryicon": "ion-ios-gear",
 			"classicon": "ion-ios-gear",
