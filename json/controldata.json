@@ -368,7 +368,7 @@
 			"Category": "Flow Controls",
 			"ControlEditDisabled": true,
 			"Description": "Can be used to freeze the workflow in middle.",
-			"DisplayName": "Hibernate",
+			"DisplayName": "Persist",
 			"Icon": "ion-help-buoy",
 			"Name": "Default_HibernateFlow",
 			"OtherData": {},
@@ -27698,6 +27698,21 @@
 					"advance": true,
 					"control": "Textbox",
 					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "NextLevel",
+					"DisplayName": "Next Level",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@NextLevel"
 				}
 			],
 			"SourceEndpoints": [
