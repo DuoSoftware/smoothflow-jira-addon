@@ -27727,6 +27727,134 @@
 			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
+		},
+		{
+			"library_id": "77089",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_Integration",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_INTEGRATION_ID",
+					"DisplayName": "Integration ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_INTEGRATION_ID"
+				},
+				{
+					"Key": "DBF_SUCCESS_ITEM",
+					"DisplayName": "Success Item ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_SUCCESS_ITEM"
+				},
+				{
+					"Key": "DBF_ERROR_ITEM",
+					"DisplayName": "Error Item ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_ERROR_ITEM"
+				},
+				{
+					"Key": "SessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "SessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "API Integration",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
 		}
 	]
 }
