@@ -26732,7 +26732,7 @@
 			"parentView": "",
 			"Name": "Branch rule",
 			"Icon": "ion-shuffle",
-			"Description": "this is a test description",
+			"Description": "This is a test description",
 			"ControlEditDisabled": true,
 			"Variables": [
 				{
@@ -26806,7 +26806,7 @@
 				}
 			],
 			"Type": "if",
-			"Category": "Flow Controls",
+			"Category": "Misc",
 			"X": 0,
 			"Y": 0,
 			"OtherData": {
@@ -26815,9 +26815,9 @@
 			},
 			"Annotation": "",
 			"DisplayName": "Branch rule",
-			"class": "Tools",
-			"Categoryicon": "ion-ios-gear",
-			"classicon": "ion-ios-gear",
+			"class": "JIRA",
+			"Categoryicon": "ion-cash",
+			"classicon": "ion-cash",
 			"ControlType": "condition",
 			"workflow": [
 				{
@@ -26827,7 +26827,851 @@
 					"webicon": "true.png"
 				}
 			],
-			"webicon": "protractor.png",
+			"webicon": "jira_main.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77081",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_ButtonList",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_BUTTONLIST_ID",
+					"DisplayName": "Button List ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_BUTTONLIST_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Button List",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77082",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_Attachment",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_ATTACHMENT_ID",
+					"DisplayName": "Attachment ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_ATTACHMENT_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Attachment",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77083",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_MediaCard",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_MEDIACARD_ID",
+					"DisplayName": "Mediacard ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_MEDIACARD_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Media card",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77084",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_ListTemplate",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_ListTemplate_ID",
+					"DisplayName": "Item List ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_ListTemplate_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Item List",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77085",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_QuickReply",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_QUICKREPLY_ID",
+					"DisplayName": "Quick reply ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_ListTemplate_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Quick Reply",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77086",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_ReceiptTemplate",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_RECEIPT_ID",
+					"DisplayName": "Receipt ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_RECEIPT_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Receipt",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77087",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_CardTemplate",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "DBF_CARDTEMPLATE_ID",
+					"DisplayName": "Card ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@DBF_CARDTEMPLATE_ID"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Card Item",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
+		},
+		{
+			"library_id": "77088",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_ApiaiResolve",
+			"Icon": "ion-shuffle",
+			"Description": "",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "InSessionID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "InApiAiMessage",
+					"DisplayName": "In Message",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@InApiAiMessage"
+				},
+				{
+					"Key": "OutApiAiMessage",
+					"DisplayName": "Out Message",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@OutApiAiMessage"
+				},
+				{
+					"Key": "OutApiAiContext",
+					"DisplayName": "Out Context",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@OutApiAiContext"
+				},
+				{
+					"Key": "OutApiAiIntentID",
+					"DisplayName": "Out Intent ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@OutApiAiIntentID"
+				},
+				{
+					"Key": "OutApiAiIntentName",
+					"DisplayName": "Out Intent Name",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@OutApiAiIntentName"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "In Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				},
+				{
+					"Key": "sessionData",
+					"DisplayName": "Out Session Data",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "{}"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "DialogFlow Resolve",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
 		}
