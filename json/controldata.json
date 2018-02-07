@@ -26468,6 +26468,7 @@
 				},
 				{
 					"Key": "GoTo",
+					"DisplayName": "Go To",
 					"Value": "",
 					"ValueList": [],
 					"APIMethod": "",
