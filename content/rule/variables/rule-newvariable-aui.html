@@ -14,13 +14,11 @@
             <form class="aui" name="vm.newRuleForm">
                 <div class="field-group">
                     <label for="key">Key</label>
-                    <input class="text long-field" type="text"
-                           id="key" name="key" ng-model="Variable.Key">
+                    <input class="text long-field" type="text" id="key" name="key" ng-model="Variable.Key">
                 </div>
                 <div class="field-group">
                     <label for="value">Value</label>
-                    <input class="text long-field" type="text"
-                           id="value" name="value" ng-model="Variable.Value">
+                    <input class="text long-field" type="text" id="value" name="value" ng-model="Variable.Value">
                 </div>
                 <div class="field-group">
                     <label for="value">Category</label>
@@ -32,13 +30,9 @@
                 </div>
                 <div class="field-group">
                     <label for="value">Data Type</label>
-                    <select class="select" name="projects" ng-model="Variable.DataType">
-                        <option ng-repeat="DataType in Variable.DataType" value="DataType">{{DataType}}</option>
-                        <!-- <option value="int">int</option>
-                        <option value="float">float</option>
-                        <option value="boolean">boolean</option>
-                        <option value="array(string)">array(string)</option> -->
-                    </select>
+                    <select class="select" name="projects" ng-model="Variable.DataType" ng-options="x for x in SupportedDataTypes"></select>
+                    <!-- <option ng-repeat="DataType in Variable.DataType" value="DataType">{{x}}</option>
+                    </select> -->
                 </div>
             </form>
         </div>
@@ -46,8 +40,8 @@
     <!-- Dialog footer -->
     <footer class="aui-dialog2-footer">
         <div class="aui-dialog2-footer-actions">
-            <button id="dialog-close-button" class="aui-button aui-button-link" ng-click="clearRule()">Clear</button>
-            <button id="dialog-next-button" class="aui-button aui-button-primary" ng-click="AddNewVariable(undefined, $event)">Save</button>
+            <button id="dialog-close-button" class="aui-button aui-button-link" ng-click="exitNewVariable($event)">Clear</button>
+            <button id="dialog-next-button" class="aui-button aui-button-primary" ng-click="addtoMainList(Variable, $event)">Save</button>
         </div>
     </footer>
 </section>

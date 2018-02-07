@@ -938,6 +938,8 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     };
     /** Google Chart - End */
 
+    $scope.SupportedDataTypes = dataHandler.getSupportedDataTypes();
+
     $scope.openSelectedRule = function (selectedRule, entry) {
         $timeout(function () {
             //debugger
@@ -947,7 +949,6 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             $scope.selectedRule = selectedRule;
             var flowVersion = $scope.getVersionForWF($scope.currentRuleID);
             $scope.getSchedule(selectedRule.name);
-            $scope.Variable.DataType=dataHandler.getSupportedDataTypes();
             if ($scope.selectedRule.workflow.length == 0) {
                 var client = $objectstore.getClient("process_flows");
                 client.onGetOne(function (data) {
@@ -1551,6 +1552,12 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.newRule();
     };
 
+    $scope.exitNewVariable = function(e){
+        $scope.Variable = {};
+        e.preventDefault();
+        AJS.dialog2("#rule-delete-dialog").hide();
+    }
+
     $scope.backRule = function () {
         $scope.isNewRuleFormValid = false;
     };
@@ -1892,7 +1899,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     ];
 
     $scope.addtoMainList = function (variable, event) {
+        debugger
         $scope.AddNewVariable(variable, event);
+        AJS.dialog2("#new-variable-dialog").hide()
     };
 
     //Add variables
