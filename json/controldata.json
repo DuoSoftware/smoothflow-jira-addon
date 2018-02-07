@@ -26465,6 +26465,20 @@
 					"advance": false,
 					"control": "Textbox",
 					"placeholder": "How are you?"
+				},
+				{
+					"Key": "GoTo",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@Goto"
 				}
 			],
 			"SourceEndpoints": [
