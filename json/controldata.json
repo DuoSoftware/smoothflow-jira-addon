@@ -28275,7 +28275,7 @@
 			"library_id": "438294839343_deletecontext",
 			"schema_id": 0,
 			"parentView": "",
-			"Name": "DBF_DeleteContext",
+			"Name": "DBF_RemoveContext",
 			"Icon": "ion-shuffle",
 			"Description": "You could use this activity to remove saved context details from the dispatcher.",
 			"ControlEditDisabled": true,
