@@ -28392,6 +28392,21 @@
 					"advance": false,
 					"control": "Textbox",
 					"placeholder": "@Note"
+				},
+				{
+					"Key": "Response",
+					"DisplayName": "Response",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "NotMandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@Response"
 				}
 			],
 			"SourceEndpoints": [
