@@ -27896,7 +27896,7 @@
 					"placeholder": "@InSessionID"
 				},
 				{
-					"Key": "ContextKey",
+					"Key": "Key",
 					"DisplayName": "Context Key",
 					"Value": "",
 					"ValueList": [],
@@ -27911,7 +27911,7 @@
 					"placeholder": "@key"
 				},
 				{
-					"Key": "ContextValue",
+					"Key": "Value",
 					"DisplayName": "Context Value",
 					"Value": "",
 					"ValueList": [],
