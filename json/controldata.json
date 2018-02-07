@@ -28270,6 +28270,74 @@
 			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
+		},
+		{
+			"library_id": "438294839343_deletecontext",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_DeleteContext",
+			"Icon": "ion-shuffle",
+			"Description": "You could use this activity to remove saved context details from the dispatcher.",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "Session ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "Response",
+					"DisplayName": "Response",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "OutArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "NotMandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@Response"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Remove Context",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
 		}
 	]
 }
