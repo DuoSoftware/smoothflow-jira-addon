@@ -28353,6 +28353,74 @@
 			"webicon": "chatbot.png",
 			"url": [],
 			"help": ""
+		},
+		{
+			"library_id": "438294839343_addEngagementNote",
+			"schema_id": 0,
+			"parentView": "",
+			"Name": "DBF_AddEngagementNote",
+			"Icon": "ion-shuffle",
+			"Description": "You could use this activity store engagement notes on Facetone.",
+			"ControlEditDisabled": true,
+			"Variables": [
+				{
+					"Key": "InSessionID",
+					"DisplayName": "Session ID",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": true,
+					"control": "Textbox",
+					"placeholder": "@InSessionID"
+				},
+				{
+					"Key": "Note",
+					"DisplayName": "Note",
+					"Value": "",
+					"ValueList": [],
+					"APIMethod": "",
+					"Type": "dynamic",
+					"Category": "InArgument",
+					"DataType": "string",
+					"Group": "Default",
+					"Priority": "Mandatory",
+					"advance": false,
+					"control": "Textbox",
+					"placeholder": "@Note"
+				}
+			],
+			"SourceEndpoints": [
+				{
+					"id": "0",
+					"location": "BottomCenter"
+				}
+			],
+			"TargetEndpoints": [
+				{
+					"id": "0",
+					"location": "TopCenter"
+				}
+			],
+			"Type": "activity",
+			"Category": "Smoothflow Bot",
+			"X": 0,
+			"Y": 0,
+			"OtherData": {},
+			"Annotation": "",
+			"DisplayName": "Add Engagement Note",
+			"class": "Bots",
+			"Categoryicon": "ion-ios-gear",
+			"classicon": "ion-ios-gear",
+			"ControlType": "action",
+			"workflow": [],
+			"webicon": "chatbot.png",
+			"url": [],
+			"help": ""
 		}
 	]
 }
