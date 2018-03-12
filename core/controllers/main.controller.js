@@ -1552,7 +1552,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.newRule();
     };
 
-    $scope.exitNewVariable = function(e){
+    $scope.exitNewVariable = function (e) {
         $scope.Variable = {};
         e.preventDefault();
         AJS.dialog2("#rule-delete-dialog").hide();
@@ -1678,9 +1678,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
     //Edit rule
     $scope.editRule = function () {
 
-       
+
         $timeout(function () {
-        
+
             $scope.ruleEdit = !$scope.ruleEdit;
         });
     };
@@ -1715,26 +1715,34 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         $scope.args = dataHandler.retrieveArgumentsKeys();
         component.Variables = dataHandler.checkFormat(component.Variables);
         $scope.selectedModule = component;
-        checkArguments(component.Variables)
+        //checkArguments(component.Variables)
         $timeout(function () {
             $scope.activeModule = component.$$hashKey;
         });
     };
-    function checkArguments(Variableslist) {
-        Variableslist.forEach(function (element) {
-            if (element.Key == "InSessionID") {
-                // set value @InSessionID
-                element.Value = "@InSessionID"
-            }
-        }, this);
-        $scope.allVariables.forEach(function (element) {
-            if (element.Key == "InSessionID") {
-                // set value @InSessionID
-                element.Value = "@InSessionID"
-            }
-        }, this);
+    // function checkArguments(Variableslist) {
+    //     Variableslist.forEach(function (element) {
+    //         if (element.Key == "InSessionID") {
+    //             // set value @InSessionID
+    //             element.Value = "@InSessionID"
+    //         }
+    //         if (element.Key == "SessionData") {
+    //             // set value @InSessionID
+    //             element.Value = "@SessionData"
+    //         }
+    //     }, this);
+    //     $scope.allVariables.forEach(function (element) {
+    //         if (element.Key == "InSessionID") {
+    //             // set value @InSessionID
+    //             element.Value = "@InSessionID"
+    //         }
+    //         if (element.Key == "SessionData") {
+    //             // set value @InSessionID
+    //             element.Value = "@SessionData"
+    //         }
+    //     }, this);
 
-    }
+    // }
     //New component
     $scope.newComponent = function (index) {
         $scope.componentLevel = 0;
@@ -1824,6 +1832,9 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
         var templateToLoad = [];
         var dummyWF = [];
 
+        // add the default set of arguments as variables
+        dataHandler.loadDefaultArguments();
+
         // get the list of nodes to fill from the template
         templateToLoad = template.modules;
         angular.forEach(template.variables, function (variable) {
@@ -1835,6 +1846,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
             var filledObj = $scope.getNodeWithData(templateToLoad[inc]);
             dummyWF.push(filledObj);
         }
+        $scope.getAllArguments();
         $scope.selectedRule.workflow = dummyWF;
         $scope.component = {
             workflow: $scope.selectedRule.workflow
@@ -3431,7 +3443,7 @@ function mainController($scope, $rootScope, $state, $timeout, $http, dataHandler
 
     }
     /** Rule - Copy End */
-    
+
 
 
 }

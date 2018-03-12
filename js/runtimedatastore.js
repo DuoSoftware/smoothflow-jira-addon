@@ -258,7 +258,16 @@ app.factory('dataHandler', function () {
         // first break the value into two by the . and if a section is available after . it should be validated
         if (value != undefined && value != "") {
             // check if the value has a plus. which means its a custom event.
-            values = value.split("+");
+            /** added by lakmini 22-11-2017 */
+            //check if test contain phone number
+            var phoneNumber = value.match(/(\+\d{10}|\+\d{2}\s\d{10}|\+\d{2}\s\d{3}\s\d{3}\s\d{3}|\+\d{3}\s\d{10}|\+\d{3}\s\d{3}\s\d{3}\s\d{4})/gi);
+            if (phoneNumber != null) {
+                values = value.split(/(?=[+])/g)
+            } else {
+                values = value.split("+");
+            }
+            /** End Edit */
+
             /*values = value.split("*");*/
             values.forEach(function (value) {
                 value = value.trim();
@@ -410,6 +419,7 @@ app.factory('dataHandler', function () {
     function reformatArguments(data) {
         var arguments = data;
         for (i = 0; i < arguments.length; i++) {
+            // check for default feidls and values
             if (arguments[i].Group == undefined) {
                 arguments[i].Group = 'default';
             }
@@ -451,9 +461,17 @@ app.factory('dataHandler', function () {
             }
             ; if (arguments[i].DisplayName == undefined) {
                 arguments[i].DisplayName = arguments[i].Key;
-            } 
+            }
             if (arguments[i].APIMethod == undefined) {
                 arguments[i].APIMethod = "";
+            }
+
+            // set default data if the fields are the following
+            if (arguments[i].Key == "InSessionID") {
+                arguments[i].Value = "@InSessionID";
+            }
+            if (arguments[i].Key == "SessionData") {
+                arguments[i].Value = "@SessionData";
             }
         }
         ;//console.log(arguments);
@@ -628,6 +646,14 @@ app.factory('dataHandler', function () {
             DataType: "string",
             Group: "default",
             Key: "InSessionID",
+            Priority: "Mandatory",
+            Type: "dynamic",
+            Value: ""
+        }, {
+            Category: "InArgument",
+            DataType: "string",
+            Group: "default",
+            Key: "SessionData",
             Priority: "Mandatory",
             Type: "dynamic",
             Value: ""
